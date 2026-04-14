@@ -128,7 +128,7 @@ export default function SectorDetailPage() {
                <div className="space-y-4 mb-8">
                  <div className="flex gap-3">
                    <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center shrink-0 text-xs font-bold text-gray-600">M</div>
-                   <div className="bg-gray-50 border border-gray-100 rounded-2xl rounded-tl-none p-3.5 text-sm text-dark font-medium leading-relaxed">
+                   <div className="bg-gray-50 border border-gray-100 rounded-2xl rounded-tl-none p-3.5 text-sm text-dark font-medium leading-relaxed max-w-[85%]">
                      {sector.id === 'saglik' ? 'En erken ne zamana randevu alabilirim?' : 
                       sector.id === 'e-ticaret' ? 'Siparişim nerede kaldı?' : 
                       sector.id === 'finans' ? 'Kredi faiz oranlarınız nedir?' :
@@ -140,7 +140,7 @@ export default function SectorDetailPage() {
                  </div>
                  <div className="flex gap-3 flex-row-reverse">
                    <div className="w-8 h-8 rounded-full bg-brand flex items-center justify-center shrink-0 text-xs font-bold text-white">AI</div>
-                   <div className="bg-blue-50 border border-blue-100 rounded-2xl rounded-tr-none p-3.5 text-sm text-dark font-medium leading-relaxed text-right">
+                   <div className="bg-blue-50 border border-blue-100 rounded-2xl rounded-tr-none p-3.5 text-sm text-dark font-medium leading-relaxed text-right max-w-[85%]">
                      {sector.id === 'saglik' ? 'Yarın saat 14:00 için randevunuzu oluşturabilirim. Onaylıyor musunuz?' : 
                       sector.id === 'e-ticaret' ? 'Siparişiniz kargoya verilmiş olup, yarın teslim edilecektir.' : 
                       sector.id === 'finans' ? 'Güncel ihtiyaç kredisi faiz oranımız %3.15\'tir. Hesaplama yapmamı ister misiniz?' :

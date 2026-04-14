@@ -35,29 +35,34 @@ export default function Navbar() {
           'fixed top-0 left-0 right-0 z-50 transition-all duration-500 flex justify-center',
           headerScrolled 
             ? 'py-4' 
-            : 'py-4'
+            : 'py-6'
         )}
       >
         <div className={cn(
           "flex items-center justify-between transition-all duration-500",
-          "w-[95%] max-w-7xl mx-auto px-6 py-3 backdrop-blur-2xl border shadow-[0_8px_32px_0_rgba(0,0,0,0.08)] rounded-2xl",
-          headerScrolled
-            ? "bg-white/85 border-gray-200/80 shadow-[0_8px_32px_0_rgba(0,0,0,0.10)]"
-            : "bg-white/60 border-white/40 shadow-[0_8px_32px_0_rgba(0,0,0,0.06)]"
+          headerScrolled 
+            ? "w-[95%] max-w-7xl mx-auto px-6 py-3 bg-white/90 backdrop-blur-2xl border border-gray-200 shadow-[0_8px_32px_0_rgba(0,0,0,0.08)] rounded-2xl"
+            : "w-full max-w-7xl mx-auto px-6"
         )}>
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group relative z-50">
             <img 
-              src="https://oxonom.com/img/logo_light.png"
+              src={headerScrolled ? "https://oxonom.com/img/logo_light.png" : "https://oxonom.com/img/logo_night.png"} 
               alt="OXONOM Logo" 
-              className="h-6 transition-all duration-300 object-contain"
+              className={cn(
+                "transition-all duration-300 object-contain",
+                headerScrolled ? "h-6" : "h-8"
+              )}
               referrerPolicy="no-referrer"
             />
           </Link>
 
           {/* Desktop Menu */}
           <nav className="hidden lg:flex items-center gap-8">
-            <Link to="/" className="text-sm font-bold transition-colors relative group text-gray-600 hover:text-brand">
+            <Link to="/" className={cn(
+              "text-sm font-bold transition-colors relative group",
+              headerScrolled ? "text-gray-600 hover:text-brand" : "text-white/80 hover:text-white"
+            )}>
               Ürün
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full" />
             </Link>
@@ -68,7 +73,10 @@ export default function Navbar() {
               onMouseEnter={() => setIsMegaMenuOpen(true)}
               onMouseLeave={() => setIsMegaMenuOpen(false)}
             >
-              <button className="flex items-center gap-1.5 text-sm font-bold transition-colors group py-2 text-gray-600 hover:text-brand">
+              <button className={cn(
+                "flex items-center gap-1.5 text-sm font-bold transition-colors group py-2",
+                headerScrolled ? "text-gray-600 hover:text-brand" : "text-white/80 hover:text-white"
+              )}>
                 Sektörler
                 <ChevronDown className={cn("w-4 h-4 transition-transform duration-300", isMegaMenuOpen && "rotate-180")} />
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full" />
@@ -131,7 +139,10 @@ export default function Navbar() {
               onMouseEnter={() => setIsPackagesMegaMenuOpen(true)}
               onMouseLeave={() => setIsPackagesMegaMenuOpen(false)}
             >
-              <button className="flex items-center gap-1.5 text-sm font-bold transition-colors group py-2 text-gray-600 hover:text-brand">
+              <button className={cn(
+                "flex items-center gap-1.5 text-sm font-bold transition-colors group py-2",
+                headerScrolled ? "text-gray-600 hover:text-brand" : "text-white/80 hover:text-white"
+              )}>
                 Paketler
                 <ChevronDown className={cn("w-4 h-4 transition-transform duration-300", isPackagesMegaMenuOpen && "rotate-180")} />
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full" />

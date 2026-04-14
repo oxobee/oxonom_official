@@ -47,11 +47,11 @@ export default function ProductShowcase() {
             >
               <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                 {/* Content */}
-                <div>
+                <div className="min-w-0">
                   <div className="inline-flex items-center px-4 py-2 bg-blue-50 text-blue-600 rounded-full text-[10px] font-bold uppercase tracking-widest mb-6">
-                    <MessageSquare className="w-3.5 h-3.5 mr-2" /> SOSYAL MEDYA AI OTOMASYONU
+                    <MessageSquare className="w-3.5 h-3.5 mr-2 shrink-0" /> SOSYAL MEDYA AI OTOMASYONU
                   </div>
-                  <h2 className="text-3xl md:text-5xl font-display font-bold text-dark mb-6 leading-[1.1] tracking-tight">
+                  <h2 className="text-3xl md:text-5xl font-display font-bold text-dark mb-6 leading-[1.1] tracking-tight break-words">
                     DM'leriniz artık <br /> satışa dönüşüyor.
                   </h2>
                   <p className="text-base md:text-lg text-gray-500 mb-8 font-medium leading-relaxed">
@@ -59,11 +59,11 @@ export default function ProductShowcase() {
                   </p>
                   
                   <div className="flex flex-wrap gap-2 md:gap-3 mb-8">
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-600"><Instagram className="w-3.5 h-3.5 text-pink-500" /> Instagram</div>
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-600"><MessageSquare className="w-3.5 h-3.5 text-green-500" /> WhatsApp</div>
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-600"><Globe className="w-3.5 h-3.5 text-dark" /> TikTok</div>
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-600"><Facebook className="w-3.5 h-3.5 text-blue-600" /> Facebook</div>
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-600"><Globe className="w-3.5 h-3.5 text-orange-500" /> Web Sitesi</div>
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-600"><Instagram className="w-3.5 h-3.5 text-pink-500 shrink-0" /> Instagram</div>
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-600"><MessageSquare className="w-3.5 h-3.5 text-green-500 shrink-0" /> WhatsApp</div>
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-600"><Globe className="w-3.5 h-3.5 text-dark shrink-0" /> TikTok</div>
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-600"><Facebook className="w-3.5 h-3.5 text-blue-600 shrink-0" /> Facebook</div>
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-600"><Globe className="w-3.5 h-3.5 text-orange-500 shrink-0" /> Web Sitesi</div>
                   </div>
 
                   <ul className="space-y-4 mb-10">
@@ -82,30 +82,30 @@ export default function ProductShowcase() {
                     ))}
                   </ul>
 
-                  <div className="flex overflow-x-auto gap-4 mb-10 pb-4 -mx-6 px-6 md:mx-0 md:px-0 md:grid md:grid-cols-3 md:overflow-visible no-scrollbar snap-x">
-                    <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm text-center min-w-[140px] shrink-0 snap-center flex flex-col justify-center">
-                      <div className="text-2xl md:text-3xl font-bold text-blue-600 mb-2">391%</div>
-                      <div className="text-[10px] font-bold text-gray-500 uppercase tracking-wider leading-relaxed">DAHA YÜKSEK<br/>DÖNÜŞÜM*</div>
+                  <div className="grid grid-cols-3 gap-2 md:gap-4 mb-10">
+                    <div className="bg-white p-3 md:p-5 rounded-2xl border border-gray-100 shadow-sm text-center flex flex-col justify-center">
+                      <div className="text-lg md:text-3xl font-bold text-blue-600 mb-1 md:mb-2">391%</div>
+                      <div className="text-[8px] md:text-[10px] font-bold text-gray-500 uppercase tracking-wider leading-tight">DAHA YÜKSEK<br/>DÖNÜŞÜM*</div>
                     </div>
-                    <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm text-center min-w-[140px] shrink-0 snap-center flex flex-col justify-center">
-                      <div className="text-2xl md:text-3xl font-bold text-blue-600 mb-2">98%</div>
-                      <div className="text-[10px] font-bold text-gray-500 uppercase tracking-wider leading-relaxed">WHATSAPP<br/>AÇILMA ORANI</div>
+                    <div className="bg-white p-3 md:p-5 rounded-2xl border border-gray-100 shadow-sm text-center flex flex-col justify-center">
+                      <div className="text-lg md:text-3xl font-bold text-blue-600 mb-1 md:mb-2">98%</div>
+                      <div className="text-[8px] md:text-[10px] font-bold text-gray-500 uppercase tracking-wider leading-tight">WHATSAPP<br/>AÇILMA ORANI</div>
                     </div>
-                    <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm text-center min-w-[140px] shrink-0 snap-center flex flex-col justify-center">
-                      <div className="text-2xl md:text-3xl font-bold text-blue-600 mb-2">%80</div>
-                      <div className="text-[10px] font-bold text-gray-500 uppercase tracking-wider leading-relaxed">OTOMASYON<br/>KAPSAMI</div>
+                    <div className="bg-white p-3 md:p-5 rounded-2xl border border-gray-100 shadow-sm text-center flex flex-col justify-center">
+                      <div className="text-lg md:text-3xl font-bold text-blue-600 mb-1 md:mb-2">%80</div>
+                      <div className="text-[8px] md:text-[10px] font-bold text-gray-500 uppercase tracking-wider leading-tight">OTOMASYON<br/>KAPSAMI</div>
                     </div>
                   </div>
                   
                   <p className="text-[10px] text-gray-400 mb-8">* 1 dakika içinde yanıt veren markalarda ölçüldü — Alhena AI, 2025</p>
 
                   <button className="w-full sm:w-auto justify-center px-8 py-4 bg-blue-600 text-white rounded-xl font-bold text-sm hover:bg-blue-700 transition-all flex items-center gap-2 shadow-lg shadow-blue-600/20 group">
-                    Chat Agent'ı Keşfet <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    Chat Agent'ı Keşfet <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform shrink-0" />
                   </button>
                 </div>
 
                 {/* Mockups */}
-                <div className="space-y-6 w-full max-w-full overflow-hidden">
+                <div className="space-y-6 w-full max-w-full overflow-hidden min-w-0">
                   {/* Instagram Mockup */}
                   <div className="bg-white rounded-2xl p-4 md:p-6 shadow-xl shadow-dark/5 border border-gray-100 w-full">
                     <div className="flex items-center gap-2 mb-4 md:mb-6">
@@ -116,19 +116,19 @@ export default function ProductShowcase() {
                     <div className="bg-gray-50 rounded-2xl p-4 md:p-5 border border-gray-100">
                       <div className="flex items-center gap-3 mb-3">
                         <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold text-xs shrink-0">AY</div>
-                        <div className="min-w-0">
+                        <div className="min-w-0 flex-1">
                           <span className="text-xs font-bold text-dark truncate block">@ayse.yilmaz</span>
                           <span className="text-[10px] text-gray-400">Az önce</span>
                         </div>
                       </div>
-                      <p className="text-sm text-dark font-medium mb-4">Fiyat listesi nereden öğrenebilirim? 🙏</p>
+                      <p className="text-sm text-dark font-medium mb-4 break-words">Fiyat listesi nereden öğrenebilirim? 🙏</p>
                       
                       <div className="bg-blue-50/50 rounded-xl p-3 md:p-4 border border-blue-100/50">
                         <div className="flex items-center gap-2 mb-2">
                           <MessageSquare className="w-3.5 h-3.5 text-blue-500 shrink-0" />
                           <span className="text-[10px] font-bold text-blue-600 uppercase tracking-widest truncate">OXONOM AI YANIT VERDİ — 23 SANİYE</span>
                         </div>
-                        <p className="text-sm text-dark font-medium leading-relaxed">
+                        <p className="text-sm text-dark font-medium leading-relaxed break-words">
                           Merhaba Ayşe hanım! Detaylı fiyat listemizi DM olarak gönderdim. İsterseniz hemen randevu da oluşturabiliriz 😊
                         </p>
                       </div>
@@ -145,28 +145,28 @@ export default function ProductShowcase() {
                     <div className="space-y-4">
                       <div className="flex gap-2 md:gap-3">
                         <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gray-100 flex items-center justify-center shrink-0 text-[10px] md:text-xs font-bold text-gray-600">K</div>
-                        <div className="bg-gray-50 border border-gray-100 rounded-2xl rounded-tl-none p-3 text-xs md:text-sm text-dark font-medium">
+                        <div className="bg-gray-50 border border-gray-100 rounded-2xl rounded-tl-none p-3 text-xs md:text-sm text-dark font-medium break-words max-w-[85%]">
                           Diş temizliği için randevu almak istiyorum
                         </div>
                       </div>
                       
                       <div className="flex gap-2 md:gap-3 flex-row-reverse">
                         <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-blue-600 flex items-center justify-center shrink-0 text-[10px] md:text-xs font-bold text-white">OX</div>
-                        <div className="bg-blue-50 border border-blue-100 rounded-2xl rounded-tr-none p-3 text-xs md:text-sm text-dark font-medium text-right">
+                        <div className="bg-blue-50 border border-blue-100 rounded-2xl rounded-tr-none p-3 text-xs md:text-sm text-dark font-medium text-right break-words max-w-[85%]">
                           Merhaba! Uygun tarihlerimiz:<br/>📅 Per 14:00 - Cum 10:30 - Pzt 09:00
                         </div>
                       </div>
 
                       <div className="flex gap-2 md:gap-3">
                         <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gray-100 flex items-center justify-center shrink-0 text-[10px] md:text-xs font-bold text-gray-600">K</div>
-                        <div className="bg-gray-50 border border-gray-100 rounded-2xl rounded-tl-none p-3 text-xs md:text-sm text-dark font-medium">
+                        <div className="bg-gray-50 border border-gray-100 rounded-2xl rounded-tl-none p-3 text-xs md:text-sm text-dark font-medium break-words max-w-[85%]">
                           Perşembe 14:00 olsun
                         </div>
                       </div>
 
                       <div className="flex gap-2 md:gap-3 flex-row-reverse">
                         <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-blue-600 flex items-center justify-center shrink-0 text-[10px] md:text-xs font-bold text-white">OX</div>
-                        <div className="bg-blue-50 border border-blue-100 rounded-2xl rounded-tr-none p-3 text-xs md:text-sm text-dark font-medium text-right">
+                        <div className="bg-blue-50 border border-blue-100 rounded-2xl rounded-tr-none p-3 text-xs md:text-sm text-dark font-medium text-right break-words max-w-[85%]">
                           ✅ Randevunuz oluşturuldu!<br/>Perşembe 14:00 — Adresi onaylayabilir misiniz?
                         </div>
                       </div>
@@ -208,16 +208,16 @@ export default function ProductShowcase() {
               transition={{ duration: 0.4 }}
               className="bg-red-50/30 rounded-[2rem] md:rounded-[2.5rem] border border-red-100 p-6 md:p-12 overflow-hidden"
             >
-              <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-center">
+              <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                 {/* Content */}
-                <div>
+                <div className="min-w-0">
                   <div className="inline-flex items-center px-4 py-2 bg-red-50 text-red-600 rounded-full text-[10px] font-bold uppercase tracking-widest mb-6 border border-red-100">
-                    <PhoneCall className="w-3.5 h-3.5 mr-2" /> OTONOM SESLİ ASİSTAN
+                    <PhoneCall className="w-3.5 h-3.5 mr-2 shrink-0" /> OTONOM SESLİ ASİSTAN
                   </div>
-                  <h2 className="text-3xl md:text-5xl font-display font-bold text-dark mb-6 leading-[1.1] tracking-tight">
-                    Binlerce çağrıyı aynı anda, hiç bekletmeden.
+                  <h2 className="text-4xl md:text-5xl font-display font-bold text-dark mb-6 leading-[1.1] tracking-tight break-words">
+                    Binlerce çağrıyı aynı anda, <br /> hiç bekletmeden.
                   </h2>
-                  <p className="text-base md:text-lg text-gray-500 mb-8 font-medium leading-relaxed">
+                  <p className="text-lg text-gray-500 mb-8 font-medium leading-relaxed">
                     Gelen ve giden telefon görüşmelerini gerçek bir müşteri temsilcisi gibi yöneten, CRM'inizle anlık entegre çalışan otonom yapay zeka sistemi. Randevu alır, sipariş işler, duygu analizi yapar. 7/24 kesintisiz aktif.
                   </p>
 
@@ -237,62 +237,62 @@ export default function ProductShowcase() {
                     ))}
                   </ul>
 
-                  <div className="flex overflow-x-auto gap-4 mb-10 pb-4 -mx-6 px-6 md:mx-0 md:px-0 md:grid md:grid-cols-3 md:overflow-visible no-scrollbar snap-x">
-                    <div className="bg-white p-5 rounded-2xl border border-red-100 shadow-sm text-center min-w-[140px] shrink-0 snap-center flex flex-col justify-center">
-                      <div className="text-2xl md:text-3xl font-bold text-brand mb-2">%70</div>
-                      <div className="text-[10px] font-bold text-gray-500 uppercase tracking-wider leading-relaxed">MALİYET<br/>DÜŞÜŞÜ</div>
+                  <div className="grid grid-cols-3 gap-2 md:gap-4 mb-10">
+                    <div className="bg-white p-3 md:p-5 rounded-2xl border border-red-100 shadow-sm text-center flex flex-col justify-center">
+                      <div className="text-lg md:text-3xl font-bold text-brand mb-1 md:mb-2">%70</div>
+                      <div className="text-[8px] md:text-[10px] font-bold text-gray-500 uppercase tracking-wider leading-tight">MALİYET<br/>DÜŞÜŞÜ</div>
                     </div>
-                    <div className="bg-white p-5 rounded-2xl border border-red-100 shadow-sm text-center min-w-[140px] shrink-0 snap-center flex flex-col justify-center">
-                      <div className="text-2xl md:text-3xl font-bold text-brand mb-2">96.4%</div>
-                      <div className="text-[10px] font-bold text-gray-500 uppercase tracking-wider leading-relaxed">BAŞARILI<br/>ÇÖZÜM</div>
+                    <div className="bg-white p-3 md:p-5 rounded-2xl border border-red-100 shadow-sm text-center flex flex-col justify-center">
+                      <div className="text-lg md:text-3xl font-bold text-brand mb-1 md:mb-2">96.4%</div>
+                      <div className="text-[8px] md:text-[10px] font-bold text-gray-500 uppercase tracking-wider leading-tight">BAŞARILI<br/>ÇÖZÜM</div>
                     </div>
-                    <div className="bg-white p-5 rounded-2xl border border-red-100 shadow-sm text-center min-w-[140px] shrink-0 snap-center flex flex-col justify-center">
-                      <div className="text-2xl md:text-3xl font-bold text-brand mb-2">7/24</div>
-                      <div className="text-[10px] font-bold text-gray-500 uppercase tracking-wider leading-relaxed">KESİNTİSİZ<br/>AKTİF</div>
+                    <div className="bg-white p-3 md:p-5 rounded-2xl border border-red-100 shadow-sm text-center flex flex-col justify-center">
+                      <div className="text-lg md:text-3xl font-bold text-brand mb-1 md:mb-2">7/24</div>
+                      <div className="text-[8px] md:text-[10px] font-bold text-gray-500 uppercase tracking-wider leading-tight">KESİNTİSİZ<br/>AKTİF</div>
                     </div>
                   </div>
 
                   <button className="w-full sm:w-auto justify-center px-8 py-4 bg-brand text-white rounded-xl font-bold text-sm hover:bg-red-600 transition-all flex items-center gap-2 shadow-lg shadow-brand/20 group">
-                    Voice Agent'ı Keşfet <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    Voice Agent'ı Keşfet <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform shrink-0" />
                   </button>
                 </div>
 
                 {/* Mockups */}
-                <div className="space-y-6 w-full max-w-full overflow-hidden">
-                  <div className="bg-white rounded-2xl p-4 md:p-6 shadow-xl shadow-dark/5 border border-red-100 w-full overflow-hidden">
+                <div className="space-y-6 w-full max-w-full overflow-hidden min-w-0">
+                  <div className="bg-white rounded-2xl p-4 md:p-6 shadow-xl shadow-dark/5 border border-red-100 w-full">
                     <div className="flex items-center justify-between mb-4 md:mb-6">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-green-400 shrink-0" />
                         <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest truncate">CANLI GÖRÜŞME</span>
                       </div>
-                      <span className="text-xs font-mono text-gray-400">01:47</span>
+                      <span className="text-xs font-mono text-gray-400 shrink-0">01:47</span>
                     </div>
                     
                     <div className="space-y-4 mb-6 md:mb-8">
                       <div className="flex gap-2 md:gap-3">
                         <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gray-100 flex items-center justify-center shrink-0 text-[10px] md:text-xs font-bold text-gray-600">M</div>
-                        <div className="bg-gray-50 border border-gray-100 rounded-2xl rounded-tl-none p-3 md:p-4 text-xs md:text-sm text-dark font-medium min-w-0 flex-1">
+                        <div className="bg-gray-50 border border-gray-100 rounded-2xl rounded-tl-none p-3 md:p-4 text-xs md:text-sm text-dark font-medium break-words max-w-[85%]">
                           Siparişim iptal etmek istiyorum, biraz sinirli konuşacağım belki.
                         </div>
                       </div>
                       
                       <div className="flex gap-2 md:gap-3 flex-row-reverse">
                         <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-brand flex items-center justify-center shrink-0 text-[10px] md:text-xs font-bold text-white">OX</div>
-                        <div className="bg-red-50 border border-red-100 rounded-2xl rounded-tr-none p-3 md:p-4 text-xs md:text-sm text-dark font-medium text-right min-w-0 flex-1">
+                        <div className="bg-red-50 border border-red-100 rounded-2xl rounded-tr-none p-3 md:p-4 text-xs md:text-sm text-dark font-medium text-right break-words max-w-[85%]">
                           Sizi anlıyorum, hemen yardımcı olacağım. Sipariş numaranızı öğrenebilir miyim? 😊
                         </div>
                       </div>
 
                       <div className="flex gap-2 md:gap-3">
                         <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gray-100 flex items-center justify-center shrink-0 text-[10px] md:text-xs font-bold text-gray-600">M</div>
-                        <div className="bg-gray-50 border border-gray-100 rounded-2xl rounded-tl-none p-3 md:p-4 text-xs md:text-sm text-dark font-medium min-w-0">
+                        <div className="bg-gray-50 border border-gray-100 rounded-2xl rounded-tl-none p-3 md:p-4 text-xs md:text-sm text-dark font-medium break-words max-w-[85%]">
                           #4821
                         </div>
                       </div>
 
                       <div className="flex gap-2 md:gap-3 flex-row-reverse">
                         <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-brand flex items-center justify-center shrink-0 text-[10px] md:text-xs font-bold text-white">OX</div>
-                        <div className="bg-red-50 border border-red-100 rounded-2xl rounded-tr-none px-3 py-2 md:px-4 md:py-3 flex items-center gap-1">
+                        <div className="bg-red-50 border border-red-100 rounded-2xl rounded-tr-none px-3 py-2 md:px-4 md:py-3 flex items-center gap-1 max-w-[85%]">
                           <motion.div animate={{ y: [0, -3, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0 }} className="w-1.5 h-1.5 bg-brand/50 rounded-full" />
                           <motion.div animate={{ y: [0, -3, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.2 }} className="w-1.5 h-1.5 bg-brand/50 rounded-full" />
                           <motion.div animate={{ y: [0, -3, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.4 }} className="w-1.5 h-1.5 bg-brand/50 rounded-full" />
@@ -325,7 +325,7 @@ export default function ProductShowcase() {
                   </div>
 
                   {/* Bottom Stats */}
-                  <div className="bg-white rounded-2xl p-4 md:p-6 shadow-xl shadow-dark/5 border border-red-100 w-full overflow-hidden">
+                  <div className="bg-white rounded-2xl p-4 md:p-6 shadow-xl shadow-dark/5 border border-red-100 w-full">
                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4 truncate">AKTİF METRİKLERİ</p>
                     <div className="grid grid-cols-2 gap-3 md:gap-4">
                       <div className="bg-red-50/50 rounded-2xl p-4 md:p-5 text-center border border-red-100 flex flex-col justify-center">
