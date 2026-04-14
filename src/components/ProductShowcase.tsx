@@ -206,18 +206,18 @@ export default function ProductShowcase() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4 }}
-              className="bg-red-50/30 rounded-[2.5rem] border border-red-100 p-8 md:p-12"
+              className="bg-red-50/30 rounded-[2rem] md:rounded-[2.5rem] border border-red-100 p-6 md:p-12 overflow-hidden"
             >
-              <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+              <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-center">
                 {/* Content */}
                 <div>
                   <div className="inline-flex items-center px-4 py-2 bg-red-50 text-red-600 rounded-full text-[10px] font-bold uppercase tracking-widest mb-6 border border-red-100">
                     <PhoneCall className="w-3.5 h-3.5 mr-2" /> OTONOM SESLİ ASİSTAN
                   </div>
-                  <h2 className="text-4xl md:text-5xl font-display font-bold text-dark mb-6 leading-[1.1] tracking-tight">
-                    Binlerce çağrıyı aynı anda, <br /> hiç bekletmeden.
+                  <h2 className="text-3xl md:text-5xl font-display font-bold text-dark mb-6 leading-[1.1] tracking-tight">
+                    Binlerce çağrıyı aynı anda, hiç bekletmeden.
                   </h2>
-                  <p className="text-lg text-gray-500 mb-8 font-medium leading-relaxed">
+                  <p className="text-base md:text-lg text-gray-500 mb-8 font-medium leading-relaxed">
                     Gelen ve giden telefon görüşmelerini gerçek bir müşteri temsilcisi gibi yöneten, CRM'inizle anlık entegre çalışan otonom yapay zeka sistemi. Randevu alır, sipariş işler, duygu analizi yapar. 7/24 kesintisiz aktif.
                   </p>
 
@@ -228,11 +228,11 @@ export default function ProductShowcase() {
                       "60+ dil, sınırsız eş zamanlı görüşme kapasitesi",
                       "Salesforce, HubSpot, Zendesk ve özel CRM entegrasyonu"
                     ].map((feature, i) => (
-                      <li key={i} className="flex items-center gap-3 text-sm font-bold text-gray-700">
-                        <div className="w-5 h-5 rounded-full bg-red-50 flex items-center justify-center shrink-0">
+                      <li key={i} className="flex items-start gap-3 text-sm font-bold text-gray-700">
+                        <div className="w-5 h-5 rounded-full bg-red-50 flex items-center justify-center shrink-0 mt-0.5">
                           <CheckCircle2 className="w-3.5 h-3.5 text-brand" />
                         </div>
-                        {feature}
+                        <span className="flex-1">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -259,7 +259,7 @@ export default function ProductShowcase() {
 
                 {/* Mockups */}
                 <div className="space-y-6 w-full max-w-full overflow-hidden">
-                  <div className="bg-white rounded-2xl p-4 md:p-6 shadow-xl shadow-dark/5 border border-red-100 w-full">
+                  <div className="bg-white rounded-2xl p-4 md:p-6 shadow-xl shadow-dark/5 border border-red-100 w-full overflow-hidden">
                     <div className="flex items-center justify-between mb-4 md:mb-6">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-green-400 shrink-0" />
@@ -271,21 +271,21 @@ export default function ProductShowcase() {
                     <div className="space-y-4 mb-6 md:mb-8">
                       <div className="flex gap-2 md:gap-3">
                         <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gray-100 flex items-center justify-center shrink-0 text-[10px] md:text-xs font-bold text-gray-600">M</div>
-                        <div className="bg-gray-50 border border-gray-100 rounded-2xl rounded-tl-none p-3 md:p-4 text-xs md:text-sm text-dark font-medium">
+                        <div className="bg-gray-50 border border-gray-100 rounded-2xl rounded-tl-none p-3 md:p-4 text-xs md:text-sm text-dark font-medium min-w-0 flex-1">
                           Siparişim iptal etmek istiyorum, biraz sinirli konuşacağım belki.
                         </div>
                       </div>
                       
                       <div className="flex gap-2 md:gap-3 flex-row-reverse">
                         <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-brand flex items-center justify-center shrink-0 text-[10px] md:text-xs font-bold text-white">OX</div>
-                        <div className="bg-red-50 border border-red-100 rounded-2xl rounded-tr-none p-3 md:p-4 text-xs md:text-sm text-dark font-medium text-right">
+                        <div className="bg-red-50 border border-red-100 rounded-2xl rounded-tr-none p-3 md:p-4 text-xs md:text-sm text-dark font-medium text-right min-w-0 flex-1">
                           Sizi anlıyorum, hemen yardımcı olacağım. Sipariş numaranızı öğrenebilir miyim? 😊
                         </div>
                       </div>
 
                       <div className="flex gap-2 md:gap-3">
                         <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gray-100 flex items-center justify-center shrink-0 text-[10px] md:text-xs font-bold text-gray-600">M</div>
-                        <div className="bg-gray-50 border border-gray-100 rounded-2xl rounded-tl-none p-3 md:p-4 text-xs md:text-sm text-dark font-medium">
+                        <div className="bg-gray-50 border border-gray-100 rounded-2xl rounded-tl-none p-3 md:p-4 text-xs md:text-sm text-dark font-medium min-w-0">
                           #4821
                         </div>
                       </div>
@@ -325,7 +325,7 @@ export default function ProductShowcase() {
                   </div>
 
                   {/* Bottom Stats */}
-                  <div className="bg-white rounded-2xl p-4 md:p-6 shadow-xl shadow-dark/5 border border-red-100 w-full">
+                  <div className="bg-white rounded-2xl p-4 md:p-6 shadow-xl shadow-dark/5 border border-red-100 w-full overflow-hidden">
                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4 truncate">AKTİF METRİKLERİ</p>
                     <div className="grid grid-cols-2 gap-3 md:gap-4">
                       <div className="bg-red-50/50 rounded-2xl p-4 md:p-5 text-center border border-red-100 flex flex-col justify-center">
