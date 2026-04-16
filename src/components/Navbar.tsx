@@ -47,7 +47,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group relative z-50">
             <img 
-              src={headerScrolled ? "/logo_light.svg" : "/logo_white.svg"} 
+              src={headerScrolled ? "/logo_light.png" : "/logo_white.png"} 
               alt="OXONOM Logo" 
               className={cn(
                 "transition-all duration-300 object-contain",
@@ -279,7 +279,7 @@ export default function Navbar() {
             <div className="flex items-center justify-between px-6 py-6 border-b border-gray-100">
               <Link to="/" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
                 <img 
-                  src="/logo_light.svg" 
+                  src="/logo_light.png" 
                   alt="OXONOM Logo" 
                   className="h-6 object-contain"
                 />

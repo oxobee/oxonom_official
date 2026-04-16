@@ -16,7 +16,7 @@ export default function Footer() {
           <div className="lg:col-span-4 space-y-8">
             <Link to="/" className="flex items-center gap-3 group">
               <img 
-                src="/logo_white.svg" 
+                src="/logo_night.png" 
                 alt="OXONOM Logo" 
                 className="h-8 object-contain"
               />
