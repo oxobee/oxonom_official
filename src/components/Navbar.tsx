@@ -47,13 +47,12 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group relative z-50">
             <img 
-              src={headerScrolled ? "https://oxonom.com/img/logo_light.png" : "https://oxonom.com/img/logo_white.png"} 
+              src={headerScrolled ? "/logo_light.svg" : "/logo_white.svg"} 
               alt="OXONOM Logo" 
               className={cn(
                 "transition-all duration-300 object-contain",
                 headerScrolled ? "h-6" : "h-8"
               )}
-              referrerPolicy="no-referrer"
             />
           </Link>
 
@@ -280,10 +279,9 @@ export default function Navbar() {
             <div className="flex items-center justify-between px-6 py-6 border-b border-gray-100">
               <Link to="/" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
                 <img 
-                  src="https://oxonom.com/img/logo_light.png" 
+                  src="/logo_light.svg" 
                   alt="OXONOM Logo" 
                   className="h-6 object-contain"
-                  referrerPolicy="no-referrer"
                 />
               </Link>
               <button 
