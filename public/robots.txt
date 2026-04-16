@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitenizin şemasını arama motorlarına ve AI ajanlarına fısıldayan harita
+Sitemap: https://oxonom.com/sitemap.xml
