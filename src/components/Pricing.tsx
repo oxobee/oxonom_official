@@ -48,7 +48,7 @@ export default function Pricing() {
         </div>
 
         <div className="mb-12 max-w-5xl mx-auto space-y-6">
-          {pricing.packages.slice(0, 4).map((pkg, i) => (
+          {pricing.voice.slice(0, 4).map((pkg, i) => (
             <motion.div
               key={pkg.id}
               initial={{ opacity: 0, y: 20 }}

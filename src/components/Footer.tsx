@@ -40,9 +40,9 @@ export default function Footer() {
               <Sparkles className="w-3 h-3 text-brand" /> HIZLI MENÜ
             </h4>
             <ul className="space-y-4">
-              {['Ürün', 'Sektörler', 'Paketler', 'Ücretsiz Dene', 'Hakkımızda'].map((item) => (
+              {['Ürün', 'Sektörler', 'Paketler', 'Mesajlaşma Paketleri', 'Ücretsiz Dene'].map((item) => (
                 <li key={item}>
-                  <Link to={item === 'Paketler' ? '/paketler' : item === 'Sektörler' ? '/sektorler' : '/'} className="text-sm font-bold text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
+                  <Link to={item === 'Paketler' ? '/paketler' : item === 'Mesajlaşma Paketleri' ? '/mesajlasma-paketleri' : item === 'Sektörler' ? '/sektorler' : '/'} className="text-sm font-bold text-gray-400 hover:text-white transition-colors flex items-center gap-2 group">
                     <ArrowRight className="w-3 h-3 text-brand opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                     {item}
                   </Link>

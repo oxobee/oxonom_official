@@ -185,7 +185,7 @@ export default function Navbar() {
                       </Link>
                       
                       <Link
-                        to="/paketler"
+                        to="/mesajlasma-paketleri"
                         className="flex flex-col gap-2 p-4 rounded-xl hover:bg-gray-50 transition-all group border border-transparent hover:border-gray-100"
                       >
                         <div className="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center text-blue-500 group-hover:scale-110 transition-transform">
@@ -316,7 +316,7 @@ export default function Navbar() {
                       <Zap className="w-4 h-4 text-brand" />
                       <span className="text-xs font-bold text-white">Ses</span>
                     </Link>
-                    <Link to="/paketler" className="p-3 bg-white/5 rounded-xl border border-white/10 flex flex-col items-center gap-2 hover:bg-white/10 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Link to="/mesajlasma-paketleri" className="p-3 bg-white/5 rounded-xl border border-white/10 flex flex-col items-center gap-2 hover:bg-white/10 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                       <Sparkles className="w-4 h-4 text-blue-400" />
                       <span className="text-xs font-bold text-white">Mesaj</span>
                     </Link>

@@ -29,7 +29,7 @@ export const pricing = {
     unit: 'Dakika',
     description: 'Faturasız Tarife'
   },
-  packages: [
+  voice: [
     { id: 'mini', name: 'Mini', minutes: '100', pricePerMin: '$0,90', totalPrice: '$90', icon: '1' },
     { id: 'standart', name: 'Standart', minutes: '200', pricePerMin: '$0,75', totalPrice: '$150', icon: '2' },
     { id: 'bronz', name: 'Bronz', minutes: '500', pricePerMin: '$0,60', totalPrice: '$300', icon: '3' },
@@ -38,8 +38,51 @@ export const pricing = {
     { id: 'platin', name: 'Platin', minutes: '5.000', pricePerMin: '$0,30', totalPrice: '$1.500', icon: '6' },
     { id: 'elite', name: 'Elite (Max)', minutes: '10.000', pricePerMin: '$0,20', totalPrice: '$2.000', icon: '7' }
   ],
+  messaging: {
+    individual: [
+      { id: 'm-starter', name: 'Starter', messages: '500', price: '$19', perMsg: '$0.038' },
+      { id: 'm-growth', name: 'Growth', messages: '1.500', price: '$39', perMsg: '$0.026' },
+      { id: 'm-pro', name: 'Professional', messages: '5.000', price: '$79', perMsg: '$0.015', popular: true },
+      { id: 'm-scale', name: 'Scale', messages: '12.000', price: '$149', perMsg: '$0.012' },
+      { id: 'm-enterprise', name: 'Enterprise', messages: '25.000', price: '$249', perMsg: '$0.0099' },
+      { id: 'm-unlimited', name: 'Unlimited', messages: 'Sınırsız', price: '$399', perMsg: 'En Düşük' }
+    ],
+    social: [
+      { id: 's-starter', name: 'Social Starter', messages: '2.000', price: '$49', perMsg: '$0.024' },
+      { id: 's-growth', name: 'Social Growth', messages: '6.000', price: '$99', perMsg: '$0.016', popular: true },
+      { id: 's-pro', name: 'Social Professional', messages: '15.000', price: '$179', perMsg: '$0.011' },
+      { id: 's-unlimited', name: 'Social Unlimited', messages: 'Sınırsız', price: '$299', perMsg: 'En Düşük' }
+    ],
+    dmSuite: [
+      { id: 'dm-starter', name: 'DM Starter', messages: '3.000', price: '$69', perMsg: '$0.023' },
+      { id: 'dm-pro', name: 'DM Professional', messages: '8.000', price: '$129', perMsg: '$0.016', popular: true },
+      { id: 'dm-scale', name: 'DM Scale', messages: '20.000', price: '$219', perMsg: '$0.010' },
+      { id: 'dm-unlimited', name: 'DM Unlimited', messages: 'Sınırsız', price: '$349', perMsg: 'En Düşük' }
+    ],
+    omni: [
+      { id: 'omni-starter', name: 'Omni Starter', messages: '5.000', price: '$119', perMsg: '$0.023' },
+      { id: 'omni-growth', name: 'Omni Growth', messages: '12.000', price: '$179', perMsg: '$0.015', popular: true },
+      { id: 'omni-pro', name: 'Omni Professional', messages: '30.000', price: '$299', perMsg: '$0.0099' },
+      { id: 'omni-unlimited', name: 'Omni Unlimited', messages: 'Sınırsız', price: '$449', perMsg: 'En Düşük' }
+    ],
+    fullStack: [
+      { id: 'fs-starter', name: 'Full Stack Starter', messages: '8.000', price: '$149', perMsg: '$0.018' },
+      { id: 'fs-growth', name: 'Full Stack Growth', messages: '20.000', price: '$249', perMsg: '$0.012', popular: true },
+      { id: 'fs-pro', name: 'Full Stack Professional', messages: '50.000', price: '$399', perMsg: '$0.008' },
+      { id: 'fs-unlimited', name: 'Full Stack Unlimited', messages: 'Sınırsız', price: '$599', perMsg: 'En Düşük' }
+    ]
+  },
+  combo: [
+    { id: 'ai-starter', name: 'AI Starter', messages: '1.000', minutes: '200', price: '$99', perUnits: '$0.020 / $0.39' },
+    { id: 'ai-business', name: 'AI Business', messages: '5.000', minutes: '750', price: '$179', perUnits: '$0.012 / $0.23', popular: true },
+    { id: 'ai-growth', name: 'AI Growth', messages: '12.000', minutes: '2.000', price: '$299', perUnits: '$0.010 / $0.14' },
+    { id: 'ai-scale', name: 'AI Scale', messages: '30.000', minutes: '5.000', price: '$499', perUnits: '$0.008 / $0.10' },
+    { id: 'ai-enterprise', name: 'AI Enterprise', messages: '75.000', minutes: '10.000', price: '$799', perUnits: '$0.006 / $0.079' },
+    { id: 'ai-unlimited', name: 'AI Unlimited', messages: 'Sınırsız', minutes: 'Sınırsız', price: '$1.199', perUnits: 'Minimum' }
+  ],
   notes: [
-    'Kullanılmayan dakikalar: Bir sonraki aya %20\'si devreder.'
+    'Kullanılmayan dakikalar/mesajlar: Bir sonraki aya %20\'si devreder.',
+    'Sınırsız paketlerde adil kullanım kotası uygulanabilir.'
   ]
 };
 
