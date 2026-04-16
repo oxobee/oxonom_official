@@ -167,7 +167,7 @@ export const sectors = [
     ],
     voiceScenarios: [
       { title: 'Arıza Bilgilendirme', desc: 'Bölgesel kesinti için arayan binlerce kişiyi karşılar.', transcript: 'Bölgenizdeki genel arızadan haberdarız, ekibimiz sahada. Tahmini onarım süresi 2 saattir.' },
-      { title: 'Kampanya Onayı', desc: 'Süresi biten hastayı arayıp yeni paket onaylar.', transcript: 'Taahhüdünüz haftaya bitiyor. Size özel 100 Mbps paketini aynı fiyata yenileyelim mi?' }
+      { title: 'Kampanya Onayı', desc: 'Süresi biten aboneyi arayıp yeni paket onaylar.', transcript: 'Taahhüdünüz haftaya bitiyor. Size özel 100 Mbps paketini aynı fiyata yenileyelim mi?' }
     ],
     comparison: {
       traditional: ['Uzun IVR menüleri', 'Yetersiz hat kapasitesi', 'Yüksek personel turnover'],
@@ -302,7 +302,7 @@ export const sectors = [
     ],
     voiceScenarios: [
       { title: 'Öneri Araması', desc: 'Kullanıcının keyfine göre film önerir.', transcript: 'Korku filmi mi arıyorsunuz? Sizin için en yüksek puanlı 3 film seçtim. İzleyelim mi?' },
-      { title: 'Bilet Onay', desc: 'Konser bileti alan hastayı arayıp QR kodu gönderir.', transcript: 'Biletiniz onaylandı. QR kodunuz telefonunuza SMS olarak iletildi. İyi eğlenceler!' }
+      { title: 'Bilet Onay', desc: 'Konser bileti alan kullanıcıyı arayıp QR kodu gönderir.', transcript: 'Biletiniz onaylandı. QR kodunuz telefonunuza SMS olarak iletildi. İyi eğlenceler!' }
     ],
     comparison: {
       traditional: ['Standart öneriler', 'Yavaş müşteri desteği', 'Manuel biletleme'],
@@ -463,7 +463,7 @@ export const sectors = [
       { title: 'Operasyonel Hatalar', desc: 'Yanlış alınan adres bilgilerinin yarattığı gecikmeler.', stat: 'Sesli Veri Doğrulama' }
     ],
     voiceScenarios: [
-      { title: 'Teslimat Onayı', desc: 'Kurye gelmeden önce hastayı arayıp yerinde mi sorar.', transcript: 'Kargonuz 15 dakika içinde kapınızda olacak. Adresinizde misiniz?' },
+      { title: 'Teslimat Onayı', desc: 'Kurye gelmeden önce müşteriyi arayıp yerinde mi sorar.', transcript: 'Kargonuz 15 dakika içinde kapınızda olacak. Adresinizde misiniz?' },
       { title: 'Adres Düzenleme', desc: 'Yanlış adresi düzelttirir.', transcript: 'Adresinizdeki bina numarası eksik görünüyor. Lütfen teyit eder misiniz?' }
     ],
     comparison: {
@@ -490,8 +490,8 @@ export const sectors = [
       { title: 'Düşük Onboarding', desc: 'Sistemi kuramayan kullanıcının yaşadığı zorluklar.', stat: '%25 Daha Hızlı Geçiş' }
     ],
     voiceScenarios: [
-      { title: 'Demo Onayı', desc: 'Talep bırakan hastayı arayıp takvim set eder.', transcript: 'Demo isteğinizi aldım. Yarın saat 11:00 uygun mu? Zoom linkini iletiyorum.' },
-      { title: 'Abonelik Hatırlatma', desc: 'Deneme süresi biten hastayı arar.', transcript: 'Deneme süreniz bugün bitiyor. Avantajlı yıllık paketimize geçmek ister misiniz?' }
+      { title: 'Demo Onayı', desc: 'Talep bırakan kullanıcıyı arayıp takvim set eder.', transcript: 'Demo isteğinizi aldım. Yarın saat 11:00 uygun mu? Zoom linkini iletiyorum.' },
+      { title: 'Abonelik Hatırlatma', desc: 'Deneme süresi biten kullanıcıyı arar.', transcript: 'Deneme süreniz bugün bitiyor. Avantajlı yıllık paketimize geçmek ister misiniz?' }
     ],
     comparison: {
       traditional: ['Yavaş e-posta desteği', 'Zaman alan döküman okuma', 'Sınırlı müşteri başarısı'],
@@ -544,7 +544,7 @@ export const sectors = [
       { title: 'Hantal Turnuva Kaydı', desc: 'Formlarla uğraşmak istemeyen e-sporcular.', stat: '%50 Daha Hızlı Kayıt' }
     ],
     voiceScenarios: [
-      { title: 'Şifre Sıfırlama', desc: 'Hesabı çalınan hastayı arayıp doğrular.', transcript: 'Telefonunuza bir doğrulama kodu gönderdim. Okur musunuz? Hesabınızı kurtarıyoruz.' },
+      { title: 'Şifre Sıfırlama', desc: 'Hesabı çalınan oyuncuyu arayıp doğrular.', transcript: 'Telefonunuza bir doğrulama kodu gönderdim. Okur musunuz? Hesabınızı kurtarıyoruz.' },
       { title: 'Turnuva Daveti', desc: 'Elmas ligdeki oyuncuları turnuvaya çağırır.', transcript: 'Hafta sonu yapılacak $10.000 ödüllü turnuvada yeriniz hazır. Takımınızı kaydedelim mi?' }
     ],
     comparison: {
@@ -571,8 +571,8 @@ export const sectors = [
       { title: 'Sınırlı Follow-up', desc: 'Sadece bir kez aranıp bırakılan leadlerin yarattığı kayıp.', stat: '%40 Geri Kazanım' }
     ],
     voiceScenarios: [
-      { title: 'Lead Doğrulama', desc: 'Form dolduran hastayı 10 saniye içinde arar.', transcript: 'Dermapen tedavimizle ilgilendiğinizi gördüm. Size en yakın şubemiz için bir randevu set edelim mi?' },
-      { title: 'Etkinlik Follow-up', desc: 'Webinar sonrası hastayı arayıp teklif sunar.', transcript: 'Eğitimimizi izlediğiniz için teşekkürler! Bugün kayıt olursanız %20 indiriminiz var.' }
+      { title: 'Lead Doğrulama', desc: 'Form dolduran kişiyi 10 saniye içinde arar.', transcript: 'Dermapen tedavimizle ilgilendiğinizi gördüm. Size en yakın şubemiz için bir randevu set edelim mi?' },
+      { title: 'Etkinlik Follow-up', desc: 'Webinar sonrası ilgili kişiyi arayıp teklif sunar.', transcript: 'Eğitimimizi izlediğiniz için teşekkürler! Bugün kayıt olursanız %20 indiriminiz var.' }
     ],
     comparison: {
       traditional: ['Manuel lead aramaları', 'Günler süren follow-up', 'Düşük dönüşüm oranları'],

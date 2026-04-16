@@ -11,6 +11,7 @@ import {
   ArrowRight,
   Sparkles,
   ShieldCheck,
+  LayoutGrid,
   Activity,
   Users,
   BarChart3,
@@ -44,10 +45,25 @@ export default function SectorDetailPage() {
   // Fallback for missing data to ensure UI doesn't break
   const safeSector = {
     ...sector,
-    heroTitle: sector?.heroTitle || `${sector?.name} İçin Akıllı İletişim`,
+    name: sector?.name || "Sektörel Çözüm",
+    icon: sector?.icon || LayoutGrid,
+    heroTitle: sector?.heroTitle || `${sector?.name || 'Sektör'} İçin Akıllı İletişim`,
+    description: sector?.description || "Sektöre özel yapay zeka çözümleri ve otomasyon sistemleri.",
+    longDescription: sector?.longDescription || sector?.description || "İşletmenize özel otonom yapay zeka senaryoları ve verimlilik artıran AI ajanları.",
+    useCases: sector?.useCases || [],
+    seoKeywords: sector?.seoKeywords || ["yapay zeka", "sektörel çözümler", "ai otomasyon"],
+    stats: sector?.stats || { conversion: "%25 Artış", responseTime: "< 2 Saniye" },
     painPoints: sector?.painPoints || [],
     voiceScenarios: sector?.voiceScenarios || [],
-    comparison: sector?.comparison || { traditional: [], oxonom: [] },
+    comparison: sector?.comparison || { 
+      traditional: ["Manuel işlemler", "Yavaş yanıt", "Sınırlı kapasite"], 
+      oxonom: ["AI otomasyonu", "Anlık yanıt", "7/24 ölçeklenebilirlik"] 
+    },
+    chartData: sector?.chartData || [
+      { name: 'Pzt', value: 400 },
+      { name: 'Sal', value: 300 },
+      { name: 'Çar', value: 600 },
+    ],
   };
 
   useEffect(() => {
@@ -98,7 +114,7 @@ export default function SectorDetailPage() {
           >
             <div className="flex items-center gap-3 mb-8">
               <div className="p-2.5 bg-brand/10 rounded-xl text-brand border border-brand/20">
-                <sector.icon className="w-6 h-6" />
+                <safeSector.icon className="w-6 h-6" />
               </div>
               <span className="px-4 py-1.5 bg-gray-50 text-gray-600 rounded-full text-[10px] font-bold uppercase tracking-widest border border-gray-100">
                 SEKTÖREL YAPAY ZEKA MODELİ
@@ -106,10 +122,19 @@ export default function SectorDetailPage() {
             </div>
             
             <h1 className="text-4xl md:text-7xl font-display font-bold text-dark mb-8 leading-[1.05] tracking-tight">
-              {safeSector.heroTitle.split(' ').slice(0, -2).join(' ')} <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-red-400">
-                {safeSector.heroTitle.split(' ').slice(-2).join(' ')}
-              </span>
+              {safeSector.heroTitle.includes(' ') && safeSector.heroTitle.split(' ').length > 2 ? (
+                <>
+                  {safeSector.heroTitle.split(' ').slice(0, -2).join(' ')} <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-red-400">
+                    {safeSector.heroTitle.split(' ').slice(-2).join(' ')}
+                  </span>
+                </>
+              ) : (
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-red-400">
+                  {safeSector.heroTitle}
+                </span>
+              )}
+              <span className="sr-only"> - {safeSector.name} Çözümleri</span>
             </h1>
             
             <p className="text-lg md:text-xl text-gray-500 mb-10 leading-relaxed font-medium max-w-xl">
@@ -163,7 +188,7 @@ export default function SectorDetailPage() {
                 <div className="p-6 border-b border-white/5 bg-white/5 flex items-center justify-between">
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-2xl bg-brand flex items-center justify-center text-white shadow-lg shadow-brand/40">
-                      <sector.icon className="w-6 h-6" />
+                      <safeSector.icon className="w-6 h-6" />
                     </div>
                     <div>
                       <h4 className="text-white font-bold text-base">{safeSector.name} AI Ajanı</h4>
