@@ -59,7 +59,7 @@ export default function SectorDetailPage() {
   }
 
   return (
-    <div className="pt-24 min-h-screen bg-white">
+    <div className="pt-24 min-h-screen bg-white overflow-x-hidden">
       {/* SEO Helment equivalent (Semantic HTML) */}
       <h1 className="sr-only">{safeSector.name} Yapay Zeka Çözümleri - OXONOM</h1>
       
