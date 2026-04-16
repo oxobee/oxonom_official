@@ -1,5 +1,6 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowRight, Sparkles, MessageSquare, Zap, Activity } from 'lucide-react';
+import { ArrowRight, Sparkles, MessageSquare, Zap, Activity, LayoutGrid } from 'lucide-react';
 
 export default function CTASection() {
   return (
@@ -84,13 +85,18 @@ export default function CTASection() {
             >
               <a 
                 href="https://app.oxonom.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full sm:w-auto px-8 py-4 md:px-10 md:py-5 bg-brand text-white rounded-xl md:rounded-2xl font-bold text-sm md:text-base hover:bg-white hover:text-dark transition-all duration-300 hover:-translate-y-1 shadow-xl shadow-brand/20 flex items-center justify-center gap-2 group"
               >
-                Uygulamaya Giriş Yap <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                Hemen Ücretsiz Deneyin <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
-              <button className="w-full sm:w-auto px-8 py-4 md:px-10 md:py-5 bg-white/5 text-white rounded-xl md:rounded-2xl font-bold text-sm md:text-base hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 border border-white/10 flex items-center justify-center gap-2 backdrop-blur-sm">
-                <Sparkles className="w-5 h-5" /> Ücretsiz Dene
-              </button>
+              <Link 
+                to="/paketler" 
+                className="w-full sm:w-auto px-8 py-4 md:px-10 md:py-5 bg-white/5 text-white rounded-xl md:rounded-2xl font-bold text-sm md:text-base hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 border border-white/10 flex items-center justify-center gap-2 backdrop-blur-sm"
+              >
+                <LayoutGrid className="w-5 h-5" /> Paketlere Gözat
+              </Link>
             </motion.div>
 
             <motion.div 

@@ -1,5 +1,6 @@
+import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { ArrowRight, Play, Sparkles, Shield, Zap, TrendingUp, Users, MousePointer2, BarChart3, MessageSquare, PhoneCall, Activity } from 'lucide-react';
+import { ArrowRight, Play, Sparkles, Shield, Zap, TrendingUp, Users, MousePointer2, BarChart3, MessageSquare, PhoneCall, Activity, LayoutGrid } from 'lucide-react';
 
 export default function Hero() {
   const { scrollY } = useScroll();
@@ -65,13 +66,18 @@ export default function Hero() {
             >
               <a 
                 href="https://app.oxonom.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full sm:w-auto px-8 py-4 bg-dark text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:bg-black transition-all shadow-2xl shadow-dark/30 group"
               >
-                Uygulamaya Giriş Yap <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                Hemen Ücretsiz Deneyin <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
-              <button className="w-full sm:w-auto px-8 py-4 bg-white/10 border border-white/20 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:bg-white/20 transition-all backdrop-blur-sm">
-                <Sparkles className="w-4 h-4" /> Ücretsiz Dene
-              </button>
+              <Link 
+                to="/paketler"
+                className="w-full sm:w-auto px-8 py-4 bg-white/10 border border-white/20 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:bg-white/20 transition-all backdrop-blur-sm"
+              >
+                <LayoutGrid className="w-4 h-4" /> Paketlere Gözat
+              </Link>
             </motion.div>
 
             <motion.div
