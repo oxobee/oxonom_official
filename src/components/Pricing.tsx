@@ -29,9 +29,9 @@ export default function Pricing() {
             transition={{ delay: 0.1 }}
             className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-dark mb-4 md:mb-6 leading-[1.1] tracking-tight"
           >
-            İster Tarifeli İster Tarifesiz <br />
+            Saniyeler İçinde <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-red-400">
-              Size Uygun Paketler
+              Sesli AI Paketleri
             </span>
           </motion.h2>
           
@@ -42,8 +42,8 @@ export default function Pricing() {
             transition={{ delay: 0.2 }}
             className="text-base md:text-lg text-gray-500 mb-8 leading-relaxed font-medium max-w-2xl mx-auto"
           >
-            Karmaşık sözleşmeler ve gizli maliyetler yok. İhtiyacınıza göre seçebileceğiniz 
-            esnek paketlerle hemen bugün yapay zeka gücünü kullanmaya başlayın.
+            Yapay zeka sesli asistan görüşmeleriniz için en uygun tarifeyi seçin. 
+            Karmaşık sözleşmeler ve gizli maliyetler olmadan hemen başlayın.
           </motion.p>
         </div>
 
