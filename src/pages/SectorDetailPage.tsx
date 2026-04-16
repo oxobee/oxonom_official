@@ -60,8 +60,22 @@ export default function SectorDetailPage() {
 
   return (
     <div className="pt-24 min-h-screen bg-white overflow-x-hidden">
-      {/* SEO Helment equivalent (Semantic HTML) */}
-      <h1 className="sr-only">{safeSector.name} Yapay Zeka Çözümleri - OXONOM</h1>
+      {/* Structured Data (JSON-LD) for SEO */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": `${safeSector.name} Yapay Zeka Çözümleri`,
+          "provider": {
+            "@type": "Organization",
+            "name": "OXONOM",
+            "url": "https://oxonom.com"
+          },
+          "description": safeSector.longDescription,
+          "areaServed": "Worldwide",
+          "serviceType": "AI Automation"
+        })}
+      </script>
       
       <div className="max-w-7xl mx-auto px-6">
         {/* Breadcrumb */}
@@ -91,12 +105,12 @@ export default function SectorDetailPage() {
               </span>
             </div>
             
-            <h2 className="text-4xl md:text-6xl font-display font-bold text-dark mb-6 leading-[1.1] tracking-tight">
+            <h1 className="text-4xl md:text-6xl font-display font-bold text-dark mb-6 leading-[1.1] tracking-tight">
               {safeSector.heroTitle.split(' ').slice(0, -2).join(' ')} <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-red-400">
                 {safeSector.heroTitle.split(' ').slice(-2).join(' ')}
               </span>
-            </h2>
+            </h1>
             
             <p className="text-lg text-gray-500 mb-8 leading-relaxed font-medium max-w-xl">
               {safeSector.longDescription}
