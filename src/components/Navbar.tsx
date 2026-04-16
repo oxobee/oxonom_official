@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronDown, Menu, X, ArrowRight, Sparkles, LayoutGrid, Zap } from 'lucide-react';
+import { ChevronDown, Menu, X, ArrowRight, Sparkles, LayoutGrid, Zap, Phone } from 'lucide-react';
 import { sectors } from '../constants';
 import { cn } from '../lib/utils';
 
@@ -112,21 +112,36 @@ export default function Navbar() {
                         </Link>
                       ))}
                     </div>
-                    <div className="mt-8 pt-6 border-t border-gray-100 flex justify-between items-center">
-                      <div className="flex items-center gap-3">
-                        <div className="p-2 bg-brand/10 rounded-lg">
-                          <Sparkles className="w-4 h-4 text-brand" />
+                    <div className="mt-8 pt-6 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-brand/10 rounded-2xl flex items-center justify-center shrink-0">
+                          <Sparkles className="w-6 h-6 text-brand" />
                         </div>
-                        <p className="text-xs font-medium text-gray-500">
-                          Tüm sektörler için özel optimize edilmiş AI çözümleri.
-                        </p>
+                        <div>
+                          <p className="text-sm font-bold text-dark mb-0.5">
+                            Özel bir çözüm mü arıyorsunuz?
+                          </p>
+                          <p className="text-xs text-gray-500 font-medium">
+                            İşletmenize özel otonom AI senaryoları için uzman ekibimizle iletişime geçin.
+                          </p>
+                        </div>
                       </div>
-                      <Link 
-                        to="/sektorler" 
-                        className="px-5 py-2.5 bg-dark text-white rounded-lg text-xs font-bold flex items-center gap-2 hover:bg-brand transition-all group shadow-md shadow-dark/10"
-                      >
-                        Tüm Sektörleri Keşfet <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      </Link>
+                      <div className="flex items-center gap-4 w-full md:w-auto">
+                        <Link 
+                          to="/sektorler" 
+                          className="px-5 py-3 text-gray-500 hover:text-dark text-xs font-bold transition-colors"
+                        >
+                          Tüm Sektörler
+                        </Link>
+                        <a 
+                          href="https://wa.me/908503099901"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 md:flex-none px-8 py-3 bg-brand text-white rounded-xl text-xs font-bold flex items-center justify-center gap-2 hover:bg-dark transition-all group shadow-lg shadow-brand/20 active:scale-95"
+                        >
+                          <Phone className="w-4 h-4" /> Uzmanla Görüşün <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        </a>
+                      </div>
                     </div>
                   </motion.div>
                 )}
@@ -349,13 +364,17 @@ export default function Navbar() {
             {/* Footer CTA */}
             <div className="p-6 border-t border-gray-100 bg-white">
               <a 
-                href="https://app.oxonom.com"
+                href="https://wa.me/908503099901"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-4 bg-dark text-white rounded-xl font-bold text-base shadow-xl shadow-dark/10 flex items-center justify-center gap-2"
+                className="w-full py-4 bg-brand text-white rounded-xl font-bold text-base shadow-xl shadow-brand/20 flex items-center justify-center gap-2 active:scale-95"
               >
-                Uygulamaya Giriş Yap <ArrowRight className="w-5 h-5" />
+                <Phone className="w-5 h-5" /> Uzmanla Görüşün <ArrowRight className="w-5 h-5" />
               </a>
+              <div className="mt-4 text-center">
+                 <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">VEYA UYGULAMAYA GİRİŞ YAPIN</p>
+                 <a href="https://app.oxonom.com" className="inline-block mt-2 text-dark font-bold text-xs hover:text-brand transition-colors underline underline-offset-4">app.oxonom.com</a>
+              </div>
             </div>
           </motion.div>
         )}
