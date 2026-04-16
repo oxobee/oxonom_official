@@ -47,7 +47,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group relative z-50">
             <img 
-              src={headerScrolled ? "https://oxonom.com/img/logo_light.png" : "https://oxonom.com/img/logo_night.png"} 
+              src={headerScrolled ? "https://oxonom.com/img/logo_light.png" : "https://oxonom.com/img/logo_white.png"} 
               alt="OXONOM Logo" 
               className={cn(
                 "transition-all duration-300 object-contain",
