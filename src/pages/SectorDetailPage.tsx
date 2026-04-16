@@ -35,6 +35,7 @@ import {
 } from 'recharts';
 import { sectors } from '../constants';
 import { cn } from '../lib/utils';
+import JsonLd from '../components/JsonLd';
 
 export default function SectorDetailPage() {
   const { id } = useParams();
@@ -74,24 +75,46 @@ export default function SectorDetailPage() {
     return <Navigate to="/sektorler" replace />;
   }
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": `${safeSector.name} için Yapay Zeka Çözümleri`,
+    "provider": {
+      "@type": "Organization",
+      "name": "OXONOM AI",
+      "url": "https://oxonom.com",
+      "logo": "https://oxonom.com/logo_white.png"
+    },
+    "description": safeSector.description,
+    "areaServed": "TR",
+    "serviceType": "Yapay Zeka Otomasyonu",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": `${safeSector.name} AI Paketi`,
+      "itemListElement": safeSector.useCases.map((useCase, i) => ({
+        "@type": "Offer",
+        "position": i + 1,
+        "name": useCase,
+        "url": `https://oxonom.com/sektorler/${safeSector.id}`
+      }))
+    },
+    "url": `https://oxonom.com/sektorler/${safeSector.id}`
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://oxonom.com" },
+      { "@type": "ListItem", "position": 2, "name": "Sektörler", "item": "https://oxonom.com/sektorler" },
+      { "@type": "ListItem", "position": 3, "name": safeSector.name, "item": `https://oxonom.com/sektorler/${safeSector.id}` }
+    ]
+  };
+
   return (
     <div className="pt-24 min-h-screen bg-white overflow-x-hidden">
-      {/* Structured Data (JSON-LD) for SEO */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Service",
-          "name": `${safeSector.name} Yapay Zeka Çözümleri`,
-          "provider": {
-            "@type": "Organization",
-            "name": "OXONOM",
-            "url": "https://oxonom.com"
-          },
-          "description": safeSector.longDescription,
-          "areaServed": "Worldwide",
-          "serviceType": "AI Automation"
-        })}
-      </script>
+      <JsonLd data={serviceSchema} />
+      <JsonLd data={breadcrumbSchema} />
       
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         {/* Breadcrumb */}

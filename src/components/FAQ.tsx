@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, HelpCircle } from 'lucide-react';
+import JsonLd from './JsonLd';
 
 const faqs = [
   {
@@ -28,8 +29,22 @@ const faqs = [
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+
   return (
     <section className="py-20 md:py-32 bg-gray-50 relative overflow-hidden">
+      <JsonLd data={faqSchema} />
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand/5 rounded-full blur-[100px] -mr-64 -mt-64 pointer-events-none" />
       
       <div className="max-w-4xl mx-auto px-4 md:px-6 relative z-10">

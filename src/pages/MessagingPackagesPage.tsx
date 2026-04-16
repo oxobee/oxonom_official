@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { pricing } from '../constants';
 import { useState } from 'react';
+import JsonLd from '../components/JsonLd';
 
 export default function MessagingPackagesPage() {
   const [activeTab, setActiveTab] = useState<'individual' | 'mixed' | 'combo'>('individual');
@@ -35,9 +36,25 @@ export default function MessagingPackagesPage() {
       default: return <Globe className={`w-4 h-4 ${colored ? 'text-blue-400' : ''}`} />;
     }
   };
+  const messagingSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "OXONOM AI Messaging",
+    "operatingSystem": "All",
+    "applicationCategory": "BusinessApplication",
+    "description": "WhatsApp, Instagram ve TikTok üzerinden müşterilerinize anlık yanıt veren AI asistanları.",
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "19",
+      "highPrice": "599",
+      "priceCurrency": "USD",
+      "offerCount": "24"
+    }
+  };
 
   return (
     <div className="pt-32 pb-24 bg-gray-50 min-h-screen relative overflow-hidden">
+      <JsonLd data={messagingSchema} />
       {/* Background Elements */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.02] pointer-events-none" />

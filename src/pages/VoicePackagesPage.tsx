@@ -12,10 +12,28 @@ import {
   Signal
 } from 'lucide-react';
 import { pricing } from '../constants';
+import JsonLd from '../components/JsonLd';
 
 export default function VoicePackagesPage() {
+  const voiceSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "OXONOM AI Voice",
+    "operatingSystem": "All",
+    "applicationCategory": "BusinessApplication",
+    "description": "Müşterilerinizle insansı ses kalitesiyle 7/24 iletişim kuran otonom ses ajanları.",
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "90",
+      "highPrice": "2000",
+      "priceCurrency": "USD",
+      "offerCount": "7"
+    }
+  };
+
   return (
     <div className="pt-32 pb-24 bg-gray-50 min-h-screen relative overflow-hidden">
+      <JsonLd data={voiceSchema} />
       {/* Background Elements */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-brand/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.02] pointer-events-none" />
