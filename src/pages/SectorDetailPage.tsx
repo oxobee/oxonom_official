@@ -1,5 +1,6 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
+import { useState, useEffect } from 'react';
 import { 
   ArrowLeft, 
   CheckCircle2, 
@@ -12,48 +13,74 @@ import {
   ShieldCheck,
   Activity,
   Users,
-  BarChart3
+  BarChart3,
+  Phone,
+  Play,
+  Pause,
+  MinusCircle,
+  XCircle,
+  CheckCircle,
+  HelpCircle,
+  Globe
 } from 'lucide-react';
 import { 
-  BarChart, 
-  Bar, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
   ResponsiveContainer,
-  LineChart,
-  Line,
   AreaChart,
-  Area
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
 } from 'recharts';
 import { sectors } from '../constants';
+import { cn } from '../lib/utils';
 
 export default function SectorDetailPage() {
   const { id } = useParams();
   const sector = sectors.find(s => s.id === id);
+  const [activeScenario, setActiveScenario] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  // Fallback for missing data to ensure UI doesn't break
+  const safeSector = {
+    ...sector,
+    heroTitle: sector?.heroTitle || `${sector?.name} İçin Akıllı İletişim`,
+    painPoints: sector?.painPoints || [],
+    voiceScenarios: sector?.voiceScenarios || [],
+    comparison: sector?.comparison || { traditional: [], oxonom: [] },
+  };
+
+  useEffect(() => {
+    setIsPlaying(false);
+  }, [activeScenario]);
 
   if (!sector) {
     return <Navigate to="/sektorler" replace />;
   }
 
   return (
-    <div className="pt-32 pb-24 bg-white min-h-screen">
+    <div className="pt-24 min-h-screen bg-white">
+      {/* SEO Helment equivalent (Semantic HTML) */}
+      <h1 className="sr-only">{safeSector.name} Yapay Zeka Çözümleri - OXONOM</h1>
+      
       <div className="max-w-7xl mx-auto px-6">
-        {/* Breadcrumb & Back */}
-        <Link 
-          to="/sektorler" 
-          className="inline-flex items-center gap-2 text-xs font-bold text-gray-400 hover:text-brand transition-colors mb-12 group"
-        >
-          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-          TÜM SEKTÖRLER
-        </Link>
+        {/* Breadcrumb */}
+        <nav className="py-8">
+          <Link 
+            to="/sektorler" 
+            className="inline-flex items-center gap-2 text-xs font-bold text-gray-400 hover:text-brand transition-colors group"
+          >
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            TÜM SEKTÖRLER
+          </Link>
+        </nav>
 
         {/* Hero Section */}
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-32">
+        <section className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-24 md:mb-32">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
+            className="order-2 lg:order-1"
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="p-2.5 bg-brand/10 rounded-xl text-brand border border-brand/20">
@@ -64,16 +91,18 @@ export default function SectorDetailPage() {
               </span>
             </div>
             
-            <h1 className="text-4xl md:text-6xl font-display font-bold text-dark mb-6 leading-[1.1] tracking-tight">
-              {sector.name} İçin <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-red-400">Akıllı İletişim</span>
-            </h1>
+            <h2 className="text-4xl md:text-6xl font-display font-bold text-dark mb-6 leading-[1.1] tracking-tight">
+              {safeSector.heroTitle.split(' ').slice(0, -2).join(' ')} <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-red-400">
+                {safeSector.heroTitle.split(' ').slice(-2).join(' ')}
+              </span>
+            </h2>
             
             <p className="text-lg text-gray-500 mb-8 leading-relaxed font-medium max-w-xl">
-              {sector.longDescription}
+              {safeSector.longDescription}
             </p>
 
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4 mb-8">
               <button className="px-8 py-4 bg-dark text-white rounded-xl font-bold text-sm shadow-xl shadow-dark/10 hover:bg-brand transition-all flex items-center gap-2 group">
                 Hemen Başla <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
@@ -82,193 +111,280 @@ export default function SectorDetailPage() {
               </button>
             </div>
             
-            <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 bg-green-50 border border-green-100 rounded-lg text-xs font-bold text-green-700">
-              <Zap className="w-3.5 h-3.5" /> Kayıt olduğunuzda anında $5 deneme bakiyesi hesabınıza tanımlanır.
-            </div>
-            
-            <div className="mt-8 flex items-center gap-6 text-sm font-bold text-gray-400">
+            <div className="flex items-center gap-6 text-sm font-bold text-gray-400">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-brand" /> 7/24 Aktif
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-brand" /> %99.9 Uptime
+                <ShieldCheck className="w-4 h-4 text-brand" /> KVKK Uyumlu
               </div>
             </div>
           </motion.div>
 
+          {/* Interactive Voice Player Mockup */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="relative lg:h-[500px] flex items-center justify-center"
+            className="order-1 lg:order-2 relative"
           >
-            {/* Background Glow */}
             <div className="absolute inset-0 bg-brand/5 rounded-full blur-3xl" />
             
-            {/* Main Interface Card */}
-            <div className="relative w-full max-w-md bg-white rounded-[2rem] border border-gray-100 shadow-2xl p-6 md:p-8 z-10">
-               {/* Header */}
-               <div className="flex items-center justify-between mb-8">
-                 <div className="flex items-center gap-3">
-                   <div className="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center text-brand">
-                     <sector.icon className="w-6 h-6" />
-                   </div>
-                   <div>
-                     <h3 className="font-bold text-dark text-lg">{sector.name} AI</h3>
-                     <p className="text-xs text-gray-500 flex items-center gap-1.5 mt-0.5">
-                       <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" /> Çevrimiçi
-                     </p>
-                   </div>
-                 </div>
-                 <div className="px-3 py-1 bg-gray-50 rounded-full text-[10px] font-bold text-gray-400 border border-gray-100">
-                   OTONOM
-                 </div>
-               </div>
+            <div className="relative bg-[#0A0A0A] rounded-[2.5rem] border border-white/10 shadow-2xl overflow-hidden premium-shadow">
+              {/* Card Header */}
+              <div className="p-6 border-b border-white/5 bg-white/5 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-brand/20 flex items-center justify-center text-brand border border-brand/20">
+                    <Phone className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-bold text-sm">Sesli AI Örnekleri</h4>
+                    <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mt-0.5">Sektörel Senaryolar</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                   <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                   <span className="text-[10px] font-bold text-green-500 uppercase">CANLI DEMO</span>
+                </div>
+              </div>
 
-               {/* Mock Conversation */}
-               <div className="space-y-4 mb-8">
-                 <div className="flex gap-3">
-                   <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center shrink-0 text-xs font-bold text-gray-600">M</div>
-                   <div className="bg-gray-50 border border-gray-100 rounded-2xl rounded-tl-none p-3.5 text-sm text-dark font-medium leading-relaxed max-w-[85%]">
-                     {sector.id === 'saglik' ? 'En erken ne zamana randevu alabilirim?' : 
-                      sector.id === 'e-ticaret' ? 'Siparişim nerede kaldı?' : 
-                      sector.id === 'finans' ? 'Kredi faiz oranlarınız nedir?' :
-                      sector.id === 'gayrimenkul' ? 'Bu ev için ne zaman görüşebiliriz?' :
-                      sector.id === 'turizm' ? 'Hafta sonu için boş odanız var mı?' :
-                      sector.id === 'restoran' ? 'Akşam 8 için 2 kişilik yer ayırır mısınız?' :
-                      'Merhaba, detaylı bilgi almak istiyorum.'}
-                   </div>
-                 </div>
-                 <div className="flex gap-3 flex-row-reverse">
-                   <div className="w-8 h-8 rounded-full bg-brand flex items-center justify-center shrink-0 text-xs font-bold text-white">AI</div>
-                   <div className="bg-blue-50 border border-blue-100 rounded-2xl rounded-tr-none p-3.5 text-sm text-dark font-medium leading-relaxed text-right max-w-[85%]">
-                     {sector.id === 'saglik' ? 'Yarın saat 14:00 için randevunuzu oluşturabilirim. Onaylıyor musunuz?' : 
-                      sector.id === 'e-ticaret' ? 'Siparişiniz kargoya verilmiş olup, yarın teslim edilecektir.' : 
-                      sector.id === 'finans' ? 'Güncel ihtiyaç kredisi faiz oranımız %3.15\'tir. Hesaplama yapmamı ister misiniz?' :
-                      sector.id === 'gayrimenkul' ? 'Yarın saat 15:00\'te evi gösterebiliriz. Sizin için uygun mu?' :
-                      sector.id === 'turizm' ? 'Evet, deniz manzaralı standart odamız müsait. Rezervasyon yapalım mı?' :
-                      sector.id === 'restoran' ? 'Harika! Akşam 20:00 için 2 kişilik masanızı ayırdım. Bekliyoruz!' :
-                      'Size nasıl yardımcı olabilirim? Hemen detayları paylaşayım.'}
-                   </div>
-                 </div>
-               </div>
+              {/* Scenario Selector Tabs */}
+              <div className="flex p-2 gap-2 bg-white/5">
+                {safeSector.voiceScenarios.map((scenario, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setActiveScenario(i)}
+                    className={cn(
+                      "flex-1 py-3 px-3 rounded-xl text-[10px] font-bold transition-all uppercase tracking-wider",
+                      activeScenario === i 
+                        ? "bg-brand text-white shadow-lg shadow-brand/20" 
+                        : "text-gray-500 hover:text-gray-300 hover:bg-white/5"
+                    )}
+                  >
+                    {scenario.title}
+                  </button>
+                ))}
+              </div>
 
-               {/* Stats */}
-               <div className="grid grid-cols-2 gap-4 pt-6 border-t border-gray-100">
-                 <div>
-                   <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">DÖNÜŞÜM</p>
-                   <p className="text-xl font-bold text-brand">{sector.stats.conversion}</p>
-                 </div>
-                 <div>
-                   <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">YANIT SÜRESİ</p>
-                   <p className="text-xl font-bold text-dark">{sector.stats.responseTime}</p>
-                 </div>
-               </div>
+              {/* Player Body */}
+              <div className="p-8">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeScenario}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="space-y-6"
+                  >
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 relative overflow-hidden group">
+                      <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                         <MessageSquare className="w-12 h-12 text-white" />
+                      </div>
+                      <p className="text-gray-400 text-xs font-bold uppercase tracking-widest mb-3">SENARYO DETAYI</p>
+                      <p className="text-white text-base font-medium leading-relaxed italic">
+                        "{safeSector.voiceScenarios[activeScenario]?.desc}"
+                      </p>
+                    </div>
+
+                    {/* Waveform Animation Placeholder */}
+                    <div className="flex items-end justify-center gap-1 h-12">
+                      {[...Array(20)].map((_, i) => (
+                        <motion.div
+                          key={i}
+                          animate={isPlaying ? { height: [8, 30, 8] } : { height: 8 }}
+                          transition={{ 
+                            duration: 0.5, 
+                            repeat: Infinity, 
+                            delay: i * 0.05,
+                            ease: "easeInOut" 
+                          }}
+                          className="w-1 bg-brand rounded-full"
+                        />
+                      ))}
+                    </div>
+
+                    {/* Play Controls */}
+                    <div className="flex flex-col items-center gap-6">
+                      <button 
+                        onClick={() => setIsPlaying(!isPlaying)}
+                        className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-dark hover:scale-110 transition-transform shadow-xl"
+                      >
+                        {isPlaying ? <Pause className="w-6 h-6 fill-dark" /> : <Play className="w-6 h-6 fill-dark ml-1" />}
+                      </button>
+                      
+                      <div className="w-full space-y-3">
+                         <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-full bg-brand/20 flex items-center justify-center text-brand shrink-0">AI</div>
+                            <div className="bg-brand/10 border border-brand/20 rounded-2xl rounded-tl-none p-4 text-xs md:text-sm text-gray-200 leading-relaxed">
+                               {safeSector.voiceScenarios[activeScenario]?.transcript}
+                            </div>
+                         </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* Problem Section: "Bu Sorunlar Tanıdık mı?" */}
+        {safeSector.painPoints.length > 0 && (
+          <section className="mb-32">
+            <div className="text-center max-w-2xl mx-auto mb-16">
+              <span className="text-[10px] font-bold text-brand uppercase tracking-[0.3em] mb-4 block">SEKTÖREL SORUNLAR</span>
+              <h3 className="text-3xl md:text-5xl font-bold text-dark mb-6">Bu Sorunlar Tanıdık mı?</h3>
+              <p className="text-gray-500 font-medium">
+                {safeSector.name} sektöründe her gün binlerce müşteri potansiyelini bu nedenlerle kaybediyorsunuz.
+              </p>
             </div>
 
-            {/* Floating Elements */}
-            <motion.div 
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -right-4 md:-right-12 top-10 md:top-20 bg-dark text-white p-4 rounded-2xl shadow-2xl border border-white/10 z-20 hidden sm:block"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-                  <Zap className="w-5 h-5 text-yellow-400" />
-                </div>
-                <div>
-                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">HIZ</p>
-                  <p className="text-sm font-bold">Anında Yanıt</p>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div 
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute -left-4 md:-left-12 bottom-10 md:bottom-20 bg-white p-4 rounded-2xl shadow-xl border border-gray-100 z-20 hidden sm:block"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center">
-                  <ShieldCheck className="w-5 h-5 text-green-500" />
-                </div>
-                <div>
-                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">GÜVENLİK</p>
-                  <p className="text-sm font-bold text-dark">%100 Güvenli</p>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
-
-        {/* Data Visualization Section */}
-        <div className="mb-32">
-          <div className="bg-gray-50 rounded-[2rem] p-6 md:p-16 border border-gray-100 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand/5 rounded-full blur-[100px] -mr-64 -mt-64 pointer-events-none" />
-            
-            <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center relative z-10">
-              <div className="lg:col-span-5">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-gray-200 text-dark rounded-lg text-[10px] font-bold uppercase tracking-widest mb-6 shadow-sm">
-                  <BarChart3 className="w-3.5 h-3.5 text-brand" />
-                  VERİ ODAKLI ANALİZ
-                </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-dark mb-6 leading-tight">
-                  Performansınızı <br />
-                  <span className="text-brand">Gerçek Zamanlı</span> İzleyin
-                </h2>
-                <p className="text-gray-500 mb-8 font-medium leading-relaxed">
-                  {sector.name} sektöründe yapay zeka kullanımının operasyonel verimliliğe olan etkisini gerçek zamanlı verilerle analiz edin. Kararlarınızı verilere dayandırın.
-                </p>
-                <ul className="space-y-4">
-                  {['Maliyet Optimizasyonu', 'Müşteri Memnuniyeti Artışı', '7/24 Kesintisiz Hizmet'].map(item => (
-                    <li key={item} className="flex items-center gap-3 text-sm font-bold text-dark bg-white p-3 rounded-xl border border-gray-100 shadow-sm">
-                      <div className="w-6 h-6 bg-brand/10 rounded-full flex items-center justify-center text-brand shrink-0">
-                        <CheckCircle2 className="w-4 h-4" />
-                      </div>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div className="lg:col-span-7">
-                <div className="h-[300px] md:h-[400px] bg-white rounded-2xl border border-gray-100 p-4 md:p-6 shadow-xl shadow-dark/5">
-                  <div className="flex items-center justify-between mb-4 md:mb-6">
-                    <div>
-                      <h3 className="font-bold text-dark text-sm md:text-base">Verimlilik Artışı</h3>
-                      <p className="text-[10px] md:text-xs text-gray-500 font-medium">Son 6 aylık performans verileri</p>
+            <div className="grid md:grid-cols-3 gap-8">
+              {safeSector.painPoints.map((point, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="p-8 rounded-[2rem] bg-gray-50 border border-gray-100 group hover:bg-white hover:border-brand/20 hover:shadow-2xl hover:shadow-brand/5 transition-all duration-500"
+                >
+                  <div className="flex items-start justify-between mb-8">
+                    <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-red-500 group-hover:bg-red-500 group-hover:text-white transition-all shadow-sm border border-gray-100">
+                      <XCircle className="w-7 h-7" />
                     </div>
-                    <div className="px-2 py-1 md:px-3 md:py-1 bg-green-50 text-green-600 rounded-full text-[10px] md:text-xs font-bold flex items-center gap-1">
-                      <TrendingUp className="w-3 h-3" /> +%42
+                    <div className="text-xl font-bold text-red-600">
+                      {point.stat}
                     </div>
                   </div>
-                  <ResponsiveContainer width="100%" height="80%">
-                    <AreaChart data={sector.chartData} margin={{ top: 5, right: 0, left: -20, bottom: 0 }}>
+                  <h4 className="text-xl font-bold text-dark mb-4">{point.title}</h4>
+                  <p className="text-sm text-gray-500 leading-relaxed font-medium">
+                    {point.desc}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Comparison Section: İndependent vs OXONOM */}
+        <section className="mb-32">
+           <div className="bg-dark rounded-[3rem] p-10 md:p-20 text-white relative overflow-hidden">
+             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.05]" />
+             <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand/10 blur-[130px] rounded-full -mr-96 -mt-96" />
+             
+             <div className="grid lg:grid-cols-2 gap-16 relative z-10">
+                <div>
+                   <h3 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">Maliyet ve Performans <br /><span className="text-brand">Karşılaştırması</span></h3>
+                   <p className="text-gray-400 text-lg mb-12 font-medium leading-relaxed">
+                      Geleneksel yöntemler artık günümüzün hızına ve maliyet beklentilerine yanıt veremiyor. OXONOM ile operasyonunuzu %80 daha uygun maliyetle ölçeklendirin.
+                   </p>
+                   
+                   <div className="space-y-4">
+                      <div className="flex items-center gap-4 p-5 bg-white/5 rounded-2xl border border-white/10">
+                         <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-brand">
+                            <TrendingUp className="w-6 h-6" />
+                         </div>
+                         <div>
+                            <p className="font-bold text-sm">Sınırsız Eş Zamanlı Arama</p>
+                            <p className="text-xs text-gray-400">Yüzlerce kişi aynı anda arasa bile hiçbir meşgul sesi yok.</p>
+                         </div>
+                      </div>
+                      <div className="flex items-center gap-4 p-5 bg-white/5 rounded-2xl border border-white/10">
+                         <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-brand">
+                            <Globe className="w-6 h-6" />
+                         </div>
+                         <div>
+                            <p className="font-bold text-sm">Cok Dilli Kesintisiz Hizmet</p>
+                            <p className="text-xs text-gray-400">15+ dilde, tatil yapmadan 7/24 kesintisiz destek.</p>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-6">
+                   {/* Traditional side */}
+                   <div className="bg-white/5 rounded-3xl p-8 border border-white/10">
+                      <div className="w-12 h-12 bg-red-500/10 rounded-xl flex items-center justify-center text-red-500 mb-6">
+                         <MinusCircle className="w-6 h-6" />
+                      </div>
+                      <h4 className="font-bold text-lg mb-6">Mevcut Durum</h4>
+                      <ul className="space-y-4">
+                         {safeSector.comparison.traditional.map((item, i) => (
+                           <li key={i} className="flex items-start gap-3 text-sm text-gray-400">
+                             <span className="w-1.5 h-1.5 rounded-full bg-red-500 mt-1.5 shrink-0" />
+                             {item}
+                           </li>
+                         ))}
+                      </ul>
+                   </div>
+                   {/* OXONOM side */}
+                   <div className="bg-brand/10 rounded-3xl p-8 border border-brand/20 shadow-2xl shadow-brand/10">
+                      <div className="w-12 h-12 bg-brand rounded-xl flex items-center justify-center text-white mb-6">
+                         <CheckCircle className="w-6 h-6" />
+                      </div>
+                      <h4 className="font-bold text-lg mb-6">OXONOM Etkisi</h4>
+                      <ul className="space-y-4">
+                         {safeSector.comparison.oxonom.map((item, i) => (
+                           <li key={i} className="flex items-start gap-3 text-sm text-brand-light font-bold">
+                             <CheckCircle2 className="w-4 h-4 text-brand shrink-0 mt-0.5" />
+                             {item}
+                           </li>
+                         ))}
+                      </ul>
+                   </div>
+                </div>
+             </div>
+           </div>
+        </section>
+
+        {/* Stats Chart Section */}
+        <section className="mb-32">
+          <div className="bg-gray-50 rounded-[3rem] p-8 md:p-16 border border-gray-100">
+            <div className="grid lg:grid-cols-12 gap-16 items-center">
+              <div className="lg:col-span-4">
+                <span className="text-[10px] font-bold text-brand uppercase tracking-[0.3em] mb-4 block">PERFORMANS ANALİZİ</span>
+                <h3 className="text-3xl font-bold text-dark mb-6">Verilerle {safeSector.name} Dönüşümü</h3>
+                <p className="text-gray-500 mb-8 font-medium">
+                  Yapay zeka asistanlarımız her etkileşimi veriye dönüştürerek size stratejik içgörüler sunar.
+                </p>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="p-4 bg-white rounded-2xl border border-gray-100 shadow-sm">
+                    <p className="text-[10px] font-bold text-gray-400 uppercase mb-1">DÖNÜŞÜM</p>
+                    <p className="text-xl font-bold text-brand">{safeSector.stats.conversion}</p>
+                  </div>
+                  <div className="p-4 bg-white rounded-2xl border border-gray-100 shadow-sm">
+                    <p className="text-[10px] font-bold text-gray-400 uppercase mb-1">YANIT HIZI</p>
+                    <p className="text-xl font-bold text-dark">{safeSector.stats.responseTime}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="lg:col-span-8">
+                <div className="h-[350px] bg-white rounded-3xl border border-gray-100 p-8 shadow-sm relative overflow-hidden">
+                   <div className="flex items-center justify-between mb-8">
+                      <div>
+                        <h4 className="font-bold text-dark">Operasyonel Verimlilik</h4>
+                        <p className="text-xs text-gray-400">Haftalık işlem trafiği analizi</p>
+                      </div>
+                      <div className="px-3 py-1 bg-green-50 text-green-600 rounded-full text-xs font-bold flex items-center gap-1">
+                        <TrendingUp className="w-3 h-3" /> +%42 artış
+                      </div>
+                   </div>
+                   <ResponsiveContainer width="100%" height="80%">
+                    <AreaChart data={safeSector.chartData} margin={{ top: 0, right: 0, left: -20, bottom: 0 }}>
                       <defs>
                         <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
                           <stop offset="5%" stopColor="#E50914" stopOpacity={0.2}/>
                           <stop offset="95%" stopColor="#E50914" stopOpacity={0}/>
                         </linearGradient>
                       </defs>
-                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
-                      <XAxis 
-                        dataKey="name" 
-                        axisLine={false} 
-                        tickLine={false} 
-                        tick={{ fontSize: 10, fill: '#999', fontWeight: 500 }} 
-                        dy={10}
-                        minTickGap={15}
-                      />
-                      <YAxis 
-                        axisLine={false} 
-                        tickLine={false} 
-                        tick={{ fontSize: 10, fill: '#999', fontWeight: 500 }} 
-                        dx={-10}
-                      />
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f5f5f5" />
+                      <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#999' }} />
+                      <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#999' }} />
                       <Tooltip 
                         contentStyle={{ 
-                          borderRadius: '12px', 
-                          border: '1px solid #f0f0f0', 
-                          boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+                          borderRadius: '16px', 
+                          border: '1px solid #eee', 
+                          boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
                           fontSize: '12px',
                           fontWeight: 'bold'
                         }} 
@@ -277,10 +393,9 @@ export default function SectorDetailPage() {
                         type="monotone" 
                         dataKey="value" 
                         stroke="#E50914" 
-                        strokeWidth={3}
+                        strokeWidth={4}
                         fillOpacity={1} 
                         fill="url(#colorValue)" 
-                        animationDuration={2000}
                       />
                     </AreaChart>
                   </ResponsiveContainer>
@@ -288,120 +403,52 @@ export default function SectorDetailPage() {
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        {/* Use Cases Grid */}
-        <div className="mb-32">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-gray-50 border border-gray-200 text-dark rounded-lg text-[10px] font-bold uppercase tracking-widest mb-4">
-              <Sparkles className="w-3.5 h-3.5 text-brand" />
-              ÇÖZÜMLER
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-dark mb-4">Kullanım Senaryoları</h2>
-            <p className="text-gray-500 font-medium">
-              {sector.name} sektöründe yapay zekanın en çok fark yarattığı alanları keşfedin.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {sector.useCases.map((useCase, i) => (
-              <motion.div
-                key={useCase}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="p-8 rounded-2xl bg-white border border-gray-100 hover:border-brand/30 transition-all group shadow-sm hover:shadow-xl"
-              >
-                <div className="w-14 h-14 bg-gray-50 rounded-xl flex items-center justify-center text-brand mb-6 group-hover:bg-brand group-hover:text-white transition-all border border-gray-100 group-hover:border-brand">
-                  <CheckCircle2 className="w-7 h-7" />
-                </div>
-                <h3 className="text-xl font-bold text-dark mb-3">{useCase}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed font-medium">
-                  {sector.name} süreçlerinizi hızlandırmak ve müşteri memnuniyetini artırmak için özel olarak tasarlandı.
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* SEO Content Section */}
-        <div className="bg-dark rounded-[3rem] p-10 md:p-20 text-white relative overflow-hidden shadow-2xl">
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.05]" />
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand/10 blur-[120px] pointer-events-none rounded-full -mr-96 -mt-96" />
-          
-          <div className="max-w-4xl relative z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-lg text-[10px] font-bold uppercase tracking-widest mb-8 border border-white/20 backdrop-blur-sm">
-              <Zap className="w-3.5 h-3.5 text-brand fill-brand" />
-              AI GEO OPTIMIZED
-            </div>
-            
-            <h2 className="text-3xl md:text-5xl font-bold mb-10 leading-[1.1] tracking-tight">
-              {sector.name} Sektöründe <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-red-400">Yapay Zeka Devrimi</span>
-            </h2>
-            
-            <div className="grid md:grid-cols-2 gap-12">
-              <div className="space-y-6">
-                <p className="text-gray-400 text-base leading-relaxed font-medium">
-                  Geleneksel yöntemler artık günümüzün hızına yetişemiyor. {sector.name} alanında faaliyet gösteren işletmeler, OXONOM'un sunduğu yapay zeka çözümleriyle rakiplerinin önüne geçiyor.
-                </p>
-                <div className="flex items-center gap-4 p-5 bg-white/5 rounded-xl border border-white/10 backdrop-blur-sm">
-                  <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center text-brand shrink-0">
-                    <ShieldCheck className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <p className="font-bold text-sm text-white mb-1">KVKK Uyumlu</p>
-                    <p className="text-xs text-gray-400">En üst düzey veri güvenliği standartları.</p>
-                  </div>
-                </div>
+        {/* Final SEO Content Area */}
+        <section className="max-w-4xl mx-auto mb-32">
+           <article className="prose prose-lg prose-red max-w-none">
+              <h3 className="text-3xl font-bold text-dark mb-8 text-center">{safeSector.name} Sektöründe Geleceği OXONOM ile Yakalayın</h3>
+              <p className="text-gray-600 leading-relaxed text-lg">
+                Günümüz dünyasında {safeSector.name} alanında rekabet edebilmek, sadece kaliteli hizmet sunmakla değil, bu hizmete ulaşımı ne kadar kolaylaştırdığınızla ilgilidir. 
+                OXONOM'un sunduğu **{safeSector.seoKeywords.join(', ')}** odaklı yapay zeka çözümleri, işletmenizi statik bir yapıdan, 7/24 yaşayan ve müşterileriyle bağ kuran dinamik bir organizasyona dönüştürür.
+              </p>
+              <div className="bg-brand/5 border-l-4 border-brand p-8 rounded-r-3xl my-12">
+                 <p className="text-dark font-bold text-xl italic mb-4">"Tek bir kaçan arama, bazen binlerce liralık bir satışın veya sadık bir hastanın kaybı demektir."</p>
+                 <p className="text-gray-500 font-bold text-sm">— OXONOM Sektör Analiz Ekibi</p>
               </div>
-              <div className="space-y-6">
-                <p className="text-gray-400 text-base leading-relaxed font-medium">
-                  Müşterileriniz artık mesai saatleri dışında da yanıt bekliyor. AI ajanlarımız, {sector.seoKeywords.slice(0, 3).join(', ')} gibi kritik alanlarda uzmanlaşarak işletmenizi 7/24 aktif bir merkeze dönüştürür.
-                </p>
-                <div className="flex items-center gap-4 p-5 bg-white/5 rounded-xl border border-white/10 backdrop-blur-sm">
-                  <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center text-brand shrink-0">
-                    <MessageSquare className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <p className="font-bold text-sm text-white mb-1">Doğal Dil İşleme</p>
-                    <p className="text-xs text-gray-400">İnsan benzeri, akıcı ve bağlamsal iletişim.</p>
-                  </div>
+           </article>
+        </section>
+
+        {/* Bottom CTA */}
+        <section className="mb-24">
+          <div className="text-center bg-gray-900 rounded-[3rem] p-12 md:p-24 text-white relative overflow-hidden shadow-2xl">
+             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-brand/10 rounded-full blur-[120px]" />
+             <div className="relative z-10">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-lg text-xs font-bold text-brand mb-8 border border-white/10">
+                  <Zap className="w-4 h-4" /> DENEYİN VE GÖRÜN
                 </div>
-              </div>
-            </div>
-
-            <div className="mt-16 pt-8 border-t border-white/10">
-              <p className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.3em] mb-6">ANAHTAR KELİMELER</p>
-              <div className="flex flex-wrap gap-3">
-                {sector.seoKeywords.map(keyword => (
-                  <span key={keyword} className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-xs font-bold text-gray-300 hover:bg-white/10 transition-colors cursor-default">
-                    #{keyword.replace(' ', '')}
-                  </span>
-                ))}
-              </div>
-            </div>
+                <h3 className="text-3xl md:text-5xl font-bold mb-8">Hemen Bugün {safeSector.name} AI <br />Ajanınızı Beraber Tasarlayalım</h3>
+                <p className="text-gray-400 mb-12 max-w-2xl mx-auto text-lg">
+                   15 dakikalık ücretsiz demo görüşmemizde, işletmenize özel yapay zeka senaryolarını canlı olarak deneyimleyin.
+                </p>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <button className="w-full sm:w-auto px-10 py-5 bg-brand text-white rounded-2xl font-bold text-lg hover:bg-white hover:text-dark transition-all shadow-xl shadow-brand/20">
+                     Ücretsiz Demo Al
+                  </button>
+                  <button className="w-full sm:w-auto px-10 py-5 bg-white/5 border border-white/10 text-white rounded-2xl font-bold text-lg hover:bg-white/10 transition-all">
+                     Bize Sorun
+                  </button>
+                </div>
+             </div>
           </div>
-        </div>
+        </section>
+      </div>
+    </div>
+  );
+}
 
-        {/* Final CTA */}
-        <div className="mt-32 text-center bg-gray-50 rounded-[3rem] p-16 border border-gray-100 relative overflow-hidden">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-brand/5 rounded-full blur-[100px] pointer-events-none" />
-          <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-dark mb-6">İşletmenizi Geleceğe Taşıyın</h2>
-            <p className="text-gray-500 font-medium mb-6 max-w-2xl mx-auto">
-              {sector.name} sektöründeki rakipleriniz yapay zekayı kullanmaya başladı bile. Siz de hemen bugün ücretsiz deneyin.
-            </p>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-50 border border-green-100 rounded-lg text-xs font-bold text-green-700 mb-10">
-              <Zap className="w-3.5 h-3.5" /> Kayıt olduğunuzda anında $5 deneme bakiyesi hesabınıza tanımlanır.
-            </div>
-            <div>
-              <Link 
-                to="/" 
-                className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-brand text-white rounded-xl font-bold text-base hover:bg-dark transition-all group shadow-xl shadow-brand/20"
-              >
-                Ücretsiz Dene <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+             Ücretsiz Dene <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
           </div>
