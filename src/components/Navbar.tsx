@@ -170,39 +170,52 @@ export default function Navbar() {
                     initial={{ opacity: 0, y: 15, scale: 0.98 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 15, scale: 0.98 }}
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[600px] bg-white/95 backdrop-blur-2xl rounded-2xl shadow-[0_24px_48px_-12px_rgba(0,0,0,0.15)] border border-white/40 overflow-hidden p-6"
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[650px] bg-white/95 backdrop-blur-3xl rounded-[2.5rem] shadow-[0_40px_80px_-15px_rgba(0,0,0,0.15)] border border-white/40 overflow-hidden p-2"
                   >
-                    <div className="grid grid-cols-2 gap-4">
-                      <Link
-                        to="/paketler"
-                        className="flex flex-col gap-2 p-4 rounded-xl hover:bg-gray-50 transition-all group border border-transparent hover:border-gray-100"
+                    <div className="grid grid-cols-2 gap-2">
+                       <Link
+                        to="/ses-paketleri"
+                        className="group relative flex flex-col gap-3 p-8 rounded-[2rem] hover:bg-brand/5 transition-all duration-500 overflow-hidden"
                       >
-                        <div className="w-10 h-10 bg-brand/10 rounded-lg flex items-center justify-center text-brand group-hover:scale-110 transition-transform">
-                          <Zap className="w-5 h-5" />
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-brand/5 rounded-full blur-3xl -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700" />
+                        <div className="w-14 h-14 bg-brand/10 rounded-2xl flex items-center justify-center text-brand group-hover:bg-brand group-hover:text-white transition-all duration-500 shadow-sm">
+                          <Zap className="w-7 h-7" />
                         </div>
-                        <h4 className="font-bold text-dark group-hover:text-brand transition-colors">Ses Paketleri</h4>
-                        <p className="text-xs text-gray-500 font-medium">Yapay zeka sesli asistan paketleri ve tarifeleri.</p>
+                        <div>
+                          <h4 className="text-lg font-bold text-dark group-hover:text-brand transition-colors mb-1">Ses Paketleri</h4>
+                          <p className="text-xs text-gray-500 font-medium leading-relaxed">Yapay zeka otonom sesli asistan <br /> dakika bazlı özel tarifeler.</p>
+                        </div>
+                        <div className="pt-4 flex items-center gap-2 text-[10px] font-bold text-brand uppercase tracking-widest opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
+                          İncele <ArrowRight className="w-3 h-3" />
+                        </div>
                       </Link>
-                      
+
                       <Link
                         to="/mesajlasma-paketleri"
-                        className="flex flex-col gap-2 p-4 rounded-xl hover:bg-gray-50 transition-all group border border-transparent hover:border-gray-100"
+                        className="group relative flex flex-col gap-3 p-8 rounded-[2rem] hover:bg-blue-500/5 transition-all duration-500 overflow-hidden"
                       >
-                        <div className="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center text-blue-500 group-hover:scale-110 transition-transform">
-                          <Sparkles className="w-5 h-5" />
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-3xl -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700" />
+                        <div className="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-all duration-500 shadow-sm">
+                          <Sparkles className="w-7 h-7" />
                         </div>
-                        <h4 className="font-bold text-dark group-hover:text-blue-500 transition-colors">Mesaj Paketleri</h4>
-                        <p className="text-xs text-gray-500 font-medium">WhatsApp ve Omnichannel mesajlaşma paketleri.</p>
+                        <div>
+                          <h4 className="text-lg font-bold text-dark group-hover:text-blue-500 transition-colors mb-1">Mesaj Paketleri</h4>
+                          <p className="text-xs text-gray-500 font-medium leading-relaxed">WhatsApp, Instagram ve <br /> Omnichannel çözüm paketleri.</p>
+                        </div>
+                        <div className="pt-4 flex items-center gap-2 text-[10px] font-bold text-blue-500 uppercase tracking-widest opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
+                          İncele <ArrowRight className="w-3 h-3" />
+                        </div>
                       </Link>
                     </div>
                     
-                    <div className="mt-4 pt-4 border-t border-gray-100">
-                      <Link 
+                    <div className="p-6 bg-gray-50/50 flex flex-col items-center justify-center text-center">
+                       <Link 
                         to="/paketler" 
-                        className="w-full py-3 bg-dark text-white rounded-xl text-sm font-bold flex items-center justify-center gap-2 hover:bg-brand transition-all group shadow-md shadow-dark/10"
+                        className="w-full py-4 bg-dark text-white rounded-2xl text-sm font-bold flex items-center justify-center gap-2 hover:bg-brand transition-all shadow-xl shadow-dark/10 group active:scale-95"
                       >
-                        Tüm Paketleri İncele <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        Tüm Paket Seçeneklerini Gör <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </Link>
+                      <p className="mt-4 text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em]">ÖZELLİK KARŞILAŞTIRMALI FİYATLANDIRMA</p>
                     </div>
                   </motion.div>
                 )}
@@ -312,7 +325,7 @@ export default function Navbar() {
                   </div>
                   
                   <div className="grid grid-cols-2 gap-2 relative z-10 mt-2">
-                    <Link to="/paketler" className="p-3 bg-white/5 rounded-xl border border-white/10 flex flex-col items-center gap-2 hover:bg-white/10 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Link to="/ses-paketleri" className="p-3 bg-white/5 rounded-xl border border-white/10 flex flex-col items-center gap-2 hover:bg-white/10 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                       <Zap className="w-4 h-4 text-brand" />
                       <span className="text-xs font-bold text-white">Ses</span>
                     </Link>

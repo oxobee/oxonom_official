@@ -22,7 +22,7 @@ export default function PackagesPage() {
       description: 'Müşterilerinizle insansı ses kalitesiyle 7/24 iletişim kuran otonom ses ajanları.',
       icon: Phone,
       color: 'brand',
-      link: '/paketler', // Already here, but will show content
+      link: '/ses-paketleri', // Changed from /paketler to the new dedicated page
       features: ['%100 İnsansı Ses', 'Anlık Randevu Alımı', 'Kesintisiz 7/24 Erişim'],
       btnText: 'Ses Paketlerini İncele'
     },

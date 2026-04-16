@@ -26,13 +26,13 @@ export default function MessagingPackagesPage() {
     { id: 'combo', name: 'Ses + Mesaj Kombo', icon: Zap },
   ];
 
-  const SocialIcon = ({ channel }: { channel: string }) => {
+  const SocialIcon = ({ channel, colored = false }: { channel: string, colored?: boolean }) => {
     switch (channel.toLowerCase()) {
-      case 'instagram': return <Instagram className="w-4 h-4" />;
-      case 'facebook': return <Facebook className="w-4 h-4" />;
-      case 'whatsapp': return <MessageCircle className="w-4 h-4" />;
-      case 'tiktok': return <Zap className="w-4 h-4" />; // Using Zap as a TikTok-ish dynamic icon
-      default: return <Globe className="w-4 h-4" />;
+      case 'instagram': return <Instagram className={`w-4 h-4 ${colored ? 'text-pink-600' : ''}`} />;
+      case 'facebook': return <Facebook className={`w-4 h-4 ${colored ? 'text-blue-600' : ''}`} />;
+      case 'whatsapp': return <MessageCircle className={`w-4 h-4 ${colored ? 'text-green-500' : ''}`} />;
+      case 'tiktok': return <Share2 className={`w-4 h-4 ${colored ? 'text-black dark:text-white' : ''}`} />; 
+      default: return <Globe className={`w-4 h-4 ${colored ? 'text-blue-400' : ''}`} />;
     }
   };
 
@@ -116,14 +116,14 @@ export default function MessagingPackagesPage() {
             >
               {/* Social */}
               <MixedSection 
-                title="Social (IG + FB)" 
+                title="Social (Instagram + Facebook)" 
                 desc="Sosyal medya etkileşimlerinizi tek elden yönetin." 
                 data={pricing.messaging.social} 
                 icons={['instagram', 'facebook']}
               />
               {/* DM Suite */}
               <MixedSection 
-                title="DM Suite (IG + WhatsApp)" 
+                title="DM Suite (Instagram + WhatsApp)" 
                 desc="En popüler mesajlaşma kanallarında AI gücü." 
                 data={pricing.messaging.dmSuite} 
                 icons={['instagram', 'whatsapp']}
@@ -131,7 +131,7 @@ export default function MessagingPackagesPage() {
               />
               {/* Omni Channel */}
               <MixedSection 
-                title="Omni Channel (IG + FB + WA)" 
+                title="Omni Channel (Instagram + Facebook + WhatsApp)" 
                 desc="Tüm ana akım kanalları kapsayan güçlü paketler." 
                 data={pricing.messaging.omni} 
                 icons={['instagram', 'facebook', 'whatsapp']}
@@ -205,6 +205,13 @@ function PackageCard({ pkg, index, color }: { pkg: any, index: number, color: st
         </div>
       )}
 
+      <div className="flex gap-2 mb-6">
+         <Instagram className="w-4 h-4 text-pink-600/50" />
+         <Facebook className="w-4 h-4 text-blue-600/50" />
+         <MessageCircle className="w-4 h-4 text-green-500/50" />
+         <Share2 className="w-4 h-4 text-gray-900/50" />
+      </div>
+
       <div className="mb-8">
         <h3 className="text-xl font-bold text-dark mb-2 uppercase tracking-wide">{pkg.name}</h3>
         <div className="flex items-baseline gap-1">
@@ -250,12 +257,12 @@ function MixedSection({ title, desc, data, icons, color = 'blue' }: { title: str
         </div>
         <div className="flex gap-2">
            {icons.map(icon => (
-             <div key={icon} className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-gray-400 shadow-sm border border-gray-100">
-                {icon === 'instagram' && <Instagram className="w-4 h-4" />}
-                {icon === 'facebook' && <Facebook className="w-4 h-4" />}
-                {icon === 'whatsapp' && <MessageCircle className="w-4 h-4" />}
-                {icon === 'tiktok' && <Zap className="w-4 h-4" />}
-                {icon === 'web' && <Globe className="w-4 h-4" />}
+             <div key={icon} className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-lg border border-gray-100 transition-transform hover:scale-110">
+                {icon === 'instagram' && <Instagram className="w-6 h-6 text-pink-600" />}
+                {icon === 'facebook' && <Facebook className="w-6 h-6 text-blue-600" />}
+                {icon === 'whatsapp' && <MessageCircle className="w-6 h-6 text-green-500" />}
+                {icon === 'tiktok' && <Share2 className="w-6 h-6 text-black dark:text-white" />}
+                {icon === 'web' && <Globe className="w-6 h-6 text-blue-400" />}
              </div>
            ))}
         </div>
