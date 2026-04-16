@@ -96,6 +96,7 @@ export default function Navbar() {
                         <Link
                           key={sector.id}
                           to={`/sektorler/${sector.id}`}
+                          onClick={() => setIsMegaMenuOpen(false)}
                           className="flex items-start gap-4 p-2 rounded-xl hover:bg-gray-50/80 transition-all group"
                         >
                           <div className="p-2.5 bg-gray-100 rounded-xl text-gray-600 group-hover:bg-brand group-hover:text-white transition-all duration-300 shadow-sm">
@@ -129,6 +130,7 @@ export default function Navbar() {
                       <div className="flex items-center gap-4 w-full md:w-auto">
                         <Link 
                           to="/sektorler" 
+                          onClick={() => setIsMegaMenuOpen(false)}
                           className="px-5 py-3 text-gray-500 hover:text-dark text-xs font-bold transition-colors"
                         >
                           Tüm Sektörler
@@ -175,6 +177,7 @@ export default function Navbar() {
                     <div className="grid grid-cols-2 gap-2">
                        <Link
                         to="/ses-paketleri"
+                        onClick={() => setIsPackagesMegaMenuOpen(false)}
                         className="group relative flex flex-col gap-3 p-8 rounded-[2rem] hover:bg-brand/5 transition-all duration-500 overflow-hidden"
                       >
                         <div className="absolute top-0 right-0 w-32 h-32 bg-brand/5 rounded-full blur-3xl -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700" />
@@ -192,6 +195,7 @@ export default function Navbar() {
 
                       <Link
                         to="/mesajlasma-paketleri"
+                        onClick={() => setIsPackagesMegaMenuOpen(false)}
                         className="group relative flex flex-col gap-3 p-8 rounded-[2rem] hover:bg-blue-500/5 transition-all duration-500 overflow-hidden"
                       >
                         <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-3xl -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700" />
@@ -211,6 +215,7 @@ export default function Navbar() {
                     <div className="p-6 bg-gray-50/50 flex flex-col items-center justify-center text-center">
                        <Link 
                         to="/paketler" 
+                        onClick={() => setIsPackagesMegaMenuOpen(false)}
                         className="w-full py-4 bg-dark text-white rounded-2xl text-sm font-bold flex items-center justify-center gap-2 hover:bg-brand transition-all shadow-xl shadow-dark/10 group active:scale-95"
                       >
                         Tüm Paket Seçeneklerini Gör <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
