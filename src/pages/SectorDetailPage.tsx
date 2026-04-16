@@ -90,152 +90,207 @@ export default function SectorDetailPage() {
         </nav>
 
         {/* Hero Section */}
-        <section className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-24 md:mb-32">
+        <section className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-24 md:mb-40 relative">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             className="order-2 lg:order-1"
           >
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-3 mb-8">
               <div className="p-2.5 bg-brand/10 rounded-xl text-brand border border-brand/20">
                 <sector.icon className="w-6 h-6" />
               </div>
-              <span className="px-3 py-1 bg-gray-50 text-gray-600 rounded-lg text-[10px] font-bold uppercase tracking-widest border border-gray-100">
-                SEKTÖREL ÇÖZÜM
+              <span className="px-4 py-1.5 bg-gray-50 text-gray-600 rounded-full text-[10px] font-bold uppercase tracking-widest border border-gray-100">
+                SEKTÖREL YAPAY ZEKA MODELİ
               </span>
             </div>
             
-            <h1 className="text-4xl md:text-6xl font-display font-bold text-dark mb-6 leading-[1.1] tracking-tight">
+            <h1 className="text-4xl md:text-7xl font-display font-bold text-dark mb-8 leading-[1.05] tracking-tight">
               {safeSector.heroTitle.split(' ').slice(0, -2).join(' ')} <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-red-400">
                 {safeSector.heroTitle.split(' ').slice(-2).join(' ')}
               </span>
             </h1>
             
-            <p className="text-lg text-gray-500 mb-8 leading-relaxed font-medium max-w-xl">
+            <p className="text-lg md:text-xl text-gray-500 mb-10 leading-relaxed font-medium max-w-xl">
               {safeSector.longDescription}
             </p>
 
-            <div className="flex flex-wrap gap-4 mb-8">
-              <button className="px-8 py-4 bg-dark text-white rounded-xl font-bold text-sm shadow-xl shadow-dark/10 hover:bg-brand transition-all flex items-center gap-2 group">
-                Hemen Başla <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <div className="flex flex-wrap gap-4 mb-12">
+              <button className="px-10 py-5 bg-dark text-white rounded-2xl font-bold text-base shadow-2xl shadow-dark/20 hover:bg-brand transition-all flex items-center gap-2 group">
+                Hemen Ücretsiz Deneyin <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
-              <button className="px-8 py-4 bg-white border border-gray-200 text-brand rounded-xl font-bold text-sm hover:bg-gray-50 hover:border-brand/30 transition-all flex items-center gap-2">
-                <Sparkles className="w-4 h-4" /> Ücretsiz Dene
+              <button className="px-10 py-5 bg-white border border-gray-200 text-brand rounded-2xl font-bold text-base hover:bg-gray-50 hover:border-brand/30 transition-all flex items-center gap-2">
+                <Sparkles className="w-5 h-5" /> Demo Talebi
               </button>
             </div>
             
-            <div className="flex items-center gap-6 text-sm font-bold text-gray-400">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-brand" /> 7/24 Aktif
-              </div>
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-brand" /> KVKK Uyumlu
-              </div>
+            <div className="grid grid-cols-2 gap-6 p-1 bg-gray-50 rounded-3xl border border-gray-100 max-w-lg">
+               <div className="p-6 bg-white rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center text-green-600">
+                     <CheckCircle2 className="w-6 h-6" />
+                  </div>
+                  <div>
+                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">GÜVENLİK</p>
+                     <p className="text-sm font-bold text-dark">KVKK & GDPR</p>
+                  </div>
+               </div>
+               <div className="p-6 bg-white rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center text-brand">
+                     <Clock className="w-6 h-6" />
+                  </div>
+                  <div>
+                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">ERİŞİM</p>
+                     <p className="text-sm font-bold text-dark">7/24 Kesintisiz</p>
+                  </div>
+               </div>
             </div>
           </motion.div>
 
-          {/* Interactive Voice Player Mockup */}
+          {/* New Optimized Mockup Container */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             className="order-1 lg:order-2 relative"
           >
-            <div className="absolute inset-0 bg-brand/5 rounded-full blur-3xl" />
+            {/* Background Decorations */}
+            <div className="absolute inset-0 bg-brand/5 rounded-full blur-[100px] -z-10 animate-pulse" />
             
-            <div className="relative bg-[#0A0A0A] rounded-[2.5rem] border border-white/10 shadow-2xl overflow-hidden premium-shadow">
-              {/* Card Header */}
-              <div className="p-6 border-b border-white/5 bg-white/5 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-brand/20 flex items-center justify-center text-brand border border-brand/20">
-                    <Phone className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-white font-bold text-sm">Sesli AI Örnekleri</h4>
-                    <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mt-0.5">Sektörel Senaryolar</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                   <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                   <span className="text-[10px] font-bold text-green-500 uppercase">CANLI DEMO</span>
-                </div>
-              </div>
-
-              {/* Scenario Selector Tabs */}
-              <div className="flex p-2 gap-2 bg-white/5">
-                {safeSector.voiceScenarios.map((scenario, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setActiveScenario(i)}
-                    className={cn(
-                      "flex-1 py-3 px-3 rounded-xl text-[10px] font-bold transition-all uppercase tracking-wider",
-                      activeScenario === i 
-                        ? "bg-brand text-white shadow-lg shadow-brand/20" 
-                        : "text-gray-500 hover:text-gray-300 hover:bg-white/5"
-                    )}
-                  >
-                    {scenario.title}
-                  </button>
-                ))}
-              </div>
-
-              {/* Player Body */}
-              <div className="p-8">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeScenario}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="space-y-6"
-                  >
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 relative overflow-hidden group">
-                      <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                         <MessageSquare className="w-12 h-12 text-white" />
+            <div className="relative">
+              {/* Main Mockup Card */}
+              <div className="relative z-10 bg-[#0A0A0A] rounded-[3rem] border border-white/10 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] overflow-hidden premium-shadow">
+                {/* Dashboard Header */}
+                <div className="p-6 border-b border-white/5 bg-white/5 flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-2xl bg-brand flex items-center justify-center text-white shadow-lg shadow-brand/40">
+                      <sector.icon className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-bold text-base">{safeSector.name} AI Ajanı</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                        <span className="text-[10px] font-bold text-green-500 uppercase tracking-widest">AKTİF • CANLI</span>
                       </div>
-                      <p className="text-gray-400 text-xs font-bold uppercase tracking-widest mb-3">SENARYO DETAYI</p>
-                      <p className="text-white text-base font-medium leading-relaxed italic">
-                        "{safeSector.voiceScenarios[activeScenario]?.desc}"
-                      </p>
                     </div>
-
-                    {/* Waveform Animation Placeholder */}
-                    <div className="flex items-end justify-center gap-1 h-12">
-                      {[...Array(20)].map((_, i) => (
-                        <motion.div
-                          key={i}
-                          animate={isPlaying ? { height: [8, 30, 8] } : { height: 8 }}
-                          transition={{ 
-                            duration: 0.5, 
-                            repeat: Infinity, 
-                            delay: i * 0.05,
-                            ease: "easeInOut" 
-                          }}
-                          className="w-1 bg-brand rounded-full"
-                        />
-                      ))}
+                  </div>
+                  <div className="flex gap-2">
+                    <div className="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 border border-white/10">
+                       <Activity className="w-4 h-4" />
                     </div>
+                  </div>
+                </div>
 
-                    {/* Play Controls */}
-                    <div className="flex flex-col items-center gap-6">
-                      <button 
-                        onClick={() => setIsPlaying(!isPlaying)}
-                        className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-dark hover:scale-110 transition-transform shadow-xl"
-                      >
-                        {isPlaying ? <Pause className="w-6 h-6 fill-dark" /> : <Play className="w-6 h-6 fill-dark ml-1" />}
-                      </button>
-                      
-                      <div className="w-full space-y-3">
+                {/* Scenario Tabs */}
+                <div className="px-4 py-3 bg-white/5 border-b border-white/5 flex gap-2 overflow-x-auto scrollbar-hide">
+                  {safeSector.voiceScenarios.map((scenario, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setActiveScenario(i)}
+                      className={cn(
+                        "whitespace-nowrap px-5 py-2.5 rounded-xl text-[10px] font-bold transition-all uppercase tracking-widest border shrink-0",
+                        activeScenario === i 
+                          ? "bg-brand border-brand text-white shadow-lg shadow-brand/20" 
+                          : "bg-white/5 border-white/5 text-gray-500 hover:text-gray-300 hover:bg-white/10"
+                      )}
+                    >
+                      {scenario.title}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Interactive Player Body */}
+                <div className="p-8 md:p-10">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeScenario}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      className="space-y-8"
+                    >
+                      <div className="bg-white/5 border border-white/10 rounded-3xl p-8 relative overflow-hidden group">
+                        <div className="absolute -top-4 -right-4 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+                           <MessageSquare className="w-24 h-24 text-white" />
+                        </div>
+                        <p className="text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-4">MÜŞTERİ SENARYOSU</p>
+                        <p className="text-white text-lg font-medium leading-[1.6] italic">
+                          "{safeSector.voiceScenarios[activeScenario]?.desc}"
+                        </p>
+                      </div>
+
+                      {/* Performance Visualizer */}
+                      <div className="flex items-center justify-between gap-6 p-6 bg-white/5 rounded-3xl border border-white/10">
+                         <div className="flex flex-col gap-1">
+                            <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">HIZ VE DOĞRULUK</span>
+                            <div className="flex items-center gap-3">
+                               <div className="flex items-end gap-1 h-6">
+                                  {[...Array(8)].map((_, i) => (
+                                    <motion.div
+                                      key={i}
+                                      animate={isPlaying ? { height: [4, 18, 4] } : { height: 4 }}
+                                      transition={{ duration: 0.5, repeat: Infinity, delay: i * 0.1 }}
+                                      className="w-1 bg-brand rounded-full"
+                                    />
+                                  ))}
+                               </div>
+                               <span className="text-xl font-bold text-brand">{safeSector.stats.responseTime}</span>
+                            </div>
+                         </div>
+                         <button 
+                            onClick={() => setIsPlaying(!isPlaying)}
+                            className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-dark hover:scale-110 transition-transform shadow-2xl shadow-blue-500/10 shrink-0"
+                          >
+                            {isPlaying ? <Pause className="w-6 h-6 fill-dark" /> : <Play className="w-6 h-6 fill-dark ml-1" />}
+                          </button>
+                      </div>
+
+                      {/* AI Response Preview */}
+                      <div className="space-y-4">
                          <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-full bg-brand/20 flex items-center justify-center text-brand shrink-0">AI</div>
-                            <div className="bg-brand/10 border border-brand/20 rounded-2xl rounded-tl-none p-4 text-xs md:text-sm text-gray-200 leading-relaxed">
+                            <div className="w-8 h-8 rounded-full bg-brand/20 flex items-center justify-center text-brand shrink-0 font-bold text-[10px]">AI</div>
+                            <div className="bg-brand border border-brand/20 rounded-2xl rounded-tl-none p-4 text-xs md:text-sm text-white leading-relaxed font-medium">
                                {safeSector.voiceScenarios[activeScenario]?.transcript}
                             </div>
                          </div>
                       </div>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              </div>
+
+              {/* Enhanced Performance Badges - Strategically positioned to AVOID overlap with content */}
+              <div className="absolute -top-10 -right-10 z-20 hidden md:block group cursor-default">
+                 <motion.div 
+                   initial={{ y: 0 }}
+                   animate={{ y: [0, -12, 0] }}
+                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                   className="p-6 bg-dark rounded-[2rem] border border-white/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] flex items-center gap-4"
+                 >
+                    <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center text-brand border border-white/10">
+                       <Zap className="w-6 h-6" />
                     </div>
-                  </motion.div>
-                </AnimatePresence>
+                    <div>
+                       <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-0.5">YANIT HIZI</p>
+                       <p className="text-lg font-bold text-white">Anında Yanıt</p>
+                    </div>
+                 </motion.div>
+              </div>
+
+              <div className="absolute -bottom-10 -left-10 z-20 hidden md:block group cursor-default">
+                 <motion.div 
+                   initial={{ y: 0 }}
+                   animate={{ y: [0, 12, 0] }}
+                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                   className="p-6 bg-white rounded-[2rem] border border-gray-100 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] flex items-center gap-4"
+                 >
+                    <div className="w-12 h-12 bg-green-50 rounded-2xl flex items-center justify-center text-green-600 border border-green-100">
+                       <ShieldCheck className="w-6 h-6" />
+                    </div>
+                    <div>
+                       <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">GÜVENLİK</p>
+                       <p className="text-lg font-bold text-dark">%100 Güvenli</p>
+                    </div>
+                 </motion.div>
               </div>
             </div>
           </motion.div>
