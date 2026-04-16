@@ -142,15 +142,23 @@ export default function SectorDetailPage() {
             </p>
 
             <div className="flex flex-wrap gap-4 mb-12">
-              <button className="px-10 py-5 bg-dark text-white rounded-2xl font-bold text-base shadow-2xl shadow-dark/20 hover:bg-brand transition-all flex items-center gap-2 group">
+              <a 
+                href="https://app.oxonom.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="px-10 py-5 bg-dark text-white rounded-2xl font-bold text-base shadow-2xl shadow-dark/20 hover:bg-brand transition-all flex items-center gap-2 group"
+              >
                 Hemen Ücretsiz Deneyin <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button className="px-10 py-5 bg-white border border-gray-200 text-brand rounded-2xl font-bold text-base hover:bg-gray-50 hover:border-brand/30 transition-all flex items-center gap-2">
-                <Sparkles className="w-5 h-5" /> Demo Talebi
-              </button>
+              </a>
+              <Link 
+                to="/paketler" 
+                className="px-10 py-5 bg-white border border-gray-200 text-brand rounded-2xl font-bold text-base hover:bg-gray-50 hover:border-brand/30 transition-all flex items-center gap-2 shadow-sm"
+              >
+                <LayoutGrid className="w-5 h-5" /> Paketlere Gözat
+              </Link>
             </div>
             
-            <div className="grid grid-cols-2 gap-6 p-1 bg-gray-50 rounded-3xl border border-gray-100 max-w-lg">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-1 bg-gray-50 rounded-3xl border border-gray-100 max-w-lg">
                <div className="p-6 bg-white rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4">
                   <div className="w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center text-green-600">
                      <CheckCircle2 className="w-6 h-6" />
@@ -282,41 +290,6 @@ export default function SectorDetailPage() {
                   </AnimatePresence>
                 </div>
               </div>
-
-              {/* Enhanced Performance Badges - Strategically positioned to AVOID overlap with content */}
-              <div className="absolute -top-10 -right-10 z-20 hidden md:block group cursor-default">
-                 <motion.div 
-                   initial={{ y: 0 }}
-                   animate={{ y: [0, -12, 0] }}
-                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                   className="p-6 bg-dark rounded-[2rem] border border-white/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] flex items-center gap-4"
-                 >
-                    <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center text-brand border border-white/10">
-                       <Zap className="w-6 h-6" />
-                    </div>
-                    <div>
-                       <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-0.5">YANIT HIZI</p>
-                       <p className="text-lg font-bold text-white">Anında Yanıt</p>
-                    </div>
-                 </motion.div>
-              </div>
-
-              <div className="absolute -bottom-10 -left-10 z-20 hidden md:block group cursor-default">
-                 <motion.div 
-                   initial={{ y: 0 }}
-                   animate={{ y: [0, 12, 0] }}
-                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                   className="p-6 bg-white rounded-[2rem] border border-gray-100 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] flex items-center gap-4"
-                 >
-                    <div className="w-12 h-12 bg-green-50 rounded-2xl flex items-center justify-center text-green-600 border border-green-100">
-                       <ShieldCheck className="w-6 h-6" />
-                    </div>
-                    <div>
-                       <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">GÜVENLİK</p>
-                       <p className="text-lg font-bold text-dark">%100 Güvenli</p>
-                    </div>
-                 </motion.div>
-              </div>
             </div>
           </motion.div>
         </section>
@@ -395,32 +368,42 @@ export default function SectorDetailPage() {
                    </div>
                 </div>
 
-                <div className="grid sm:grid-cols-2 gap-6">
+                <div className="grid sm:grid-cols-2 gap-8">
                    {/* Traditional side */}
-                   <div className="bg-white/5 rounded-3xl p-8 border border-white/10">
-                      <div className="w-12 h-12 bg-red-500/10 rounded-xl flex items-center justify-center text-red-500 mb-6">
-                         <MinusCircle className="w-6 h-6" />
+                   <div className="bg-white/5 rounded-[2.5rem] p-10 border border-white/10 transition-all duration-500 hover:bg-white/10 group">
+                      <div className="w-16 h-16 bg-red-500/10 rounded-2xl flex items-center justify-center text-red-500 mb-8 border border-red-500/20 group-hover:scale-110 transition-transform">
+                         <XCircle className="w-8 h-8" />
                       </div>
-                      <h4 className="font-bold text-lg mb-6">Mevcut Durum</h4>
-                      <ul className="space-y-4">
+                      <h4 className="font-bold text-2xl mb-8">Mevcut Durum</h4>
+                      <ul className="space-y-6">
                          {safeSector.comparison.traditional.map((item, i) => (
-                           <li key={i} className="flex items-start gap-3 text-sm text-gray-400">
-                             <span className="w-1.5 h-1.5 rounded-full bg-red-500 mt-1.5 shrink-0" />
+                           <li key={i} className="flex items-start gap-4 text-base text-gray-400">
+                             <div className="w-1.5 h-1.5 rounded-full bg-red-500 mt-2.5 shrink-0 shadow-[0_0_10px_rgba(239,68,68,0.5)]" />
                              {item}
                            </li>
                          ))}
                       </ul>
                    </div>
                    {/* OXONOM side */}
-                   <div className="bg-brand/10 rounded-3xl p-8 border border-brand/20 shadow-2xl shadow-brand/10">
-                      <div className="w-12 h-12 bg-brand rounded-xl flex items-center justify-center text-white mb-6">
-                         <CheckCircle className="w-6 h-6" />
+                   <div className="bg-gradient-to-br from-brand/20 to-brand/5 rounded-[2.5rem] p-10 border border-brand/30 shadow-[0_30px_60px_-15px_rgba(229,9,20,0.2)] transition-all duration-500 hover:scale-[1.02] group relative">
+                      <div className="absolute top-6 right-6">
+                        <motion.div
+                          animate={{ scale: [1, 1.2, 1] }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                        >
+                          <Sparkles className="w-5 h-5 text-brand" />
+                        </motion.div>
                       </div>
-                      <h4 className="font-bold text-lg mb-6">OXONOM Etkisi</h4>
-                      <ul className="space-y-4">
+                      <div className="w-16 h-16 bg-brand rounded-2xl flex items-center justify-center text-white mb-8 shadow-xl shadow-brand/40 group-hover:rotate-6 transition-transform">
+                         <CheckCircle className="w-8 h-8" />
+                      </div>
+                      <h4 className="font-bold text-2xl mb-8">OXONOM Etkisi</h4>
+                      <ul className="space-y-6">
                          {safeSector.comparison.oxonom.map((item, i) => (
-                           <li key={i} className="flex items-start gap-3 text-sm text-brand-light font-bold">
-                             <CheckCircle2 className="w-4 h-4 text-brand shrink-0 mt-0.5" />
+                           <li key={i} className="flex items-start gap-4 text-base text-white font-bold">
+                             <div className="bg-brand/20 p-1 rounded-full">
+                               <CheckCircle2 className="w-5 h-5 text-brand shrink-0" />
+                             </div>
                              {item}
                            </li>
                          ))}
@@ -501,7 +484,7 @@ export default function SectorDetailPage() {
 
         {/* Final SEO Content Area */}
         <section className="max-w-4xl mx-auto mb-32">
-           <article className="prose prose-lg prose-red max-w-none">
+           <article className="prose prose-lg prose-red max-w-none px-6 md:px-0">
               <h3 className="text-3xl font-bold text-dark mb-8 text-center">{safeSector.name} Sektöründe Geleceği OXONOM ile Yakalayın</h3>
               <p className="text-gray-600 leading-relaxed text-lg">
                 Günümüz dünyasında {safeSector.name} alanında rekabet edebilmek, sadece kaliteli hizmet sunmakla değil, bu hizmete ulaşımı ne kadar kolaylaştırdığınızla ilgilidir. 
@@ -515,7 +498,7 @@ export default function SectorDetailPage() {
         </section>
 
         {/* Bottom CTA */}
-        <section className="mb-24">
+        <section className="mb-24 px-6 md:px-0">
           <div className="text-center bg-gray-900 rounded-[3rem] p-12 md:p-24 text-white relative overflow-hidden shadow-2xl">
              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-brand/10 rounded-full blur-[120px]" />
              <div className="relative z-10">
@@ -524,15 +507,23 @@ export default function SectorDetailPage() {
                 </div>
                 <h3 className="text-3xl md:text-5xl font-bold mb-8">Hemen Bugün {safeSector.name} AI <br />Ajanınızı Beraber Tasarlayalım</h3>
                 <p className="text-gray-400 mb-12 max-w-2xl mx-auto text-lg">
-                   15 dakikalık ücretsiz demo görüşmemizde, işletmenize özel yapay zeka senaryolarını canlı olarak deneyimleyin.
+                   Yapay zeka asistanınızı dakikalar içinde kurun, müşteri kaçırma riskini ortadan kaldırın.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <button className="w-full sm:w-auto px-10 py-5 bg-brand text-white rounded-2xl font-bold text-lg hover:bg-white hover:text-dark transition-all shadow-xl shadow-brand/20">
-                     Ücretsiz Demo Al
-                  </button>
-                  <button className="w-full sm:w-auto px-10 py-5 bg-white/5 border border-white/10 text-white rounded-2xl font-bold text-lg hover:bg-white/10 transition-all">
-                     Bize Sorun
-                  </button>
+                  <a 
+                    href="https://app.oxonom.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full sm:w-auto px-10 py-5 bg-brand text-white rounded-2xl font-bold text-lg hover:bg-white hover:text-dark transition-all shadow-xl shadow-brand/20 flex items-center justify-center gap-2 group"
+                  >
+                     Hemen Ücretsiz Deneyin <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </a>
+                  <Link 
+                    to="/paketler" 
+                    className="w-full sm:w-auto px-10 py-5 bg-white/5 border border-white/10 text-white rounded-2xl font-bold text-lg hover:bg-white/10 transition-all flex items-center justify-center gap-2"
+                  >
+                     <LayoutGrid className="w-5 h-5" /> Paketlere Gözat
+                  </Link>
                 </div>
              </div>
           </div>
