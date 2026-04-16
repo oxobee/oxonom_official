@@ -541,13 +541,3 @@ export default function SectorDetailPage() {
     </div>
   );
 }
-
-             Ücretsiz Dene <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
