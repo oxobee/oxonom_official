@@ -36,7 +36,8 @@ export const pricing = {
     { id: 'gumus', name: 'Gümüş', minutes: '1.000', pricePerMin: '$0,50', totalPrice: '$500', icon: '4' },
     { id: 'altin', name: 'Altın', minutes: '2.000', pricePerMin: '$0,40', totalPrice: '$800', icon: '5' },
     { id: 'platin', name: 'Platin', minutes: '5.000', pricePerMin: '$0,30', totalPrice: '$1.500', icon: '6' },
-    { id: 'elite', name: 'Elite (Max)', minutes: '10.000', pricePerMin: '$0,20', totalPrice: '$2.000', icon: '7' }
+    { id: 'elite', name: 'Elite', minutes: '10.000', pricePerMin: '$0,20', totalPrice: '$2.000', icon: '7' },
+    { id: 'unlimited', name: 'Unlimited', minutes: '25.000', pricePerMin: '$0,15', totalPrice: '$3.750', icon: '8' }
   ],
   messaging: {
     individual: [
@@ -78,7 +79,7 @@ export const pricing = {
     { id: 'ai-growth', name: 'AI Growth', messages: '12.000', minutes: '2.000', price: '$299', perUnits: '$0.010 / $0.14' },
     { id: 'ai-scale', name: 'AI Scale', messages: '30.000', minutes: '5.000', price: '$499', perUnits: '$0.008 / $0.10' },
     { id: 'ai-enterprise', name: 'AI Enterprise', messages: '75.000', minutes: '10.000', price: '$799', perUnits: '$0.006 / $0.079' },
-    { id: 'ai-unlimited', name: 'AI Unlimited', messages: 'Sınırsız', minutes: 'Sınırsız', price: '$1.199', perUnits: 'Minimum' }
+    { id: 'ai-unlimited', name: 'AI Unlimited', messages: 'Sınırsız', minutes: '25.000', price: '$3.250', perUnits: 'Limitsiz / $0.13' }
   ],
   notes: [
     'Kullanılmayan dakikalar/mesajlar: Bir sonraki aya %20\'si devreder.',
