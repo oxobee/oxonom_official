@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import FAQ from './components/FAQ';
+import AboutPage from './pages/AboutPage';
 import JsonLd from './components/JsonLd';
 import LandingPage from './pages/LandingPage';
 import SectorsPage from './pages/SectorsPage';
@@ -77,6 +78,7 @@ export default function App() {
             <Route path="/sektorler" element={<SectorsPage />} />
             <Route path="/sektorler/:id" element={<SectorDetailPage />} />
             <Route path="/paketler" element={<PackagesPage />} />
+            <Route path="/hakkimizda" element={<AboutPage />} />
             <Route path="/mesajlasma-paketleri" element={<MessagingPackagesPage />} />
             <Route path="/ses-paketleri" element={<VoicePackagesPage />} />
           </Routes>
