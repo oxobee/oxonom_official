@@ -734,9 +734,9 @@ export const blogPosts: Array<{
     viewCount: 14250,
     author: {
       name: "OXONOM Insights",
-      avatar: "/logo_dark.png"
+      avatar: "/author-avatar.png"
     },
-    image: "/blog/ai-sesli-asistanlar.jpg",
+    image: "/blog/ai-sesli-asistanlar-2.png",
     date: "18 Nisan 2026"
   }
 ];

@@ -17,10 +17,7 @@ export default function BlogPage() {
 
   const categories = ['Tümü', ...Array.from(new Set(blogPosts.map(post => post.category)))];
 
-  const featuredPost = blogPosts.length > 0 ? blogPosts[0] : null;
-  const regularPosts = blogPosts.length > 1 ? blogPosts.slice(1) : [];
-
-  const filteredPosts = regularPosts.filter(post => {
+  const filteredPosts = blogPosts.filter(post => {
     const matchesCategory = activeCategory === 'Tümü' || post.category === activeCategory;
     const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
                           post.summary.toLowerCase().includes(searchQuery.toLowerCase());
@@ -69,62 +66,7 @@ export default function BlogPage() {
           </motion.p>
         </div>
 
-        {/* FEATURED POST */}
-        {activeCategory === 'Tümü' && !searchQuery && featuredPost && (
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="mb-20"
-          >
-            <Link to={`/blog/${featuredPost.slug}`} className="group relative block rounded-[2.5rem] overflow-hidden bg-white shadow-2xl shadow-dark/5 border border-gray-100 flex flex-col md:flex-row">
-              <div className="md:w-1/2 relative bg-gray-100 min-h-[300px] md:min-h-[400px] overflow-hidden">
-                <img 
-                  src={featuredPost.image} 
-                  alt={featuredPost.title} 
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 blur-sm brightness-50"
-                  onError={(e) => {
-                     // İkon fallback (eğer resim patlarsa)
-                     (e.target as HTMLImageElement).src = 'https://www.transparenttextures.com/patterns/carbon-fibre.png';
-                  }}
-                />
-                 {/* Modern Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center p-8 text-center text-white/90">
-                    <div>
-                       <Navigation className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                       <div className="text-xl font-bold tracking-widest uppercase opacity-80">{featuredPost.category}</div>
-                    </div>
-                </div>
-              </div>
-              
-              <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center bg-white relative z-10 transition-colors">
-                <div className="flex items-center gap-4 text-xs font-bold text-gray-500 uppercase tracking-wider mb-6">
-                  <span className="flex items-center gap-1.5"><Clock className="w-4 h-4"/> {featuredPost.readTime}</span>
-                  <span className="flex items-center gap-1.5 text-brand"><Eye className="w-4 h-4"/> {(featuredPost.viewCount / 1000).toFixed(1)}k Okunma</span>
-                </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-dark mb-4 group-hover:text-brand transition-colors leading-tight">
-                  {featuredPost.title}
-                </h2>
-                <p className="text-gray-500 text-lg mb-8 line-clamp-3 leading-relaxed">
-                  {featuredPost.summary}
-                </p>
-                
-                <div className="flex items-center justify-between mt-auto pt-8 border-t border-gray-100">
-                  <div className="flex items-center gap-3">
-                    <img src={featuredPost.author.avatar} alt="Avatar" className="w-10 h-10 rounded-full bg-gray-100 p-1" />
-                    <div>
-                      <div className="text-sm font-bold text-dark">{featuredPost.author.name}</div>
-                      <div className="text-xs text-gray-500">{featuredPost.date}</div>
-                    </div>
-                  </div>
-                  <div className="w-12 h-12 rounded-full bg-brand/5 flex items-center justify-center text-brand group-hover:bg-brand group-hover:text-white transition-colors">
-                    <ArrowRight className="w-5 h-5 -rotate-45 group-hover:rotate-0 transition-transform" />
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </motion.div>
-        )}
+        {/* FEATURED POST ALANINI KALDIRDIK - İSTEK ÜZERİNE */}
 
         {/* FILTERS & SEARCH */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-12">
@@ -171,10 +113,13 @@ export default function BlogPage() {
                   transition={{ delay: index * 0.1 }}
                 >
                   <Link to={`/blog/${post.slug}`} className="group flex flex-col bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-dark/5 transition-all duration-300 h-full">
-                    <div className="h-48 bg-brand/5 relative overflow-hidden flex items-center justify-center">
-                       {/* Placeholder for specific graphics */}
-                       <div className="absolute inset-0 bg-gradient-to-tr from-brand/20 to-red-500/20 mix-blend-multiply group-hover:opacity-75 transition-opacity"></div>
-                       <span className="text-5xl opacity-20 filter grayscale">📄</span>
+                    <div className="bg-gray-100 relative overflow-hidden flex items-center justify-center border-b border-gray-100 p-2">
+                       {/* Uncropped dynamic aspect ratio image for the grid post */}
+                       <img 
+                          src={post.image} 
+                          alt={post.title} 
+                          className="w-full h-auto rounded-2xl object-cover"
+                       />
                     </div>
                     <div className="p-6 flex flex-col flex-grow">
                       <div className="flex items-center justify-between mb-4">
