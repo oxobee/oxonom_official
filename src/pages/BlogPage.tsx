@@ -118,7 +118,7 @@ export default function BlogPage() {
                        <img 
                           src={post.image} 
                           alt={post.title} 
-                          className="w-full h-full object-contain rounded-xl"
+                          className="w-full h-full object-contain rounded-[2px]"
                        />
                     </div>
                     <div className="p-6 flex flex-col flex-grow">
