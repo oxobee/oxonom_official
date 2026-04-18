@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { useSEO } from '../hooks/useSEO';
 import { Link } from 'react-router-dom';
 import JsonLd from '../components/JsonLd';
 
@@ -11,6 +12,11 @@ export default function AboutPage() {
     "url": "https://oxonom.com/hakkimizda",
     "inLanguage": "tr"
   };
+
+  useSEO({
+    title: 'OXONOM Hakkımızda | Global Yapay Zeka Çözümleri',
+    description: 'İşletmelerin iletişim süreçlerini yeniden tanımlayan, yenilikçi ve teknoloji odaklı global yapay zeka şirketi OXONOM ile vizyonunuzu geleceğe taşıyın.',
+  });
 
   return (
     <motion.div

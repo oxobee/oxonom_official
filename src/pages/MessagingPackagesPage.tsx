@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { useSEO } from '../hooks/useSEO';
 import { 
   Check, 
   ArrowRight, 
@@ -19,6 +20,11 @@ import { useState } from 'react';
 import JsonLd from '../components/JsonLd';
 
 export default function MessagingPackagesPage() {
+  useSEO({
+    title: 'WhatsApp & Sosyal Medya AI Paketleri | OXONOM',
+    description: 'WhatsApp ve Instagram müşterilerinize saniyeler içinde yanıt verin. Dönüşüm oranınızı katlayacak en uygun OXONOM mesajlaşma AI paketlerini keşfedin.',
+  });
+
   const [activeTab, setActiveTab] = useState<'individual' | 'mixed' | 'combo'>('individual');
 
   const tabs = [

@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { useSEO } from '../hooks/useSEO';
 import { 
   Check, 
   ArrowRight, 
@@ -15,6 +16,11 @@ import { pricing } from '../constants';
 import JsonLd from '../components/JsonLd';
 
 export default function VoicePackagesPage() {
+  useSEO({
+    title: 'Sesli AI Asistan Paketleri | OXONOM Otonom Ses',
+    description: 'İnsansı ses kalitesine sahip OXONOM otonom ses asistanlarıyla çağrı merkezi maliyetlerini düşürün. Limitsiz ve esnek dakika paketlerini inceleyin.',
+  });
+
   const voiceSchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",

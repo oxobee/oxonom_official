@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { useSEO } from '../hooks/useSEO';
 import { motion, AnimatePresence } from 'motion/react';
 import { Search, Filter, CheckCircle2, ArrowUpRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -6,6 +7,11 @@ import { sectors } from '../constants';
 
 export default function SectorsPage() {
   const [searchQuery, setSearchQuery] = useState('');
+
+  useSEO({
+    title: 'Sektörel AI Çözümleri | OXONOM Yapay Zeka',
+    description: 'E-ticaret, sağlık, finans ve daha fazlası. İşletmenizin sektörüne özel geliştirilmiş, yüksek performanslı OXONOM yapay zeka çözümlerini keşfedin.',
+  });
 
   const filteredSectors = useMemo(() => {
     return sectors.filter(sector => {

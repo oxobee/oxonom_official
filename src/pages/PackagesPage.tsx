@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { useSEO } from '../hooks/useSEO';
 import { Link } from 'react-router-dom';
 import { 
   Phone, 
@@ -15,6 +16,11 @@ import {
 } from 'lucide-react';
 
 export default function PackagesPage() {
+  useSEO({
+    title: 'Paketler ve Fiyatlandırma | OXONOM AI',
+    description: 'İşletmenize en uygun otonom asistanı seçin. Sesli, yazılı veya kombo OXONOM AI paketlerimizle operasyonel verimliliğinizi profesyonelce artırın.',
+  });
+
   const categories = [
     {
       id: 'voice',

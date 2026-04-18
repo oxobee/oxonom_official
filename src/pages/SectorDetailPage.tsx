@@ -1,4 +1,5 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
+import { useSEO } from '../hooks/useSEO';
 import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect } from 'react';
 import { 
@@ -42,6 +43,11 @@ export default function SectorDetailPage() {
   const sector = sectors.find(s => s.id === id);
   const [activeScenario, setActiveScenario] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+
+  useSEO({
+    title: `${sector?.name || 'Sektör'} Yapay Zeka Çözümleri | OXONOM`,
+    description: `${sector?.name || 'Sektör'} sektörüne özel geliştirilen OXONOM yapay zeka asistanları ile operasyonel maliyetlerinizi düşürün, müşteri memnuniyetini 7/24 anında artırın.`,
+  });
 
   // Fallback for missing data to ensure UI doesn't break
   const safeSector = {
