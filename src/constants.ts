@@ -643,5 +643,101 @@ export const blogPosts: Array<{
   };
   image: string;
   date: string;
-}> = [];
+}> = [
+  {
+    id: "1",
+    slug: "musteri-hizmetlerinde-yeni-cag-ai-sesli-asistanlar-ile-7-24-kesintisiz-destek",
+    title: "Müşteri Hizmetlerinde Yeni Çağ: AI Sesli Asistanlar ile 7/24 Kesintisiz Destek",
+    summary: "Bekleyen müşteri kaybedilir. Anında cevap veren kazanır. AI sesli asistanların müşteri deneyimindeki devrimsel rolünü inceleyin.",
+    content: `
+      <p class="text-xl font-medium text-dark leading-relaxed mb-8"><strong>Dijital müşteri deneyimi artık insan hızının ötesinde.</strong> <br/>Müşteri hizmetleri uzun yıllar boyunca insan gücüne dayalı, sınırlı saatlerde çalışan ve yoğun dönemlerde ciddi performans kaybı yaşayan bir yapı olarak ilerledi. Ancak günümüzde bu model hızla değişiyor. Artık kullanıcılar beklemek istemiyor, gecikmeye tahammül etmiyor ve her kanaldan anında geri dönüş bekliyor.</p>
+      
+      <p>Bu noktada devreye AI sesli asistanlar giriyor. Yapay zekâ destekli bu sistemler, yalnızca mesajlara cevap veren chatbot’lar değil; aynı zamanda telefon aramalarını karşılayan, rezervasyon yapan, sipariş alan ve sorun çözen gelişmiş dijital çalışanlar olarak konumlanıyor.</p>
+      
+      <hr class="my-10 border-gray-100" />
+      
+      <h3 class="text-2xl font-bold text-dark mt-8 mb-4">7/24 kesintisiz hizmet artık bir avantaj değil, standart</h3>
+      <p>Modern işletmeler için müşteri hizmetlerinde en kritik konu hızdır. Ancak insan ekiplerle 7/24 kesintisiz hizmet sunmak hem maliyetli hem de operasyonel olarak sürdürülebilir değildir.</p>
+      <div class="bg-gray-50 p-6 rounded-2xl my-6 border border-gray-100">
+        <p class="font-bold text-dark mb-4">AI sesli asistanlar bu problemi kökten çözer:</p>
+        <ul class="list-disc pl-5 mb-0 space-y-2 text-gray-600 font-medium">
+          <li>Aynı anda sınırsız görüşme yapabilir</li>
+          <li>Bekleme süresini sıfıra indirir</li>
+          <li>Gece-gündüz fark etmeksizin hizmet verir</li>
+          <li>Yoğun dönemlerde bile performans kaybı yaşamaz</li>
+        </ul>
+      </div>
+      <p>Bu yapı özellikle e-ticaret, restoran, sağlık hizmetleri, emlak ve rezervasyon odaklı sektörlerde ciddi bir dönüşüm yaratır.</p>
+      
+      <h3 class="text-2xl font-bold text-dark mt-8 mb-4">Müşteri iletişiminde yeni standart: İnsan ötesi hız</h3>
+      <p>Geleneksel çağrı merkezlerinde en büyük sorunlardan biri, yoğun saatlerde artan bekleme süresidir. Bu durum doğrudan müşteri kaybına yol açar. AI tabanlı sistemler ise bu zinciri kırar. Gelen bir çağrı ya da mesaj:</p>
+      <ul class="list-disc pl-5 my-6 space-y-2 text-gray-600 font-medium">
+        <li>Anında karşılanır</li>
+        <li>Kullanıcının niyeti analiz edilir</li>
+        <li>Doğru aksiyon otomatik başlatılır</li>
+        <li>Gerekirse insan temsilciye sorunsuz devredilir</li>
+      </ul>
+      <p>Bu yapı "otomasyon" değil, akıllı müşteri deneyimi mimarisi olarak düşünülmelidir.</p>
+      
+      <blockquote class="border-l-4 border-brand pl-6 text-dark font-display font-medium italic my-10 py-2 text-xl bg-gradient-to-r from-brand/5 to-transparent rounded-r-2xl">
+        Yeni nesil AI sesli asistanlar yalnızca bilgi veren sistemler değildir. Asıl güçleri <strong>işlem yapabilmeleridir.</strong>
+      </blockquote>
+      
+      <p>Bu sayede; randevu oluşturma ve yönetme, sipariş alma ve doğrulama, müşteri kaydı oluşturma (CRM entegrasyonu), WhatsApp, Instagram ve web mesajlarını yönetme, arama yönlendirme ve kayıt alma işlemleri aynı merkezden ve saniyeler içinde gerçekleşir.</p>
+      
+      <h3 class="text-2xl font-bold text-dark mt-8 mb-4">İşletmeler için en büyük avantaj: Ölçeklenebilirlik</h3>
+      <p>Geleneksel sistemlerde büyüme, doğrudan personel artışı anlamına gelir. Ancak AI destekli sistemlerde durum tamamen farklıdır.</p>
+      <div class="flex items-center gap-4 my-6 p-4 bg-brand/5 border border-brand/10 rounded-2xl">
+        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand font-bold shrink-0 shadow-sm text-xl">🚀</div>
+        <p class="text-dark font-medium m-0">Aynı sistem; <strong>10 müşteriyle de, 10.000 müşteriyle de</strong> aynı performansta çalışabilir. Bu da işletmelere sınırsız ölçeklenebilirlik sağlar.</p>
+      </div>
+      
+      <h3 class="text-2xl font-bold text-dark mt-8 mb-4">Verimlilik + Maliyet Optimizasyonu = Sürdürülebilir Büyüme</h3>
+      <p>AI sesli asistanların en güçlü taraflarından biri de maliyet optimizasyonudur. Çağrı merkezi personel maliyetini düşürür, operasyon yükünü azaltır, hata oranını minimuma indirir ve insan kaynaklı gecikmeleri ortadan kaldırır. Bu sadece bir teknoloji yatırımı değil, aynı zamanda uzun vadeli bir iş modeli optimizasyonudur.</p>
+      
+      <hr class="my-10 border-gray-100" />
+      
+      <h3 class="text-2xl font-bold text-dark mt-8 mb-4">Türkiye ve Global Pazarda Yeni Dönem</h3>
+      <p>İstanbul gibi büyük ticaret merkezlerinde işletmeler artık rekabeti sadece ürünle değil, müşteri deneyimiyle kazanıyor. Bugünün müşterisi şunu bekliyor:</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 my-8">
+        <div class="bg-gray-50 rounded-2xl p-4 border border-gray-100 text-center hover:bg-brand hover:text-white transition-colors group">
+           <span class="block text-2xl mb-2 group-hover:scale-110 transition-transform">⚡</span>
+           <span class="font-bold text-sm">Hızlı Yanıt</span>
+        </div>
+        <div class="bg-gray-50 rounded-2xl p-4 border border-gray-100 text-center hover:bg-brand hover:text-white transition-colors group">
+           <span class="block text-2xl mb-2 group-hover:scale-110 transition-transform">🕒</span>
+           <span class="font-bold text-sm">7/24 Erişim</span>
+        </div>
+        <div class="bg-gray-50 rounded-2xl p-4 border border-gray-100 text-center hover:bg-brand hover:text-white transition-colors group">
+           <span class="block text-2xl mb-2 group-hover:scale-110 transition-transform">🎯</span>
+           <span class="font-bold text-sm">Kişiselleştirme</span>
+        </div>
+        <div class="bg-gray-50 rounded-2xl p-4 border border-gray-100 text-center hover:bg-brand hover:text-white transition-colors group">
+           <span class="block text-2xl mb-2 group-hover:scale-110 transition-transform">🔄</span>
+           <span class="font-bold text-sm">Omnichannel</span>
+        </div>
+      </div>
+      
+      <h3 class="text-2xl font-bold text-dark mt-8 mb-4">Sonuç: Gelecek artık otomasyon değil, akıllı iletişim</h3>
+      <p>Müşteri hizmetleri artık bir destek fonksiyonu değil, doğrudan satış ve marka algısı belirleyen bir merkez haline geldi. AI sesli asistanlar bu dönüşümün merkezinde yer alıyor. İşletmeler için bu teknoloji artık "opsiyonel" değil, rekabetin temel şartı.</p>
+      
+      <div class="bg-dark text-white p-8 md:p-12 rounded-[2.5rem] text-center mt-12 shadow-2xl shadow-dark/20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.05]"></div>
+        <p class="text-xs md:text-sm font-black font-display uppercase tracking-[0.3em] text-[#FF4B4B] mb-4 relative z-10">Kısaca yeni dönem şunu söylüyor:</p>
+        <p class="text-2xl md:text-4xl lg:text-5xl font-light leading-tight font-display relative z-10">
+          "Bekleyen müşteri <span class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-400">kaybedilir.</span><br/> Anında cevap veren <span class="font-bold text-brand">kazanır.</span>"
+        </p>
+      </div>
+    `,
+    category: "Yapay Zekâ",
+    readTime: "3 Dakika",
+    viewCount: 14250,
+    author: {
+      name: "OXONOM Insights",
+      avatar: "/logo_dark.png"
+    },
+    image: "/blog/ai-sesli-asistanlar.jpg",
+    date: "18 Nisan 2026"
+  }
+];
 
