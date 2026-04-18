@@ -9,6 +9,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import FAQ from './components/FAQ';
 import AboutPage from './pages/AboutPage';
+import NotFoundPage from './pages/NotFoundPage';
 import JsonLd from './components/JsonLd';
 import LandingPage from './pages/LandingPage';
 import SectorsPage from './pages/SectorsPage';
@@ -81,6 +82,9 @@ export default function App() {
             <Route path="/hakkimizda" element={<AboutPage />} />
             <Route path="/mesajlasma-paketleri" element={<MessagingPackagesPage />} />
             <Route path="/ses-paketleri" element={<VoicePackagesPage />} />
+            
+            {/* Catch-all route for unhandled paths -> 404 */}
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
         <FAQ />
