@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, ArrowRight, Sparkles } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin, ArrowRight, Sparkles } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -25,8 +25,13 @@ export default function Footer() {
               Yapay zeka teknolojileri ile işletmenizin iletişim süreçlerini dijitalleştiriyor, verimliliğinizi artırıyoruz. Geleceğin müşteri deneyimini bugünden sunun.
             </p>
             <div className="flex gap-4">
-              {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
-                <a key={i} href="#" className="w-10 h-10 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center hover:bg-brand hover:border-brand hover:-translate-y-1 transition-all duration-300 group backdrop-blur-sm">
+              {[
+                { Icon: Instagram, href: 'https://instagram.com/oxonomturkiye' },
+                { Icon: Facebook, href: 'https://facebook.com/oxonomturkiye' },
+                { Icon: Twitter, href: 'https://x.com/oxonomturkiye' },
+                { Icon: Youtube, href: 'https://youtube.com/@oxonomturkiye' }
+              ].map(({ Icon, href }, i) => (
+                <a key={i} href={href} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center hover:bg-brand hover:border-brand hover:-translate-y-1 transition-all duration-300 group backdrop-blur-sm">
                   <Icon className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
                 </a>
               ))}
