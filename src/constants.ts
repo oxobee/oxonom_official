@@ -738,6 +738,106 @@ export const blogPosts: Array<{
     },
     image: "/blog/ai-sesli-asistanlar-3.jpg",
     date: "18 Nisan 2026"
+  },
+  {
+    id: "2",
+    slug: "saglik-ve-estetik-kliniklerinde-randevu-kacirmaya-son",
+    title: "Sağlık ve Estetik Kliniklerinde Randevu Kaçırmaya Son: Yapay Zeka ile Otomatik Randevu Yönetimi",
+    summary: "Randevuyu hatırlatan değil, yöneten kazanır. Yapay zeka ile no-show oranlarını düşürün, 7/24 WhatsApp ve sesli asistan randevu sistemleri ile kliniğinizi büyütün.",
+    content: `
+      <p class="text-xl font-medium text-dark leading-relaxed mb-8"><strong>Randevu kaçırma problemi: görünenden daha büyük bir kayıp</strong> <br/>Sağlık ve estetik kliniklerinde en sık karşılaşılan sorunlardan biri randevuya gelmeme (no-show) problemidir. Bu durum sadece boş geçen saatler değil; doğrudan gelir kaybı, operasyonel verimsizlik ve hasta deneyiminde zayıflama anlamına gelir.</p>
+
+      <div class="bg-red-50/50 p-6 rounded-2xl my-6 border border-red-100">
+        <p class="font-bold text-dark m-0">Günümüzde kullanıcı davranışı net:</p>
+        <p class="text-gray-600 font-medium m-0 mt-2">Hızlı iletişim, hatırlatma ve kolay randevu yönetimi isteyen hastalar, bu deneyimi sunamayan klinikleri hızla terk ediyor.</p>
+      </div>
+
+      <p>Bu noktada devreye <strong>yapay zeka destekli otomatik randevu yönetimi sistemleri</strong> giriyor.</p>
+
+      <hr class="my-10 border-gray-100" />
+
+      <h3 class="text-2xl font-bold text-dark mt-8 mb-4">Yapay zeka ile randevu yönetimi nedir?</h3>
+      <p>Yapay zeka tabanlı randevu sistemleri; hasta iletişimini, rezervasyon süreçlerini ve hatırlatmaları tamamen otomatik hale getiren akıllı sistemlerdir.</p>
+
+      <h4 class="text-lg font-bold text-dark mt-6 mb-3">Bu sistemler:</h4>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+        <div class="flex items-center gap-3 bg-gray-50 p-4 rounded-xl border border-gray-100"><span class="text-brand">📞</span> <span class="font-medium text-gray-700 text-sm">Telefon aramalarını karşılar</span></div>
+        <div class="flex items-center gap-3 bg-gray-50 p-4 rounded-xl border border-gray-100"><span class="text-brand">💬</span> <span class="font-medium text-gray-700 text-sm">WhatsApp & Instagram yanıtlar</span></div>
+        <div class="flex items-center gap-3 bg-gray-50 p-4 rounded-xl border border-gray-100"><span class="text-brand">🌐</span> <span class="font-medium text-gray-700 text-sm">Web sitesinden gelen talepleri işler</span></div>
+        <div class="flex items-center gap-3 bg-gray-50 p-4 rounded-xl border border-gray-100"><span class="text-brand">📅</span> <span class="font-medium text-gray-700 text-sm">Otomatik randevu oluşturur</span></div>
+        <div class="flex items-center gap-3 bg-gray-50 p-4 rounded-xl border border-gray-100"><span class="text-brand">⏰</span> <span class="font-medium text-gray-700 text-sm">Hatırlatma mesajları gönderir</span></div>
+        <div class="flex items-center gap-3 bg-gray-50 p-4 rounded-xl border border-gray-100"><span class="text-brand">🔄</span> <span class="font-medium text-gray-700 text-sm">İptal ve yeniden planlama süreçlerini yönetir</span></div>
+      </div>
+      <p class="font-medium italic text-gray-600">Kısacası tek bir sistem, tüm müşteri iletişimini yönetir.</p>
+
+      <h3 class="text-2xl font-bold text-dark mt-10 mb-4">No-show oranını düşüren en kritik faktör: otomatik hatırlatma</h3>
+      <p>Araştırmalar gösteriyor ki randevuya gelmeme oranının büyük kısmı <strong>unutma</strong> kaynaklıdır.</p>
+      <div class="bg-gray-50 p-6 rounded-2xl my-6 border border-gray-100">
+        <p class="font-bold text-dark mb-4">Yapay zeka sistemleri bu problemi şu şekilde çözer:</p>
+        <ul class="list-none mb-0 space-y-3">
+          <li class="flex items-center gap-2"><span class="text-brand font-bold text-lg">✓</span> <span class="text-gray-600 font-medium">Randevudan 24 saat önce hatırlatma</span></li>
+          <li class="flex items-center gap-2"><span class="text-brand font-bold text-lg">✓</span> <span class="text-gray-600 font-medium">Randevudan birkaç saat önce ikinci bildirim</span></li>
+          <li class="flex items-center gap-2"><span class="text-brand font-bold text-lg">✓</span> <span class="text-gray-600 font-medium">Onay alma (gelecek / iptal / ertele)</span></li>
+          <li class="flex items-center gap-2"><span class="text-brand font-bold text-lg">✓</span> <span class="text-gray-600 font-medium">Otomatik yeniden planlama</span></li>
+        </ul>
+      </div>
+      <p>Bu yapı sayesinde kliniklerde no-show oranı ciddi şekilde düşer.</p>
+
+      <blockquote class="border-l-4 border-brand pl-6 text-dark font-display font-medium italic my-10 py-2 text-xl bg-gradient-to-r from-brand/5 to-transparent rounded-r-2xl">
+        Kliniklerin büyük kısmı mesai saatleri dışında müşteri kaybeder. Çünkü potansiyel hasta o an karar verir ve ulaşamazsa alternatif arar. <strong>7/24 randevu alma ile kaçan müşteriyi yakalayın!</strong>
+      </blockquote>
+
+      <p>AI destekli sistemler; <strong>gece 03:00'te bile randevu oluşturur</strong>, aynı anda yüzlerce kişiye cevap verir ve bekleme süresini sıfıra indirir. Bu, doğrudan daha fazla randevu ve daha yüksek dönüşüm oranı demektir.</p>
+
+      <hr class="my-10 border-gray-100" />
+
+      <h3 class="text-2xl font-bold text-dark mt-8 mb-4">Oxonom ile akıllı randevu yönetimi</h3>
+      <p>Bu noktada <strong class="text-brand">Oxonom</strong>, sağlık ve estetik klinikleri için geliştirdiği yapay zeka sistemleri ile süreci tamamen dönüştürür. Oxonom'un sunduğu yapı sadece randevu oluşturmaz, aynı zamanda hasta deneyimini optimize eder:</p>
+
+      <div class="grid grid-cols-2 gap-4 my-6">
+        <div class="bg-brand/5 rounded-xl p-4 border border-brand/10 hover:bg-brand hover:text-white transition-colors group"><span class="font-bold text-dark block group-hover:text-white">Yapay Zeka Sesli Asistan</span></div>
+        <div class="bg-brand/5 rounded-xl p-4 border border-brand/10 hover:bg-brand hover:text-white transition-colors group"><span class="font-bold text-dark block group-hover:text-white">WhatsApp & Instagram Ent.</span></div>
+        <div class="bg-brand/5 rounded-xl p-4 border border-brand/10 hover:bg-brand hover:text-white transition-colors group"><span class="font-bold text-dark block group-hover:text-white">Otomatik Randevu & CRM</span></div>
+        <div class="bg-brand/5 rounded-xl p-4 border border-brand/10 hover:bg-brand hover:text-white transition-colors group"><span class="font-bold text-dark block group-hover:text-white">Akıllı Hasta Yönlendirme</span></div>
+      </div>
+
+      <h3 class="text-2xl font-bold text-dark mt-10 mb-4">Rekabette öne geçmenin yolu: hız + otomasyon</h3>
+      <p>Sağlık ve estetik sektörü her geçen gün daha rekabetçi hale geliyor. Artık fark yaratan şey sadece hizmet kalitesi değil, erişilebilirlik ve hız. Yapay zeka destekli sistemler (yapay zeka randevu sistemi, hastane randevu otomasyonu vb.) sayesinde daha fazla hastaya ulaşılır, daha az randevu kaçırılır, operasyon yükü azalır ve personel verimliliği artar. Bu da <strong>doğrudan büyüme</strong> anlamına gelir.</p>
+
+      <h3 class="text-2xl font-bold text-dark mt-10 mb-4">Gelecek: İnsan + Yapay Zeka Hibrit Modeli</h3>
+      <p>Tamamen insan ya da tamamen otomasyon değil. Kazanan model: <strong>hibrit yapı.</strong></p>
+      <ul class="list-disc pl-5 mb-6 space-y-2 text-gray-600 font-medium">
+        <li><strong class="text-brand">AI:</strong> Hızlı, kesintisiz, ölçeklenebilir iletişim.</li>
+        <li><strong class="text-dark">İnsan:</strong> Özel durumlar, empati, kritik kararlar.</li>
+      </ul>
+      <p>Oxonom gibi sistemler bu iki yapıyı kusursuz şekilde birleştirir.</p>
+
+      <div class="bg-dark text-white p-8 md:p-12 rounded-[2.5rem] mt-12 shadow-2xl shadow-dark/20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.05]"></div>
+        <h4 class="text-xl md:text-2xl font-display font-bold mb-4 relative z-10">Sonuç</h4>
+        <p class="text-gray-300 font-medium leading-relaxed relative z-10 mb-6">
+          Randevu kaçırma problemi artık çözülebilir bir sorun. Yapay zeka ile desteklenen otomatik randevu yönetimi, klinikler için daha yüksek gelir, daha iyi hasta deneyimi ve daha güçlü marka algısı anlamına geliyor.
+        </p>
+        <p class="text-xl md:text-3xl font-light leading-tight font-display relative z-10 text-center mt-8 p-6 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
+          Basit gerçek:<br/>
+          "Randevuyu <span class="line-through opacity-50">hatırlatan</span> değil, <span class="font-bold text-brand">yöneten kazanır.</span>"
+        </p>
+      </div>
+      
+      <!-- SEO Tags -->
+      <div class="sr-only">
+        yapay zeka randevu sistemi otomatik randevu yönetimi klinik randevu programı estetik merkezi randevu sistemi hastane randevu otomasyonu no-show azaltma yöntemleri WhatsApp randevu alma sistemi AI müşteri hizmetleri sesli asistan ile randevu alma 7/24 randevu sistemi
+      </div>
+    `,
+    category: "Otomasyon",
+    readTime: "4 Dakika",
+    viewCount: 20140,
+    author: {
+      name: "OXONOM Insights",
+      avatar: "/author-avatar.png"
+    },
+    image: "/blog/randevu-kacirmaya-son.jpg",
+    date: "19 Nisan 2026"
   }
 ];
 
