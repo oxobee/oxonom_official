@@ -1,9 +1,9 @@
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSEO } from '../hooks/useSEO';
 import { blogPosts } from '../constants';
-import { Share2, Clock, Eye, ArrowLeft, Calendar, FileText, Twitter, Linkedin, MessageCircle } from 'lucide-react';
+import { Share2, Clock, Eye, ArrowLeft, Calendar, FileText, Twitter, Linkedin, MessageCircle, ChevronRight } from 'lucide-react';
 import JsonLd from '../components/JsonLd';
 import NotFoundPage from './NotFoundPage';
 
@@ -11,6 +11,32 @@ export default function BlogDetailPage() {
   const { slug } = useParams();
   const [showShareMenu, setShowShareMenu] = useState(false);
   const post = blogPosts.find(p => p.slug === slug);
+  const [realViewCount, setRealViewCount] = useState(post?.viewCount || 0);
+
+  // Simulate real view count persistence for static demo without DB
+  useEffect(() => {
+    if (!post) return;
+    const viewKey = `viewed_${post.id}`;
+    const incrementKey = `viewinc_${post.id}`;
+    
+    const hasViewedSession = sessionStorage.getItem(viewKey);
+    const localIncrement = parseInt(localStorage.getItem(incrementKey) || '0', 10);
+    
+    // Always apply the local community increments first
+    let currentViews = post.viewCount + localIncrement;
+    
+    // First time feeling (in session)
+    if (!hasViewedSession) {
+      currentViews += 1;
+      sessionStorage.setItem(viewKey, "true");
+      localStorage.setItem(incrementKey, (localIncrement + 1).toString());
+    }
+    
+    setRealViewCount(currentViews);
+    
+    // Scroll to top when post changes
+    window.scrollTo(0, 0);
+  }, [post]);
 
   // If post depends on slug and is not found, fallback to 404 handled gracefully.
   if (!post) {
@@ -93,8 +119,8 @@ export default function BlogDetailPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Eye className="w-5 h-5 text-gray-300" />
-                  {/* Gerçek okuma sayıları için API entegrasyonu yapılmalıdır. Şimdilik veri tabanından gelen post.viewCount gösteriliyor. */}
-                  {(post.viewCount > 1000 ? (post.viewCount / 1000).toFixed(1) + 'k' : post.viewCount)}
+                  {/* Gerçek okunma sayısını küsuratlı (k) yerine net olarak gösterme */}
+                  {new Intl.NumberFormat('tr-TR').format(realViewCount)}
                 </div>
                 <div className="relative">
                   <button onClick={toggleShareMenu} className="flex items-center gap-2 hover:text-brand transition-colors p-2 -m-2">
@@ -178,12 +204,50 @@ export default function BlogDetailPage() {
               </AnimatePresence>
 
            </div>
-           <Link to="/blog" className="px-6 py-3 bg-dark text-white rounded-2xl font-bold flex items-center gap-2 hover:bg-brand transition-colors">
-              <FileText className="w-5 h-5" /> Diğer Yazıları Oku
-           </Link>
         </footer>
 
       </main>
+
+      {/* OTHER POSTS SLIDER */}
+      {blogPosts.length > 1 && (
+        <div className="bg-gray-50 border-t border-gray-100 py-24 mt-24">
+          <div className="max-w-7xl mx-auto px-4 md:px-6">
+            <div className="flex items-center justify-between mb-10">
+               <h3 className="text-3xl font-display font-bold text-dark">Diğer Yazılar</h3>
+               <Link to="/blog" className="hidden border border-gray-200 text-gray-500 font-bold px-4 py-2 rounded-xl text-sm md:flex items-center gap-2 hover:bg-white transition-colors">Tümünü Gör <ChevronRight className="w-4 h-4"/></Link>
+            </div>
+            
+            <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-8 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
+               {blogPosts.filter(p => p.id !== post.id).map(otherPost => (
+                   <Link to={`/blog/${otherPost.slug}`} key={otherPost.id} className="snap-start shrink-0 w-[85vw] sm:w-[350px] group flex flex-col bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-dark/5 transition-all duration-300">
+                       <div className="bg-dark/5 relative overflow-hidden flex items-center justify-center border-b border-gray-100 p-2 aspect-video">
+                          <img src={otherPost.image} alt={otherPost.title} className="w-full h-full object-contain rounded-[2px]" />
+                       </div>
+                       <div className="p-6 flex flex-col flex-grow">
+                           <div className="flex items-center justify-between mb-4">
+                              <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-lg text-[10px] font-bold uppercase tracking-wider">{otherPost.category}</span>
+                              <span className="text-xs font-bold text-gray-400 flex items-center gap-1.5"><Eye className="w-3.5 h-3.5" /> {(otherPost.viewCount > 1000 ? (otherPost.viewCount / 1000).toFixed(1) + 'k' : otherPost.viewCount)}</span>
+                           </div>
+                           <h4 className="text-xl font-bold text-dark leading-snug mb-3 group-hover:text-brand transition-colors line-clamp-2">{otherPost.title}</h4>
+                           <div className="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between">
+                              <span className="text-xs font-bold text-gray-800">{otherPost.author.name}</span>
+                              <span className="text-[11px] font-medium text-gray-400 flex items-center gap-1">
+                                <Clock className="w-3 h-3" /> {otherPost.readTime}
+                              </span>
+                           </div>
+                       </div>
+                   </Link>
+               ))}
+            </div>
+            <div className="mt-6 text-center md:hidden">
+                <Link to="/blog" className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-gray-200 text-dark font-bold rounded-2xl shadow-sm">
+                   Tüm Bloglara Git
+                </Link>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
