@@ -1,4 +1,16 @@
 {
+  "redirects": [
+    {
+      "source": "/blog/musteri-hizmetlerinde-yeni-cag-ai-sesli-asistanlar-ile-7-24-kesintisiz-destek",
+      "destination": "/customer-service/ai-sesli-asistanlar",
+      "permanent": true
+    },
+    {
+      "source": "/blog/saglik-ve-estetik-kliniklerinde-randevu-kacirmaya-son",
+      "destination": "/healthcare/ai-randevu-yonetimi",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",

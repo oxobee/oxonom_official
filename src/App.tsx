@@ -83,7 +83,7 @@ export default function App() {
             <Route path="/paketler" element={<PackagesPage />} />
             <Route path="/hakkimizda" element={<AboutPage />} />
             <Route path="/blog" element={<BlogPage />} />
-            <Route path="/blog/:slug" element={<BlogDetailPage />} />
+            <Route path="/:categorySlug/:slug" element={<BlogDetailPage />} />
             <Route path="/mesajlasma-paketleri" element={<MessagingPackagesPage />} />
             <Route path="/ses-paketleri" element={<VoicePackagesPage />} />
             

@@ -1,19 +1,48 @@
 import { useEffect } from 'react';
 
-export function useSEO({ title, description }: { title: string; description: string }) {
+export interface SEOProps {
+  title: string;
+  description: string;
+  ogImage?: string;
+  ogUrl?: string;
+}
+
+export function useSEO({ title, description, ogImage, ogUrl }: SEOProps) {
   useEffect(() => {
     // Sayfa başlığını (Title) güncelle
     document.title = title;
     
+    // Helper function to set or create meta tags
+    const setMetaTag = (selector: string, attribute: string, value: string, contentAttribute: string = 'content') => {
+      let tag = document.querySelector(selector);
+      if (!tag) {
+        tag = document.createElement('meta');
+        tag.setAttribute(attribute, selector.match(/="([^"]+)"/)?.[1] || '');
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute(contentAttribute, value);
+    };
+
     // Meta Description etiketini güncelle
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', description);
-    } else {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
-      metaDescription.setAttribute('content', description);
-      document.head.appendChild(metaDescription);
+    setMetaTag('meta[name="description"]', 'name', description);
+
+    // Open Graph etiketleri
+    setMetaTag('meta[property="og:title"]', 'property', title);
+    setMetaTag('meta[property="og:description"]', 'property', description);
+    
+    if (ogImage) {
+      // Ensure origin is attached for full path
+      const fullImageUrl = ogImage.startsWith('http') ? ogImage : `${window.location.origin}${ogImage}`;
+      setMetaTag('meta[property="og:image"]', 'property', fullImageUrl);
     }
-  }, [title, description]);
+    
+    if (ogUrl) {
+      setMetaTag('meta[property="og:url"]', 'property', ogUrl);
+    } else {
+      setMetaTag('meta[property="og:url"]', 'property', window.location.href);
+    }
+
+    setMetaTag('meta[property="og:type"]', 'property', 'website');
+
+  }, [title, description, ogImage, ogUrl]);
 }

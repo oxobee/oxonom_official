@@ -631,6 +631,7 @@ export const sectors = [
 export const blogPosts: Array<{
   id: string;
   slug: string;
+  categorySlug: string;
   title: string;
   summary: string;
   content: string;
@@ -646,7 +647,8 @@ export const blogPosts: Array<{
 }> = [
   {
     id: "1",
-    slug: "musteri-hizmetlerinde-yeni-cag-ai-sesli-asistanlar-ile-7-24-kesintisiz-destek",
+    slug: "ai-sesli-asistanlar",
+    categorySlug: "customer-service",
     title: "Müşteri Hizmetlerinde Yeni Çağ: AI Sesli Asistanlar ile 7/24 Kesintisiz Destek",
     summary: "Bekleyen müşteri kaybedilir. Anında cevap veren kazanır. AI sesli asistanların müşteri deneyimindeki devrimsel rolünü inceleyin.",
     content: `
@@ -741,7 +743,8 @@ export const blogPosts: Array<{
   },
   {
     id: "2",
-    slug: "saglik-ve-estetik-kliniklerinde-randevu-kacirmaya-son",
+    slug: "ai-randevu-yonetimi",
+    categorySlug: "healthcare",
     title: "Sağlık ve Estetik Kliniklerinde Randevu Kaçırmaya Son: Yapay Zeka ile Otomatik Randevu Yönetimi",
     summary: "Randevuyu hatırlatan değil, yöneten kazanır. Yapay zeka ile no-show oranlarını düşürün, 7/24 WhatsApp ve sesli asistan randevu sistemleri ile kliniğinizi büyütün.",
     content: `
