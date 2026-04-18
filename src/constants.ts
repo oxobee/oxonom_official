@@ -736,7 +736,7 @@ export const blogPosts: Array<{
       name: "OXONOM Insights",
       avatar: "/author-avatar.png"
     },
-    image: "/blog/ai-sesli-asistanlar-2.png",
+    image: "/blog/ai-sesli-asistanlar-3.jpg",
     date: "18 Nisan 2026"
   }
 ];

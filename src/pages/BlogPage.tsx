@@ -113,12 +113,12 @@ export default function BlogPage() {
                   transition={{ delay: index * 0.1 }}
                 >
                   <Link to={`/blog/${post.slug}`} className="group flex flex-col bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-dark/5 transition-all duration-300 h-full">
-                    <div className="bg-gray-100 relative overflow-hidden flex items-center justify-center border-b border-gray-100 p-2">
-                       {/* Uncropped dynamic aspect ratio image for the grid post */}
+                    <div className="bg-dark/5 relative overflow-hidden flex items-center justify-center border-b border-gray-100 p-2 aspect-video">
+                       {/* 1920x1080 aspect ratio uncropped dynamic image */}
                        <img 
                           src={post.image} 
                           alt={post.title} 
-                          className="w-full h-auto rounded-2xl object-cover"
+                          className="w-full h-full object-contain rounded-xl"
                        />
                     </div>
                     <div className="p-6 flex flex-col flex-grow">

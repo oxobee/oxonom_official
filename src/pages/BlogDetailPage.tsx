@@ -126,11 +126,12 @@ export default function BlogDetailPage() {
         </header>
 
         {/* HERO IMAGE */}
-        <div className="w-full mb-16 rounded-[2.5rem] bg-gray-50 relative overflow-hidden shadow-2xl shadow-dark/5 p-2 border border-gray-100">
+        <div className="w-full mb-16 rounded-[2.5rem] bg-dark/5 relative overflow-hidden shadow-2xl shadow-dark/5 p-2 md:p-4 border border-gray-100 aspect-video flex items-center justify-center">
+           {/* 1920x1080 Aspect Ratio Strict Enforcement */}
            <img 
               src={post.image} 
               alt={post.title} 
-              className="w-full h-auto rounded-[2rem]"
+              className="w-full h-full object-contain rounded-[2rem]"
               onError={(e) => {
                  (e.target as HTMLImageElement).src = 'https://www.transparenttextures.com/patterns/carbon-fibre.png';
               }}
