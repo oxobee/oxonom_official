@@ -65,15 +65,6 @@ export default function Navbar() {
               Ürün
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full" />
             </Link>
-
-            <Link to="/blog" className={cn(
-              "text-sm font-bold transition-colors relative group flex items-center gap-2",
-              headerScrolled ? "text-gray-600 hover:text-brand" : "text-white/80 hover:text-white"
-            )}>
-              Blog
-              <span className="px-1.5 py-0.5 bg-brand text-white text-[9px] font-black uppercase rounded-md tracking-wider shadow-sm animate-pulse">Yeni</span>
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full" />
-            </Link>
             
             {/* Sektörler Mega Menu Trigger */}
             <div 
@@ -237,7 +228,15 @@ export default function Navbar() {
           </nav>
 
           {/* CTA */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-4 ml-8">
+            <Link to="/blog" className={cn(
+              "flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all border",
+              headerScrolled ? "border-gray-200 text-dark hover:bg-gray-50" : "border-white/20 text-white hover:bg-white/10"
+            )}>
+              Blog
+              <span className="px-1.5 py-0.5 bg-brand text-white text-[9px] font-black uppercase rounded-md tracking-wider shadow-sm animate-pulse">Yeni</span>
+            </Link>
+
             <a 
               href="https://app.oxonom.com" 
               target="_blank" 
@@ -350,6 +349,22 @@ export default function Navbar() {
                     Tüm Paketleri İncele <ArrowRight className="w-3 h-3" />
                   </Link>
                 </div>
+
+                <Link to="/blog" className="mt-4 flex items-center justify-between p-5 rounded-2xl bg-brand/5 border border-brand/20 font-bold text-base text-brand shadow-sm" onClick={() => setIsMobileMenuOpen(false)}>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-brand/10 border border-brand/20 rounded-xl flex items-center justify-center">
+                       <span className="text-xl">📰</span>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        Blog
+                        <span className="px-1.5 py-0.5 bg-brand text-white text-[9px] font-black uppercase rounded-md tracking-wider shadow-sm animate-pulse">Yeni</span>
+                      </div>
+                      <div className="text-xs text-gray-500 font-medium mt-0.5">Yapay Zeka Insights</div>
+                    </div>
+                  </div>
+                  <ArrowRight className="w-5 h-5 text-gray-400" />
+                </Link>
               </div>
 
               {/* Sectors */}
@@ -380,13 +395,6 @@ export default function Navbar() {
 
               {/* Other Links */}
               <div className="space-y-2">
-                <Link to="/blog" className="flex items-center justify-between p-4 rounded-2xl bg-brand/5 border border-brand/10 font-bold text-base text-brand" onClick={() => setIsMobileMenuOpen(false)}>
-                  <div className="flex items-center gap-2">
-                    Blog
-                    <span className="px-1.5 py-0.5 bg-brand text-white text-[9px] font-black uppercase rounded-md tracking-wider shadow-sm animate-pulse">Yeni</span>
-                  </div>
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
                 <Link to="/hakkimizda" className="flex items-center justify-between p-4 rounded-2xl bg-gray-50 font-bold text-base text-dark" onClick={() => setIsMobileMenuOpen(false)}>
                   Hakkımızda <ArrowRight className="w-5 h-5 text-gray-400" />
                 </Link>

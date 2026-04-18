@@ -628,54 +628,20 @@ export const sectors = [
   }
 ];
 
-export const blogPosts = [
-  {
-    id: "1",
-    slug: "yapay-zeka-ile-musteri-hizmetlerinde-devrim",
-    title: "Yapay Zekâ ile Müşteri Hizmetlerinde Devrim",
-    summary: "Otonom yapay zekâ asistanlarının işletmelere nasıl 7/24 kesintisiz iletişim gücü sağladığını ve maliyetleri nasıl %70 oranında düşürdüğünü keşfedin.",
-    content: "Dijitalleşmenin sınırlarını zorladığımız bu çağda, müşteri hizmetleri departmanları artık bekleme müziklerine ve mesai saatlerine hapsolmuş durumda değil. Otonom yapay zekâ asistanları, insan benzeri ses sentezleme teknolojileri ve doğal dil işleme (NLP) yetenekleriyle müşteri iletişimini kusursuz bir şekilde üstleniyor.<br/><br/>OXONOM platformunun sunduğu otonom ajanlar, aynı anda on binlerce çağrıyı karşılayabiliyor, müşterilerin karmaşık sorunlarını bağlamından kopmadan çözebiliyor ve tüm bunları insanlardan ayırt edilemeyen organik bir ses tonuyla gerçekleştiriyor. İşletmeler için en büyük avantajı ise operasyonel verimliliği zirveye çıkarırken çağrı merkezi personel maliyetlerini büyük ölçüde minimize etmesidir.",
-    category: "Yapay Zekâ",
-    readTime: "4 Dakika",
-    viewCount: 15420,
-    author: {
-      name: "OXONOM Tech Ekibi",
-      avatar: "https://oxonom.com/logo_dark.png"
-    },
-    image: "https://r.resimlink.com/KEkuSFN.png",
-    date: "12 Kasım 2026"
-  },
-  {
-    id: "2",
-    slug: "e-ticaret-satislarini-ikata-katlayan-ai-stratejileri",
-    title: "E-Ticaret Satışlarını İkiye Katlayan AI Stratejileri",
-    summary: "Sepeti terk eden müşterileri geri getiren ve kişiselleştirilmiş alışveriş deneyimi sunan en son trend otonom AI senaryoları.",
-    content: "E-ticaret markaları için sepeti terk etme oranları en büyük kâbuslardan biridir. Geleneksel e-posta pazarlaması veya SMS bildirimleri çoğu zaman yeterince etkili olmaz. Ancak, akıllı iletişim senaryolarıyla donatılmış yeni nesil OXONOM AI, kullanıcı sepeti terk ettikten saniyeler sonra doğrudan kişiselleştirilmiş bir WhatsApp mesajı veya akıllı bir aramayla devreye girer.<br/><br/>Müşteriyle anında iletişim kuran yapay zekâ asistanı, özel indirim kodları sunabilir, kargo süreçleriyle ilgili soruları yanıtlayabilir ve işlemi başarıyla tamamlamaya yönlendirebilir. Bu sistem, satış dönüşüm (conversion) oranlarını tahmin edilenin çok ötesine taşıyor.",
-    category: "E-Ticaret",
-    readTime: "3 Dakika",
-    viewCount: 8930,
-    author: {
-      name: "Uğur U.",
-      avatar: "https://oxonom.com/logo_dark.png"
-    },
-    image: "https://r.resimlink.com/KEkuSFN.png",
-    date: "05 Kasım 2026"
-  },
-  {
-    id: "3",
-    slug: "omnichannel-pazarlamada-otonom-ajanlarin-rolu",
-    title: "Çok Kanallı Pazarlamada Otonom Ajanların Rolü",
-    summary: "WhatsApp, Instagram, web sitesi ve telefon... Tüm iletişim ağlarınızı tek bir beynin (Yapay Zekâ) kontrolünde birleştirmek neden önemlidir?",
-    content: "Müşteriler, markalarla bulundukları her platform üzerinden (sosyal medya, web, telefon) tutarlı bir iletişim kurmak ister. Omnichannel (çok kanallı) stratejinin merkezine yapay zekâyı yerleştirdiğinizde, platform bağımsız eşsiz bir müşteri deneyimi sunarsınız.<br/><br/>Örneğin, bir gün önce şirketinizin Instagram hesabına ürün hakkında mesaj atan bir müşteri, ertesi gün WhatsApp'tan veya sesli çağrı üzerinden iletişime geçtiğinde, OXONOM AI aynı konuşma geçmişini hatırlar ve bağlamı kaybetmeden iletişimi sürdürür. Bu derece akıllı ve bütünleşik bir yapı, müşteri memnuniyetini sadakate dönüştürür.",
-    category: "İş Dünyası",
-    readTime: "5 Dakika",
-    viewCount: 22100,
-    author: {
-      name: "OXONOM Insights",
-      avatar: "https://oxonom.com/logo_dark.png"
-    },
-    image: "https://r.resimlink.com/KEkuSFN.png",
-    date: "28 Ekim 2026"
-  }
-];
+export const blogPosts: Array<{
+  id: string;
+  slug: string;
+  title: string;
+  summary: string;
+  content: string;
+  category: string;
+  readTime: string;
+  viewCount: number;
+  author: {
+    name: string;
+    avatar: string;
+  };
+  image: string;
+  date: string;
+}> = [];
 

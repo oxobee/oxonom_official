@@ -17,8 +17,8 @@ export default function BlogPage() {
 
   const categories = ['Tümü', ...Array.from(new Set(blogPosts.map(post => post.category)))];
 
-  const featuredPost = blogPosts[0];
-  const regularPosts = blogPosts.slice(1);
+  const featuredPost = blogPosts.length > 0 ? blogPosts[0] : null;
+  const regularPosts = blogPosts.length > 1 ? blogPosts.slice(1) : [];
 
   const filteredPosts = regularPosts.filter(post => {
     const matchesCategory = activeCategory === 'Tümü' || post.category === activeCategory;
@@ -70,7 +70,7 @@ export default function BlogPage() {
         </div>
 
         {/* FEATURED POST */}
-        {activeCategory === 'Tümü' && !searchQuery && (
+        {activeCategory === 'Tümü' && !searchQuery && featuredPost && (
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}

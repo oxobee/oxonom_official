@@ -1,13 +1,15 @@
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
+import { useState } from 'react';
 import { useSEO } from '../hooks/useSEO';
 import { blogPosts } from '../constants';
-import { Share2, Clock, Eye, ArrowLeft, Calendar, FileText } from 'lucide-react';
+import { Share2, Clock, Eye, ArrowLeft, Calendar, FileText, Twitter, Linkedin, MessageCircle } from 'lucide-react';
 import JsonLd from '../components/JsonLd';
 import NotFoundPage from './NotFoundPage';
 
 export default function BlogDetailPage() {
   const { slug } = useParams();
+  const [showShareMenu, setShowShareMenu] = useState(false);
   const post = blogPosts.find(p => p.slug === slug);
 
   // If post depends on slug and is not found, fallback to 404 handled gracefully.
@@ -35,6 +37,11 @@ export default function BlogDetailPage() {
         "url": "https://oxonom.com/hakkimizda"
       }]
   };
+
+  const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const shareText = `OXONOM Blog: ${post.title}`;
+
+  const toggleShareMenu = () => setShowShareMenu(!showShareMenu);
 
   return (
     <div className="pt-32 pb-24 bg-white min-h-screen relative">
@@ -86,11 +93,34 @@ export default function BlogDetailPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Eye className="w-5 h-5 text-gray-300" />
-                  {(post.viewCount / 1000).toFixed(1)}k
+                  {/* Gerçek okuma sayıları için API entegrasyonu yapılmalıdır. Şimdilik veri tabanından gelen post.viewCount gösteriliyor. */}
+                  {(post.viewCount > 1000 ? (post.viewCount / 1000).toFixed(1) + 'k' : post.viewCount)}
                 </div>
-                <button className="flex items-center gap-2 hover:text-brand transition-colors">
-                  <Share2 className="w-5 h-5" />
-                </button>
+                <div className="relative">
+                  <button onClick={toggleShareMenu} className="flex items-center gap-2 hover:text-brand transition-colors p-2 -m-2">
+                    <Share2 className="w-5 h-5" />
+                  </button>
+                  <AnimatePresence>
+                    {showShareMenu && (
+                      <motion.div 
+                        initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.9, y: 10 }}
+                        className="absolute right-0 top-full mt-2 w-48 bg-white border border-gray-100 rounded-2xl shadow-xl shadow-dark/10 p-2 z-50 flex flex-col gap-1"
+                      >
+                         <a href={`https://wa.me/?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 hover:bg-green-50 text-gray-600 hover:text-green-600 rounded-xl transition-colors font-bold text-xs">
+                            <MessageCircle className="w-4 h-4" /> WhatsApp
+                         </a>
+                         <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 hover:bg-blue-50 text-gray-600 hover:text-blue-500 rounded-xl transition-colors font-bold text-xs">
+                            <Twitter className="w-4 h-4" /> Twitter / X
+                         </a>
+                         <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 hover:bg-blue-50 text-gray-600 hover:text-blue-700 rounded-xl transition-colors font-bold text-xs">
+                            <Linkedin className="w-4 h-4" /> LinkedIn
+                         </a>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
              </div>
           </div>
         </header>
@@ -121,11 +151,33 @@ export default function BlogDetailPage() {
 
         {/* FOOTER ACTIONS */}
         <footer className="mt-20 pt-10 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-6">
-           <div className="flex items-center gap-3">
+           <div className="flex items-center gap-3 relative">
               <span className="text-sm font-bold text-gray-500">Bu makaleyi faydalı buldunuz mu?</span>
-              <button className="p-3 bg-gray-50 hover:bg-brand/10 text-gray-600 hover:text-brand rounded-full transition-colors">
+              <button onClick={toggleShareMenu} className="p-3 bg-gray-50 hover:bg-brand/10 text-gray-600 hover:text-brand rounded-full transition-colors relative z-10">
                  <Share2 className="w-5 h-5" />
               </button>
+              
+              <AnimatePresence>
+                {showShareMenu && (
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0.9, y: -10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.9, y: -10 }}
+                    className="absolute left-0 bottom-full mb-2 w-48 bg-white border border-gray-100 rounded-2xl shadow-xl shadow-dark/10 p-2 z-50 flex flex-col gap-1"
+                  >
+                     <a href={`https://wa.me/?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 hover:bg-green-50 text-gray-600 hover:text-green-600 rounded-xl transition-colors font-bold text-xs">
+                        <MessageCircle className="w-4 h-4" /> WhatsApp
+                     </a>
+                     <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 hover:bg-blue-50 text-gray-600 hover:text-blue-500 rounded-xl transition-colors font-bold text-xs">
+                        <Twitter className="w-4 h-4" /> Twitter / X
+                     </a>
+                     <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 hover:bg-blue-50 text-gray-600 hover:text-blue-700 rounded-xl transition-colors font-bold text-xs">
+                        <Linkedin className="w-4 h-4" /> LinkedIn
+                     </a>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
            </div>
            <Link to="/blog" className="px-6 py-3 bg-dark text-white rounded-2xl font-bold flex items-center gap-2 hover:bg-brand transition-colors">
               <FileText className="w-5 h-5" /> Diğer Yazıları Oku
