@@ -9,6 +9,8 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import FAQ from './components/FAQ';
 import AboutPage from './pages/AboutPage';
+import BlogPage from './pages/BlogPage';
+import BlogDetailPage from './pages/BlogDetailPage';
 import NotFoundPage from './pages/NotFoundPage';
 import JsonLd from './components/JsonLd';
 import LandingPage from './pages/LandingPage';
@@ -80,6 +82,8 @@ export default function App() {
             <Route path="/sektorler/:id" element={<SectorDetailPage />} />
             <Route path="/paketler" element={<PackagesPage />} />
             <Route path="/hakkimizda" element={<AboutPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:slug" element={<BlogDetailPage />} />
             <Route path="/mesajlasma-paketleri" element={<MessagingPackagesPage />} />
             <Route path="/ses-paketleri" element={<VoicePackagesPage />} />
             
