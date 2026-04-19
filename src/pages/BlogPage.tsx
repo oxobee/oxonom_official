@@ -17,7 +17,7 @@ export default function BlogPage() {
 
   const categories = ['Tümü', ...Array.from(new Set(blogPosts.map(post => post.category)))];
 
-  const filteredPosts = blogPosts.filter(post => {
+  const filteredPosts = [...blogPosts].reverse().filter(post => {
     const matchesCategory = activeCategory === 'Tümü' || post.category === activeCategory;
     const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
                           post.summary.toLowerCase().includes(searchQuery.toLowerCase());

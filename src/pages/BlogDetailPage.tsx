@@ -223,7 +223,7 @@ export default function BlogDetailPage() {
             </div>
             
             <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-8 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
-               {blogPosts.filter(p => p.id !== post.id).map(otherPost => (
+               {[...blogPosts].reverse().filter(p => p.id !== post.id).map(otherPost => (
                    <Link to={`/${otherPost.categorySlug}/${otherPost.slug}`} key={otherPost.id} className="snap-start shrink-0 w-[85vw] sm:w-[350px] group flex flex-col bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-dark/5 transition-all duration-300">
                        <div className="bg-dark/5 relative overflow-hidden flex items-center justify-center border-b border-gray-100 p-2 aspect-video">
                           <img src={otherPost.image} alt={otherPost.title} className="w-full h-full object-contain rounded-[2px]" />
