@@ -155,8 +155,7 @@ export default function VoicePackagesPage() {
 }
 
 function VoicePackageCard({ pkg, index }: { pkg: any, index: number }) {
-  const isElite = pkg.id === 'elite' || pkg.id === 'platin';
-  const isMostPopular = pkg.id === 'gumus';
+  const isMostPopular = pkg.popular;
 
   return (
     <motion.div
@@ -173,9 +172,9 @@ function VoicePackageCard({ pkg, index }: { pkg: any, index: number }) {
         </div>
       )}
 
-      {isElite && (
-        <div className="absolute top-4 right-4 text-brand">
-          <Sparkles className="w-5 h-5 fill-brand/20" />
+      {pkg.upsell && pkg.upsell !== '-' && (
+        <div className="absolute top-4 right-4 text-brand bg-brand/10 px-3 py-1 rounded-full text-[9px] font-bold tracking-widest uppercase">
+          {pkg.upsell}
         </div>
       )}
 
@@ -200,16 +199,12 @@ function VoicePackageCard({ pkg, index }: { pkg: any, index: number }) {
 
         <div className="space-y-3 px-1">
           <div className="flex items-center gap-3">
-            <Check className="w-5 h-5 text-green-500" />
-            <span className="text-sm font-bold text-gray-600 tracking-tight">{pkg.pricePerMin} / birim maliyet</span>
+            <Check className="w-5 h-5 text-green-500 shrink-0" />
+            <span className="text-sm font-bold text-gray-600 tracking-tight">{pkg.pricePerMin}</span>
           </div>
           <div className="flex items-center gap-3">
-            <Check className="w-5 h-5 text-green-500" />
-            <span className="text-sm font-bold text-gray-600 tracking-tight">%100 İnsansı Ses Kalitesi</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <Check className="w-5 h-5 text-green-500" />
-            <span className="text-sm font-bold text-gray-600 tracking-tight">Akıllı Randevu Asistanı</span>
+            <Check className="w-5 h-5 text-green-500 shrink-0" />
+            <span className="text-sm font-bold text-gray-600 tracking-tight">{pkg.desc}</span>
           </div>
         </div>
       </div>

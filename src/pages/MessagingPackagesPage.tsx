@@ -25,14 +25,6 @@ export default function MessagingPackagesPage() {
     description: 'WhatsApp ve Instagram müşterilerinize saniyeler içinde yanıt verin. Dönüşüm oranınızı katlayacak en uygun OXONOM mesajlaşma AI paketlerini keşfedin.',
   });
 
-  const [activeTab, setActiveTab] = useState<'individual' | 'mixed' | 'combo'>('individual');
-
-  const tabs = [
-    { id: 'individual', name: 'Tek Kanallı', icon: MessageSquare },
-    { id: 'mixed', name: 'Karışık Paketler', icon: Share2 },
-    { id: 'combo', name: 'Ses + Mesaj Kombo', icon: Zap },
-  ];
-
   const SocialIcon = ({ channel, colored = false }: { channel: string, colored?: boolean }) => {
     switch (channel.toLowerCase()) {
       case 'instagram': return <Instagram className={`w-4 h-4 ${colored ? 'text-pink-600' : ''}`} />;
@@ -89,109 +81,41 @@ export default function MessagingPackagesPage() {
             Instagram, WhatsApp, TikTok ve daha fazlası. Müşterileriniz nerede olursa olsun, AI asistanınız orada.
           </p>
 
-          {/* Tab Switcher */}
-          <div className="flex bg-white p-1.5 rounded-2xl shadow-xl shadow-dark/5 border border-gray-100 max-w-xl mx-auto mb-16">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
-                className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-bold transition-all ${
-                  activeTab === tab.id 
-                    ? 'bg-dark text-white shadow-lg' 
-                    : 'text-gray-500 hover:bg-gray-50 hover:text-dark'
-                }`}
-              >
-                <tab.icon className="w-4 h-4" />
-                {tab.name}
-              </button>
-            ))}
-          </div>
         </div>
 
         {/* Content Section */}
         <div className="space-y-20">
-          {/* Individual Channel Packages */}
-          {activeTab === 'individual' && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="space-y-12"
-            >
-              <div className="text-center">
-                <h2 className="text-2xl font-bold text-dark mb-2">Tek Kanal Paketleri</h2>
-                <p className="text-sm text-gray-400 font-bold uppercase tracking-widest">(Instagram / TikTok / Facebook / Web ayrı ayrı geçerli)</p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {pricing.messaging.individual.map((pkg, i) => (
-                  <PackageCard key={pkg.id} pkg={pkg} index={i} color="blue" />
-                ))}
-              </div>
-            </motion.div>
-          )}
-
-          {/* Mixed Packages */}
-          {activeTab === 'mixed' && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="space-y-16"
-            >
-              {/* Social */}
-              <MixedSection 
-                title="Social (Instagram + Facebook)" 
-                desc="Sosyal medya etkileşimlerinizi tek elden yönetin." 
-                data={pricing.messaging.social} 
-                icons={['instagram', 'facebook']}
-              />
-              {/* DM Suite */}
-              <MixedSection 
-                title="DM Suite (Instagram + WhatsApp)" 
-                desc="En popüler mesajlaşma kanallarında AI gücü." 
-                data={pricing.messaging.dmSuite} 
-                icons={['instagram', 'whatsapp']}
-                color="green"
-              />
-              {/* Omni Channel */}
-              <MixedSection 
-                title="Omni Channel (Instagram + Facebook + WhatsApp)" 
-                desc="Tüm ana akım kanalları kapsayan güçlü paketler." 
-                data={pricing.messaging.omni} 
-                icons={['instagram', 'facebook', 'whatsapp']}
-                color="brand"
-              />
-              {/* Full Stack */}
-              <MixedSection 
-                title="Full Stack (Tüm Kanallar)" 
-                desc="Tüm dijital varlığınızı AI ile kuşatın." 
-                data={pricing.messaging.fullStack} 
-                icons={['instagram', 'facebook', 'whatsapp', 'tiktok', 'web']}
-                color="indigo"
-              />
-            </motion.div>
-          )}
-
-          {/* Combo Packages */}
-          {activeTab === 'combo' && (
-            <motion.div
-              id="combo"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="space-y-12"
-            >
-              <div className="text-center">
-                <h2 className="text-2xl font-bold text-dark mb-2">📞 + 💬 SES + MESAJ KOMBO PAKETLER</h2>
-                <p className="text-sm text-gray-500 font-medium">En kapsamlı AI çözüm setlerimizle maksimum verimlilik.</p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {pricing.combo.map((pkg, i) => (
-                  <ComboCard key={pkg.id} pkg={pkg} index={i} />
-                ))}
-              </div>
-            </motion.div>
-          )}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="space-y-16"
+          >
+            {/* Social */}
+            <MixedSection 
+              title="Social (Instagram)" 
+              desc="Sosyal medya hesabınızı güvence altına alın." 
+              data={pricing.messaging.social} 
+              icons={['instagram']}
+            />
+            {/* DM Suite */}
+            <MixedSection 
+              title="DM Suite (Instagram + WhatsApp)" 
+              desc="En popüler mesajlaşma kanallarında AI gücü." 
+              data={pricing.messaging.dmSuite} 
+              icons={['instagram', 'whatsapp']}
+              color="green"
+            />
+            {/* Omni Channel */}
+            <MixedSection 
+              title="Omni Channel (Instagram + Facebook + WhatsApp)" 
+              desc="Tüm ana akım kanalları kapsayan güçlü paketler." 
+              data={pricing.messaging.omni} 
+              icons={['instagram', 'facebook', 'whatsapp']}
+              color="brand"
+            />
+          </motion.div>
         </div>
+        {/* End of Content */}
 
         {/* Notes */}
         <div className="mt-24 pt-8 border-t border-gray-100">
@@ -228,6 +152,12 @@ function PackageCard({ pkg, index, color }: { pkg: any, index: number, color: st
         </div>
       )}
 
+      {pkg.upsell && pkg.upsell !== '-' && (
+        <div className="absolute top-4 right-4 text-brand bg-brand/10 px-3 py-1 rounded-full text-[9px] font-bold tracking-widest uppercase">
+          {pkg.upsell}
+        </div>
+      )}
+
       <div className="flex gap-2 mb-6">
          <Instagram className="w-4 h-4 text-pink-600/50" />
          <Facebook className="w-4 h-4 text-blue-600/50" />
@@ -248,16 +178,16 @@ function PackageCard({ pkg, index, color }: { pkg: any, index: number, color: st
           <Zap className={`w-5 h-5 ${color === 'blue' ? 'text-blue-500' : 'text-brand'}`} />
           <div>
             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">KAPASİTE</p>
-            <p className="font-bold text-dark">{pkg.messages} Mesaj</p>
+            <p className="font-bold text-dark">{pkg.messages}</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <Check className="w-5 h-5 text-green-500" />
-          <span className="text-sm font-bold text-gray-600 tracking-tight">{pkg.perMsg} / birim maliyet</span>
+          <Check className="w-5 h-5 text-green-500 shrink-0" />
+          <span className="text-sm font-bold text-gray-600 tracking-tight">{pkg.perMsg}</span>
         </div>
         <div className="flex items-center gap-3">
-          <Check className="w-5 h-5 text-green-500" />
-          <span className="text-sm font-bold text-gray-600 tracking-tight">AI Akıllı Yanıt</span>
+          <Check className="w-5 h-5 text-green-500 shrink-0" />
+          <span className="text-sm font-bold text-gray-600 tracking-tight">{pkg.desc}</span>
         </div>
       </div>
 

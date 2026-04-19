@@ -35,22 +35,12 @@ export default function PackagesPage() {
     {
       id: 'messaging',
       name: 'Mesajlaşma Paketleri',
-      description: 'WhatsApp, Instagram, TikTok ve Web üzerinden müşterilerinize anlık yanıt veren AI asistanları.',
+      description: 'WhatsApp, Instagram ve Messenger üzerinden müşterilerinize anlık yanıt veren AI asistanları.',
       icon: MessageSquare,
       color: 'blue',
       link: '/mesajlasma-paketleri',
       features: ['Multi-Channel Destek', 'AI Otomatik Yanıt', 'Satış Odaklı Kurgular'],
-      btnText: 'Mesaj Paketlerini İncele'
-    },
-    {
-      id: 'combo',
-      name: 'Hibrit (Ses + Mesaj) Paketleri',
-      description: 'Hem sesli hem mesajlaşma kanallarını tek bir AI beyne bağlayan hepsi bir arada çözümler.',
-      icon: Zap,
-      color: 'purple',
-      link: '/mesajlasma-paketleri#combo',
-      features: ['Unified AI Brain', 'Maksimum Verimlilik', 'En Düşük Birim Maliyet'],
-      btnText: 'Kombo Paketlerini İncele',
+      btnText: 'Mesaj Paketlerini İncele',
       popular: true
     }
   ];
@@ -92,7 +82,7 @@ export default function PackagesPage() {
         </div>
 
         {/* Categories Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20 max-w-5xl mx-auto">
           {categories.map((cat, i) => (
             <motion.div
               key={cat.id}
