@@ -19,6 +19,7 @@ import SectorDetailPage from './pages/SectorDetailPage';
 import PackagesPage from './pages/PackagesPage';
 import MessagingPackagesPage from './pages/MessagingPackagesPage';
 import VoicePackagesPage from './pages/VoicePackagesPage';
+import IntegrationsPage from './pages/IntegrationsPage';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -82,6 +83,7 @@ export default function App() {
             <Route path="/sektorler/:id" element={<SectorDetailPage />} />
             <Route path="/paketler" element={<PackagesPage />} />
             <Route path="/hakkimizda" element={<AboutPage />} />
+            <Route path="/entegrasyonlar" element={<IntegrationsPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/:categorySlug/:slug" element={<BlogDetailPage />} />
             <Route path="/mesajlasma-paketleri" element={<MessagingPackagesPage />} />

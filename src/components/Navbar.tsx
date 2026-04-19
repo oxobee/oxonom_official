@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronDown, Menu, X, ArrowRight, Sparkles, LayoutGrid, Zap, Phone } from 'lucide-react';
+import { ChevronDown, Menu, X, ArrowRight, Sparkles, LayoutGrid, Zap, Phone, Puzzle } from 'lucide-react';
 import { sectors } from '../constants';
 import { cn } from '../lib/utils';
 
@@ -225,6 +225,14 @@ export default function Navbar() {
                 )}
               </AnimatePresence>
             </div>
+
+            <Link to="/entegrasyonlar" className={cn(
+              "text-sm font-bold transition-colors relative group",
+              headerScrolled ? "text-gray-600 hover:text-brand" : "text-white/80 hover:text-white"
+            )}>
+              Entegrasyonlar
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full" />
+            </Link>
           </nav>
 
           {/* CTA */}
@@ -364,6 +372,19 @@ export default function Navbar() {
                     </div>
                   </div>
                   <ArrowRight className="w-5 h-5 text-gray-400" />
+                </Link>
+
+                <Link to="/entegrasyonlar" className="mt-4 flex items-center justify-between p-5 rounded-2xl bg-white border border-gray-100 font-bold text-base text-dark shadow-sm hover:border-brand/30 hover:shadow-md transition-all group" onClick={() => setIsMobileMenuOpen(false)}>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-gray-50 group-hover:bg-brand/10 border border-gray-100 group-hover:border-brand/20 rounded-xl flex items-center justify-center transition-colors">
+                       <Puzzle className="w-5 h-5 text-gray-500 group-hover:text-brand transition-colors" />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2 text-dark group-hover:text-brand transition-colors">Entegrasyonlar</div>
+                      <div className="text-xs text-gray-500 font-medium mt-0.5">OXONOM Ekosistemi</div>
+                    </div>
+                  </div>
+                  <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-brand transition-colors" />
                 </Link>
               </div>
 
