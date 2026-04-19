@@ -38,22 +38,22 @@ export const pricing = {
   messaging: {
     individual: [],
     social: [
-      { id: 's-starter', name: 'Social Starter', messages: '500', price: '$10', perMsg: '$0.020', upsell: 'Growth → %30 ucuz', desc: 'AI Akıllı Yanıt' },
-      { id: 's-growth', name: 'Social Growth', messages: '2.500', price: '$35', perMsg: '$0.014', upsell: 'Pro → %14 ucuz', popular: true, desc: 'AI Akıllı Yanıt' },
-      { id: 's-pro', name: 'Social Professional', messages: '10.000', price: '$119', perMsg: '$0.012', upsell: 'Unlimited → Sınırsız mesaj', desc: 'AI Akıllı Yanıt' },
-      { id: 's-unlimited', name: 'Social Unlimited', messages: 'Sınırsız', price: '$299', perMsg: 'En Düşük', upsell: '-', desc: 'AI Akıllı Yanıt' }
+      { id: 's-starter', name: 'Social Starter', messages: '1.000', price: '$29', perMsg: '$0.029', upsell: 'Growth → %41 ucuz', desc: 'AI Akıllı Yanıt' },
+      { id: 's-growth', name: 'Social Growth', messages: '4.000', price: '$69', perMsg: '$0.017', upsell: 'Pro → %11 ucuz', popular: true, desc: 'AI Akıllı Yanıt' },
+      { id: 's-pro', name: 'Social Professional', messages: '10.000', price: '$149', perMsg: '$0.015', upsell: 'Unlimited → Sınırsız mesaj', desc: 'AI Akıllı Yanıt' },
+      { id: 's-unlimited', name: 'Social Unlimited', messages: 'Sınırsız', price: '$349', perMsg: 'En Düşük', upsell: '-', desc: 'AI Akıllı Yanıt' }
     ],
     dmSuite: [
-      { id: 'dm-starter', name: 'DM Starter', messages: '1.000', price: '$22', perMsg: '$0.022', upsell: 'Growth → %18 ucuz', desc: 'AI Akıllı Yanıt' },
-      { id: 'dm-growth', name: 'DM Growth', messages: '4.000', price: '$72', perMsg: '$0.018', upsell: 'Pro → %17 ucuz', popular: true, desc: 'AI Akıllı Yanıt' },
-      { id: 'dm-pro', name: 'DM Professional', messages: '15.000', price: '$225', perMsg: '$0.015', upsell: 'Unlimited → Sınırsız mesaj', desc: 'AI Akıllı Yanıt' },
-      { id: 'dm-unlimited', name: 'DM Unlimited', messages: 'Sınırsız', price: '$399', perMsg: 'En Düşük', upsell: '-', desc: 'AI Akıllı Yanıt' }
+      { id: 'dm-starter', name: 'DM Starter', messages: '1.500', price: '$89', perMsg: '$0.059', upsell: 'Growth → %32 ucuz', desc: 'AI Akıllı Yanıt' },
+      { id: 'dm-growth', name: 'DM Growth', messages: '4.000', price: '$159', perMsg: '$0.040', upsell: 'Pro → %30 ucuz', popular: true, desc: 'AI Akıllı Yanıt' },
+      { id: 'dm-pro', name: 'DM Professional', messages: '10.000', price: '$279', perMsg: '$0.028', upsell: 'Unlimited → Sınırsız mesaj', desc: 'AI Akıllı Yanıt' },
+      { id: 'dm-unlimited', name: 'DM Unlimited', messages: 'Sınırsız', price: '$449', perMsg: 'En Düşük', upsell: '-', desc: 'AI Akıllı Yanıt' }
     ],
     omni: [
-      { id: 'omni-starter', name: 'Omni Starter', messages: '2.000', price: '$46', perMsg: '$0.023', upsell: 'Growth → %22 ucuz', desc: 'AI Akıllı Yanıt' },
-      { id: 'omni-growth', name: 'Omni Growth', messages: '6.000', price: '$108', perMsg: '$0.018', upsell: 'Pro → %17 ucuz', popular: true, desc: 'AI Akıllı Yanıt' },
-      { id: 'omni-pro', name: 'Omni Professional', messages: '20.000', price: '$299', perMsg: '$0.015', upsell: 'Unlimited → Sınırsız mesaj', desc: 'AI Akıllı Yanıt' },
-      { id: 'omni-unlimited', name: 'Omni Unlimited', messages: 'Sınırsız', price: '$499', perMsg: 'En Düşük', upsell: '-', desc: 'AI Akıllı Yanıt' }
+      { id: 'omni-starter', name: 'Omni Starter', messages: '2.000', price: '$149', perMsg: '$0.075', upsell: 'Growth → %45 ucuz', desc: 'AI Akıllı Yanıt' },
+      { id: 'omni-growth', name: 'Omni Growth', messages: '6.000', price: '$249', perMsg: '$0.041', upsell: 'Pro → %10 ucuz', popular: true, desc: 'AI Akıllı Yanıt' },
+      { id: 'omni-pro', name: 'Omni Professional', messages: '12.000', price: '$449', perMsg: '$0.037', upsell: 'Unlimited → Sınırsız mesaj', desc: 'AI Akıllı Yanıt' },
+      { id: 'omni-unlimited', name: 'Omni Unlimited', messages: 'Sınırsız', price: '$699', perMsg: 'En Düşük', upsell: '-', desc: 'AI Akıllı Yanıt' }
     ],
     fullStack: []
   },
