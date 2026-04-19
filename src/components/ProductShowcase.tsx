@@ -3,7 +3,13 @@ import { motion, AnimatePresence } from 'motion/react';
 import { PhoneCall, MessageSquare, ArrowRight, CheckCircle2, Activity, Zap, Instagram, Facebook, Globe } from 'lucide-react';
 
 export default function ProductShowcase() {
-  const [activeTab, setActiveTab] = useState<'voice' | 'chat'>('chat');
+  const [activeTab, setActiveTab] = useState<'voice' | 'chat'>('voice');
+
+  const flags = [
+    "tr", "gb", "us", "de", "fr", "es", "it", "ru", "jp", "cn", 
+    "in", "br", "nl", "sa", "ae", "kr", "ca", "au", "se", "ch",
+    "ar", "za", "mx", "sg", "pt", "gr", "no", "dk", "fi", "be"
+  ];
 
   return (
     <section className="py-24 bg-white relative overflow-hidden">
@@ -343,6 +349,52 @@ export default function ProductShowcase() {
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* MULTILINGUAL CTA SLIDER */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-16 bg-white rounded-3xl border border-gray-100 shadow-xl shadow-dark/5 p-8 md:p-12 overflow-hidden relative group"
+        >
+          {/* Subtle Dynamic Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-brand/5 to-transparent opacity-50"></div>
+          
+          <div className="relative z-10 flex flex-col items-center">
+            <h3 className="text-3xl md:text-4xl font-display font-bold text-dark text-center mb-4 tracking-tight">
+              Çağrı merkeziniz <span className="text-brand">Tüm dillerde</span> cevap versin
+            </h3>
+            <p className="text-gray-500 font-medium md:text-lg text-center mb-10 max-w-2xl px-4">
+              30+ dilde müşterilerinizle iletişim kurun. <br className="hidden md:block"/>
+              <strong className="text-dark">Üstelik anadili seviyesinde!</strong>
+            </p>
+
+            <div className="flex overflow-hidden relative w-[calc(100%+4rem)] -mx-8 md:w-full md:mx-0">
+              {/* Fade Edges for Marquee */}
+              <div className="absolute top-0 left-0 w-16 md:w-32 h-full bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+              <div className="absolute top-0 right-0 w-16 md:w-32 h-full bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+              
+              <motion.div 
+                className="flex gap-4 items-center pl-4"
+                animate={{ x: ["0%", "-50%"] }}
+                transition={{ repeat: Infinity, ease: "linear", duration: 35 }}
+                style={{ width: "max-content" }}
+              >
+                {/* Render flags array twice for seamless infinite scroll */}
+                {[...flags, ...flags].map((f, i) => (
+                   <img 
+                      key={i} 
+                      src={`https://flagcdn.com/w80/${f}.png`} 
+                      alt={f.toUpperCase()}
+                      className="w-12 h-9 md:w-16 md:h-12 object-cover rounded shadow-sm border border-gray-100 shrink-0 select-none pointer-events-none" 
+                      loading="lazy"
+                   />
+                ))}
+              </motion.div>
+            </div>
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );
