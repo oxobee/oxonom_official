@@ -13,7 +13,8 @@ import {
   Share2,
   Clock,
   Phone,
-  MessageSquare
+  MessageSquare,
+  CreditCard
 } from 'lucide-react';
 import { pricing } from '../constants';
 import { useState } from 'react';
