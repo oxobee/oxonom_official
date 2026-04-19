@@ -298,12 +298,29 @@ export default function SectorDetailPage() {
                                <span className="text-xl md:text-2xl font-bold text-brand">{safeSector.stats.responseTime}</span>
                             </div>
                          </div>
-                         <button 
+                         {/* Smooth AI Core Animation */}
+                         <div 
                             onClick={() => setIsPlaying(!isPlaying)}
-                            className="w-14 h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center text-dark hover:scale-110 transition-transform shadow-2xl shadow-blue-500/10 shrink-0"
-                          >
-                            {isPlaying ? <Pause className="w-5 h-5 md:w-6 md:h-6 fill-dark" /> : <Play className="w-5 h-5 md:w-6 md:h-6 fill-dark ml-1" />}
-                          </button>
+                            className="relative w-14 h-14 md:w-16 md:h-16 shrink-0 flex items-center justify-center group cursor-pointer"
+                         >
+                            <motion.div 
+                              animate={isPlaying ? { scale: [1, 1.3, 1], rotate: [0, 90, 180, 270, 360] } : { scale: 1, rotate: 0 }}
+                              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                              className="absolute inset-0 bg-gradient-to-tr from-brand to-blue-500 rounded-full blur-md opacity-40 group-hover:opacity-70 transition-opacity"
+                            />
+                            <motion.div 
+                              animate={isPlaying ? { scale: [1, 1.15, 1] } : { scale: 1 }}
+                              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                              className="w-full h-full border border-white/20 rounded-full absolute top-0 left-0"
+                            />
+                            <motion.div 
+                              animate={isPlaying ? { scale: [1, 1.05, 1] } : { scale: 1 }}
+                              transition={{ duration: 0.8, repeat: Infinity, ease: "backInOut" }}
+                              className="w-8 h-8 md:w-10 md:h-10 bg-white rounded-full relative z-10 flex items-center justify-center shadow-[0_0_20px_theme(colors.brand.DEFAULT)]"
+                            >
+                               <div className={cn("w-3 h-3 md:w-4 md:h-4 rounded-full transition-colors duration-500", isPlaying ? "bg-brand animate-pulse" : "bg-gray-300")} />
+                            </motion.div>
+                         </div>
                       </div>
 
                       {/* AI Response Preview - Mobile Fit */}

@@ -180,9 +180,9 @@ export default function IntegrationsPage() {
             <p className="text-gray-300 font-medium text-lg mb-8 leading-relaxed">
               Aradığınız entegrasyon listede yok mu? Özel geliştirilmiş API ve Webhook altyapımızla kendi yerel CRM veya ERP sisteminizi dakikalar içinde entegre edin.
             </p>
-            <Link to="/hakkimizda" className="inline-flex justify-center items-center gap-2 px-8 py-4 bg-white text-dark font-bold rounded-2xl hover:bg-brand hover:text-white transition-all transform hover:scale-105">
+            <a href="https://app.oxonom.com/docs" target="_blank" rel="noopener noreferrer" className="inline-flex justify-center items-center gap-2 px-8 py-4 bg-white text-dark font-bold rounded-2xl hover:bg-brand hover:text-white transition-all transform hover:scale-105">
               Geliştirici Dokümanları <ArrowRight className="w-5 h-5" />
-            </Link>
+            </a>
           </div>
 
           {/* Code syntax visual impact */}
