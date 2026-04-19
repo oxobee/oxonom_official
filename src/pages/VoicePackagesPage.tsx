@@ -10,7 +10,8 @@ import {
   Phone,
   Mic2,
   Headphones,
-  Signal
+  Signal,
+  CreditCard
 } from 'lucide-react';
 import { pricing } from '../constants';
 import JsonLd from '../components/JsonLd';
@@ -75,6 +76,35 @@ export default function VoicePackagesPage() {
             <VoicePackageCard key={pkg.id} pkg={pkg} index={i} />
           ))}
         </div>
+
+        {/* Pay-as-you-go CTA */}
+        <motion.div
+           initial={{ opacity: 0, y: 30 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true }}
+           className="mt-12 md:mt-16 bg-gradient-to-br from-brand to-blue-600 rounded-[2.5rem] p-6 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl shadow-brand/20 relative overflow-hidden"
+        >
+           {/* Decorative bg */}
+           <div className="absolute top-0 right-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 pointer-events-none" />
+           <div className="absolute right-0 top-1/2 -translate-y-1/2 w-48 h-48 bg-white/20 text-white blur-3xl pointer-events-none rounded-full" />
+           
+           <div className="flex flex-col md:flex-row items-start md:items-center gap-5 md:gap-6 z-10 w-full md:w-auto">
+              <div className="w-14 h-14 md:w-16 md:h-16 bg-white/10 rounded-2xl border border-white/20 flex items-center justify-center shrink-0 shadow-inner backdrop-blur-md">
+                 <CreditCard className="w-7 h-7 md:w-8 md:h-8 text-white" />
+              </div>
+              <div>
+                 <h4 className="text-2xl md:text-3xl font-bold text-white mb-2 md:mb-3">Esnek Kullanım (Kredili)</h4>
+                 <p className="text-white/90 text-sm md:text-base font-medium leading-relaxed max-w-2xl">
+                   Herhangi bir paket satın alınmadan, doğrudan kredi yüklenerek gerçekleştirilen kullanımlar bu birim fiyat üzerinden ücretlendirilir.
+                 </p>
+              </div>
+           </div>
+
+           <div className="z-10 bg-white rounded-3xl p-5 md:p-8 text-center shrink-0 flex flex-col justify-center min-w-[220px] shadow-xl border border-white/20 hover:scale-105 transition-transform cursor-default">
+              <span className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5 md:mb-2 block">TARİFESİZ KULLANIM DAKİKASI</span>
+              <div className="text-4xl md:text-5xl font-black text-brand tracking-tighter">$4.99</div>
+           </div>
+        </motion.div>
 
         {/* Features Comparison (Glassmorphism) */}
         <motion.div
