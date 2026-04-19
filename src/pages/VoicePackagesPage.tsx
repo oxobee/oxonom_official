@@ -102,7 +102,7 @@ export default function VoicePackagesPage() {
 
            <div className="z-10 bg-white rounded-3xl p-5 md:p-8 text-center shrink-0 flex flex-col justify-center min-w-[220px] shadow-xl border border-white/20 hover:scale-105 transition-transform cursor-default">
               <span className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5 md:mb-2 block">TARİFESİZ KULLANIM DAKİKASI</span>
-              <div className="text-4xl md:text-5xl font-black text-brand tracking-tighter">$4.99</div>
+              <div className="text-4xl md:text-5xl font-black text-brand tracking-tighter">$0.80</div>
            </div>
         </motion.div>
 
@@ -172,18 +172,17 @@ function VoicePackageCard({ pkg, index }: { pkg: any, index: number }) {
         </div>
       )}
 
-      {pkg.upsell && pkg.upsell !== '-' && (
-        <div className="absolute top-4 right-4 text-brand bg-brand/10 px-3 py-1 rounded-full text-[9px] font-bold tracking-widest uppercase">
-          {pkg.upsell}
-        </div>
-      )}
-
       <div className="mb-8">
         <h3 className="text-xl font-bold text-dark mb-2 uppercase tracking-wide ">{pkg.name}</h3>
-        <div className="flex items-baseline gap-1">
+        <div className="flex items-baseline gap-1 mb-3">
           <span className="text-4xl font-black text-dark tracking-tight">{pkg.totalPrice}</span>
           <span className="text-sm text-gray-400 font-bold uppercase tracking-widest">/ ay</span>
         </div>
+        {pkg.upsell && pkg.upsell !== '-' && (
+          <div className="inline-block bg-brand/10 text-brand px-3 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase">
+            {pkg.upsell}
+          </div>
+        )}
       </div>
 
       <div className="space-y-5 flex-grow mb-10">
