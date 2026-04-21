@@ -12,7 +12,8 @@ import {
   Instagram,
   Facebook,
   MessageCircle,
-  LayoutGrid
+  LayoutGrid,
+  Layers
 } from 'lucide-react';
 
 export default function PackagesPage() {
@@ -28,7 +29,7 @@ export default function PackagesPage() {
       description: 'Müşterilerinizle insansı ses kalitesiyle 7/24 iletişim kuran otonom ses ajanları.',
       icon: Phone,
       color: 'brand',
-      link: '/ses-paketleri', // Changed from /paketler to the new dedicated page
+      link: '/ses-paketleri',
       features: ['%100 İnsansı Ses', 'Anlık Randevu Alımı', 'Kesintisiz 7/24 Erişim'],
       btnText: 'Ses Paketlerini İncele'
     },
@@ -41,6 +42,16 @@ export default function PackagesPage() {
       link: '/mesajlasma-paketleri',
       features: ['Multi-Channel Destek', 'AI Otomatik Yanıt', 'Satış Odaklı Kurgular'],
       btnText: 'Mesaj Paketlerini İncele',
+    },
+    {
+      id: 'combo',
+      name: 'Combo Paketler',
+      description: 'Sesli arama + mesajlaşmayı tek pakette alın. Her iki kanalı ayrı almaktan daha avantajlı.',
+      icon: Layers,
+      color: 'purple',
+      link: '/combo-paketler',
+      features: ['Ses + Mesaj Bir Arada', '%17-21 Tasarruf', 'Tek Yapılandırma'],
+      btnText: 'Combo Paketleri İncele',
       popular: true
     }
   ];
@@ -82,7 +93,7 @@ export default function PackagesPage() {
         </div>
 
         {/* Categories Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
           {categories.map((cat, i) => (
             <motion.div
               key={cat.id}

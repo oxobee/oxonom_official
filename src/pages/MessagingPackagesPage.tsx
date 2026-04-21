@@ -140,7 +140,7 @@ export default function MessagingPackagesPage() {
               </div>
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">Sesli + Mesajlaşma Combo</h2>
               <p className="text-gray-400 font-medium max-w-md text-sm">
-                Her iki kanalı birlikte alarak <strong className="text-white">%22-27 tasarruf</strong> edin.
+                Her iki kanalı birlikte alarak <strong className="text-white">%17-21 tasarruf</strong> edin.
                 Combo paketler ayrı ayrı satın almaktan daha avantajlı.
               </p>
               <div className="flex flex-wrap gap-3 mt-5">
@@ -205,12 +205,6 @@ function MessagingCard({ pkg, index }: { pkg: any; index: number }) {
         </div>
 
         <div className="border-t border-gray-100 mb-4" />
-
-        {/* Unit price */}
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Mesaj Başına</span>
-          <span className="text-base font-black text-dark">{pkg.perMsg}</span>
-        </div>
 
         {/* Monthly price */}
         <div className="flex items-center justify-between mb-5">

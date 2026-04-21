@@ -182,12 +182,6 @@ function VoicePackageCard({ pkg, index }: { pkg: any, index: number }) {
         {/* Divider */}
         <div className="border-t border-gray-100 mb-4" />
 
-        {/* Unit price */}
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Dakika Başına</span>
-          <span className="text-base font-black text-dark">{pkg.pricePerMin}</span>
-        </div>
-
         {/* Monthly price */}
         <div className="flex items-center justify-between mb-5">
           <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Aylık</span>
