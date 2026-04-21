@@ -1,66 +1,69 @@
 import { motion } from 'motion/react';
 import { useSEO } from '../hooks/useSEO';
-import { 
-  Check, 
-  ArrowRight, 
-  Sparkles, 
-  Zap, 
-  ShieldCheck, 
-  Instagram, 
-  Facebook, 
-  MessageCircle, 
-  Globe, 
+import {
+  Check,
+  ArrowRight,
+  Sparkles,
+  Zap,
+  Instagram,
+  Facebook,
+  MessageCircle,
+  Globe,
   Share2,
-  Clock,
-  Phone,
   MessageSquare,
-  CreditCard
+  CreditCard,
+  Phone,
+  Star,
+  ChevronRight,
 } from 'lucide-react';
 import { pricing } from '../constants';
-import { useState } from 'react';
 import JsonLd from '../components/JsonLd';
+import { Link } from 'react-router-dom';
+
+const CHANNEL_META: Record<string, { label: string; icon: React.ReactNode; color: string }> = {
+  instagram: { label: 'Instagram', icon: <Instagram className="w-3.5 h-3.5" />, color: 'bg-pink-50 text-pink-600 border-pink-200' },
+  whatsapp:  { label: 'WhatsApp',  icon: <MessageCircle className="w-3.5 h-3.5" />, color: 'bg-green-50 text-green-600 border-green-200' },
+  facebook:  { label: 'Facebook',  icon: <Facebook className="w-3.5 h-3.5" />, color: 'bg-blue-50 text-blue-600 border-blue-200' },
+  web:       { label: 'Web Chat',  icon: <Globe className="w-3.5 h-3.5" />, color: 'bg-indigo-50 text-indigo-600 border-indigo-200' },
+  tiktok:    { label: 'TikTok',    icon: <Share2 className="w-3.5 h-3.5" />, color: 'bg-slate-50 text-slate-700 border-slate-200' },
+  api:       { label: 'API',       icon: <Zap className="w-3.5 h-3.5" />, color: 'bg-amber-50 text-amber-600 border-amber-200' },
+};
 
 export default function MessagingPackagesPage() {
   useSEO({
-    title: 'WhatsApp & Sosyal Medya AI Paketleri | OXONOM',
-    description: 'WhatsApp ve Instagram müşterilerinize saniyeler içinde yanıt verin. Dönüşüm oranınızı katlayacak en uygun OXONOM mesajlaşma AI paketlerini keşfedin.',
+    title: 'Mesajlaşma AI Paketleri | OXONOM',
+    description: 'Instagram, WhatsApp, Facebook ve Web Chat kanallarında 7/24 AI asistan. Tüm platformları tek pakette yönetin.',
+    canonical: '/mesajlasma-paketleri',
+    keywords: 'whatsapp ai bot, instagram ai, mesajlaşma paketi, ai chatbot, oxonom mesajlaşma',
   });
 
-  const SocialIcon = ({ channel, colored = false }: { channel: string, colored?: boolean }) => {
-    switch (channel.toLowerCase()) {
-      case 'instagram': return <Instagram className={`w-4 h-4 ${colored ? 'text-pink-600' : ''}`} />;
-      case 'facebook': return <Facebook className={`w-4 h-4 ${colored ? 'text-blue-600' : ''}`} />;
-      case 'whatsapp': return <MessageCircle className={`w-4 h-4 ${colored ? 'text-green-500' : ''}`} />;
-      case 'tiktok': return <Share2 className={`w-4 h-4 ${colored ? 'text-black dark:text-white' : ''}`} />; 
-      default: return <Globe className={`w-4 h-4 ${colored ? 'text-blue-400' : ''}`} />;
-    }
-  };
   const messagingSchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "OXONOM AI Messaging",
     "operatingSystem": "All",
     "applicationCategory": "BusinessApplication",
-    "description": "WhatsApp, Instagram ve TikTok üzerinden müşterilerinize anlık yanıt veren AI asistanları.",
+    "description": "Instagram, WhatsApp, Facebook ve Web Chat üzerinden müşterilerinize 7/24 AI ile yanıt verin.",
     "offers": {
       "@type": "AggregateOffer",
       "lowPrice": "19",
-      "highPrice": "599",
+      "highPrice": "299",
       "priceCurrency": "USD",
-      "offerCount": "24"
+      "offerCount": "4"
     }
   };
 
   return (
     <div className="pt-32 pb-24 bg-gray-50 min-h-screen relative overflow-hidden">
       <JsonLd data={messagingSchema} />
-      {/* Background Elements */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.02] pointer-events-none" />
+
+      {/* Background */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
-        {/* Header */}
-        <div className="text-center mb-12 md:mb-16">
+
+        {/* ── Header ── */}
+        <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -73,241 +76,171 @@ export default function MessagingPackagesPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl font-display font-bold text-dark mb-6 tracking-tight leading-[1.1]"
+            className="text-4xl md:text-6xl font-display font-bold text-dark mb-5 tracking-tight leading-[1.1]"
           >
-            Dijital Kanallarda <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Kesintisiz İletişim</span>
+            Tüm Kanallar,<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Tek Akıllı Asistan</span>
           </motion.h1>
-          <p className="text-base md:text-lg text-gray-500 max-w-2xl mx-auto font-medium mb-12">
-            Instagram, WhatsApp, TikTok ve daha fazlası. Müşterileriniz nerede olursa olsun, AI asistanınız orada.
+          <p className="text-base md:text-lg text-gray-500 max-w-2xl mx-auto font-medium mb-8">
+            Instagram, WhatsApp, Facebook ve Web Chat — hangi kanaldan gelirse gelsin, AI asistanınız hazır.
           </p>
-
+          {/* Channel badges */}
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-4">
+            {Object.entries(CHANNEL_META).filter(([k]) => k !== 'api').map(([key, meta]) => (
+              <span key={key} className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold border ${meta.color}`}>
+                {meta.icon} {meta.label}
+              </span>
+            ))}
+          </div>
         </div>
 
-        {/* Content Section */}
-        <div className="space-y-20">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="space-y-16"
-          >
-            {/* Social */}
-            <MixedSection 
-              title="Social Connect (Instagram AI)" 
-              desc="Sosyal medya etkileşimlerinizi artırın, takipçilerinizi dakikalar içinde müşteriye dönüştürün." 
-              data={pricing.messaging.social} 
-              icons={['instagram']}
-            />
-            {/* DM Suite */}
-            <MixedSection 
-              title="DM Suite (Unified Inbox)" 
-              desc="Instagram ve WhatsApp'taki tüm mesaj trafiğinizi tek bir yapay zeka beyni ile yönetin." 
-              data={pricing.messaging.dmSuite} 
-              icons={['instagram', 'whatsapp']}
-              color="green"
-            />
-            {/* Omni Channel */}
-            <MixedSection 
-              title="Omni Channel (360° AI Asistanı)" 
-              desc="Instagram, Facebook ve WhatsApp... Markanızın tüm temas noktalarında kesintisiz otomasyon." 
-              data={pricing.messaging.omni} 
-              icons={['instagram', 'facebook', 'whatsapp']}
-              color="brand"
-            />
-          </motion.div>
+        {/* ── Pricing Cards ── */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-16">
+          {(pricing.messaging as any[]).map((pkg, i) => (
+            <MessagingCard key={pkg.id} pkg={pkg} index={i} />
+          ))}
         </div>
-        {/* End of Content */}
 
-        {/* Pay-as-you-go CTA */}
+        {/* ── Pay-as-you-go ── */}
         <motion.div
-           initial={{ opacity: 0, y: 30 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           viewport={{ once: true }}
-           className="mt-12 md:mt-16 bg-gradient-to-br from-indigo-600 to-blue-600 rounded-[2.5rem] p-6 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl shadow-blue-500/20 relative overflow-hidden max-w-5xl mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-gradient-to-br from-indigo-600 to-blue-600 rounded-[2.5rem] p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl shadow-blue-500/20 relative overflow-hidden max-w-5xl mx-auto mb-16"
         >
-           {/* Decorative bg */}
-           <div className="absolute top-0 right-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 pointer-events-none" />
-           <div className="absolute right-0 top-1/2 -translate-y-1/2 w-48 h-48 bg-white/20 text-white blur-3xl pointer-events-none rounded-full" />
-           
-           <div className="flex flex-col md:flex-row items-start md:items-center gap-5 md:gap-6 z-10 w-full md:w-auto">
-              <div className="w-14 h-14 md:w-16 md:h-16 bg-white/10 rounded-2xl border border-white/20 flex items-center justify-center shrink-0 shadow-inner backdrop-blur-md">
-                 <CreditCard className="w-7 h-7 md:w-8 md:h-8 text-white" />
-              </div>
-              <div>
-                 <h4 className="text-2xl md:text-3xl font-bold text-white mb-2 md:mb-3">Esnek Kullanım (Kredili)</h4>
-                 <p className="text-white/90 text-sm md:text-base font-medium leading-relaxed max-w-2xl">
-                   Herhangi bir paket satın alınmadan, doğrudan kredi yüklenerek gerçekleştirilen kullanımlar bu birim fiyat üzerinden ücretlendirilir.
-                 </p>
-              </div>
-           </div>
+          <div className="absolute right-0 top-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none" />
+          <div className="flex items-center gap-5 z-10">
+            <div className="w-14 h-14 bg-white/10 rounded-2xl border border-white/20 flex items-center justify-center shrink-0">
+              <CreditCard className="w-7 h-7 text-white" />
+            </div>
+            <div>
+              <h4 className="text-2xl font-bold text-white mb-1">Paketsiz Kredi Kullanımı</h4>
+              <p className="text-white/80 text-sm max-w-md">Paket satın almadan doğrudan kredi ile kullanım. Sabit aylık taahhüt yok.</p>
+            </div>
+          </div>
+          <div className="z-10 bg-white rounded-3xl p-6 text-center shrink-0 min-w-[200px] shadow-xl hover:scale-105 transition-transform">
+            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1 block">MESAJ BAŞINA</span>
+            <div className="text-4xl font-black text-blue-600 tracking-tighter">{pricing.payAsYouGo.msg.price}</div>
+            <span className="text-[10px] text-gray-400 font-medium">{pricing.payAsYouGo.msg.unit}</span>
+          </div>
+        </motion.div>
 
-           <div className="z-10 bg-white rounded-3xl p-5 md:p-8 text-center shrink-0 flex flex-col justify-center min-w-[220px] shadow-xl border border-white/20 hover:scale-105 transition-transform cursor-default">
-              <span className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5 md:mb-2 block">TARİFESİZ KULLANIM MESAJI</span>
-              <div className="text-4xl md:text-5xl font-black text-blue-600 tracking-tighter">$0.025</div>
-           </div>
+        {/* ── Combo Teaser ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-dark rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden max-w-5xl mx-auto"
+        >
+          <div className="absolute top-0 right-0 w-80 h-80 bg-brand/10 rounded-full blur-[80px] -mr-20 -mt-20 pointer-events-none" />
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand/20 text-brand rounded-full text-[10px] font-bold uppercase tracking-widest mb-4">
+                <Star className="w-3 h-3" /> Fırsat
+              </div>
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">Sesli + Mesajlaşma Combo</h2>
+              <p className="text-gray-400 font-medium max-w-md text-sm">
+                Her iki kanalı birlikte alarak <strong className="text-white">%22-27 tasarruf</strong> edin.
+                Combo paketler ayrı ayrı satın almaktan daha avantajlı.
+              </p>
+              <div className="flex flex-wrap gap-3 mt-5">
+                {(pricing.combo as any[]).map(c => (
+                  <div key={c.id} className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-white font-bold text-sm">
+                    {c.name} <span className="text-brand ml-1">{c.price}</span>
+                    <span className="text-gray-500 text-[10px] ml-1 line-through">{c.originalPrice}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <Link
+              to="/combo-paketler"
+              className="shrink-0 px-8 py-4 bg-brand text-white rounded-2xl font-bold text-sm flex items-center gap-2 hover:bg-white hover:text-dark transition-all shadow-xl shadow-brand/30 whitespace-nowrap"
+            >
+              Combo Paketleri İncele <ChevronRight className="w-4 h-4" />
+            </Link>
+          </div>
         </motion.div>
 
         {/* Notes */}
-        <div className="mt-24 pt-8 border-t border-gray-100">
-           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-              <div className="flex gap-4">
-                 {pricing.notes.map((note, i) => (
-                   <p key={i} className="text-xs text-gray-400 font-medium">*{note}</p>
-                 ))}
-              </div>
-              <p className="text-xs text-gray-500 font-bold italic">OXONOM AI Fiyatlandırma Politikası © 2026</p>
-           </div>
+        <div className="mt-12 pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex flex-wrap gap-6">
+            {pricing.notes.map((note, i) => (
+              <p key={i} className="text-xs text-gray-400 font-medium">*{note}</p>
+            ))}
+          </div>
+          <p className="text-xs text-gray-500 font-bold italic">OXONOM AI Fiyatlandırma Politikası © 2026</p>
         </div>
       </div>
     </div>
   );
 }
 
-function PackageCard({ pkg, index, color }: { pkg: any, index: number, color: string }) {
-  const accentColor = color === 'blue' ? 'border-blue-500' : 'border-brand';
-  const bgColor = color === 'blue' ? 'bg-blue-600' : 'bg-brand';
-
+function MessagingCard({ pkg, index }: { pkg: any; index: number }) {
+  const isPopular = pkg.popular;
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1 }}
-      className={`relative bg-white rounded-[2rem] p-8 border border-gray-100 shadow-xl shadow-dark/5 flex flex-col h-full group transition-all duration-300 ${
-        pkg.popular ? `ring-2 ring-inset ${accentColor} scale-[1.02]` : 'hover:border-gray-300'
+      transition={{ delay: index * 0.08 }}
+      className={`relative bg-white rounded-[2rem] p-7 border flex flex-col h-full transition-all duration-300 ${
+        isPopular
+          ? 'ring-2 ring-blue-500 border-blue-500 scale-[1.02] shadow-2xl shadow-blue-500/15'
+          : 'border-gray-100 shadow-xl shadow-dark/5 hover:border-gray-300'
       }`}
     >
-      {pkg.popular && (
-        <div className={`absolute top-0 right-8 -translate-y-1/2 px-4 py-1.5 ${bgColor} text-white text-[10px] font-bold uppercase tracking-widest rounded-full shadow-lg`}>
+      {isPopular && (
+        <div className="absolute top-0 right-7 -translate-y-1/2 px-4 py-1.5 bg-blue-600 text-white text-[10px] font-bold uppercase tracking-widest rounded-full shadow-lg">
           EN ÇOK TERCİH EDİLEN
         </div>
       )}
 
-      <div className="mb-8">
-        <h3 className="text-xl font-bold text-dark mb-2 uppercase tracking-wide">{pkg.name}</h3>
-        <div className="flex items-baseline gap-1 mb-3">
+      {/* Price block */}
+      <div className="mb-5">
+        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">{pkg.name}</p>
+        <div className="flex items-baseline gap-1 mb-1">
           <span className="text-4xl font-black text-dark tracking-tight">{pkg.price}</span>
-          <span className="text-sm text-gray-400 font-bold uppercase tracking-widest">/ ay</span>
+          <span className="text-sm text-gray-400 font-bold">/ay</span>
         </div>
-        {pkg.upsell && pkg.upsell !== '-' && (
-          <div className={`inline-block bg-opacity-10 px-3 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase ${
-            color === 'blue' ? 'bg-blue-500 text-blue-600' : 'bg-brand text-brand'
-          }`}>
-            {pkg.upsell}
-          </div>
-        )}
+        <p className="text-xs text-gray-400 font-medium">{pkg.perMsg} · {pkg.messages} mesaj</p>
       </div>
 
-      <div className="space-y-5 flex-grow mb-10">
-        <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-2xl">
-          <Zap className={`w-5 h-5 ${color === 'blue' ? 'text-blue-500' : 'text-brand'}`} />
-          <div>
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">KAPASİTE</p>
-            <p className="font-bold text-dark">{pkg.messages}</p>
-          </div>
+      {/* Upsell badge */}
+      {pkg.upsell && pkg.upsell !== '-' && (
+        <div className="inline-flex items-center gap-1 bg-blue-50 text-blue-600 border border-blue-100 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wide mb-5">
+          <ArrowRight className="w-3 h-3" /> {pkg.upsell}
         </div>
-        <div className="flex items-center gap-3">
-          <Check className="w-5 h-5 text-green-500 shrink-0" />
-          <span className="text-sm font-bold text-gray-600 tracking-tight">{pkg.perMsg}</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <Check className="w-5 h-5 text-green-500 shrink-0" />
-          <span className="text-sm font-bold text-gray-600 tracking-tight">{pkg.desc}</span>
-        </div>
+      )}
+
+      {/* Channels */}
+      <div className="flex flex-wrap gap-1.5 mb-5">
+        {pkg.channels.map((ch: string) => {
+          const meta = CHANNEL_META[ch];
+          return meta ? (
+            <span key={ch} className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold border ${meta.color}`}>
+              {meta.icon} {meta.label}
+            </span>
+          ) : null;
+        })}
       </div>
 
-      <button className={`w-full py-5 rounded-2xl font-bold text-sm transition-all flex items-center justify-center gap-2 group/btn ${
-        pkg.popular ? `${bgColor} text-white shadow-xl shadow-dark/10` : 'bg-dark text-white hover:bg-brand active:scale-95'
-      }`}>
-        Satın Al <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-      </button>
-    </motion.div>
-  );
-}
-
-function MixedSection({ title, desc, data, icons, color = 'blue' }: { title: string, desc: string, data: any[], icons: string[], color?: string }) {
-  return (
-    <div className="space-y-8">
-      <div className="flex flex-col md:flex-row justify-between items-end gap-4 border-b border-gray-200 pb-6">
-        <div>
-          <h3 className="text-2xl font-bold text-dark mb-2">{title}</h3>
-          <p className="text-gray-500 font-medium">{desc}</p>
-        </div>
-        <div className="flex gap-2">
-           {icons.map(icon => (
-             <div key={icon} className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-lg border border-gray-100 transition-transform hover:scale-110">
-                {icon === 'instagram' && <Instagram className="w-6 h-6 text-pink-600" />}
-                {icon === 'facebook' && <Facebook className="w-6 h-6 text-blue-600" />}
-                {icon === 'whatsapp' && <MessageCircle className="w-6 h-6 text-green-500" />}
-                {icon === 'tiktok' && <Share2 className="w-6 h-6 text-black dark:text-white" />}
-                {icon === 'web' && <Globe className="w-6 h-6 text-blue-400" />}
-             </div>
-           ))}
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {data.map((pkg, i) => (
-          <PackageCard key={pkg.id} pkg={pkg} index={i} color={color} />
+      {/* Features */}
+      <ul className="space-y-2.5 flex-grow mb-7">
+        {pkg.features.map((f: string, i: number) => (
+          <li key={i} className="flex items-start gap-2.5">
+            <Check className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
+            <span className="text-sm text-gray-600 font-medium">{f}</span>
+          </li>
         ))}
-      </div>
-    </div>
-  );
-}
+      </ul>
 
-function ComboCard({ pkg, index }: { pkg: any, index: number }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1 }}
-      className={`relative bg-dark rounded-[2.5rem] p-10 border border-white/10 shadow-2xl flex flex-col h-full group overflow-hidden ${
-        pkg.popular ? 'ring-2 ring-brand' : ''
-      }`}
-    >
-      <div className="absolute top-0 right-0 w-32 h-32 bg-brand/10 rounded-full blur-[40px] -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700" />
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]" />
-
-      <div className="relative z-10 flex-grow">
-        {pkg.popular && (
-          <div className="inline-block px-3 py-1 bg-brand text-white text-[9px] font-bold uppercase tracking-widest rounded-full mb-6">
-            EN POPÜLER SEÇENEK
-          </div>
-        )}
-        <h3 className="text-2xl font-bold text-white mb-2 uppercase tracking-wide">{pkg.name}</h3>
-        <div className="flex items-baseline gap-1 mb-10">
-          <span className="text-5xl font-black text-white tracking-tight">{pkg.price}</span>
-          <span className="text-sm text-gray-500 font-bold uppercase tracking-widest">/ ay</span>
-        </div>
-
-        <div className="space-y-6 mb-12">
-          <div className="flex items-center gap-4">
-             <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center text-brand border border-white/10">
-               <MessageSquare className="w-5 h-5" />
-             </div>
-             <div>
-               <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-0.5">MESAJ HAKKI</p>
-               <p className="text-lg font-bold text-white">{pkg.messages}</p>
-             </div>
-          </div>
-          <div className="flex items-center gap-4">
-             <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center text-blue-400 border border-white/10">
-               <Phone className="w-5 h-5" />
-             </div>
-             <div>
-               <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-0.5">SESLİ GÖRÜŞME</p>
-               <p className="text-lg font-bold text-white">{pkg.minutes} Dakika</p>
-             </div>
-          </div>
-        </div>
-
-        <div className="pt-6 border-t border-white/5 mb-10">
-          <p className="text-xs text-gray-400 font-medium mb-1">BİRİM MALİYETLER</p>
-          <p className="text-sm font-bold text-gray-300">{pkg.perUnits}</p>
-        </div>
-      </div>
-
-      <button className="relative z-10 w-full py-5 bg-white text-dark rounded-2xl font-bold text-sm hover:bg-brand hover:text-white transition-all shadow-xl active:scale-95">
-        Hemen Başla
+      <button
+        className={`w-full py-4 rounded-2xl font-bold text-sm transition-all flex items-center justify-center gap-2 group/btn ${
+          isPopular
+            ? 'bg-blue-600 text-white shadow-xl shadow-blue-500/20 hover:bg-blue-700'
+            : 'bg-dark text-white hover:bg-brand active:scale-95'
+        }`}
+      >
+        Satın Al <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
       </button>
     </motion.div>
   );

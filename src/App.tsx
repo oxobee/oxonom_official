@@ -19,6 +19,7 @@ import SectorDetailPage from './pages/SectorDetailPage';
 import PackagesPage from './pages/PackagesPage';
 import MessagingPackagesPage from './pages/MessagingPackagesPage';
 import VoicePackagesPage from './pages/VoicePackagesPage';
+import ComboPackagesPage from './pages/ComboPackagesPage';
 import IntegrationsPage from './pages/IntegrationsPage';
 
 function ScrollToTop() {
@@ -88,6 +89,7 @@ export default function App() {
             <Route path="/:categorySlug/:slug" element={<BlogDetailPage />} />
             <Route path="/mesajlasma-paketleri" element={<MessagingPackagesPage />} />
             <Route path="/ses-paketleri" element={<VoicePackagesPage />} />
+            <Route path="/combo-paketler" element={<ComboPackagesPage />} />
             
             {/* Catch-all route for unhandled paths -> 404 */}
             <Route path="*" element={<NotFoundPage />} />

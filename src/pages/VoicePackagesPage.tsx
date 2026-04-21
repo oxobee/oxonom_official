@@ -196,16 +196,22 @@ function VoicePackageCard({ pkg, index }: { pkg: any, index: number }) {
           </div>
         </div>
 
-        <div className="space-y-3 px-1">
-          <div className="flex items-center gap-3">
-            <Check className="w-5 h-5 text-green-500 shrink-0" />
-            <span className="text-sm font-bold text-gray-600 tracking-tight">{pkg.pricePerMin}</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <Check className="w-5 h-5 text-green-500 shrink-0" />
-            <span className="text-sm font-bold text-gray-600 tracking-tight">{pkg.desc}</span>
-          </div>
-        </div>
+        <ul className="space-y-2.5 px-1 mb-2">
+          <li className="flex items-center gap-3">
+            <Zap className="w-4 h-4 text-brand shrink-0" />
+            <span className="text-sm font-bold text-dark">{pkg.minutes} Dakika/ay</span>
+          </li>
+          <li className="flex items-center gap-3">
+            <Check className="w-4 h-4 text-brand shrink-0" />
+            <span className="text-sm font-medium text-gray-600">{pkg.pricePerMin}</span>
+          </li>
+          {pkg.features?.slice(1).map((f: string, fi: number) => (
+            <li key={fi} className="flex items-start gap-3">
+              <Check className="w-4 h-4 text-green-500 shrink-0 mt-0.5" />
+              <span className="text-sm text-gray-600 font-medium">{f}</span>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <button className={`w-full py-5 rounded-2xl font-bold text-sm transition-all flex items-center justify-center gap-2 group/btn ${

@@ -24,45 +24,291 @@ import {
 
 export const pricing = {
   payAsYouGo: {
-    name: 'Kullandıkça Öde',
-    price: '$4.99',
-    unit: 'Dakika',
-    description: 'Faturasız Tarife'
+    msg: { label: 'Mesaj', price: '$0.015', unit: 'mesaj başına' },
+    voice: { label: 'Dakika', price: '$0.80', unit: 'dakika başına' },
   },
+
+  // ─── SESLI ARAMA ───
   voice: [
-    { id: 'mini', name: 'Mini', minutes: '200', pricePerMin: '$0.50', totalPrice: '$99', upsell: 'Standart → %34 ucuz', desc: 'Akıllı Randevu Asistanı' },
-    { id: 'standart', name: 'Standart', minutes: '600', pricePerMin: '$0.33', totalPrice: '$199', upsell: 'Pro → %9 ucuz', popular: true, desc: '%100 İnsan Ses Kalitesi + Akıllı Randevu Asistanı' },
-    { id: 'pro', name: 'Professional', minutes: '1.500', pricePerMin: '$0.30', totalPrice: '$449', upsell: 'Scale → %40 ucuz', desc: '%100 İnsan Ses Kalitesi + Akıllı Randevu Asistanı' },
-    { id: 'scale', name: 'Scale', minutes: '5.000', pricePerMin: '$0.18', totalPrice: '$899', upsell: '-', desc: '%100 İnsan Ses Kalitesi + Akıllı Randevu Asistanı' }
+    {
+      id: 'mini',
+      name: 'Mini',
+      minutes: '200',
+      pricePerMin: '$0.495/dk',
+      totalPrice: '$99',
+      upsell: 'Standart → 3x kapasite, %33 ucuz',
+      popular: false,
+      desc: 'Standart AI Sesi + Randevu Asistanı',
+      features: [
+        '200 dakika/ay',
+        'Standart AI ses kalitesi',
+        '1 senaryo',
+        'Türkçe + 1 ek dil',
+        'Temel randevu asistanı',
+        'Aylık rapor',
+        'E-posta destek',
+      ]
+    },
+    {
+      id: 'standart',
+      name: 'Standart',
+      minutes: '600',
+      pricePerMin: '$0.33/dk',
+      totalPrice: '$199',
+      upsell: 'Pro → 2.5x kapasite, %9 ucuz',
+      popular: true,
+      desc: '%100 İnsan Sesi + Gelen & Giden Arama',
+      features: [
+        '600 dakika/ay',
+        '%100 İnsan Sesi Kalitesi',
+        '5 senaryo',
+        '30 dil desteği',
+        'Gelen + Giden arama',
+        'CRM entegrasyonu (HubSpot, Zapier)',
+        'Temel duygu analizi',
+        'Tam randevu asistanı',
+        'Haftalık dashboard',
+        'Canlı sohbet destek',
+      ]
+    },
+    {
+      id: 'pro',
+      name: 'Professional',
+      minutes: '1.500',
+      pricePerMin: '$0.299/dk',
+      totalPrice: '$449',
+      upsell: 'Scale → 3.3x kapasite',
+      popular: false,
+      desc: '%100 İnsan Sesi + Duygu Tespiti + 60 Dil',
+      features: [
+        '1.500 dakika/ay',
+        '%100 İnsan Sesi + Duygu Analizi',
+        'Sınırsız senaryo',
+        '60 dil desteği',
+        'Gelen + Giden + Öncelikli sıra',
+        'CRM & ERP entegrasyonu (Salesforce, Zoho vb.)',
+        'Detaylı duygu raporu',
+        'Özel marka sesi',
+        'A/B test senaryosu',
+        'Günlük rapor + API erişimi',
+        'Öncelikli destek + WhatsApp hattı',
+      ]
+    },
+    {
+      id: 'scale',
+      name: 'Scale',
+      minutes: '5.000',
+      pricePerMin: '$0.239/dk',
+      totalPrice: '$1.199',
+      upsell: '-',
+      popular: false,
+      desc: 'Kurumsal + Özel Ses Klonlama + Dedike Altyapı',
+      features: [
+        '5.000 dakika/ay',
+        'Kurumsal AI + Özel ses klonlama',
+        'Sınırsız senaryo + Özel eğitim',
+        '60+ dil desteği',
+        'Dedike altyapı',
+        'CRM & ERP + Custom API',
+        'Duygu analizi + NPS',
+        'White-label',
+        '%99.9 SLA garantisi',
+        'Real-time dashboard',
+        'Dedike hesap yöneticisi',
+      ]
+    },
   ],
-  messaging: {
-    individual: [],
-    social: [
-      { id: 's-starter', name: 'Social Starter', messages: '1.000', price: '$29', perMsg: '$0.029', upsell: 'Growth → %41 ucuz', desc: 'AI Akıllı Yanıt' },
-      { id: 's-growth', name: 'Social Growth', messages: '4.000', price: '$69', perMsg: '$0.017', upsell: 'Pro → %11 ucuz', popular: true, desc: 'AI Akıllı Yanıt' },
-      { id: 's-pro', name: 'Social Professional', messages: '10.000', price: '$149', perMsg: '$0.015', upsell: 'Unlimited → Sınırsız mesaj', desc: 'AI Akıllı Yanıt' },
-      { id: 's-unlimited', name: 'Social Unlimited', messages: 'Sınırsız', price: '$349', perMsg: 'En Düşük', upsell: '-', desc: 'AI Akıllı Yanıt' }
-    ],
-    dmSuite: [
-      { id: 'dm-starter', name: 'DM Starter', messages: '1.500', price: '$89', perMsg: '$0.059', upsell: 'Growth → %32 ucuz', desc: 'AI Akıllı Yanıt' },
-      { id: 'dm-growth', name: 'DM Growth', messages: '4.000', price: '$159', perMsg: '$0.040', upsell: 'Pro → %30 ucuz', popular: true, desc: 'AI Akıllı Yanıt' },
-      { id: 'dm-pro', name: 'DM Professional', messages: '10.000', price: '$279', perMsg: '$0.028', upsell: 'Unlimited → Sınırsız mesaj', desc: 'AI Akıllı Yanıt' },
-      { id: 'dm-unlimited', name: 'DM Unlimited', messages: 'Sınırsız', price: '$449', perMsg: 'En Düşük', upsell: '-', desc: 'AI Akıllı Yanıt' }
-    ],
-    omni: [
-      { id: 'omni-starter', name: 'Omni Starter', messages: '2.000', price: '$149', perMsg: '$0.075', upsell: 'Growth → %45 ucuz', desc: 'AI Akıllı Yanıt' },
-      { id: 'omni-growth', name: 'Omni Growth', messages: '6.000', price: '$249', perMsg: '$0.041', upsell: 'Pro → %10 ucuz', popular: true, desc: 'AI Akıllı Yanıt' },
-      { id: 'omni-pro', name: 'Omni Professional', messages: '12.000', price: '$449', perMsg: '$0.037', upsell: 'Unlimited → Sınırsız mesaj', desc: 'AI Akıllı Yanıt' },
-      { id: 'omni-unlimited', name: 'Omni Unlimited', messages: 'Sınırsız', price: '$699', perMsg: 'En Düşük', upsell: '-', desc: 'AI Akıllı Yanıt' }
-    ],
-    fullStack: []
-  },
-  combo: [],
+
+  // ─── MESAJLAŞMA (Birleşik — tüm platformlar) ───
+  messaging: [
+    {
+      id: 'msg-starter',
+      name: 'Starter',
+      messages: '2.000',
+      price: '$19',
+      perMsg: '$0.0095/mesaj',
+      upsell: 'Growth → birim %15 ucuz',
+      popular: false,
+      channels: ['instagram', 'whatsapp', 'web'],
+      features: [
+        '2.000 mesaj/ay',
+        'Instagram, WhatsApp, Web Chat',
+        'Temel AI akıllı yanıt',
+        '1 oto-yanıt senaryosu',
+        '30 gün sohbet geçmişi',
+        'E-posta destek',
+      ]
+    },
+    {
+      id: 'msg-growth',
+      name: 'Growth',
+      messages: '6.000',
+      price: '$49',
+      perMsg: '$0.0081/mesaj',
+      upsell: 'Pro → birim %21 ucuz',
+      popular: true,
+      channels: ['instagram', 'whatsapp', 'facebook', 'web'],
+      features: [
+        '6.000 mesaj/ay',
+        'Instagram, WhatsApp, Facebook, Web Chat',
+        'Gelişmiş AI akıllı yanıt',
+        '5 oto-yanıt senaryosu',
+        'CRM entegrasyonu (HubSpot, Zapier)',
+        'Temel duygu analizi',
+        '90 gün sohbet geçmişi',
+        'Haftalık analitik raporu',
+        'Canlı sohbet destek',
+      ]
+    },
+    {
+      id: 'msg-pro',
+      name: 'Professional',
+      messages: '20.000',
+      price: '$129',
+      perMsg: '$0.0065/mesaj',
+      upsell: 'Business → Sınırsız özgürlük',
+      popular: false,
+      channels: ['instagram', 'whatsapp', 'facebook', 'web', 'tiktok'],
+      features: [
+        '20.000 mesaj/ay',
+        'Tüm kanallar + TikTok',
+        'Üret-Sat AI (satış odaklı)',
+        'Sınırsız oto-yanıt senaryosu',
+        'CRM entegrasyonu (Salesforce, HubSpot, Zoho)',
+        'Detaylı duygu analizi raporu',
+        'Öncelikli mesaj sıralama',
+        'Özel marka sesi ve tonu',
+        '365 gün sohbet geçmişi',
+        'Günlük rapor + Dashboard',
+        'Öncelikli destek + WhatsApp hattı',
+      ]
+    },
+    {
+      id: 'msg-business',
+      name: 'Business',
+      messages: 'Sınırsız',
+      price: '$299',
+      perMsg: 'En Düşük',
+      upsell: '-',
+      popular: false,
+      channels: ['instagram', 'whatsapp', 'facebook', 'web', 'tiktok', 'api'],
+      features: [
+        'Sınırsız mesaj',
+        'Tüm kanallar + API erişimi',
+        'Kurumsal AI (GPT-4 seviye)',
+        'Sınırsız senaryo + Özel eğitim',
+        'CRM & ERP + Custom webhook',
+        'Özel yapay zeka eğitimi (kendi veriniz)',
+        'White-label',
+        'Adil kullanım kotası uygulanır',
+        '%99.9 SLA garantisi',
+        'Dedike hesap yöneticisi',
+      ]
+    },
+  ],
+
+  // ─── COMBO (Ses + Mesajlaşma) ───
+  combo: [
+    {
+      id: 'combo-starter',
+      name: 'Combo Başlangıç',
+      price: '$89',
+      minutes: '200',
+      messages: '2.000',
+      saving: '$29 tasarruf (%25)',
+      originalPrice: '$118',
+      upsell: 'Combo Growth → 4x kapasite, %24 tasarruf',
+      popular: false,
+      channels: ['instagram', 'whatsapp', 'web'],
+      features: [
+        '200 dakika sesli arama',
+        '2.000 mesaj',
+        'Instagram, WhatsApp, Web Chat',
+        'Temel AI yanıt (sesli + yazılı)',
+        '1+1 senaryo (sesli & mesaj)',
+        'Türkçe + 1 dil',
+        'E-posta destek',
+      ]
+    },
+    {
+      id: 'combo-growth',
+      name: 'Combo Growth',
+      price: '$189',
+      minutes: '600',
+      messages: '6.000',
+      saving: '$59 tasarruf (%24)',
+      originalPrice: '$248',
+      upsell: 'Combo Pro → 2.5x+, %16 tasarruf',
+      popular: true,
+      channels: ['instagram', 'whatsapp', 'facebook', 'web'],
+      features: [
+        '600 dakika sesli arama',
+        '6.000 mesaj',
+        'Tüm ana kanallar',
+        'Gelişmiş AI yanıt (sesli + yazılı)',
+        '5+5 senaryo (sesli & mesaj)',
+        'CRM entegrasyonu (HubSpot, Zapier)',
+        'Temel duygu analizi',
+        '30 dil desteği',
+        'Canlı sohbet destek',
+      ]
+    },
+    {
+      id: 'combo-pro',
+      name: 'Combo Professional',
+      price: '$449',
+      minutes: '1.500',
+      messages: '20.000',
+      saving: '$129 tasarruf (%22)',
+      originalPrice: '$578',
+      upsell: 'Combo Ultimate → Sınırsız mesaj + 3.3x ses',
+      popular: false,
+      channels: ['instagram', 'whatsapp', 'facebook', 'web', 'tiktok'],
+      features: [
+        '1.500 dakika sesli arama',
+        '20.000 mesaj',
+        'Tüm kanallar + TikTok + API',
+        'Üret-Sat AI (satış odaklı)',
+        'Sınırsız senaryo',
+        'CRM & ERP entegrasyonu',
+        'Detaylı duygu analizi',
+        'Özel marka sesi ve tonu',
+        '60 dil desteği',
+        'Öncelikli destek + WhatsApp hattı',
+      ]
+    },
+    {
+      id: 'combo-ultimate',
+      name: 'Combo Ultimate',
+      price: '$1.099',
+      minutes: '5.000',
+      messages: 'Sınırsız',
+      saving: '$399 tasarruf (%27)',
+      originalPrice: '$1.498',
+      upsell: '-',
+      popular: false,
+      channels: ['instagram', 'whatsapp', 'facebook', 'web', 'tiktok', 'api'],
+      features: [
+        '5.000 dakika sesli arama',
+        'Sınırsız mesaj',
+        'Tüm kanallar + Custom API',
+        'Kurumsal AI (GPT-4 seviye)',
+        'Özel AI eğitimi (kendi verisi)',
+        'White-label',
+        'Dedike altyapı',
+        'Sesli marka klonu',
+        '%99.9 SLA garantisi',
+        'Dedike hesap yöneticisi',
+      ]
+    },
+  ],
+
   notes: [
     'Kullanılmayan dakikalar/mesajlar: Bir sonraki aya %20\'si devreder.',
     'Sınırsız paketlerde adil kullanım kotası uygulanabilir.'
   ]
 };
+
 
 export const sectors = [
   {

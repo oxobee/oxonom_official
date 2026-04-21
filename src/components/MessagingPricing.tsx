@@ -56,7 +56,7 @@ export default function MessagingPricing() {
         </div>
 
         <div className="mb-12 max-w-5xl mx-auto space-y-6">
-          {pricing.messaging.individual.slice(0, 4).map((pkg, i) => (
+          {(pricing.messaging as any[]).slice(0, 4).map((pkg, i) => (
             <motion.div
               key={pkg.id}
               initial={{ opacity: 0, y: 20 }}
