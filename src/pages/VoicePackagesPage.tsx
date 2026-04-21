@@ -3,7 +3,10 @@ import { useSEO } from '../hooks/useSEO';
 import { 
   ArrowRight,
   Phone,
-  CreditCard
+  CreditCard,
+  Mic2,
+  Signal,
+  Headphones
 } from 'lucide-react';
 import { pricing } from '../constants';
 import JsonLd from '../components/JsonLd';
