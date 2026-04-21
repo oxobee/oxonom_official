@@ -36,7 +36,7 @@ export const pricing = {
       minutes: '200',
       pricePerMin: '$0.495/dk',
       totalPrice: '$99',
-      upsell: 'Standart → 3x kapasite, %33 ucuz',
+      upsell: 'Standart → birim %33 daha ucuz ($0.33/dk)',
       popular: false,
       desc: 'Standart AI Sesi + Randevu Asistanı',
       features: [
@@ -55,7 +55,7 @@ export const pricing = {
       minutes: '600',
       pricePerMin: '$0.33/dk',
       totalPrice: '$199',
-      upsell: 'Pro → 2.5x kapasite, %9 ucuz',
+      upsell: 'Pro → birim %26 daha ucuz ($0.246/dk)',
       popular: true,
       desc: '%100 İnsan Sesi + Gelen & Giden Arama',
       features: [
@@ -75,9 +75,9 @@ export const pricing = {
       id: 'pro',
       name: 'Professional',
       minutes: '1.500',
-      pricePerMin: '$0.299/dk',
-      totalPrice: '$449',
-      upsell: 'Scale → 3.3x kapasite',
+      pricePerMin: '$0.246/dk',
+      totalPrice: '$369',
+      upsell: 'Scale → birim %8 daha ucuz ($0.226/dk)',
       popular: false,
       desc: '%100 İnsan Sesi + Duygu Tespiti + 60 Dil',
       features: [
@@ -98,8 +98,8 @@ export const pricing = {
       id: 'scale',
       name: 'Scale',
       minutes: '5.000',
-      pricePerMin: '$0.239/dk',
-      totalPrice: '$1.199',
+      pricePerMin: '$0.226/dk',
+      totalPrice: '$1.129',
       upsell: '-',
       popular: false,
       desc: 'Kurumsal + Özel Ses Klonlama + Dedike Altyapı',
@@ -127,7 +127,7 @@ export const pricing = {
       messages: '2.000',
       price: '$19',
       perMsg: '$0.0095/mesaj',
-      upsell: 'Growth → birim %15 ucuz',
+      upsell: 'Growth → birim %15 daha ucuz ($0.0081/msg)',
       popular: false,
       channels: ['instagram', 'whatsapp', 'web'],
       features: [
@@ -145,7 +145,7 @@ export const pricing = {
       messages: '6.000',
       price: '$49',
       perMsg: '$0.0081/mesaj',
-      upsell: 'Pro → birim %21 ucuz',
+      upsell: 'Pro → birim %20 daha ucuz ($0.0065/msg)',
       popular: true,
       channels: ['instagram', 'whatsapp', 'facebook', 'web'],
       features: [
@@ -166,7 +166,7 @@ export const pricing = {
       messages: '20.000',
       price: '$129',
       perMsg: '$0.0065/mesaj',
-      upsell: 'Business → Sınırsız özgürlük',
+      upsell: 'Business → Sınırsız + en düşük birim fiyat',
       popular: false,
       channels: ['instagram', 'whatsapp', 'facebook', 'web', 'tiktok'],
       features: [

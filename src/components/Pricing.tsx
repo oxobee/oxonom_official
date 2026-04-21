@@ -93,33 +93,37 @@ export default function Pricing() {
                   {plans.slice(0, 4).map((pkg: any) => (
                     <div
                       key={pkg.id}
-                      className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm transition-colors ${
+                      className={`flex items-center justify-between px-3.5 py-3 rounded-xl text-sm transition-colors ${
                         pkg.popular ? 'bg-dark text-white' : 'bg-gray-50 hover:bg-gray-100'
                       }`}
                     >
-                      <div className="flex items-center gap-2.5">
-                        {tab.key === 'voice' && (
-                          <span className={`text-xs font-bold ${pkg.popular ? 'text-gray-300' : 'text-gray-500'}`}>
-                            {pkg.minutes} dk
-                          </span>
-                        )}
-                        {tab.key === 'messaging' && (
-                          <span className={`text-xs font-bold ${pkg.popular ? 'text-gray-300' : 'text-gray-500'}`}>
-                            {pkg.messages} {pkg.messages !== 'Sınırsız' ? 'msg' : ''}
-                          </span>
-                        )}
-                        {tab.key === 'combo' && (
-                          <span className={`text-xs font-bold ${pkg.popular ? 'text-gray-300' : 'text-gray-500'}`}>
-                            {pkg.minutes}dk + {pkg.messages !== 'Sınırsız' ? pkg.messages + 'msg' : '∞ msg'}
-                          </span>
-                        )}
-                        {pkg.popular && (
-                          <span className="text-[9px] font-bold text-brand bg-white/10 px-1.5 py-0.5 rounded-md uppercase">Popüler</span>
-                        )}
+                      {/* Capacity */}
+                      <div className="flex flex-col">
+                        <span className={`text-sm font-black ${
+                          pkg.popular ? 'text-white' : 'text-dark'
+                        }`}>
+                          {tab.key === 'voice' && `${pkg.minutes} dk`}
+                          {tab.key === 'messaging' && `${pkg.messages}${pkg.messages !== 'Sınırsız' ? ' msg' : ''}`}
+                          {tab.key === 'combo' && `${pkg.minutes}dk + ${pkg.messages !== 'Sınırsız' ? pkg.messages + 'msg' : '∞ msg'}`}
+                          {pkg.popular && (
+                            <span className="ml-1.5 text-[8px] font-bold text-brand bg-white/10 px-1.5 py-0.5 rounded-md uppercase align-middle">Popüler</span>
+                          )}
+                        </span>
+                        {/* Unit price — key line */}
+                        <span className={`text-[10px] font-bold ${
+                          pkg.popular ? 'text-gray-400' : 'text-gray-400'
+                        }`}>
+                          {tab.key === 'voice' && pkg.pricePerMin}
+                          {tab.key === 'messaging' && pkg.perMsg}
+                          {tab.key === 'combo' && pkg.saving}
+                        </span>
                       </div>
-                      <span className={`font-black text-sm ${pkg.popular ? 'text-white' : 'text-dark'}`}>
+                      {/* Monthly price */}
+                      <span className={`font-black text-sm ${
+                        pkg.popular ? 'text-white' : 'text-dark'
+                      }`}>
                         {tab.key === 'voice' ? pkg.totalPrice : pkg.price}
-                        <span className={`text-[10px] font-bold ml-0.5 ${pkg.popular ? 'text-gray-400' : 'text-gray-400'}`}>/ay</span>
+                        <span className="text-[10px] font-bold text-gray-400 ml-0.5">/ay</span>
                       </span>
                     </div>
                   ))}
