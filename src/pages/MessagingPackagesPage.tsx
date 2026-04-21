@@ -182,66 +182,76 @@ function MessagingCard({ pkg, index }: { pkg: any; index: number }) {
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.08 }}
-      className={`relative bg-white rounded-[2rem] p-7 border flex flex-col h-full transition-all duration-300 ${
+      className={`relative bg-white rounded-[2rem] border flex flex-col overflow-hidden transition-all duration-300 ${
         isPopular
-          ? 'ring-2 ring-blue-500 border-blue-500 scale-[1.02] shadow-2xl shadow-blue-500/15'
-          : 'border-gray-100 shadow-xl shadow-dark/5 hover:border-gray-300'
+          ? 'ring-2 ring-blue-500 border-blue-500 shadow-2xl shadow-blue-500/15 scale-[1.03] z-10'
+          : 'border-gray-100 shadow-xl shadow-dark/5 hover:border-gray-300 hover:-translate-y-1'
       }`}
     >
       {isPopular && (
-        <div className="absolute top-0 right-7 -translate-y-1/2 px-4 py-1.5 bg-blue-600 text-white text-[10px] font-bold uppercase tracking-widest rounded-full shadow-lg">
+        <div className="px-5 py-2 bg-blue-600 text-white text-[10px] font-bold uppercase tracking-widest text-center">
           EN ÇOK TERCİH EDİLEN
         </div>
       )}
 
-      {/* Price block */}
-      <div className="mb-5">
-        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">{pkg.name}</p>
-        <div className="flex items-baseline gap-1 mb-1">
-          <span className="text-4xl font-black text-dark tracking-tight">{pkg.price}</span>
-          <span className="text-sm text-gray-400 font-bold">/ay</span>
+      <div className="p-7 flex flex-col flex-grow">
+        {/* Plan name */}
+        <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-3">{pkg.name}</p>
+
+        {/* Capacity BIG */}
+        <div className="mb-4">
+          <span className="text-5xl font-black text-dark tracking-tight">{pkg.messages}</span>
+          <span className="text-sm font-bold text-gray-400 ml-1">{pkg.messages === 'Sınırsız' ? '' : 'mesaj'}</span>
         </div>
-        <p className="text-xs text-gray-400 font-medium">{pkg.perMsg} · {pkg.messages} mesaj</p>
-      </div>
 
-      {/* Upsell badge */}
-      {pkg.upsell && pkg.upsell !== '-' && (
-        <div className="inline-flex items-center gap-1 bg-blue-50 text-blue-600 border border-blue-100 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wide mb-5">
-          <ArrowRight className="w-3 h-3" /> {pkg.upsell}
+        <div className="border-t border-gray-100 mb-4" />
+
+        {/* Unit price */}
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Mesaj Başına</span>
+          <span className="text-base font-black text-dark">{pkg.perMsg}</span>
         </div>
-      )}
 
-      {/* Channels */}
-      <div className="flex flex-wrap gap-1.5 mb-5">
-        {pkg.channels.map((ch: string) => {
-          const meta = CHANNEL_META[ch];
-          return meta ? (
-            <span key={ch} className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold border ${meta.color}`}>
-              {meta.icon} {meta.label}
-            </span>
-          ) : null;
-        })}
+        {/* Monthly price */}
+        <div className="flex items-center justify-between mb-5">
+          <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Aylık</span>
+          <div className="flex items-baseline gap-1">
+            <span className="text-2xl font-black text-dark">{pkg.price}</span>
+            <span className="text-xs text-gray-400 font-bold">/ay</span>
+          </div>
+        </div>
+
+        {/* Channel badges */}
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {pkg.channels.map((ch: string) => {
+            const meta = CHANNEL_META[ch];
+            return meta ? (
+              <span key={ch} className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold border ${meta.color}`}>
+                {meta.icon} {meta.label}
+              </span>
+            ) : null;
+          })}
+        </div>
+
+        {/* Upsell tip */}
+        {pkg.upsell && pkg.upsell !== '-' && (
+          <div className="mb-4 px-3 py-2.5 bg-blue-50 border border-blue-100 rounded-xl">
+            <p className="text-[10px] font-bold text-blue-600 uppercase tracking-widest">↗ {pkg.upsell}</p>
+          </div>
+        )}
+
+        <div className="flex-grow" />
+
+        <button
+          className={`w-full py-4 rounded-2xl font-bold text-sm transition-all flex items-center justify-center gap-2 group/btn mt-2 ${
+            isPopular
+              ? 'bg-blue-600 text-white shadow-xl shadow-blue-500/20 hover:bg-blue-700'
+              : 'bg-gray-50 text-dark hover:bg-dark hover:text-white border border-gray-200'
+          }`}
+        >
+          Satın Al <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+        </button>
       </div>
-
-      {/* Features */}
-      <ul className="space-y-2.5 flex-grow mb-7">
-        {pkg.features.map((f: string, i: number) => (
-          <li key={i} className="flex items-start gap-2.5">
-            <Check className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
-            <span className="text-sm text-gray-600 font-medium">{f}</span>
-          </li>
-        ))}
-      </ul>
-
-      <button
-        className={`w-full py-4 rounded-2xl font-bold text-sm transition-all flex items-center justify-center gap-2 group/btn ${
-          isPopular
-            ? 'bg-blue-600 text-white shadow-xl shadow-blue-500/20 hover:bg-blue-700'
-            : 'bg-dark text-white hover:bg-brand active:scale-95'
-        }`}
-      >
-        Satın Al <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-      </button>
     </motion.div>
   );
 }

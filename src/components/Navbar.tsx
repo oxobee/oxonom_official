@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronDown, Menu, X, ArrowRight, Sparkles, LayoutGrid, Zap, Phone, Puzzle } from 'lucide-react';
+import { ChevronDown, Menu, X, ArrowRight, Sparkles, LayoutGrid, Zap, Phone, Puzzle, Star } from 'lucide-react';
 import { sectors } from '../constants';
 import { cn } from '../lib/utils';
 
@@ -173,21 +173,21 @@ export default function Navbar() {
                     exit={{ opacity: 0, y: 15, scale: 0.98 }}
                     className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[650px] bg-white/95 backdrop-blur-3xl rounded-[2.5rem] shadow-[0_40px_80px_-15px_rgba(0,0,0,0.15)] border border-white/40 overflow-hidden p-2"
                   >
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-3 gap-2">
                        <Link
                         to="/ses-paketleri"
                         onClick={() => setIsPackagesMegaMenuOpen(false)}
-                        className="group relative flex flex-col gap-3 p-8 rounded-[2rem] hover:bg-brand/5 transition-all duration-500 overflow-hidden"
+                        className="group relative flex flex-col gap-3 p-6 rounded-[2rem] hover:bg-brand/5 transition-all duration-500 overflow-hidden"
                       >
                         <div className="absolute top-0 right-0 w-32 h-32 bg-brand/5 rounded-full blur-3xl -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700" />
-                        <div className="w-14 h-14 bg-brand/10 rounded-2xl flex items-center justify-center text-brand group-hover:bg-brand group-hover:text-white transition-all duration-500 shadow-sm">
-                          <Zap className="w-7 h-7" />
+                        <div className="w-12 h-12 bg-brand/10 rounded-2xl flex items-center justify-center text-brand group-hover:bg-brand group-hover:text-white transition-all duration-500 shadow-sm">
+                          <Zap className="w-6 h-6" />
                         </div>
                         <div>
-                          <h4 className="text-lg font-bold text-dark group-hover:text-brand transition-colors mb-1">Ses Paketleri</h4>
-                          <p className="text-xs text-gray-500 font-medium leading-relaxed">Yapay zeka otonom sesli asistan <br /> dakika bazlı özel tarifeler.</p>
+                          <h4 className="text-base font-bold text-dark group-hover:text-brand transition-colors mb-1">Ses Paketleri</h4>
+                          <p className="text-xs text-gray-500 font-medium leading-relaxed">Dakika bazlı AI<br />sesli asistan tarifeleri.</p>
                         </div>
-                        <div className="pt-4 flex items-center gap-2 text-[10px] font-bold text-brand uppercase tracking-widest opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
+                        <div className="flex items-center gap-2 text-[10px] font-bold text-brand uppercase tracking-widest opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
                           İncele <ArrowRight className="w-3 h-3" />
                         </div>
                       </Link>
@@ -195,17 +195,36 @@ export default function Navbar() {
                       <Link
                         to="/mesajlasma-paketleri"
                         onClick={() => setIsPackagesMegaMenuOpen(false)}
-                        className="group relative flex flex-col gap-3 p-8 rounded-[2rem] hover:bg-blue-500/5 transition-all duration-500 overflow-hidden"
+                        className="group relative flex flex-col gap-3 p-6 rounded-[2rem] hover:bg-blue-500/5 transition-all duration-500 overflow-hidden"
                       >
                         <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-3xl -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700" />
-                        <div className="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-all duration-500 shadow-sm">
-                          <Sparkles className="w-7 h-7" />
+                        <div className="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-all duration-500 shadow-sm">
+                          <Sparkles className="w-6 h-6" />
                         </div>
                         <div>
-                          <h4 className="text-lg font-bold text-dark group-hover:text-blue-500 transition-colors mb-1">Mesaj Paketleri</h4>
-                          <p className="text-xs text-gray-500 font-medium leading-relaxed">WhatsApp, Instagram ve <br /> Omnichannel çözüm paketleri.</p>
+                          <h4 className="text-base font-bold text-dark group-hover:text-blue-500 transition-colors mb-1">Mesaj Paketleri</h4>
+                          <p className="text-xs text-gray-500 font-medium leading-relaxed">WhatsApp, Instagram<br />ve tüm kanallar.</p>
                         </div>
-                        <div className="pt-4 flex items-center gap-2 text-[10px] font-bold text-blue-500 uppercase tracking-widest opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
+                        <div className="flex items-center gap-2 text-[10px] font-bold text-blue-500 uppercase tracking-widest opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
+                          İncele <ArrowRight className="w-3 h-3" />
+                        </div>
+                      </Link>
+
+                      <Link
+                        to="/combo-paketler"
+                        onClick={() => setIsPackagesMegaMenuOpen(false)}
+                        className="group relative flex flex-col gap-3 p-6 rounded-[2rem] hover:bg-orange-500/5 transition-all duration-500 overflow-hidden bg-gradient-to-b from-orange-50/50 to-transparent border border-orange-100"
+                      >
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/5 rounded-full blur-3xl -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700" />
+                        <div className="w-12 h-12 bg-orange-500/10 rounded-2xl flex items-center justify-center text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-all duration-500 shadow-sm">
+                          <Star className="w-6 h-6" />
+                        </div>
+                        <div>
+                          <div className="inline-block px-2 py-0.5 bg-orange-500 text-white text-[8px] font-bold rounded-full mb-1 uppercase tracking-wider">Avantajlı</div>
+                          <h4 className="text-base font-bold text-dark group-hover:text-orange-500 transition-colors mb-1">Combo Paketler</h4>
+                          <p className="text-xs text-gray-500 font-medium leading-relaxed">Ses + Mesajlaşma<br />%22-27 tasarruf.</p>
+                        </div>
+                        <div className="flex items-center gap-2 text-[10px] font-bold text-orange-500 uppercase tracking-widest opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
                           İncele <ArrowRight className="w-3 h-3" />
                         </div>
                       </Link>
@@ -345,7 +364,7 @@ export default function Navbar() {
                     </div>
                   </div>
                   
-                  <div className="grid grid-cols-2 gap-2 relative z-10 mt-2">
+                  <div className="grid grid-cols-3 gap-2 relative z-10 mt-2">
                     <Link to="/ses-paketleri" className="p-3 bg-white/5 rounded-xl border border-white/10 flex flex-col items-center gap-2 hover:bg-white/10 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                       <Zap className="w-4 h-4 text-brand" />
                       <span className="text-xs font-bold text-white">Ses</span>
@@ -353,6 +372,10 @@ export default function Navbar() {
                     <Link to="/mesajlasma-paketleri" className="p-3 bg-white/5 rounded-xl border border-white/10 flex flex-col items-center gap-2 hover:bg-white/10 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                       <Sparkles className="w-4 h-4 text-blue-400" />
                       <span className="text-xs font-bold text-white">Mesaj</span>
+                    </Link>
+                    <Link to="/combo-paketler" className="p-3 bg-orange-500/10 rounded-xl border border-orange-500/20 flex flex-col items-center gap-2 hover:bg-orange-500/20 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                      <Star className="w-4 h-4 text-orange-400" />
+                      <span className="text-xs font-bold text-orange-300">Combo</span>
                     </Link>
                   </div>
                   <Link to="/paketler" className="relative z-10 w-full py-3 bg-white/10 rounded-xl border border-white/10 flex items-center justify-center gap-2 hover:bg-white/20 transition-colors text-white text-xs font-bold mt-1" onClick={() => setIsMobileMenuOpen(false)}>

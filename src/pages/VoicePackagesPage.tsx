@@ -1,16 +1,8 @@
 import { motion } from 'motion/react';
 import { useSEO } from '../hooks/useSEO';
 import { 
-  Check, 
-  ArrowRight, 
-  Sparkles, 
-  Zap, 
-  ShieldCheck, 
-  Clock,
+  ArrowRight,
   Phone,
-  Mic2,
-  Headphones,
-  Signal,
   CreditCard
 } from 'lucide-react';
 import { pricing } from '../constants';
@@ -155,72 +147,70 @@ export default function VoicePackagesPage() {
 }
 
 function VoicePackageCard({ pkg, index }: { pkg: any, index: number }) {
-  const isMostPopular = pkg.popular;
-
+  const isPopular = pkg.popular;
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
-      className={`relative bg-white rounded-[2rem] p-8 border border-gray-100 shadow-xl shadow-dark/5 flex flex-col h-full group transition-all duration-300 ${
-        isMostPopular ? 'ring-2 ring-brand ring-inset scale-[1.05] z-10' : 'hover:border-gray-300 hover:-translate-y-1'
+      className={`relative bg-white rounded-[2rem] border flex flex-col overflow-hidden transition-all duration-300 ${
+        isPopular
+          ? 'ring-2 ring-brand border-brand shadow-2xl shadow-brand/15 scale-[1.03] z-10'
+          : 'border-gray-100 shadow-xl shadow-dark/5 hover:border-gray-300 hover:-translate-y-1'
       }`}
     >
-      {isMostPopular && (
-        <div className="absolute top-0 right-8 -translate-y-1/2 px-4 py-1.5 bg-brand text-white text-[10px] font-bold uppercase tracking-widest rounded-full shadow-lg">
+      {isPopular && (
+        <div className="px-5 py-2 bg-brand text-white text-[10px] font-bold uppercase tracking-widest text-center">
           EN ÇOK TERCİH EDİLEN
         </div>
       )}
 
-      <div className="mb-8">
-        <h3 className="text-xl font-bold text-dark mb-2 uppercase tracking-wide ">{pkg.name}</h3>
-        <div className="flex items-baseline gap-1 mb-3">
-          <span className="text-4xl font-black text-dark tracking-tight">{pkg.totalPrice}</span>
-          <span className="text-sm text-gray-400 font-bold uppercase tracking-widest">/ ay</span>
+      {/* Main content */}
+      <div className="p-7 flex flex-col flex-grow">
+        {/* Plan name */}
+        <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-3">{pkg.name}</p>
+
+        {/* Capacity — BIG */}
+        <div className="mb-4">
+          <span className="text-5xl font-black text-dark tracking-tight">{pkg.minutes}</span>
+          <span className="text-lg font-bold text-gray-400 ml-1">dk</span>
         </div>
+
+        {/* Divider */}
+        <div className="border-t border-gray-100 mb-4" />
+
+        {/* Unit price */}
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Dakika Başına</span>
+          <span className="text-base font-black text-dark">{pkg.pricePerMin}</span>
+        </div>
+
+        {/* Monthly price */}
+        <div className="flex items-center justify-between mb-5">
+          <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Aylık</span>
+          <div className="flex items-baseline gap-1">
+            <span className="text-2xl font-black text-dark">{pkg.totalPrice}</span>
+            <span className="text-xs text-gray-400 font-bold">/ay</span>
+          </div>
+        </div>
+
+        {/* Upsell tip */}
         {pkg.upsell && pkg.upsell !== '-' && (
-          <div className="inline-block bg-brand/10 text-brand px-3 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase">
-            {pkg.upsell}
+          <div className="mb-5 px-3 py-2.5 bg-brand/5 border border-brand/10 rounded-xl">
+            <p className="text-[10px] font-bold text-brand uppercase tracking-widest">↗ {pkg.upsell}</p>
           </div>
         )}
+
+        <div className="flex-grow" />
+
+        <button className={`w-full py-4 rounded-2xl font-bold text-sm transition-all flex items-center justify-center gap-2 group/btn mt-2 ${
+          isPopular
+            ? 'bg-brand text-white shadow-xl shadow-brand/20 hover:bg-dark'
+            : 'bg-gray-50 text-dark hover:bg-brand hover:text-white border border-gray-200'
+        }`}>
+          Satın Al <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+        </button>
       </div>
-
-      <div className="space-y-5 flex-grow mb-10">
-        <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-2xl group-hover:bg-brand/5 transition-colors">
-          <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-brand shadow-sm">
-             <Clock className="w-5 h-5" />
-          </div>
-          <div>
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">SÜRE</p>
-            <p className="font-bold text-dark text-lg">{pkg.minutes} Dakika</p>
-          </div>
-        </div>
-
-        <ul className="space-y-2.5 px-1 mb-2">
-          <li className="flex items-center gap-3">
-            <Zap className="w-4 h-4 text-brand shrink-0" />
-            <span className="text-sm font-bold text-dark">{pkg.minutes} Dakika/ay</span>
-          </li>
-          <li className="flex items-center gap-3">
-            <Check className="w-4 h-4 text-brand shrink-0" />
-            <span className="text-sm font-medium text-gray-600">{pkg.pricePerMin}</span>
-          </li>
-          {pkg.features?.slice(1).map((f: string, fi: number) => (
-            <li key={fi} className="flex items-start gap-3">
-              <Check className="w-4 h-4 text-green-500 shrink-0 mt-0.5" />
-              <span className="text-sm text-gray-600 font-medium">{f}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <button className={`w-full py-5 rounded-2xl font-bold text-sm transition-all flex items-center justify-center gap-2 group/btn ${
-        isMostPopular 
-          ? 'bg-brand text-white shadow-xl shadow-brand/20 hover:bg-dark hover:shadow-dark/10' 
-          : 'bg-gray-50 text-dark hover:bg-brand hover:text-white border border-gray-200'
-      }`}>
-        Satın Al <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-      </button>
     </motion.div>
   );
 }

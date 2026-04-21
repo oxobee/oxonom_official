@@ -1,138 +1,160 @@
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, ShieldCheck, Zap, Clock, Sparkles } from 'lucide-react';
+import { ArrowRight, Zap, MessageSquare, Star, Phone } from 'lucide-react';
 import { pricing } from '../constants';
+
+const TABS = [
+  { key: 'voice',     label: 'Sesli AI',    icon: <Phone className="w-4 h-4" />,        color: 'brand',  linkTo: '/ses-paketleri' },
+  { key: 'messaging', label: 'Mesajlaşma',  icon: <MessageSquare className="w-4 h-4" />, color: 'blue',   linkTo: '/mesajlasma-paketleri' },
+  { key: 'combo',     label: 'Combo',        icon: <Star className="w-4 h-4" />,         color: 'orange', linkTo: '/combo-paketler' },
+] as const;
+
+type TabKey = typeof TABS[number]['key'];
 
 export default function Pricing() {
   return (
     <section className="py-20 md:py-32 bg-gray-50 overflow-hidden relative">
-      {/* Decorative Background Elements */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand/5 rounded-full blur-[120px] -mr-64 -mt-64 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-accent-blue/5 rounded-full blur-[120px] -ml-64 -mb-64 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] -ml-64 -mb-64 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
-        <div className="text-center mb-12 md:mb-16">
+        {/* Header */}
+        <div className="text-center mb-14">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 bg-white text-dark rounded-lg text-[10px] font-bold uppercase tracking-widest mb-4 md:mb-6 border border-gray-200 shadow-sm"
+            className="inline-flex items-center gap-2 px-3 py-1.5 bg-white text-dark rounded-lg text-[10px] font-bold uppercase tracking-widest mb-5 border border-gray-200 shadow-sm"
           >
             <Zap className="w-3.5 h-3.5 text-brand" />
-            KURULUM ÜCRETİ YOK
+            KURULUM ÜCRETİ YOK · AYLIK TAAHHÜT YOK
           </motion.div>
-          
-          <motion.h2 
+
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-dark mb-4 md:mb-6 leading-[1.1] tracking-tight"
+            className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-dark mb-5 leading-[1.1] tracking-tight"
           >
-            Saniyeler İçinde <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-red-400">
-              Sesli AI Paketleri
-            </span>
+            Şeffaf Fiyatlandırma,<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-red-400">Sıfır Gizli Ücret</span>
           </motion.h2>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-base md:text-lg text-gray-500 mb-8 leading-relaxed font-medium max-w-2xl mx-auto"
+            className="text-base text-gray-500 max-w-xl mx-auto font-medium"
           >
-            Yapay zeka sesli asistan görüşmeleriniz için en uygun tarifeyi seçin. 
-            Karmaşık sözleşmeler ve gizli maliyetler olmadan hemen başlayın.
+            GSM tarifesi gibi sade: ihtiyacın kadar seç, istediğin zaman değiştir.
           </motion.p>
         </div>
 
-        <div className="mb-12 max-w-5xl mx-auto space-y-6">
-          {pricing.voice.slice(0, 4).map((pkg, i) => (
-            <motion.div
-              key={pkg.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 + (i * 0.1) }}
-              className={`relative overflow-hidden rounded-[2rem] transition-all duration-500 group ${
-                i === 1 
-                  ? 'bg-dark text-white shadow-2xl shadow-dark/20 border border-gray-800 scale-[1.02] z-10' 
-                  : 'bg-white text-dark shadow-xl shadow-dark/5 border border-gray-100 hover:border-brand/30'
-              }`}
-            >
-              {/* Background Accents */}
-              {i === 1 && (
-                <>
-                  <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand/20 rounded-full blur-[100px] -mr-64 -mt-64 pointer-events-none" />
-                  <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.05]" />
-                </>
-              )}
-              {i !== 1 && (
-                <div className="absolute top-0 right-0 w-64 h-64 bg-gray-50 rounded-bl-full -mr-16 -mt-16 transition-transform duration-500 group-hover:scale-110 pointer-events-none" />
-              )}
+        {/* 3 Category Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          {TABS.map((tab, ti) => {
+            const plans = (pricing[tab.key] as any[]);
+            const accentCls = tab.color === 'brand' ? 'border-brand/20 hover:border-brand/40'
+              : tab.color === 'blue' ? 'border-blue-200/60 hover:border-blue-400/50'
+              : 'border-orange-200/60 hover:border-orange-400/50';
+            const iconCls = tab.color === 'brand' ? 'bg-brand/10 text-brand'
+              : tab.color === 'blue' ? 'bg-blue-500/10 text-blue-600'
+              : 'bg-orange-500/10 text-orange-500';
+            const btnCls = tab.color === 'brand' ? 'bg-brand text-white hover:bg-dark'
+              : tab.color === 'blue' ? 'bg-blue-600 text-white hover:bg-blue-700'
+              : 'bg-orange-500 text-white hover:bg-dark';
 
-              <div className="relative z-10 p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 md:gap-10">
-                {/* Icon & Title */}
-                <div className="flex items-center gap-6 w-full md:w-1/3">
-                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center font-bold text-2xl shrink-0 transition-colors duration-500 ${
-                    i === 1 ? 'bg-brand text-white shadow-lg shadow-brand/20' : 'bg-gray-50 text-brand group-hover:bg-brand/10'
-                  }`}>
-                    {pkg.icon}
+            return (
+              <motion.div
+                key={tab.key}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: ti * 0.1 }}
+                className={`bg-white rounded-[2rem] border ${accentCls} shadow-xl shadow-dark/5 p-7 flex flex-col transition-all duration-300 hover:-translate-y-1`}
+              >
+                {/* Category Header */}
+                <div className="flex items-center gap-3 mb-6">
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${iconCls}`}>
+                    {tab.icon}
                   </div>
                   <div>
-                    {i === 1 && (
-                      <div className="inline-block px-3 py-1 bg-gradient-to-r from-brand to-red-500 text-white text-[9px] font-bold uppercase tracking-widest rounded-full mb-2">
-                        En Çok Tercih Edilen
-                      </div>
+                    <p className="text-xs font-black text-gray-400 uppercase tracking-widest">{tab.label}</p>
+                    {tab.key === 'combo' && (
+                      <span className="inline-block px-2 py-0.5 bg-orange-500 text-white text-[8px] font-bold rounded-full uppercase tracking-wider">%22-27 Tasarruf</span>
                     )}
-                    <h3 className="text-2xl font-bold">{pkg.name}</h3>
                   </div>
                 </div>
 
-                {/* Features / Details */}
-                <div className="flex-grow flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 w-full md:w-auto border-y md:border-y-0 md:border-x border-gray-100/20 py-6 md:py-0 md:px-10">
-                  <div className="text-center">
-                    <div className="flex items-center justify-center gap-2 mb-1">
-                      <Clock className={`w-4 h-4 ${i === 1 ? 'text-brand' : 'text-gray-400'}`} />
-                      <span className={`text-sm font-bold ${i === 1 ? 'text-gray-300' : 'text-gray-500'}`}>Süre</span>
+                {/* Mini tariff list */}
+                <div className="space-y-2.5 flex-grow mb-6">
+                  {plans.slice(0, 4).map((pkg: any) => (
+                    <div
+                      key={pkg.id}
+                      className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm transition-colors ${
+                        pkg.popular ? 'bg-dark text-white' : 'bg-gray-50 hover:bg-gray-100'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        {tab.key === 'voice' && (
+                          <span className={`text-xs font-bold ${pkg.popular ? 'text-gray-300' : 'text-gray-500'}`}>
+                            {pkg.minutes} dk
+                          </span>
+                        )}
+                        {tab.key === 'messaging' && (
+                          <span className={`text-xs font-bold ${pkg.popular ? 'text-gray-300' : 'text-gray-500'}`}>
+                            {pkg.messages} {pkg.messages !== 'Sınırsız' ? 'msg' : ''}
+                          </span>
+                        )}
+                        {tab.key === 'combo' && (
+                          <span className={`text-xs font-bold ${pkg.popular ? 'text-gray-300' : 'text-gray-500'}`}>
+                            {pkg.minutes}dk + {pkg.messages !== 'Sınırsız' ? pkg.messages + 'msg' : '∞ msg'}
+                          </span>
+                        )}
+                        {pkg.popular && (
+                          <span className="text-[9px] font-bold text-brand bg-white/10 px-1.5 py-0.5 rounded-md uppercase">Popüler</span>
+                        )}
+                      </div>
+                      <span className={`font-black text-sm ${pkg.popular ? 'text-white' : 'text-dark'}`}>
+                        {tab.key === 'voice' ? pkg.totalPrice : pkg.price}
+                        <span className={`text-[10px] font-bold ml-0.5 ${pkg.popular ? 'text-gray-400' : 'text-gray-400'}`}>/ay</span>
+                      </span>
                     </div>
-                    <div className="text-xl font-bold">{pkg.minutes} Dk</div>
-                  </div>
-                  <div className="hidden sm:block w-px h-12 bg-gray-200/20" />
-                  <div className="text-center">
-                    <div className="flex items-center justify-center gap-2 mb-1">
-                      <Check className={`w-4 h-4 ${i === 1 ? 'text-brand' : 'text-gray-400'}`} />
-                      <span className={`text-sm font-bold ${i === 1 ? 'text-gray-300' : 'text-gray-500'}`}>Birim Fiyat</span>
-                    </div>
-                    <div className="text-xl font-bold">{pkg.pricePerMin} / dk</div>
-                  </div>
+                  ))}
                 </div>
 
-                {/* Price & CTA */}
-                <div className="flex flex-col items-center md:items-end w-full md:w-1/4 shrink-0">
-                  <div className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                    {pkg.totalPrice}
-                  </div>
-                  <button className={`w-full py-4 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 group/btn ${
-                    i === 1 
-                      ? 'bg-brand text-white shadow-xl shadow-brand/20 hover:bg-white hover:text-dark' 
-                      : 'bg-gray-50 text-dark hover:bg-dark hover:text-white border border-gray-200'
-                  }`}>
-                    Hemen Satın Al <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+                {/* Pay-as-go note for voice */}
+                {tab.key === 'voice' && (
+                  <p className="text-[10px] text-gray-400 font-bold mb-4 text-center">
+                    Paketsiz: {pricing.payAsYouGo.voice.price} / dakika
+                  </p>
+                )}
+                {tab.key === 'messaging' && (
+                  <p className="text-[10px] text-gray-400 font-bold mb-4 text-center">
+                    Paketsiz: {pricing.payAsYouGo.msg.price} / mesaj
+                  </p>
+                )}
+
+                <Link
+                  to={tab.linkTo}
+                  className={`w-full py-3.5 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 group/btn transition-all shadow-lg ${btnCls}`}
+                >
+                  Tüm Tarifeler <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                </Link>
+              </motion.div>
+            );
+          })}
         </div>
 
+        {/* Bottom CTA */}
         <div className="text-center">
-          <Link 
+          <Link
             to="/paketler"
             className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-dark text-white rounded-xl font-bold text-sm hover:bg-brand transition-all shadow-xl shadow-dark/10 group"
           >
-            Tüm Paketleri ve Detayları İncele <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            Tüm Paketleri Karşılaştır <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
       </div>
