@@ -11,6 +11,8 @@ export default function SectorsPage() {
   useSEO({
     title: 'Sektörel AI Çözümleri | OXONOM Yapay Zeka',
     description: 'E-ticaret, sağlık, finans ve daha fazlası. İşletmenizin sektörüne özel geliştirilmiş, yüksek performanslı OXONOM yapay zeka çözümlerini keşfedin.',
+    canonical: '/sektorler',
+    keywords: 'sektörel yapay zeka, e-ticaret ai, sağlık ai, finans ai, oxonom sektör çözümleri',
   });
 
   const filteredSectors = useMemo(() => {

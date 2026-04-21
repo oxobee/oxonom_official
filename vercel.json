@@ -1,4 +1,27 @@
 {
+  "headers": [
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        { "key": "Content-Type", "value": "application/xml" },
+        { "key": "Cache-Control", "value": "public, max-age=3600, s-maxage=86400" }
+      ]
+    },
+    {
+      "source": "/robots.txt",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain" },
+        { "key": "Cache-Control", "value": "public, max-age=86400" }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        { "key": "Cache-Control", "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate" }
+      ]
+    }
+  ],
   "redirects": [
     {
       "source": "/blog/musteri-hizmetlerinde-yeni-cag-ai-sesli-asistanlar-ile-7-24-kesintisiz-destek",
@@ -9,6 +32,11 @@
       "source": "/blog/saglik-ve-estetik-kliniklerinde-randevu-kacirmaya-son",
       "destination": "/healthcare/ai-randevu-yonetimi",
       "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/blog",
+      "permanent": false
     }
   ],
   "rewrites": [

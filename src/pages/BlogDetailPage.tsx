@@ -46,11 +46,25 @@ export default function BlogDetailPage() {
     return <NotFoundPage />;
   }
 
+  const canonicalUrl = `/${categorySlug}/${slug}`;
+  const dateMap: Record<string, string> = {
+    '18 Nisan 2026': '2026-04-18T09:00:00+03:00',
+    '19 Nisan 2026': '2026-04-19T09:00:00+03:00',
+    '21 Nisan 2026': '2026-04-21T06:00:00+03:00',
+  };
+  const isoDate = dateMap[post.date] || '2026-04-16T09:00:00+03:00';
+
   useSEO({
-    title: `${post.title} | OXONOM Insights`,
+    title: post.title,
     description: post.summary,
     ogImage: post.image,
-    ogUrl: currentUrl
+    canonical: canonicalUrl,
+    ogType: 'article',
+    publishedTime: isoDate,
+    modifiedTime: isoDate,
+    author: post.author?.name || 'OXONOM Insights',
+    section: post.category,
+    keywords: `${post.category}, yapay zeka, ai ajan, oxonom, ${post.title.split(' ').slice(0, 4).join(', ')}`,
   });
 
   const articleSchema = {

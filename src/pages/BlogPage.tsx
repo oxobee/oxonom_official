@@ -10,6 +10,8 @@ export default function BlogPage() {
   useSEO({
     title: 'OXONOM Blog | Yapay Zekâ ve İletişim Teknolojileri',
     description: 'Yapay zekâ destekli müşteri iletişimi, çağrı merkezi otomasyonu ve omnichannel pazarlama trendleri hakkında güncel yazılarımızı okuyun.',
+    canonical: '/blog',
+    keywords: 'yapay zeka blog, ai ajan makaleleri, müşteri hizmetleri teknoloji, oxonom insights, AI trendleri 2026',
   });
 
   const [activeCategory, setActiveCategory] = useState('Tümü');

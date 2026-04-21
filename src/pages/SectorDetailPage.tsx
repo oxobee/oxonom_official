@@ -44,9 +44,12 @@ export default function SectorDetailPage() {
   const [activeScenario, setActiveScenario] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
 
+  const sectorId = sector?.id || 'sektorler';
   useSEO({
     title: `${sector?.name || 'Sektör'} Yapay Zeka Çözümleri | OXONOM`,
-    description: `${sector?.name || 'Sektör'} sektörüne özel geliştirilen OXONOM yapay zeka asistanları ile operasyonel maliyetlerinizi düşürün, müşteri memnuniyetini 7/24 anında artırın.`,
+    description: `${sector?.name || 'Sektör'} sektörüne özel geliştirilen OXONOM yapay zeka asistanları ile operasyonel maliyetlerinizi düşürün, müşteri memnuniyetini 7/24 aninda artırın.`,
+    canonical: `/sektorler/${sectorId}`,
+    keywords: sector?.seoKeywords?.join(', ') || `${sector?.name} yapay zeka, ai ajan, oxonom`,
   });
 
   // Fallback for missing data to ensure UI doesn't break

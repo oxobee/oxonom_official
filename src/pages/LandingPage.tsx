@@ -12,6 +12,8 @@ export default function LandingPage() {
   useSEO({
     title: 'OXONOM | 7/24 Otonom Yapay Zeka Asistanları',
     description: "OXONOM'un insan doğallığındaki sesli ve yazılı AI asistanları ile müşteri iletişiminizi 7/24 otomatikleştirin ve satışlarınızı hızla ölçeklendirin.",
+    canonical: '/',
+    keywords: 'yapay zeka asistan, ai ajan, sesli asistan, chatbot, müşteri hizmetleri otomasyonu, çağrı merkezi yapay zeka, oxonom, otonom müşteri temsilcisi, whatsapp yapay zeka, instagram bot',
   });
 
   return (
