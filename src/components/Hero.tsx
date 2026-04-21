@@ -68,6 +68,7 @@ export default function Hero() {
                 href="https://app.oxonom.com"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="OXONOM uygulamasını ücretsiz deneyin"
                 className="w-full sm:w-auto px-8 py-4 bg-dark text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:bg-black transition-all shadow-2xl shadow-dark/30 group"
               >
                 Hemen Ücretsiz Deneyin <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

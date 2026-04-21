@@ -44,9 +44,14 @@
     <meta name="theme-color" content="#0f172a" />
 
     <!-- ═══ PERFORMANCE ═══ -->
+    <!-- Preconnect to external origins for faster DNS + TLS handshake -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://analytics.ahrefs.com" />
+    <!-- DNS prefetch for secondary origins -->
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+    <link rel="dns-prefetch" href="https://www.transparenttextures.com" />
 
     <!-- ═══ DEFAULT ORGANIZATION STRUCTURED DATA (static, always visible to bots) ═══ -->
     <script type="application/ld+json">
@@ -125,18 +130,21 @@
     }
     </script>
 
-    <!-- ═══ ANALYTICS ═══ -->
-    <script src="https://analytics.ahrefs.com/analytics.js" data-key="UFEMVpngJZaHfOOMuFph0Q" async></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3H6WFHXY64"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-3H6WFHXY64');
-    </script>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- ═══ ANALYTICS (non-blocking, loaded after page render) ═══ -->
+    <script defer src="https://analytics.ahrefs.com/analytics.js" data-key="UFEMVpngJZaHfOOMuFph0Q"></script>
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-3H6WFHXY64"></script>
+    <script>
+      window.addEventListener('load', function() {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-3H6WFHXY64', { 'send_page_view': true });
+      });
+    </script>
   </body>
 </html>

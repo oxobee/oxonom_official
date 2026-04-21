@@ -26,12 +26,12 @@ export default function Footer() {
             </p>
             <div className="flex gap-4">
               {[
-                { Icon: Instagram, href: 'https://instagram.com/oxonomturkiye' },
-                { Icon: Facebook, href: 'https://facebook.com/oxonomturkiye' },
-                { Icon: Twitter, href: 'https://x.com/oxonomturkiye' },
-                { Icon: Youtube, href: 'https://youtube.com/@oxonomturkiye' }
-              ].map(({ Icon, href }, i) => (
-                <a key={i} href={href} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center hover:bg-brand hover:border-brand hover:-translate-y-1 transition-all duration-300 group backdrop-blur-sm">
+                { Icon: Instagram, href: 'https://instagram.com/oxonomturkiye', label: 'OXONOM Instagram sayfası' },
+                { Icon: Facebook, href: 'https://facebook.com/oxonomturkiye', label: 'OXONOM Facebook sayfası' },
+                { Icon: Twitter, href: 'https://x.com/oxonomturkiye', label: 'OXONOM X (Twitter) sayfası' },
+                { Icon: Youtube, href: 'https://youtube.com/@oxonomturkiye', label: 'OXONOM YouTube kanalı' }
+              ].map(({ Icon, href, label }, i) => (
+                <a key={i} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="w-10 h-10 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center hover:bg-brand hover:border-brand hover:-translate-y-1 transition-all duration-300 group backdrop-blur-sm">
                   <Icon className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
                 </a>
               ))}

@@ -267,6 +267,8 @@ export default function Navbar() {
                 : "bg-white/10 text-white backdrop-blur-md border border-white/20 shadow-black/10"
             )}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? 'Menüyü kapat' : 'Menüyü aç'}
+            aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? (
               <>
@@ -428,13 +430,14 @@ export default function Navbar() {
                 href="https://wa.me/908503099901"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="WhatsApp üzerinden uzmanla görüşün"
                 className="w-full py-4 bg-brand text-white rounded-xl font-bold text-base shadow-xl shadow-brand/20 flex items-center justify-center gap-2 active:scale-95"
               >
                 <Phone className="w-5 h-5" /> Uzmanla Görüşün <ArrowRight className="w-5 h-5" />
               </a>
               <div className="mt-4 text-center">
                  <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">VEYA UYGULAMAYA GİRİŞ YAPIN</p>
-                 <a href="https://app.oxonom.com" className="inline-block mt-2 text-dark font-bold text-xs hover:text-brand transition-colors underline underline-offset-4">app.oxonom.com</a>
+                 <a href="https://app.oxonom.com" aria-label="OXONOM uygulamasına giriş yap" className="inline-block mt-2 text-dark font-bold text-xs hover:text-brand transition-colors underline underline-offset-4">app.oxonom.com</a>
               </div>
             </div>
           </motion.div>
