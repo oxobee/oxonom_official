@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronDown, Menu, X, ArrowRight, Sparkles, Zap, Phone, Puzzle, Star, Instagram } from 'lucide-react';
+import { ChevronDown, Menu, X, ArrowRight, Sparkles, Zap, Phone, Puzzle, Star, Instagram, Facebook, MessageCircle, Globe } from 'lucide-react';
 import { sectors } from '../constants';
 import { cn } from '../lib/utils';
 import { useAutoSnapScroll } from '../hooks/useAutoSnapScroll';
@@ -15,7 +15,7 @@ export default function Navbar() {
   const location = useLocation();
 
   const isHome = location.pathname === '/';
-  const headerScrolled = isScrolled || !isHome || isProductMegaMenuOpen || isMegaMenuOpen || isPackagesMegaMenuOpen;
+  const headerScrolled = isScrolled || !isHome;
   const productQuickStartRef = useRef<HTMLDivElement | null>(null);
   const mobileQuickStartRef = useRef<HTMLDivElement | null>(null);
 
@@ -88,37 +88,60 @@ export default function Navbar() {
                     exit={{ opacity: 0, y: 15, scale: 0.98 }}
                     className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[95vw] max-w-5xl bg-white/95 backdrop-blur-2xl rounded-2xl shadow-[0_24px_48px_-12px_rgba(0,0,0,0.15)] border border-white/40 overflow-hidden p-2"
                   >
-                    <div className="flex items-center justify-between gap-3 px-4 py-3">
-                      <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide -mx-2 px-2">
-                        <Link
-                          to="/instagram"
-                          onClick={() => setIsProductMegaMenuOpen(false)}
-                          className="shrink-0 px-3.5 py-2 rounded-lg bg-dark text-white text-xs font-bold hover:bg-brand transition-colors"
-                        >
-                          Instagram
-                        </Link>
-                        {[
-                          { label: 'Facebook' },
-                          { label: 'WhatsApp' },
-                          { label: 'Web Site' },
-                        ].map(({ label }) => (
-                          <a
-                            key={label}
-                            href="#"
-                            onClick={(e) => e.preventDefault()}
-                            className="shrink-0 px-3.5 py-2 rounded-lg bg-white border border-gray-200 text-gray-600 text-xs font-bold hover:border-brand/30 hover:text-dark transition-colors"
-                          >
-                            {label}
-                          </a>
-                        ))}
-                      </div>
-                      <span className="hidden md:inline-flex text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                        Kanallar
-                      </span>
-                    </div>
+                    <div className="grid grid-cols-12 gap-2 p-2">
+                      <div className="col-span-12 md:col-span-8 space-y-2">
+                        <div className="flex items-center justify-between gap-3">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <Link
+                              to="/instagram"
+                              onClick={() => setIsProductMegaMenuOpen(false)}
+                              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-dark text-white text-xs font-bold hover:bg-brand transition-colors"
+                            >
+                              <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-pink-500 to-orange-500 text-white flex items-center justify-center shadow-sm shrink-0">
+                                <Instagram className="w-4 h-4" />
+                              </span>
+                              Instagram
+                            </Link>
 
-                    <div className="grid grid-cols-12 gap-2 p-2 pt-0">
-                      <div className="col-span-12 md:col-span-8">
+                            <a
+                              href="#"
+                              onClick={(e) => e.preventDefault()}
+                              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-gray-200 text-gray-700 text-xs font-bold hover:border-brand/30 hover:text-dark transition-colors"
+                            >
+                              <span className="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-600 border border-blue-200 flex items-center justify-center shrink-0">
+                                <Facebook className="w-4 h-4" />
+                              </span>
+                              Facebook
+                            </a>
+
+                            <a
+                              href="#"
+                              onClick={(e) => e.preventDefault()}
+                              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-gray-200 text-gray-700 text-xs font-bold hover:border-brand/30 hover:text-dark transition-colors"
+                            >
+                              <span className="w-8 h-8 rounded-lg bg-green-500/10 text-green-600 border border-green-200 flex items-center justify-center shrink-0">
+                                <MessageCircle className="w-4 h-4" />
+                              </span>
+                              WhatsApp
+                            </a>
+
+                            <a
+                              href="#"
+                              onClick={(e) => e.preventDefault()}
+                              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-gray-200 text-gray-700 text-xs font-bold hover:border-brand/30 hover:text-dark transition-colors"
+                            >
+                              <span className="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-600 border border-indigo-200 flex items-center justify-center shrink-0">
+                                <Globe className="w-4 h-4" />
+                              </span>
+                              Web Site
+                            </a>
+                          </div>
+
+                          <span className="hidden md:inline-flex text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                            Kanallar
+                          </span>
+                        </div>
+
                         <Link
                           to="/instagram"
                           onClick={() => setIsProductMegaMenuOpen(false)}

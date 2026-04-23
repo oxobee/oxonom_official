@@ -268,12 +268,22 @@ export default function InstagramPage() {
   const [idea, setIdea] = useState<string>('');
   const [soonOpen, setSoonOpen] = useState<boolean>(false);
   const [faqOpenIndex, setFaqOpenIndex] = useState<number | null>(0);
+  const [heroQuestion, setHeroQuestion] = useState<string>('');
   const statsSliderRef = useRef<HTMLDivElement | null>(null);
   const featuresSliderRef = useRef<HTMLDivElement | null>(null);
   const scenariosSliderRef = useRef<HTMLDivElement | null>(null);
 
   const languageSample = LANGUAGE_SAMPLES[lang] ?? LANGUAGE_SAMPLES.tr;
   const selectedScenario = useMemo(() => SCENARIOS.find(s => s.id === scenarioId) ?? SCENARIOS[0], [scenarioId]);
+
+  const heroPreviewUser =
+    heroQuestion.trim().length > 0
+      ? heroQuestion.trim()
+      : (selectedScenario.example[0]?.user ?? 'Merhaba! Bilgi alabilir miyim?');
+  const heroPreviewBot =
+    lang === 'tr'
+      ? (selectedScenario.example[0]?.bot ?? languageSample.sample)
+      : languageSample.sample;
 
   useAutoSnapScroll(statsSliderRef, { intervalMs: 6000 });
   useAutoSnapScroll(featuresSliderRef, { intervalMs: 6400 });
@@ -353,54 +363,172 @@ export default function InstagramPage() {
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
         {/* Hero */}
-        <div className="text-center mb-12 md:mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-pink-600 rounded-full text-[10px] font-bold uppercase tracking-widest mb-6 shadow-sm"
-          >
-            <Instagram className="w-3.5 h-3.5" />
-            Meta Onaylı • Instagram Business API
-          </motion.div>
+        <div className="mb-12 md:mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start lg:items-center">
+            <div className="text-center lg:text-left">
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-pink-600 rounded-full text-[10px] font-bold uppercase tracking-widest mb-6 shadow-sm"
+              >
+                <Instagram className="w-3.5 h-3.5" />
+                Meta Onaylı • Instagram Business API
+              </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl font-display font-bold text-dark mb-5 tracking-tight leading-[1.05]"
-          >
-            Instagram
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-orange-500 to-brand">
-              AI Asistan
-            </span>
-          </motion.h1>
+              <motion.h1
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="text-4xl md:text-6xl font-display font-bold text-dark mb-5 tracking-tight leading-[1.05]"
+              >
+                Instagram
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-orange-500 to-brand">
+                  AI Asistan
+                </span>
+              </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-base md:text-lg text-gray-500 max-w-3xl mx-auto font-medium leading-relaxed"
-          >
-            DM mesajlarını yapay zekâ ile yanıtlayın, yorumlara otomatik cevap verin ve her etkileşimi satışa dönüştürün.
-            Üstelik Oxonom, profesyonel bir müşteri temsilcisi gibi <strong className="text-dark">ana dili kadar doğal</strong> konuşur
-            ve <strong className="text-dark">30+ dilde</strong> tüm soruları müşterinizin diliyle yanıtlar.
-          </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-base md:text-lg text-gray-500 max-w-3xl mx-auto lg:mx-0 font-medium leading-relaxed"
+              >
+                DM mesajlarını yapay zekâ ile yanıtlayın, yorumlara otomatik cevap verin ve her etkileşimi satışa dönüştürün.
+                Üstelik Oxonom, profesyonel bir müşteri temsilcisi gibi <strong className="text-dark">ana dili kadar doğal</strong> konuşur
+                ve <strong className="text-dark">30+ dilde</strong> tüm soruları müşterinizin diliyle yanıtlar.
+              </motion.p>
 
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link
-              to="/mesajlasma-paketleri"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-brand to-pink-600 text-white rounded-lg font-bold text-sm hover:from-brand-dark hover:to-pink-700 transition-all shadow-xl shadow-brand/25 active:scale-[0.98]"
+              <div className="mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-2">
+                {[
+                  { id: 'dm', label: 'DM', icon: <MessageSquare className="w-4 h-4" /> },
+                  { id: 'comments', label: 'Yorum', icon: <Star className="w-4 h-4" /> },
+                  { id: 'story', label: 'Story', icon: <Zap className="w-4 h-4" /> },
+                  { id: 'welcome', label: 'Takipçi', icon: <Sparkles className="w-4 h-4" /> },
+                ].map(item => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => setScenarioId(item.id)}
+                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg border text-xs font-bold transition-all active:scale-[0.99] ${
+                      scenarioId === item.id
+                        ? 'bg-dark text-white border-dark shadow-sm'
+                        : 'bg-white text-gray-700 border-gray-200 hover:border-brand/30 hover:text-dark'
+                    }`}
+                  >
+                    {item.icon} {item.label}
+                  </button>
+                ))}
+                <span className="text-[11px] text-gray-400 font-medium ml-1">Akış seçin (demo).</span>
+              </div>
+
+              <div className="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
+                <Link
+                  to="/mesajlasma-paketleri"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-brand to-pink-600 text-white rounded-lg font-bold text-sm hover:from-brand-dark hover:to-pink-700 transition-all shadow-xl shadow-brand/25 active:scale-[0.98]"
+                >
+                  Paketleri İncele <ArrowRight className="w-4 h-4" />
+                </Link>
+                <a
+                  href="https://wa.me/908503099901"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white border border-gray-200 text-dark rounded-lg font-bold text-sm hover:border-brand/30 hover:shadow-md transition-all active:scale-[0.98]"
+                >
+                  Ücretsiz Demo İste <ChevronRight className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15 }}
+              className="bg-white rounded-xl border border-gray-100 premium-shadow p-6 md:p-7 overflow-hidden relative"
             >
-              Paketleri İncele <ArrowRight className="w-4 h-4" />
-            </Link>
-            <a
-              href="https://wa.me/908503099901"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white border border-gray-200 text-dark rounded-lg font-bold text-sm hover:border-brand/30 hover:shadow-md transition-all active:scale-[0.98]"
-            >
-              Ücretsiz Demo İste <ChevronRight className="w-4 h-4" />
-            </a>
+              <div className="absolute -top-16 -right-16 w-64 h-64 bg-brand/10 rounded-full blur-3xl" />
+
+              <div className="relative z-10">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-[0.35em] text-brand mb-2">Hızlı Demo</p>
+                    <h3 className="text-lg font-bold text-dark">Soru yazın, yanıtı görün.</h3>
+                    <p className="text-xs text-gray-500 font-medium mt-1">
+                      Seçtiğiniz akışa göre örnek yanıt üretir. Üretimde tüm ton ve içerik markanıza göre özelleştirilir.
+                    </p>
+                  </div>
+
+                  <div className="hidden sm:flex flex-col items-end gap-2">
+                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-50 border border-gray-200 text-[10px] font-bold text-gray-500 uppercase tracking-widest">
+                      <Sparkles className="w-3 h-3 text-brand" /> {selectedScenario.title}
+                    </span>
+                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-50 border border-gray-200 text-[10px] font-bold text-gray-500 uppercase tracking-widest">
+                      <Globe className="w-3 h-3 text-brand" /> 30+ Dil
+                    </span>
+                  </div>
+                </div>
+
+                <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <label className="sm:col-span-2">
+                    <span className="block text-xs font-bold text-gray-500 mb-2">Müşteri sorusu</span>
+                    <input
+                      value={heroQuestion}
+                      onChange={e => setHeroQuestion(e.target.value)}
+                      placeholder="Örn: Merhaba, fiyat nedir? • Randevu alabilir miyim?"
+                      className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 font-bold text-sm text-dark outline-none focus:ring-2 focus:ring-brand/30"
+                    />
+                    <p className="mt-1 text-[11px] text-gray-400 font-medium">İpucu: “fiyat”, “kampanya”, “randevu” gibi yazın.</p>
+                  </label>
+
+                  <label className="sm:col-span-2">
+                    <span className="block text-xs font-bold text-gray-500 mb-2">Dil (demo)</span>
+                    <select
+                      value={lang}
+                      onChange={e => setLang(e.target.value)}
+                      className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 font-bold text-sm text-dark outline-none focus:ring-2 focus:ring-brand/30"
+                    >
+                      {Object.entries(LANGUAGE_SAMPLES).map(([key, val]) => (
+                        <option key={key} value={key}>
+                          {val.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+
+                <div className="mt-5 bg-gray-50 rounded-xl border border-gray-100 p-5 overflow-hidden">
+                  <p className="text-[10px] font-black uppercase tracking-[0.35em] text-gray-400 mb-4">Önizleme</p>
+                  <div className="space-y-3">
+                    <div className="flex justify-start">
+                      <div className="max-w-[92%] rounded-lg px-4 py-3 bg-white border border-gray-200 text-sm font-medium text-gray-700 shadow-sm">
+                        {heroPreviewUser}
+                      </div>
+                    </div>
+                    <div className="flex justify-end">
+                      <div className="max-w-[92%] rounded-lg px-4 py-3 bg-gradient-to-r from-brand to-pink-600 text-white text-sm font-medium shadow-lg shadow-brand/15">
+                        {heroPreviewBot}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-5 flex flex-col sm:flex-row gap-3">
+                  <Link
+                    to="/mesajlasma-paketleri"
+                    className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-brand to-pink-600 text-white font-bold text-sm hover:from-brand-dark hover:to-pink-700 transition-all shadow-lg shadow-brand/20 active:scale-[0.99]"
+                  >
+                    Paketleri İncele <ArrowRight className="w-4 h-4" />
+                  </Link>
+                  <a
+                    href="https://wa.me/908503099901"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-white border border-gray-200 text-dark font-bold text-sm hover:border-brand/30 hover:shadow-md transition-all active:scale-[0.99]"
+                  >
+                    Ücretsiz Demo <ChevronRight className="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
 
