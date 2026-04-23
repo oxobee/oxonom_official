@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { type ReactNode, useMemo, useState } from 'react';
+import { type ReactNode, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
@@ -18,6 +18,7 @@ import {
   Zap,
 } from 'lucide-react';
 import { useSEO } from '../hooks/useSEO';
+import { useAutoSnapScroll } from '../hooks/useAutoSnapScroll';
 import JsonLd from '../components/JsonLd';
 
 type Scenario = {
@@ -154,12 +155,12 @@ function FeatureCard({
   accent: string;
 }) {
   return (
-    <div className="bg-white rounded-xl border border-gray-100 p-6 premium-shadow premium-shadow-hover hover:border-brand/30">
+    <div className="bg-white rounded-xl border border-gray-100 p-6 premium-shadow premium-shadow-hover hover:border-brand/30 h-full min-h-[210px] flex flex-col">
       <div className={`w-12 h-12 rounded-xl flex items-center justify-center border ${accent} mb-4`}>
         {icon}
       </div>
       <h3 className="text-lg font-bold text-dark mb-2">{title}</h3>
-      <p className="text-sm text-gray-500 font-medium leading-relaxed">{desc}</p>
+      <p className="text-sm text-gray-500 font-medium leading-relaxed line-clamp-4">{desc}</p>
     </div>
   );
 }
@@ -267,9 +268,16 @@ export default function InstagramPage() {
   const [idea, setIdea] = useState<string>('');
   const [soonOpen, setSoonOpen] = useState<boolean>(false);
   const [faqOpenIndex, setFaqOpenIndex] = useState<number | null>(0);
+  const statsSliderRef = useRef<HTMLDivElement | null>(null);
+  const featuresSliderRef = useRef<HTMLDivElement | null>(null);
+  const scenariosSliderRef = useRef<HTMLDivElement | null>(null);
 
   const languageSample = LANGUAGE_SAMPLES[lang] ?? LANGUAGE_SAMPLES.tr;
   const selectedScenario = useMemo(() => SCENARIOS.find(s => s.id === scenarioId) ?? SCENARIOS[0], [scenarioId]);
+
+  useAutoSnapScroll(statsSliderRef, { intervalMs: 4200 });
+  useAutoSnapScroll(featuresSliderRef, { intervalMs: 4400 });
+  useAutoSnapScroll(scenariosSliderRef, { intervalMs: 5000 });
 
   const features = [
     {
@@ -398,7 +406,10 @@ export default function InstagramPage() {
 
         {/* Stats */}
         <div className="mb-12 md:mb-16">
-          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-4 md:overflow-visible md:pb-0">
+          <div
+            ref={statsSliderRef}
+            className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-4 md:overflow-visible md:pb-0"
+          >
             {STATS.map(s => (
               <div key={s.v} className="snap-start shrink-0 w-[78vw] max-w-[320px] md:w-auto md:max-w-none">
                 <StatCard k={s.k} v={s.v} hint={s.hint} />
@@ -481,7 +492,10 @@ export default function InstagramPage() {
             </p>
           </div>
 
-          <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-6 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-2 xl:grid-cols-4 md:gap-6 md:overflow-visible md:pb-0">
+          <div
+            ref={featuresSliderRef}
+            className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-6 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-2 xl:grid-cols-5 md:gap-6 md:overflow-visible md:pb-0"
+          >
             {features.map(f => (
               <div key={f.title} className="snap-start shrink-0 w-[86vw] max-w-[360px] md:w-auto md:max-w-none">
                 <FeatureCard icon={f.icon} title={f.title} desc={f.desc} accent={f.accent} />
@@ -510,7 +524,10 @@ export default function InstagramPage() {
           </div>
 
           <div className="bg-white rounded-xl border border-gray-100 shadow-xl shadow-dark/5 p-6 md:p-10 overflow-hidden premium-shadow">
-            <div className="flex gap-2 overflow-x-auto snap-x snap-mandatory pb-3 scrollbar-hide -mx-2 px-2 md:mx-0 md:px-0 md:flex-wrap md:overflow-visible md:pb-0 mb-8">
+            <div
+              ref={scenariosSliderRef}
+              className="flex gap-2 overflow-x-auto snap-x snap-mandatory pb-3 scrollbar-hide -mx-2 px-2 md:mx-0 md:px-0 md:flex-wrap md:overflow-visible md:pb-0 mb-8"
+            >
               {SCENARIOS.map(s => (
                 <button
                   key={s.id}
