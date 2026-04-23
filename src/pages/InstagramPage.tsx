@@ -3,11 +3,13 @@ import { type ReactNode, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
+  BarChart3,
   Check,
   ChevronRight,
   Globe,
   Instagram,
   KeyRound,
+  LayoutGrid,
   MessageSquare,
   ShieldCheck,
   Sparkles,
@@ -274,6 +276,18 @@ export default function InstagramPage() {
       desc: 'Gelen etkileşimleri niyete göre skorlar; uygun lead’leri satış ekibine veya CRM’e otomatik aktarır.',
       icon: <Sparkles className="w-5 h-5 text-brand" />,
       accent: 'bg-brand/5 text-brand border-brand/20',
+    },
+    {
+      title: 'Hızlı Yanıt Şablonları',
+      desc: 'Sık kullanılan yanıtları şablon olarak kaydedin. Oxonom, bağlama göre en doğru şablonu seçer ve kişiselleştirir.',
+      icon: <LayoutGrid className="w-5 h-5 text-slate-700" />,
+      accent: 'bg-slate-50 text-slate-700 border-slate-200',
+    },
+    {
+      title: 'Performans Analizi',
+      desc: 'Kaç DM yanıtlandı, kaç lead oluştu, hangi içerik daha çok yorum aldı — hepsini tek panelden izleyin.',
+      icon: <BarChart3 className="w-5 h-5 text-indigo-600" />,
+      accent: 'bg-indigo-50 text-indigo-700 border-indigo-200',
     },
     {
       title: '30+ Dil, Ana Dili Gibi',
