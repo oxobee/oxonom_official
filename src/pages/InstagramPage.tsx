@@ -5,6 +5,7 @@ import {
   ArrowRight,
   BarChart3,
   Check,
+  ChevronDown,
   ChevronRight,
   Globe,
   Instagram,
@@ -107,9 +108,32 @@ const LANGUAGE_SAMPLES: Record<string, { label: string; sample: string }> = {
   it: { label: 'Italiano', sample: 'Certo. Ho capito la tua domanda — ecco la risposta più chiara.' },
 };
 
+const INSTAGRAM_FAQS = [
+  {
+    q: "Instagram DM'lerini Oxonom nasıl yanıtlar?",
+    a: 'Oxonom, markanıza özel bilgi bankası ve kurallarla DM’leri bağlama göre anlar; fiyat, kampanya, stok, randevu gibi sorulara anında yanıt verir. Gerekirse konuşmayı tek tıkla insana devreder.',
+  },
+  {
+    q: 'Sadece DM mi? Yorumlara da yanıt verir mi?',
+    a: 'Evet. Gönderi yorumlarına otomatik yanıt verebilir; anahtar kelimeye göre ilgili kullanıcıya DM’den detay gönderip süreci satışa taşıyabilir.',
+  },
+  {
+    q: '30+ dil desteği nasıl çalışıyor?',
+    a: 'Müşterinin dilini otomatik algılar ve profesyonel bir müşteri temsilcisi gibi doğal bir tonla o dilde yanıt verir. Böylece farklı ülkelerden gelen talepleri tek akışta yönetirsiniz.',
+  },
+  {
+    q: 'Kurulum ve entegrasyon ne kadar sürer?',
+    a: 'Temel kurulum kısa sürede tamamlanır. İhtiyaca göre Meta/Instagram bağlantısı, anahtar kelime senaryoları ve CRM entegrasyonu gibi adımlar planlanarak canlıya alınır.',
+  },
+  {
+    q: 'KVKK/GDPR uyumu ve güvenlik nasıl sağlanır?',
+    a: 'Veri işleme, izin yönetimi ve güvenli aktarım süreçleri KVKK/GDPR prensiplerine göre kurgulanır. Hassas durumlarda insana devretme ve kayıt/izleme seçenekleriyle tam kontrol sağlanır.',
+  },
+] as const;
+
 function StatCard({ k, v, hint }: { k: string; v: string; hint: string }) {
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-xl shadow-dark/5 p-5 overflow-hidden relative">
+    <div className="bg-white rounded-xl border border-gray-100 p-5 overflow-hidden relative premium-shadow premium-shadow-hover">
       <div className="absolute -top-10 -right-10 w-28 h-28 bg-brand/5 rounded-full blur-2xl" />
       <p className="text-2xl font-black text-dark tracking-tight">{k}</p>
       <p className="text-sm font-bold text-gray-700 mt-1">{v}</p>
@@ -130,8 +154,8 @@ function FeatureCard({
   accent: string;
 }) {
   return (
-    <div className="bg-white rounded-[2rem] border border-gray-100 p-6 shadow-xl shadow-dark/5 hover:border-brand/30 hover:-translate-y-0.5 transition-all">
-      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center border ${accent} mb-4`}>
+    <div className="bg-white rounded-xl border border-gray-100 p-6 premium-shadow premium-shadow-hover hover:border-brand/30">
+      <div className={`w-12 h-12 rounded-xl flex items-center justify-center border ${accent} mb-4`}>
         {icon}
       </div>
       <h3 className="text-lg font-bold text-dark mb-2">{title}</h3>
@@ -144,7 +168,7 @@ function ChatDemo({ scenarioId }: { scenarioId: string }) {
   const scenario = useMemo(() => SCENARIOS.find(s => s.id === scenarioId) ?? SCENARIOS[0], [scenarioId]);
 
   return (
-    <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-2xl shadow-dark/10 overflow-hidden w-full">
+    <div className="bg-white rounded-xl border border-gray-100 shadow-2xl shadow-dark/10 overflow-hidden w-full">
       <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between gap-4">
         <div className="flex items-center gap-3 min-w-0">
           <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-orange-500 flex items-center justify-center text-white font-black shrink-0">
@@ -172,12 +196,12 @@ function ChatDemo({ scenarioId }: { scenarioId: string }) {
             {scenario.example.slice(0, 2).map((m, idx) => (
               <div key={idx} className="space-y-3">
                 <div className="flex justify-start">
-                  <div className="max-w-[92%] sm:max-w-[80%] rounded-2xl px-4 py-3 bg-white border border-gray-200 text-sm font-medium text-gray-700 shadow-sm">
+                  <div className="max-w-[92%] sm:max-w-[80%] rounded-xl px-4 py-3 bg-white border border-gray-200 text-sm font-medium text-gray-700 shadow-sm">
                     {m.user}
                   </div>
                 </div>
                 <div className="flex justify-end">
-                  <div className="max-w-[92%] sm:max-w-[80%] rounded-2xl px-4 py-3 bg-blue-600 text-white text-sm font-medium shadow-lg shadow-blue-600/15">
+                  <div className="max-w-[92%] sm:max-w-[80%] rounded-xl px-4 py-3 bg-blue-600 text-white text-sm font-medium shadow-lg shadow-blue-600/15">
                     {m.bot}
                   </div>
                 </div>
@@ -196,7 +220,7 @@ function ChatDemo({ scenarioId }: { scenarioId: string }) {
         <div className="flex flex-col sm:flex-row gap-3">
           <Link
             to="/mesajlasma-paketleri"
-            className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-dark text-white font-bold text-sm hover:bg-brand transition-colors"
+            className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-gradient-to-r from-brand to-pink-600 text-white font-bold text-sm hover:from-brand-dark hover:to-pink-700 transition-all shadow-lg shadow-brand/20 active:scale-[0.99]"
           >
             Paketleri İncele <ArrowRight className="w-4 h-4" />
           </Link>
@@ -204,7 +228,7 @@ function ChatDemo({ scenarioId }: { scenarioId: string }) {
             href="https://wa.me/908503099901"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-gray-50 border border-gray-200 text-dark font-bold text-sm hover:bg-white hover:border-brand/30 transition-all"
+            className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-white border border-gray-200 text-dark font-bold text-sm hover:border-brand/30 hover:shadow-md transition-all active:scale-[0.99]"
           >
             Ücretsiz Demo <ChevronRight className="w-4 h-4" />
           </a>
@@ -242,6 +266,7 @@ export default function InstagramPage() {
   const [lang, setLang] = useState<string>('tr');
   const [idea, setIdea] = useState<string>('');
   const [soonOpen, setSoonOpen] = useState<boolean>(false);
+  const [faqOpenIndex, setFaqOpenIndex] = useState<number | null>(0);
 
   const languageSample = LANGUAGE_SAMPLES[lang] ?? LANGUAGE_SAMPLES.tr;
   const selectedScenario = useMemo(() => SCENARIOS.find(s => s.id === scenarioId) ?? SCENARIOS[0], [scenarioId]);
@@ -356,7 +381,7 @@ export default function InstagramPage() {
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               to="/mesajlasma-paketleri"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-dark text-white rounded-2xl font-bold text-sm hover:bg-brand transition-all shadow-xl shadow-dark/10"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-brand to-pink-600 text-white rounded-lg font-bold text-sm hover:from-brand-dark hover:to-pink-700 transition-all shadow-xl shadow-brand/25 active:scale-[0.98]"
             >
               Paketleri İncele <ArrowRight className="w-4 h-4" />
             </Link>
@@ -364,7 +389,7 @@ export default function InstagramPage() {
               href="https://wa.me/908503099901"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white border border-gray-200 text-dark rounded-2xl font-bold text-sm hover:border-brand/30 hover:shadow-md transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white border border-gray-200 text-dark rounded-lg font-bold text-sm hover:border-brand/30 hover:shadow-md transition-all active:scale-[0.98]"
             >
               Ücretsiz Demo İste <ChevronRight className="w-4 h-4" />
             </a>
@@ -372,10 +397,15 @@ export default function InstagramPage() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12 md:mb-16">
-          {STATS.map(s => (
-            <StatCard key={s.v} k={s.k} v={s.v} hint={s.hint} />
-          ))}
+        <div className="mb-12 md:mb-16">
+          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-4 md:overflow-visible md:pb-0">
+            {STATS.map(s => (
+              <div key={s.v} className="snap-start shrink-0 w-[78vw] max-w-[320px] md:w-auto md:max-w-none">
+                <StatCard k={s.k} v={s.v} hint={s.hint} />
+              </div>
+            ))}
+          </div>
+          <p className="mt-3 text-[11px] text-gray-400 font-medium text-center md:hidden">Kaydırarak tüm metrikleri görün.</p>
         </div>
 
         {/* DM → Appointment block */}
@@ -384,7 +414,7 @@ export default function InstagramPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-white rounded-[2.5rem] border border-gray-100 shadow-xl shadow-dark/5 p-8 md:p-10 overflow-hidden relative"
+            className="bg-white rounded-xl border border-gray-100 shadow-xl shadow-dark/5 p-8 md:p-10 overflow-hidden relative premium-shadow"
           >
             <div className="absolute -top-16 -left-16 w-64 h-64 bg-pink-500/10 rounded-full blur-3xl" />
             <p className="text-xs font-black uppercase tracking-[0.35em] text-pink-600 mb-4 relative z-10">DM → Randevu</p>
@@ -414,14 +444,14 @@ export default function InstagramPage() {
               <button
                 type="button"
                 onClick={() => setScenarioId('dm')}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-gray-50 border border-gray-200 text-dark font-bold text-sm hover:bg-white hover:border-brand/30 transition-all"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gray-50 border border-gray-200 text-dark font-bold text-sm hover:bg-white hover:border-brand/30 transition-all active:scale-[0.99]"
               >
                 DM Senaryosu <ChevronRight className="w-4 h-4" />
               </button>
               <button
                 type="button"
                 onClick={() => setScenarioId('comments')}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-gray-50 border border-gray-200 text-dark font-bold text-sm hover:bg-white hover:border-brand/30 transition-all"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gray-50 border border-gray-200 text-dark font-bold text-sm hover:bg-white hover:border-brand/30 transition-all active:scale-[0.99]"
               >
                 Yorum Senaryosu <ChevronRight className="w-4 h-4" />
               </button>
@@ -451,11 +481,14 @@ export default function InstagramPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+          <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-6 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-2 xl:grid-cols-4 md:gap-6 md:overflow-visible md:pb-0">
             {features.map(f => (
-              <FeatureCard key={f.title} icon={f.icon} title={f.title} desc={f.desc} accent={f.accent} />
+              <div key={f.title} className="snap-start shrink-0 w-[86vw] max-w-[360px] md:w-auto md:max-w-none">
+                <FeatureCard icon={f.icon} title={f.title} desc={f.desc} accent={f.accent} />
+              </div>
             ))}
           </div>
+          <p className="mt-3 text-[11px] text-gray-400 font-medium text-center md:hidden">Özellik kartlarını kaydırarak inceleyin.</p>
         </div>
 
         {/* Scenarios */}
@@ -476,15 +509,15 @@ export default function InstagramPage() {
             </p>
           </div>
 
-          <div className="bg-white rounded-[3rem] border border-gray-100 shadow-xl shadow-dark/5 p-6 md:p-10 overflow-hidden">
-            <div className="flex flex-wrap gap-2 mb-8">
+          <div className="bg-white rounded-xl border border-gray-100 shadow-xl shadow-dark/5 p-6 md:p-10 overflow-hidden premium-shadow">
+            <div className="flex gap-2 overflow-x-auto snap-x snap-mandatory pb-3 scrollbar-hide -mx-2 px-2 md:mx-0 md:px-0 md:flex-wrap md:overflow-visible md:pb-0 mb-8">
               {SCENARIOS.map(s => (
                 <button
                   key={s.id}
                   type="button"
                   onClick={() => setScenarioId(s.id)}
                   aria-pressed={scenarioId === s.id}
-                  className={`px-4 py-2 rounded-full text-xs font-bold border transition-all ${
+                  className={`snap-start shrink-0 whitespace-nowrap px-4 py-2 rounded-full text-xs font-bold border transition-all ${
                     scenarioId === s.id
                       ? 'bg-dark text-white border-dark'
                       : 'bg-gray-50 text-gray-600 border-gray-200 hover:bg-white hover:border-brand/30'
@@ -514,7 +547,7 @@ export default function InstagramPage() {
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Link
                     to="/mesajlasma-paketleri"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-dark text-white font-bold text-sm hover:bg-brand transition-colors"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-brand to-pink-600 text-white font-bold text-sm hover:from-brand-dark hover:to-pink-700 transition-all shadow-lg shadow-brand/20 active:scale-[0.99]"
                   >
                     Paketleri İncele <ArrowRight className="w-4 h-4" />
                   </Link>
@@ -522,25 +555,25 @@ export default function InstagramPage() {
                     href="https://wa.me/908503099901"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-gray-50 border border-gray-200 text-dark font-bold text-sm hover:bg-white hover:border-brand/30 transition-all"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-white border border-gray-200 text-dark font-bold text-sm hover:border-brand/30 hover:shadow-md transition-all active:scale-[0.99]"
                   >
                     Kurulum Sor <ChevronRight className="w-4 h-4" />
                   </a>
                 </div>
               </div>
 
-              <div className="bg-gray-50 rounded-[2.5rem] border border-gray-100 p-6 md:p-8 overflow-hidden">
+              <div className="bg-gray-50 rounded-xl border border-gray-100 p-6 md:p-8 overflow-hidden">
                 <p className="text-xs font-black uppercase tracking-[0.35em] text-gray-400 mb-4">Örnek</p>
                 <div className="space-y-3">
                   {selectedScenario.example.map((m, idx) => (
                     <div key={idx} className="space-y-3">
                       <div className="flex justify-start">
-                        <div className="max-w-[92%] rounded-2xl px-4 py-3 bg-white border border-gray-200 text-sm font-medium text-gray-700 shadow-sm">
+                        <div className="max-w-[92%] rounded-xl px-4 py-3 bg-white border border-gray-200 text-sm font-medium text-gray-700 shadow-sm">
                           {m.user}
                         </div>
                       </div>
                       <div className="flex justify-end">
-                        <div className="max-w-[92%] rounded-2xl px-4 py-3 bg-blue-600 text-white text-sm font-medium shadow-lg shadow-blue-600/15">
+                        <div className="max-w-[92%] rounded-xl px-4 py-3 bg-blue-600 text-white text-sm font-medium shadow-lg shadow-blue-600/15">
                           {m.bot}
                         </div>
                       </div>
@@ -554,7 +587,7 @@ export default function InstagramPage() {
 
         {/* Multi-language */}
         <div className="mb-14 md:mb-20">
-          <div className="bg-gradient-to-br from-dark to-[#111] rounded-[3rem] p-8 md:p-12 shadow-2xl shadow-dark/20 relative overflow-hidden">
+          <div className="bg-gradient-to-br from-dark to-[#111] rounded-xl p-8 md:p-12 shadow-2xl shadow-dark/20 relative overflow-hidden">
             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.05]" />
             <div className="absolute right-0 top-0 w-80 h-80 bg-brand/20 rounded-full blur-3xl -mr-32 -mt-32" />
 
@@ -575,7 +608,7 @@ export default function InstagramPage() {
                     <select
                       value={lang}
                       onChange={e => setLang(e.target.value)}
-                      className="w-full px-4 py-3 rounded-2xl bg-white/10 border border-white/20 text-white font-bold text-sm outline-none focus:ring-2 focus:ring-brand/40"
+                      className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white font-bold text-sm outline-none focus:ring-2 focus:ring-brand/40"
                     >
                       {Object.entries(LANGUAGE_SAMPLES).map(([key, val]) => (
                         <option key={key} value={key} className="text-dark">
@@ -586,7 +619,7 @@ export default function InstagramPage() {
                   </label>
                   <Link
                     to="/mesajlasma-paketleri"
-                    className="sm:self-end inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-brand text-white font-bold text-sm hover:bg-white hover:text-dark transition-all shadow-xl shadow-brand/20"
+                    className="sm:self-end inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-brand to-pink-600 text-white font-bold text-sm hover:from-brand-dark hover:to-pink-700 transition-all shadow-xl shadow-brand/20 active:scale-[0.99]"
                   >
                     Paketleri Gör <ArrowRight className="w-4 h-4" />
                   </Link>
@@ -594,13 +627,13 @@ export default function InstagramPage() {
               </div>
 
               <div className="relative z-10">
-                <div className="bg-white/5 border border-white/15 rounded-[2.5rem] p-6 md:p-8">
+                <div className="bg-white/5 border border-white/15 rounded-xl p-6 md:p-8">
                   <p className="text-xs font-black uppercase tracking-[0.35em] text-white/50 mb-4">Örnek Yanıt</p>
                   <div className="space-y-3">
-                    <div className="rounded-2xl px-4 py-3 bg-white/10 border border-white/15 text-white text-sm font-medium">
+                    <div className="rounded-xl px-4 py-3 bg-white/10 border border-white/15 text-white text-sm font-medium">
                       {languageSample.sample}
                     </div>
-                    <div className="rounded-2xl px-4 py-3 bg-white/10 border border-white/15 text-white text-sm font-medium">
+                    <div className="rounded-xl px-4 py-3 bg-white/10 border border-white/15 text-white text-sm font-medium">
                       {lang === 'tr'
                         ? 'İsterseniz sizi WhatsApp’a yönlendirebilirim veya buradan devam edebiliriz.'
                         : 'I can route you to WhatsApp, or we can continue right here — whichever you prefer.'}
@@ -630,7 +663,7 @@ export default function InstagramPage() {
             </p>
           </div>
 
-          <div className="bg-white rounded-[3rem] border border-gray-100 shadow-xl shadow-dark/5 p-6 md:p-10 overflow-hidden relative">
+          <div className="bg-white rounded-xl border border-gray-100 shadow-xl shadow-dark/5 p-6 md:p-10 overflow-hidden relative premium-shadow">
             <div className="absolute -top-20 -right-20 w-72 h-72 bg-brand/10 rounded-full blur-3xl" />
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
@@ -663,7 +696,7 @@ export default function InstagramPage() {
               </div>
 
               <div className="relative z-10">
-                <div className="bg-gray-50 rounded-[2.5rem] border border-gray-100 p-6 md:p-8">
+                <div className="bg-gray-50 rounded-xl border border-gray-100 p-6 md:p-8">
                   <p className="text-xs font-black uppercase tracking-[0.35em] text-gray-400 mb-4">Hızlı Demo</p>
 
                   <label className="block">
@@ -672,7 +705,7 @@ export default function InstagramPage() {
                       value={idea}
                       onChange={e => setIdea(e.target.value)}
                       placeholder="Örn: diş kliniği için implant kampanyası, premium, sade"
-                      className="w-full px-4 py-3 rounded-2xl bg-white border border-gray-200 font-bold text-sm text-dark outline-none focus:ring-2 focus:ring-brand/30"
+                      className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 font-bold text-sm text-dark outline-none focus:ring-2 focus:ring-brand/30"
                     />
                   </label>
 
@@ -680,7 +713,7 @@ export default function InstagramPage() {
                     <button
                       type="button"
                       onClick={() => setSoonOpen(true)}
-                      className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-dark text-white font-bold text-sm hover:bg-brand transition-colors"
+                      className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-brand to-pink-600 text-white font-bold text-sm hover:from-brand-dark hover:to-pink-700 transition-all shadow-lg shadow-brand/20 active:scale-[0.99]"
                     >
                       Tasarla (Yakında) <ChevronRight className="w-4 h-4" />
                     </button>
@@ -688,7 +721,7 @@ export default function InstagramPage() {
                       href="https://wa.me/908503099901"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-white border border-gray-200 text-dark font-bold text-sm hover:border-brand/30 hover:shadow-md transition-all"
+                      className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-white border border-gray-200 text-dark font-bold text-sm hover:border-brand/30 hover:shadow-md transition-all active:scale-[0.99]"
                     >
                       Haberdar Et <ArrowRight className="w-4 h-4" />
                     </a>
@@ -700,7 +733,7 @@ export default function InstagramPage() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
-                        className="mt-5 rounded-2xl bg-white border border-gray-200 p-4"
+                        className="mt-5 rounded-xl bg-white border border-gray-200 p-4"
                       >
                         <p className="text-sm font-bold text-dark">Bu özellik çok yakında aktif olacak.</p>
                         <p className="text-xs text-gray-500 font-medium mt-1 leading-relaxed">
@@ -711,7 +744,7 @@ export default function InstagramPage() {
                         <button
                           type="button"
                           onClick={() => setSoonOpen(false)}
-                          className="mt-3 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-gray-50 border border-gray-200 text-dark font-bold text-xs hover:bg-white"
+                          className="mt-3 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-gray-50 border border-gray-200 text-dark font-bold text-xs hover:bg-white active:scale-[0.99]"
                         >
                           Kapat <ChevronRight className="w-4 h-4" />
                         </button>
@@ -724,6 +757,100 @@ export default function InstagramPage() {
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* FAQ */}
+        <div className="mt-14 md:mt-20">
+          <JsonLd
+            data={{
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: INSTAGRAM_FAQS.map(faq => ({
+                '@type': 'Question',
+                name: faq.q,
+                acceptedAnswer: { '@type': 'Answer', text: faq.a },
+              })),
+            }}
+          />
+
+          <div className="text-center mb-8">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-dark rounded-full text-[10px] font-bold uppercase tracking-widest mb-5 shadow-sm"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-brand" />
+              Sık Sorulan Sorular
+            </motion.div>
+            <h2 className="text-3xl md:text-4xl font-bold text-dark mb-3">Instagram otomasyonu hakkında.</h2>
+            <p className="text-gray-500 font-medium max-w-3xl mx-auto">
+              Kurulum, yorum yanıtı, DM akışları ve çoklu dil desteğiyle ilgili en çok sorulan sorular.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="space-y-3">
+              {INSTAGRAM_FAQS.map((faq, index) => {
+                const isOpen = faqOpenIndex === index;
+                return (
+                  <div
+                    key={faq.q}
+                    className={`bg-white rounded-xl border overflow-hidden transition-all ${
+                      isOpen ? 'border-brand/30 shadow-lg shadow-brand/10' : 'border-gray-200 shadow-sm hover:border-brand/25'
+                    }`}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setFaqOpenIndex(isOpen ? null : index)}
+                      className="w-full px-6 py-5 flex items-center justify-between gap-4 text-left"
+                      aria-expanded={isOpen}
+                    >
+                      <span className="font-bold text-dark pr-6">{faq.q}</span>
+                      <div
+                        className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
+                          isOpen ? 'bg-brand text-white' : 'bg-gray-50 text-gray-400'
+                        }`}
+                      >
+                        <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+                      </div>
+                    </button>
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.28 }}
+                        >
+                          <div className="px-6 pb-6 text-gray-500 font-medium leading-relaxed border-t border-gray-50 pt-4">
+                            {faq.a}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Link
+                to="/mesajlasma-paketleri"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg bg-gradient-to-r from-brand to-pink-600 text-white font-bold text-sm hover:from-brand-dark hover:to-pink-700 transition-all shadow-lg shadow-brand/20 active:scale-[0.99]"
+              >
+                Paketleri İncele <ArrowRight className="w-4 h-4" />
+              </Link>
+              <a
+                href="https://wa.me/908503099901"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg bg-white border border-gray-200 text-dark font-bold text-sm hover:border-brand/30 hover:shadow-md transition-all active:scale-[0.99]"
+              >
+                Ücretsiz Demo <ChevronRight className="w-4 h-4" />
+              </a>
             </div>
           </div>
         </div>
