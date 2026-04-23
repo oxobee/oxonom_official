@@ -21,6 +21,7 @@ import MessagingPackagesPage from './pages/MessagingPackagesPage';
 import VoicePackagesPage from './pages/VoicePackagesPage';
 import ComboPackagesPage from './pages/ComboPackagesPage';
 import IntegrationsPage from './pages/IntegrationsPage';
+import InstagramPage from './pages/InstagramPage';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -90,6 +91,7 @@ export default function App() {
             <Route path="/mesajlasma-paketleri" element={<MessagingPackagesPage />} />
             <Route path="/ses-paketleri" element={<VoicePackagesPage />} />
             <Route path="/combo-paketler" element={<ComboPackagesPage />} />
+            <Route path="/instagram" element={<InstagramPage />} />
             
             {/* Catch-all route for unhandled paths -> 404 */}
             <Route path="*" element={<NotFoundPage />} />
