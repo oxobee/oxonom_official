@@ -19,8 +19,8 @@ export default function Navbar() {
   const productQuickStartRef = useRef<HTMLDivElement | null>(null);
   const mobileQuickStartRef = useRef<HTMLDivElement | null>(null);
 
-  useAutoSnapScroll(productQuickStartRef, { enabled: isProductMegaMenuOpen, intervalMs: 5200 });
-  useAutoSnapScroll(mobileQuickStartRef, { enabled: isMobileMenuOpen, intervalMs: 5200, pauseOnHover: false });
+  useAutoSnapScroll(productQuickStartRef, { enabled: isProductMegaMenuOpen, intervalMs: 8000 });
+  useAutoSnapScroll(mobileQuickStartRef, { enabled: isMobileMenuOpen, intervalMs: 8000, pauseOnHover: false });
 
   useEffect(() => {
     const handleScroll = () => {

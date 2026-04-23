@@ -275,9 +275,9 @@ export default function InstagramPage() {
   const languageSample = LANGUAGE_SAMPLES[lang] ?? LANGUAGE_SAMPLES.tr;
   const selectedScenario = useMemo(() => SCENARIOS.find(s => s.id === scenarioId) ?? SCENARIOS[0], [scenarioId]);
 
-  useAutoSnapScroll(statsSliderRef, { intervalMs: 4200 });
-  useAutoSnapScroll(featuresSliderRef, { intervalMs: 4400 });
-  useAutoSnapScroll(scenariosSliderRef, { intervalMs: 5000 });
+  useAutoSnapScroll(statsSliderRef, { intervalMs: 6000 });
+  useAutoSnapScroll(featuresSliderRef, { intervalMs: 6400 });
+  useAutoSnapScroll(scenariosSliderRef, { intervalMs: 6800 });
 
   const features = [
     {
