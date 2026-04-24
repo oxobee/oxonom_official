@@ -24,6 +24,7 @@ import IntegrationsPage from './pages/IntegrationsPage';
 import InstagramPage from './pages/InstagramPage';
 import FacebookPage from './pages/FacebookPage';
 import WhatsAppPage from './pages/WhatsAppPage';
+import WebSitePage from './pages/WebSitePage';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -96,6 +97,7 @@ export default function App() {
             <Route path="/instagram" element={<InstagramPage />} />
             <Route path="/facebook" element={<FacebookPage />} />
             <Route path="/whatsapp" element={<WhatsAppPage />} />
+            <Route path="/web-site" element={<WebSitePage />} />
             
             {/* Catch-all route for unhandled paths -> 404 */}
             <Route path="*" element={<NotFoundPage />} />
