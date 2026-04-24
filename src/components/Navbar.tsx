@@ -19,6 +19,7 @@ export default function Navbar() {
   const headerRef = useRef<HTMLElement | null>(null);
   const [productMegaMenuTop, setProductMegaMenuTop] = useState<number>(0);
   const productQuickStartRef = useRef<HTMLDivElement | null>(null);
+  const mobileProductQuickStartRef = useRef<HTMLDivElement | null>(null);
   const mobileQuickStartRef = useRef<HTMLDivElement | null>(null);
 
   const openProductMegaMenu = () => {
@@ -32,6 +33,7 @@ export default function Navbar() {
   };
 
   useAutoSnapScroll(productQuickStartRef, { enabled: isProductMegaMenuOpen, intervalMs: 8000 });
+  useAutoSnapScroll(mobileProductQuickStartRef, { enabled: isMobileMenuOpen, intervalMs: 8000, pauseOnHover: false });
   useAutoSnapScroll(mobileQuickStartRef, { enabled: isMobileMenuOpen, intervalMs: 8000, pauseOnHover: false });
 
   useEffect(() => {
@@ -601,71 +603,234 @@ export default function Navbar() {
             <div className="flex-1 overflow-y-auto px-6 py-8">
 	              {/* Main Links */}
 	              <div className="flex flex-col gap-3 mb-8">
-		                <div className="relative overflow-hidden p-5 bg-gradient-to-br from-dark to-gray-900 rounded-xl flex flex-col gap-4 shadow-xl shadow-dark/10 border border-gray-800">
-	                  <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.05]" />
-	                  <div className="absolute top-0 right-0 w-32 h-32 bg-brand/20 rounded-full blur-[40px] -mr-16 -mt-16" />
-	                  
-	                  <div className="flex items-center justify-between gap-4 relative z-10">
-	                    <div className="flex items-center gap-4">
-	                    <div className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center text-brand border border-white/10 shadow-inner shrink-0">
-	                      <Sparkles className="w-5 h-5" />
-	                    </div>
-	                    <div>
-	                      <span className="font-bold text-lg text-white block mb-0.5">Ürün</span>
-	                      <span className="text-xs text-gray-400 font-medium">Yapay Zeka Ajanları</span>
-	                    </div>
-	                    </div>
-		                    <Link to="/instagram" className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 hover:bg-brand hover:border-brand transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-		                      <ArrowRight className="w-4 h-4 text-white" />
-		                    </Link>
-		                  </div>
-
-		                  <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide -mx-1 px-1 relative z-10 mt-2">
+		                <div className="bg-white rounded-xl border border-gray-100 p-5 premium-shadow overflow-hidden">
+		                  <div className="flex items-center justify-between gap-4">
+		                    <div className="flex items-center gap-4 min-w-0">
+		                      <div className="w-12 h-12 bg-brand/10 border border-brand/20 rounded-lg flex items-center justify-center text-brand shrink-0">
+		                        <Sparkles className="w-5 h-5" />
+		                      </div>
+		                      <div className="min-w-0">
+		                        <span className="font-bold text-lg text-dark block mb-0.5">Ürün</span>
+		                        <span className="text-xs text-gray-500 font-medium">Yapay Zeka Ajanları</span>
+		                      </div>
+		                    </div>
 		                    <Link
 		                      to="/instagram"
-		                      className="shrink-0 px-3 py-2 rounded-lg bg-brand text-white text-[11px] font-black uppercase tracking-widest"
+		                      aria-label="Instagram sayfasını aç"
+		                      className="w-9 h-9 rounded-lg bg-gray-50 flex items-center justify-center border border-gray-200 hover:border-brand/30 hover:bg-white transition-colors shrink-0"
 		                      onClick={() => setIsMobileMenuOpen(false)}
 		                    >
-		                      Instagram
+		                      <ArrowRight className="w-4 h-4 text-gray-500" />
 		                    </Link>
-		                    {[
-		                      { label: 'Facebook' },
-		                      { label: 'WhatsApp' },
-		                      { label: 'Web Site' },
-		                    ].map(({ label }) => (
-		                      <a
-		                        key={label}
-		                        href="#"
-		                        onClick={(e) => e.preventDefault()}
-		                        className="shrink-0 px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-white/80 text-[11px] font-black uppercase tracking-widest hover:bg-white/10 transition-colors"
-		                      >
-		                        {label}
-		                      </a>
-		                    ))}
 		                  </div>
 
-		                  <Link
-		                    to="/instagram"
-		                    className="relative z-10 w-full p-4 bg-white/5 rounded-lg border border-white/10 flex items-center gap-3 hover:bg-white/10 transition-colors"
-		                    onClick={() => setIsMobileMenuOpen(false)}
-		                  >
-		                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-pink-500 to-orange-500 text-white flex items-center justify-center shadow-lg shadow-pink-500/20 shrink-0">
-		                      <Instagram className="w-5 h-5" />
-		                    </div>
-		                    <div className="min-w-0">
-		                      <span className="text-sm font-bold text-white block">Instagram</span>
-		                      <span className="text-xs text-white/70 font-medium line-clamp-1">DM + yorum otomasyonu, 30+ dil.</span>
-		                    </div>
-		                    <ArrowRight className="w-5 h-5 text-white/60 ml-auto" />
-		                  </Link>
+		                  <div className="mt-4 rounded-lg bg-gradient-to-b from-white to-gray-50 border border-gray-100 p-4 relative overflow-hidden">
+		                    <div className="absolute -top-12 -left-12 w-44 h-44 bg-brand/10 rounded-full blur-3xl" />
 
-		                  <Link
-		                    to="/instagram"
-		                    className="relative z-10 w-full py-3 bg-white/10 rounded-lg border border-white/10 flex items-center justify-center gap-2 hover:bg-white/20 transition-colors text-white text-xs font-bold mt-1 active:scale-95"
-		                    onClick={() => setIsMobileMenuOpen(false)}
-		                  >
-		                    Instagram Sayfasını Aç <ArrowRight className="w-3 h-3" />
-		                  </Link>
+		                    <div className="relative z-10">
+		                      <div className="flex items-start justify-between gap-4">
+		                        <div>
+		                          <p className="text-[10px] font-black uppercase tracking-[0.35em] text-gray-400">Kanallar</p>
+		                          <h4 className="text-base font-bold text-dark mt-1">AI Asistanınızı kanalınıza göre seçin.</h4>
+		                          <p className="text-xs text-gray-500 font-medium mt-1 leading-relaxed">
+		                            Instagram bugün aktif. Diğer kanallar yakında. Paketler ve kurulum detayları için aşağıdaki hızlı başlangıç alanını kaydırın.
+		                          </p>
+		                        </div>
+		                        <span className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-gray-200 text-[10px] font-bold text-gray-500 uppercase tracking-widest shadow-sm">
+		                          <Sparkles className="w-3 h-3 text-brand" /> OXONOM AI
+		                        </span>
+		                      </div>
+
+		                      <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+		                        <Link
+		                          to="/instagram"
+		                          onClick={() => setIsMobileMenuOpen(false)}
+		                          className="group relative overflow-hidden rounded-lg p-4 bg-gradient-to-br from-pink-50 to-orange-50 border border-pink-100 hover:border-brand/30 transition-all premium-shadow-hover"
+		                        >
+		                          <div className="absolute top-0 right-0 w-24 h-24 bg-pink-500/10 rounded-full blur-3xl -mr-14 -mt-14 group-hover:scale-150 transition-transform duration-700" />
+		                          <div className="relative z-10 flex items-start gap-4">
+		                            <div className="w-11 h-11 rounded-lg bg-gradient-to-br from-pink-500 to-orange-500 text-white flex items-center justify-center shadow-lg shadow-pink-500/20 shrink-0">
+		                              <Instagram className="w-5 h-5" />
+		                            </div>
+		                            <div className="min-w-0">
+		                              <h5 className="text-base font-bold text-dark group-hover:text-brand transition-colors mb-1">Instagram</h5>
+		                              <p className="text-xs text-gray-500 font-medium leading-relaxed">
+		                                DM + yorum otomasyonu, lead skorlama ve 30+ dil.
+		                              </p>
+		                              <div className="mt-3 inline-flex items-center gap-2 text-[10px] font-bold text-brand uppercase tracking-widest">
+		                                Sayfayı Aç <ArrowRight className="w-3 h-3" />
+		                              </div>
+		                            </div>
+		                          </div>
+		                        </Link>
+
+		                        <a
+		                          href="#"
+		                          onClick={(e) => e.preventDefault()}
+		                          className="group relative overflow-hidden rounded-lg p-4 bg-white border border-gray-200 hover:border-blue-500/30 transition-all premium-shadow-hover"
+		                        >
+		                          <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 rounded-full blur-3xl -mr-14 -mt-14 group-hover:scale-150 transition-transform duration-700" />
+		                          <div className="relative z-10 flex items-start gap-4">
+		                            <div className="w-11 h-11 rounded-lg bg-blue-500/10 text-blue-600 border border-blue-200 flex items-center justify-center shrink-0">
+		                              <Facebook className="w-5 h-5" />
+		                            </div>
+		                            <div className="min-w-0">
+		                              <h5 className="text-base font-bold text-dark group-hover:text-blue-600 transition-colors mb-1">Facebook</h5>
+		                              <p className="text-xs text-gray-500 font-medium leading-relaxed">
+		                                Messenger otomasyonu ve yorum yönetimi (yakında).
+		                              </p>
+		                              <div className="mt-3 inline-flex items-center gap-2 text-[10px] font-bold text-blue-600 uppercase tracking-widest">
+		                                Yakında <Sparkles className="w-3 h-3" />
+		                              </div>
+		                            </div>
+		                          </div>
+		                        </a>
+
+		                        <a
+		                          href="#"
+		                          onClick={(e) => e.preventDefault()}
+		                          className="group relative overflow-hidden rounded-lg p-4 bg-white border border-gray-200 hover:border-green-500/30 transition-all premium-shadow-hover"
+		                        >
+		                          <div className="absolute top-0 right-0 w-24 h-24 bg-green-500/5 rounded-full blur-3xl -mr-14 -mt-14 group-hover:scale-150 transition-transform duration-700" />
+		                          <div className="relative z-10 flex items-start gap-4">
+		                            <div className="w-11 h-11 rounded-lg bg-green-500/10 text-green-600 border border-green-200 flex items-center justify-center shrink-0">
+		                              <MessageCircle className="w-5 h-5" />
+		                            </div>
+		                            <div className="min-w-0">
+		                              <h5 className="text-base font-bold text-dark group-hover:text-green-700 transition-colors mb-1">WhatsApp</h5>
+		                              <p className="text-xs text-gray-500 font-medium leading-relaxed">
+		                                WhatsApp Business akışları ve otomatik yanıt (yakında).
+		                              </p>
+		                              <div className="mt-3 inline-flex items-center gap-2 text-[10px] font-bold text-green-700 uppercase tracking-widest">
+		                                Yakında <Sparkles className="w-3 h-3" />
+		                              </div>
+		                            </div>
+		                          </div>
+		                        </a>
+
+		                        <a
+		                          href="#"
+		                          onClick={(e) => e.preventDefault()}
+		                          className="group relative overflow-hidden rounded-lg p-4 bg-white border border-gray-200 hover:border-indigo-500/30 transition-all premium-shadow-hover"
+		                        >
+		                          <div className="absolute top-0 right-0 w-24 h-24 bg-indigo-500/5 rounded-full blur-3xl -mr-14 -mt-14 group-hover:scale-150 transition-transform duration-700" />
+		                          <div className="relative z-10 flex items-start gap-4">
+		                            <div className="w-11 h-11 rounded-lg bg-indigo-500/10 text-indigo-600 border border-indigo-200 flex items-center justify-center shrink-0">
+		                              <Globe className="w-5 h-5" />
+		                            </div>
+		                            <div className="min-w-0">
+		                              <h5 className="text-base font-bold text-dark group-hover:text-indigo-700 transition-colors mb-1">Web Site</h5>
+		                              <p className="text-xs text-gray-500 font-medium leading-relaxed">
+		                                Web chat widget + lead yakalama (yakında).
+		                              </p>
+		                              <div className="mt-3 inline-flex items-center gap-2 text-[10px] font-bold text-indigo-700 uppercase tracking-widest">
+		                                Yakında <Sparkles className="w-3 h-3" />
+		                              </div>
+		                            </div>
+		                          </div>
+		                        </a>
+		                      </div>
+		                    </div>
+		                  </div>
+
+		                  <div className="mt-4 rounded-lg bg-dark text-white border border-gray-800 overflow-hidden relative">
+		                    <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.05]" />
+		                    <div
+		                      ref={mobileProductQuickStartRef}
+		                      className="relative z-10 flex overflow-x-auto snap-x snap-mandatory scrollbar-hide"
+		                    >
+		                      {[
+		                        {
+		                          id: 'instagram',
+		                          accent: 'text-brand',
+		                          blob: 'bg-brand/20',
+		                          title: 'Instagram satışlarınızı hızlandırın.',
+		                          desc: 'DM ve yorumlara anında yanıt, lead nitelendirme ve randevu yönlendirme — hepsi tek yerden.',
+		                          bullets: ['DM + Yorum Otomasyonu', 'Anahtar kelime tetikleme', '30+ dil ile doğal iletişim'],
+		                          primaryTo: '/mesajlasma-paketleri',
+		                          primaryLabel: 'Paketleri İncele',
+		                        },
+		                        {
+		                          id: 'mesajlasma',
+		                          accent: 'text-blue-400',
+		                          blob: 'bg-blue-500/25',
+		                          title: 'Mesajlaşmada 7/24 dönüş.',
+		                          desc: 'WhatsApp, Instagram, Facebook ve Web Chat kanallarında tek panelden otomatik yanıt.',
+		                          bullets: ['Çoklu kanal yönetimi', 'Şablon + kişiselleştirme', 'CRM / randevu yönlendirme'],
+		                          primaryTo: '/mesajlasma-paketleri',
+		                          primaryLabel: 'Mesaj Paketleri',
+		                        },
+		                        {
+		                          id: 'ses',
+		                          accent: 'text-brand',
+		                          blob: 'bg-brand/20',
+		                          title: 'Sesli asistanla aramaları otomatikleştirin.',
+		                          desc: 'İnsan doğallığında 7/24 sesli görüşme. Randevu, bilgi ve yönlendirme akışları.',
+		                          bullets: ['Doğal konuşma', 'IVR yerine akıllı akış', 'İnsan devralma'],
+		                          primaryTo: '/ses-paketleri',
+		                          primaryLabel: 'Ses Paketleri',
+		                        },
+		                        {
+		                          id: 'combo',
+		                          accent: 'text-orange-300',
+		                          blob: 'bg-orange-500/20',
+		                          title: 'Combo ile avantajlı başlayın.',
+		                          desc: 'Ses + mesajlaşma birlikte. Daha güçlü başlangıç ve daha avantajlı kullanım.',
+		                          bullets: ['Birleşik paket', 'Daha avantajlı', 'Hızlı kurulum'],
+		                          primaryTo: '/combo-paketler',
+		                          primaryLabel: 'Combo Paketler',
+		                        },
+		                      ].map((slide) => (
+		                        <div key={slide.id} className="w-full shrink-0 snap-start p-5 relative">
+		                          <div className={`absolute -top-10 -right-10 w-40 h-40 ${slide.blob} rounded-full blur-3xl`} />
+
+		                          <div className="relative z-10">
+		                            <p className={`text-[10px] font-black uppercase tracking-[0.35em] ${slide.accent} mb-3`}>
+		                              Hızlı Başlangıç
+		                            </p>
+		                            <h4 className="text-xl font-bold mb-2">{slide.title}</h4>
+		                            <p className="text-xs text-gray-300 font-medium leading-relaxed mb-5">
+		                              {slide.desc}
+		                            </p>
+
+		                            <div className="space-y-2 mb-6">
+		                              {slide.bullets.map((t) => (
+		                                <div key={t} className="flex items-start gap-2">
+		                                  <div className="w-5 h-5 rounded-md bg-white/10 border border-white/15 flex items-center justify-center shrink-0 mt-0.5">
+		                                    <Sparkles className="w-3.5 h-3.5 text-brand" />
+		                                  </div>
+		                                  <span className="text-xs font-bold text-gray-200">{t}</span>
+		                                </div>
+		                              ))}
+		                            </div>
+
+		                            <div className="flex flex-col gap-2">
+		                              <Link
+		                                to={slide.primaryTo}
+		                                onClick={() => setIsMobileMenuOpen(false)}
+		                                className="w-full py-3 bg-brand text-white rounded-lg text-xs font-bold flex items-center justify-center gap-2 hover:bg-white hover:text-dark transition-all shadow-xl shadow-brand/20 active:scale-95"
+		                              >
+		                                {slide.primaryLabel} <ArrowRight className="w-4 h-4" />
+		                              </Link>
+		                              <a
+		                                href="https://wa.me/908503099901"
+		                                target="_blank"
+		                                rel="noopener noreferrer"
+		                                onClick={() => setIsMobileMenuOpen(false)}
+		                                className="w-full py-3 bg-white/10 text-white rounded-lg text-xs font-bold flex items-center justify-center gap-2 hover:bg-white hover:text-dark transition-all border border-white/15 active:scale-95"
+		                              >
+		                                Ücretsiz Demo <ArrowRight className="w-4 h-4" />
+		                              </a>
+		                            </div>
+		                          </div>
+		                        </div>
+		                      ))}
+		                    </div>
+
+		                    <div className="absolute bottom-3 right-3 px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-[10px] font-bold text-white/70">
+		                      Kaydır ↔
+		                    </div>
+		                  </div>
 		                </div>
 
 	                <div className="relative overflow-hidden p-5 bg-gradient-to-br from-dark to-gray-900 rounded-xl flex flex-col gap-4 shadow-xl shadow-dark/10 border border-gray-800">
