@@ -132,7 +132,7 @@ export default function Navbar() {
                                 <p className="text-[10px] font-black uppercase tracking-[0.35em] text-gray-400">Kanallar</p>
                                 <h4 className="text-xl font-bold text-dark mt-1">AI Asistanınızı kanalınıza göre seçin.</h4>
                                 <p className="text-xs text-gray-500 font-medium mt-1 leading-relaxed">
-                                  Instagram ve Facebook aktif. Diğer kanallar yakında. Paketler ve kurulum detayları için hızlı başlangıç alanını kaydırın.
+                                  Instagram, Facebook ve WhatsApp aktif. Diğer kanallar yakında. Paketler ve kurulum detayları için hızlı başlangıç alanını kaydırın.
                                 </p>
                               </div>
                               <span className="hidden md:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-gray-200 text-[10px] font-bold text-gray-500 uppercase tracking-widest shadow-sm">
@@ -185,9 +185,9 @@ export default function Navbar() {
                                 </div>
                               </Link>
 
-                              <a
-                                href="#"
-                                onClick={(e) => e.preventDefault()}
+                              <Link
+                                to="/whatsapp"
+                                onClick={() => setIsProductMegaMenuOpen(false)}
                                 className="group relative overflow-hidden rounded-lg p-5 bg-white border border-gray-200 hover:border-green-500/30 transition-all premium-shadow-hover"
                               >
                                 <div className="absolute top-0 right-0 w-28 h-28 bg-green-500/5 rounded-full blur-3xl -mr-14 -mt-14 group-hover:scale-150 transition-transform duration-700" />
@@ -198,14 +198,14 @@ export default function Navbar() {
                                   <div className="min-w-0">
                                     <h5 className="text-base font-bold text-dark group-hover:text-green-700 transition-colors mb-1">WhatsApp</h5>
                                     <p className="text-xs text-gray-500 font-medium leading-relaxed">
-                                      WhatsApp Business akışları ve otomatik yanıt (yakında).
+                                      WhatsApp mesaj otomasyonu, bilgilendirme ve randevu akışları.
                                     </p>
                                     <div className="mt-3 inline-flex items-center gap-2 text-[10px] font-bold text-green-700 uppercase tracking-widest">
-                                      Yakında <Sparkles className="w-3 h-3" />
+                                      Sayfayı Aç <ArrowRight className="w-3 h-3" />
                                     </div>
                                   </div>
                                 </div>
-                              </a>
+                              </Link>
 
                               <a
                                 href="#"
@@ -633,7 +633,7 @@ export default function Navbar() {
 		                          <p className="text-[10px] font-black uppercase tracking-[0.35em] text-gray-400">Kanallar</p>
 		                          <h4 className="text-base font-bold text-dark mt-1">AI Asistanınızı kanalınıza göre seçin.</h4>
 		                            <p className="text-xs text-gray-500 font-medium mt-1 leading-relaxed">
-		                            Instagram ve Facebook aktif. Diğer kanallar yakında. Paketler ve kurulum detayları için aşağıdaki hızlı başlangıç alanını kaydırın.
+		                            Instagram, Facebook ve WhatsApp aktif. Diğer kanallar yakında. Paketler ve kurulum detayları için aşağıdaki hızlı başlangıç alanını kaydırın.
 		                          </p>
 		                        </div>
 		                        <span className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-gray-200 text-[10px] font-bold text-gray-500 uppercase tracking-widest shadow-sm">
@@ -686,9 +686,9 @@ export default function Navbar() {
 		                          </div>
 		                        </Link>
 
-		                        <a
-		                          href="#"
-		                          onClick={(e) => e.preventDefault()}
+		                        <Link
+		                          to="/whatsapp"
+		                          onClick={() => setIsMobileMenuOpen(false)}
 		                          className="group relative overflow-hidden rounded-lg p-4 bg-white border border-gray-200 hover:border-green-500/30 transition-all premium-shadow-hover"
 		                        >
 		                          <div className="absolute top-0 right-0 w-24 h-24 bg-green-500/5 rounded-full blur-3xl -mr-14 -mt-14 group-hover:scale-150 transition-transform duration-700" />
@@ -699,14 +699,14 @@ export default function Navbar() {
 		                            <div className="min-w-0">
 		                              <h5 className="text-base font-bold text-dark group-hover:text-green-700 transition-colors mb-1">WhatsApp</h5>
 		                              <p className="text-xs text-gray-500 font-medium leading-relaxed">
-		                                WhatsApp Business akışları ve otomatik yanıt (yakında).
+		                                Mesaj otomasyonu, bilgilendirme ve randevu akışları.
 		                              </p>
 		                              <div className="mt-3 inline-flex items-center gap-2 text-[10px] font-bold text-green-700 uppercase tracking-widest">
-		                                Yakında <Sparkles className="w-3 h-3" />
+		                                Sayfayı Aç <ArrowRight className="w-3 h-3" />
 		                              </div>
 		                            </div>
 		                          </div>
-		                        </a>
+		                        </Link>
 
 		                        <a
 		                          href="#"

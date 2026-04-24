@@ -23,6 +23,7 @@ import ComboPackagesPage from './pages/ComboPackagesPage';
 import IntegrationsPage from './pages/IntegrationsPage';
 import InstagramPage from './pages/InstagramPage';
 import FacebookPage from './pages/FacebookPage';
+import WhatsAppPage from './pages/WhatsAppPage';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -94,6 +95,7 @@ export default function App() {
             <Route path="/combo-paketler" element={<ComboPackagesPage />} />
             <Route path="/instagram" element={<InstagramPage />} />
             <Route path="/facebook" element={<FacebookPage />} />
+            <Route path="/whatsapp" element={<WhatsAppPage />} />
             
             {/* Catch-all route for unhandled paths -> 404 */}
             <Route path="*" element={<NotFoundPage />} />

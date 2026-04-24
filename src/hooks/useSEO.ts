@@ -42,7 +42,7 @@ export function useSEO({
   schema,
 }: SEOProps) {
   useEffect(() => {
-    const fullTitle = title.includes('OXONOM') ? title : `${title} | OXONOM AI`;
+    const fullTitle = /oxonom/i.test(title) ? title : `${title} | OXONOM AI`;
     const fullCanonical = canonical
       ? (canonical.startsWith('http') ? canonical : `${SITE_URL}${canonical}`)
       : window.location.href.split('?')[0];
