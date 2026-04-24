@@ -4,7 +4,6 @@ import {
   Check,
   ArrowRight,
   Sparkles,
-  Zap,
   Instagram,
   Facebook,
   MessageCircle,
@@ -26,7 +25,6 @@ const CHANNEL_META: Record<string, { label: string; icon: React.ReactNode; color
   facebook:  { label: 'Facebook',  icon: <Facebook className="w-3.5 h-3.5" />, color: 'bg-blue-50 text-blue-600 border-blue-200' },
   web:       { label: 'Web Chat',  icon: <Globe className="w-3.5 h-3.5" />, color: 'bg-indigo-50 text-indigo-600 border-indigo-200' },
   tiktok:    { label: 'TikTok',    icon: <Share2 className="w-3.5 h-3.5" />, color: 'bg-slate-50 text-slate-700 border-slate-200' },
-  api:       { label: 'API',       icon: <Zap className="w-3.5 h-3.5" />, color: 'bg-amber-50 text-amber-600 border-amber-200' },
 };
 
 export default function MessagingPackagesPage() {
@@ -82,11 +80,11 @@ export default function MessagingPackagesPage() {
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Tek Akıllı Asistan</span>
           </motion.h1>
           <p className="text-base md:text-lg text-gray-500 max-w-2xl mx-auto font-medium mb-8">
-            Instagram, WhatsApp, Facebook ve Web Chat — hangi kanaldan gelirse gelsin, AI asistanınız hazır.
+            Instagram, WhatsApp, Facebook, Web Chat ve TikTok — hangi kanaldan gelirse gelsin, AI asistanınız hazır.
           </p>
           {/* Channel badges */}
           <div className="flex flex-wrap items-center justify-center gap-2 mb-4">
-            {Object.entries(CHANNEL_META).filter(([k]) => k !== 'api').map(([key, meta]) => (
+            {Object.entries(CHANNEL_META).map(([key, meta]) => (
               <span key={key} className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold border ${meta.color}`}>
                 {meta.icon} {meta.label}
               </span>
@@ -161,15 +159,9 @@ export default function MessagingPackagesPage() {
           </div>
         </motion.div>
 
-        {/* Notes */}
-        <div className="mt-12 pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex flex-wrap gap-6">
-            {pricing.notes.map((note, i) => (
-              <p key={i} className="text-xs text-gray-400 font-medium">*{note}</p>
-            ))}
-          </div>
-          <p className="text-xs text-gray-500 font-bold italic">OXONOM AI Fiyatlandırma Politikası © 2026</p>
-        </div>
+        <p className="mt-12 pt-8 border-t border-gray-200 text-center text-xs text-gray-500 font-bold italic">
+          OXONOM AI Fiyatlandırma Politikası © 2026
+        </p>
       </div>
     </div>
   );

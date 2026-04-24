@@ -19,7 +19,6 @@ export default function Navbar() {
   const headerRef = useRef<HTMLElement | null>(null);
   const [productMegaMenuTop, setProductMegaMenuTop] = useState<number>(0);
   const productQuickStartRef = useRef<HTMLDivElement | null>(null);
-  const mobileQuickStartRef = useRef<HTMLDivElement | null>(null);
 
   const openProductMegaMenu = () => {
     const rect = headerRef.current?.getBoundingClientRect();
@@ -32,7 +31,6 @@ export default function Navbar() {
   };
 
   useAutoSnapScroll(productQuickStartRef, { enabled: isProductMegaMenuOpen, intervalMs: 8000 });
-  useAutoSnapScroll(mobileQuickStartRef, { enabled: isMobileMenuOpen, intervalMs: 8000, pauseOnHover: false });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -130,7 +128,7 @@ export default function Navbar() {
                                 <p className="text-[10px] font-black uppercase tracking-[0.35em] text-gray-400">Kanallar</p>
                                 <h4 className="text-xl font-bold text-dark mt-1">AI Asistanınızı kanalınıza göre seçin.</h4>
                                 <p className="text-xs text-gray-500 font-medium mt-1 leading-relaxed">
-                                  Instagram, Facebook ve WhatsApp aktif. Diğer kanallar yakında. Paketler ve kurulum detayları için hızlı başlangıç alanını kaydırın.
+                                  Instagram, Facebook, WhatsApp ve Web Site aktif. Paketler ve kurulum detayları için hızlı başlangıç alanını kaydırın.
                                 </p>
                               </div>
                             </div>
@@ -628,7 +626,7 @@ export default function Navbar() {
 		                          <p className="text-[10px] font-black uppercase tracking-[0.35em] text-gray-400">Kanallar</p>
 		                          <h4 className="text-base font-bold text-dark mt-1">AI Asistanınızı kanalınıza göre seçin.</h4>
 		                            <p className="text-xs text-gray-500 font-medium mt-1 leading-relaxed">
-		                            Instagram, Facebook ve WhatsApp aktif. Diğer kanallar yakında. Paketler ve kurulum detayları için aşağıdaki hızlı başlangıç alanını kaydırın.
+		                            Instagram, Facebook, WhatsApp ve Web Site aktif. Kanala göre ürün sayfasını açın veya paketleri inceleyin.
 		                          </p>
 		                        </div>
 		                      </div>
@@ -726,39 +724,62 @@ export default function Navbar() {
 		                  </div>
 		                </div>
 
-	                <div className="relative overflow-hidden p-5 bg-gradient-to-br from-dark to-gray-900 rounded-xl flex flex-col gap-4 shadow-xl shadow-dark/10 border border-gray-800">
-                  <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.05]" />
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/20 rounded-full blur-[40px] -mr-16 -mt-16" />
-                  
-                  <div className="flex items-center gap-4 relative z-10">
-                    <div className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center text-blue-400 border border-white/10 shadow-inner shrink-0">
-                      <Zap className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <span className="font-bold text-lg text-white block mb-0.5">Paketler</span>
-                      <span className="text-xs text-gray-400 font-medium">Size Uygun Fiyatlar</span>
+	                <div className="relative overflow-hidden p-5 bg-white rounded-xl shadow-xl shadow-dark/5 border border-gray-100">
+                  <div className="absolute top-0 right-0 w-36 h-36 bg-brand/5 rounded-full blur-3xl -mr-20 -mt-20" />
+
+                  <div className="relative z-10 flex items-start justify-between gap-4 mb-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-11 h-11 bg-brand/5 rounded-lg flex items-center justify-center text-brand border border-brand/10 shrink-0">
+                        <Zap className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <span className="font-bold text-lg text-dark block mb-0.5">Paketler</span>
+                        <span className="text-xs text-gray-500 font-medium">İhtiyacınıza göre net seçim</span>
+                      </div>
                     </div>
                   </div>
-                  
-	                  <div
-	                    ref={mobileQuickStartRef}
-	                    className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-1 px-1 relative z-10 mt-2 pb-1"
-	                  >
-	                    <Link to="/ses-paketleri" className="snap-start shrink-0 w-[44vw] max-w-[170px] p-3 bg-white/5 rounded-lg border border-white/10 flex flex-col items-center gap-2 hover:bg-white/10 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-	                      <Zap className="w-4 h-4 text-brand" />
-	                      <span className="text-xs font-bold text-white">Ses</span>
+
+	                  <div className="relative z-10 grid grid-cols-1 gap-2">
+	                    <Link to="/ses-paketleri" className="group p-3 bg-gray-50 rounded-lg border border-gray-100 flex items-center justify-between gap-3 hover:bg-brand/5 hover:border-brand/20 transition-colors active:scale-[0.99]" onClick={() => setIsMobileMenuOpen(false)}>
+	                      <span className="flex items-center gap-3">
+	                        <span className="w-9 h-9 rounded-lg bg-white border border-gray-100 flex items-center justify-center">
+	                          <Zap className="w-4 h-4 text-brand" />
+	                        </span>
+	                        <span>
+	                          <span className="text-sm font-bold text-dark block">Ses Paketleri</span>
+	                          <span className="text-[11px] text-gray-500 font-medium">Dakika bazlı AI görüşme</span>
+	                        </span>
+	                      </span>
+	                      <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-brand transition-colors" />
 	                    </Link>
-	                    <Link to="/mesajlasma-paketleri" className="snap-start shrink-0 w-[44vw] max-w-[170px] p-3 bg-white/5 rounded-lg border border-white/10 flex flex-col items-center gap-2 hover:bg-white/10 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-	                      <Sparkles className="w-4 h-4 text-blue-400" />
-	                      <span className="text-xs font-bold text-white">Mesaj</span>
+	                    <Link to="/mesajlasma-paketleri" className="group p-3 bg-gray-50 rounded-lg border border-gray-100 flex items-center justify-between gap-3 hover:bg-blue-50 hover:border-blue-200 transition-colors active:scale-[0.99]" onClick={() => setIsMobileMenuOpen(false)}>
+	                      <span className="flex items-center gap-3">
+	                        <span className="w-9 h-9 rounded-lg bg-white border border-gray-100 flex items-center justify-center">
+	                          <Sparkles className="w-4 h-4 text-blue-600" />
+	                        </span>
+	                        <span>
+	                          <span className="text-sm font-bold text-dark block">Mesaj Paketleri</span>
+	                          <span className="text-[11px] text-gray-500 font-medium">Instagram, WhatsApp, Web Chat</span>
+	                        </span>
+	                      </span>
+	                      <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-blue-600 transition-colors" />
 	                    </Link>
-	                    <Link to="/combo-paketler" className="snap-start shrink-0 w-[44vw] max-w-[170px] p-3 bg-orange-500/10 rounded-lg border border-orange-500/20 flex flex-col items-center gap-2 hover:bg-orange-500/20 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-	                      <Star className="w-4 h-4 text-orange-400" />
-	                      <span className="text-xs font-bold text-orange-300">Combo</span>
+	                    <Link to="/combo-paketler" className="group p-3 bg-orange-50 rounded-lg border border-orange-100 flex items-center justify-between gap-3 hover:bg-orange-100/70 hover:border-orange-200 transition-colors active:scale-[0.99]" onClick={() => setIsMobileMenuOpen(false)}>
+	                      <span className="flex items-center gap-3">
+	                        <span className="w-9 h-9 rounded-lg bg-white border border-orange-100 flex items-center justify-center">
+	                          <Star className="w-4 h-4 text-orange-500" />
+	                        </span>
+	                        <span>
+	                          <span className="text-sm font-bold text-dark block">Combo Paketler</span>
+	                          <span className="text-[11px] text-orange-700/70 font-medium">Ses + mesaj birlikte</span>
+	                        </span>
+	                      </span>
+	                      <ArrowRight className="w-4 h-4 text-orange-400 group-hover:text-orange-600 transition-colors" />
 	                    </Link>
 	                  </div>
-	                  <Link to="/paketler" className="relative z-10 w-full py-3 bg-white/10 rounded-lg border border-white/10 flex items-center justify-center gap-2 hover:bg-white/20 transition-colors text-white text-xs font-bold mt-1 active:scale-95" onClick={() => setIsMobileMenuOpen(false)}>
-	                    Tüm Paketleri İncele <ArrowRight className="w-3 h-3" />
+
+	                  <Link to="/paketler" className="relative z-10 w-full py-3 bg-dark rounded-lg flex items-center justify-center gap-2 hover:bg-brand transition-colors text-white text-xs font-bold mt-3 active:scale-95" onClick={() => setIsMobileMenuOpen(false)}>
+	                    Tüm Paketleri Karşılaştır <ArrowRight className="w-3 h-3" />
 	                  </Link>
                 </div>
 

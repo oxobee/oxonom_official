@@ -90,7 +90,7 @@ export const pricing = {
         'Detaylı duygu raporu',
         'Özel marka sesi',
         'A/B test senaryosu',
-        'Günlük rapor + API erişimi',
+        'Günlük rapor + gelişmiş panel',
         'Öncelikli destek + WhatsApp hattı',
       ]
     },
@@ -109,7 +109,7 @@ export const pricing = {
         'Sınırsız senaryo + Özel eğitim',
         '60+ dil desteği',
         'Dedike altyapı',
-        'CRM & ERP + Custom API',
+        'CRM & ERP entegrasyonu',
         'Duygu analizi + NPS',
         'White-label',
         '%99.9 SLA garantisi',
@@ -129,10 +129,10 @@ export const pricing = {
       perMsg: '',
       upsell: 'Growth paketine geçerek 5x daha fazla mesaj kazanın',
       popular: false,
-      channels: ['instagram', 'whatsapp', 'web'],
+      channels: ['instagram', 'whatsapp', 'facebook', 'web', 'tiktok'],
       features: [
         '1.000 mesaj/ay',
-        'Instagram, WhatsApp, Web Chat',
+        'Instagram, WhatsApp, Facebook, Web Chat, TikTok',
         'Temel AI akıllı yanıt',
         '1 oto-yanıt senaryosu',
         '30 gün sohbet geçmişi',
@@ -147,10 +147,10 @@ export const pricing = {
       perMsg: '',
       upsell: 'Pro paketine geçerek 4x daha fazla mesaj kazanın',
       popular: true,
-      channels: ['instagram', 'whatsapp', 'facebook', 'web'],
+      channels: ['instagram', 'whatsapp', 'facebook', 'web', 'tiktok'],
       features: [
         '5.000 mesaj/ay',
-        'Instagram, WhatsApp, Facebook, Web Chat',
+        'Instagram, WhatsApp, Facebook, Web Chat, TikTok',
         'Gelişmiş AI akıllı yanıt',
         '5 oto-yanıt senaryosu',
         'CRM entegrasyonu (HubSpot, Zapier)',
@@ -189,38 +189,17 @@ export const pricing = {
       messages: '75.000',
       price: '$1.499',
       perMsg: '',
-      upsell: 'Unlimited paketine geçerek sınırsız mesaj kazanın',
+      upsell: '-',
       popular: false,
-      channels: ['instagram', 'whatsapp', 'facebook', 'web', 'tiktok', 'api'],
+      channels: ['instagram', 'whatsapp', 'facebook', 'web', 'tiktok'],
       features: [
         '75.000 mesaj/ay',
-        'Tüm kanallar + API erişimi',
+        'Instagram, WhatsApp, Facebook, Web Chat, TikTok',
         'Kurumsal AI (GPT-4 seviye)',
         'Sınırsız senaryo + Özel eğitim',
         'CRM & ERP + Custom webhook',
         'Özel yapay zeka eğitimi (kendi veriniz)',
         'White-label',
-        '%99.9 SLA garantisi',
-        'Dedike hesap yöneticisi',
-      ]
-    },
-    {
-      id: 'msg-unlimited',
-      name: 'Unlimited',
-      messages: 'Sınırsız',
-      price: '$3.499',
-      perMsg: '',
-      upsell: '-',
-      popular: false,
-      channels: ['instagram', 'whatsapp', 'facebook', 'web', 'tiktok', 'api'],
-      features: [
-        'Sınırsız mesaj',
-        'Tüm kanallar + API erişimi',
-        'Kurumsal AI (GPT-4 seviye)',
-        'Sınırsız senaryo + Özel eğitim',
-        'CRM & ERP + Custom API',
-        'Adil kullanım kotası uygulanır',
-        'White-label + Özel domain',
         '%99.9 SLA garantisi',
         'Dedike hesap yöneticisi',
       ]
@@ -239,11 +218,11 @@ export const pricing = {
       originalPrice: '$188',
       upsell: 'Combo Growth → 3x ses, 5x mesaj kapasitesi',
       popular: false,
-      channels: ['instagram', 'whatsapp', 'web'],
+      channels: ['instagram', 'whatsapp', 'facebook', 'web', 'tiktok'],
       features: [
         '100 dakika sesli arama',
         '1.000 mesaj',
-        'Instagram, WhatsApp, Web Chat',
+        'Instagram, WhatsApp, Facebook, Web Chat, TikTok',
         'Temel AI yanıt (sesli + yazılı)',
         '1+1 senaryo (sesli & mesaj)',
         'Türkçe + 1 dil',
@@ -260,11 +239,11 @@ export const pricing = {
       originalPrice: '$458',
       upsell: 'Combo Pro → 2.7x ses, 4x mesaj kapasitesi',
       popular: true,
-      channels: ['instagram', 'whatsapp', 'facebook', 'web'],
+      channels: ['instagram', 'whatsapp', 'facebook', 'web', 'tiktok'],
       features: [
         '300 dakika sesli arama',
         '5.000 mesaj',
-        'Tüm ana kanallar',
+        'Instagram, WhatsApp, Facebook, Web Chat, TikTok',
         'Gelişmiş AI yanıt (sesli + yazılı)',
         '5+5 senaryo (sesli & mesaj)',
         'CRM entegrasyonu (HubSpot, Zapier)',
@@ -287,7 +266,7 @@ export const pricing = {
       features: [
         '800 dakika sesli arama',
         '20.000 mesaj',
-        'Tüm kanallar + TikTok + API',
+        'Instagram, WhatsApp, Facebook, Web Chat, TikTok',
         'Üret-Sat AI (satış odaklı)',
         'Sınırsız senaryo',
         'CRM & ERP entegrasyonu',
@@ -307,11 +286,11 @@ export const pricing = {
       originalPrice: '$2.398',
       upsell: '-',
       popular: false,
-      channels: ['instagram', 'whatsapp', 'facebook', 'web', 'tiktok', 'api'],
+      channels: ['instagram', 'whatsapp', 'facebook', 'web', 'tiktok'],
       features: [
         '2.000 dakika sesli arama',
         '75.000 mesaj',
-        'Tüm kanallar + Custom API',
+        'Instagram, WhatsApp, Facebook, Web Chat, TikTok',
         'Kurumsal AI (GPT-4 seviye)',
         'Özel AI eğitimi (kendi verisi)',
         'White-label',
@@ -323,10 +302,7 @@ export const pricing = {
     },
   ],
 
-  notes: [
-    'Kullanılmayan dakikalar/mesajlar: Bir sonraki aya %20\'si devreder.',
-    'Sınırsız paketlerde adil kullanım kotası uygulanabilir.'
-  ]
+  notes: []
 };
 
 
@@ -1320,4 +1296,3 @@ export const blogPosts: Array<{
     date: "21 Nisan 2026"
   }
 ];
-

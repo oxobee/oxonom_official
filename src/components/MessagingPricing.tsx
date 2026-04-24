@@ -50,7 +50,7 @@ export default function MessagingPricing() {
             transition={{ delay: 0.2 }}
             className="text-base md:text-lg text-gray-500 mb-8 leading-relaxed font-medium max-w-2xl mx-auto"
           >
-            WhatsApp, Instagram ve Facebook mesajlarını yapay zeka ile yönetin. 
+            WhatsApp, Instagram, Facebook, Web Chat ve TikTok mesajlarını yapay zeka ile yönetin. 
             Maliyetlerinizi düşürüp satışlarınızı katlayacak otonom çözümler.
           </motion.p>
         </div>

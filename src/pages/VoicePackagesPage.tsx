@@ -135,15 +135,9 @@ export default function VoicePackagesPage() {
            </div>
         </motion.div>
 
-        {/* Notes */}
-        <div className="mt-16 flex flex-col md:flex-row justify-between items-center gap-6 border-t border-gray-100 pt-8">
-           <div className="flex gap-4">
-              {pricing.notes.map((note, i) => (
-                <p key={i} className="text-xs text-gray-400 font-medium">*{note}</p>
-              ))}
-           </div>
-           <p className="text-xs text-gray-400 font-bold italic">OXONOM AI SES TEKNOLOJİLERİ © 2026</p>
-        </div>
+        <p className="mt-16 border-t border-gray-100 pt-8 text-center text-xs text-gray-400 font-bold italic">
+          OXONOM AI SES TEKNOLOJİLERİ © 2026
+        </p>
       </div>
     </div>
   );
