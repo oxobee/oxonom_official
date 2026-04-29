@@ -524,9 +524,9 @@ export default function Hero() {
   const y2 = useTransform(scrollY, [0, 500], [0, -150]);
 
   return (
-    <section className="relative pt-28 pb-24 md:pt-36 md:pb-24 overflow-hidden bg-[#f8fafc]">
+    <section className="relative overflow-hidden bg-[#f8fafc] md:pt-36 md:pb-24">
       {/* Premium Background Elements */}
-      <div className="absolute inset-x-0 top-0 h-[620px] md:h-[58%] z-0 overflow-hidden pointer-events-none bg-brand">
+      <div className="absolute inset-x-0 top-0 hidden h-[58%] z-0 overflow-hidden pointer-events-none bg-brand md:block">
         <motion.div style={{ y: y1 }} className="absolute top-0 right-[10%] w-[500px] h-[500px] bg-white/10 rounded-full blur-[120px]" />
         <motion.div style={{ y: y2 }} className="absolute bottom-0 left-[5%] w-[400px] h-[400px] bg-black/20 rounded-full blur-[120px]" />
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.08]" />
@@ -535,7 +535,66 @@ export default function Hero() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full">
+      <div className="relative z-10 md:hidden">
+        <div className="relative overflow-hidden bg-brand px-4 pt-36 pb-20 text-center text-white">
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.08]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,.18),transparent_44%)]" />
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+            className="relative mx-auto max-w-sm"
+          >
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.22em]">
+              <span className="h-2 w-2 rounded-full bg-emerald-300" />
+              AI Model Aktif
+            </div>
+            <h1 className="font-display text-[42px] font-black leading-[0.98] tracking-tight">
+              Müşteri iletişiminde insan ötesi hız.
+            </h1>
+            <p className="mx-auto mt-5 max-w-[330px] text-[15px] font-medium leading-7 text-white/82">
+              Çağrıları ve mesajları 7/24 karşılayan, lead niteleyen ve satış ekibine hazır müşteri aktaran otonom temsilci.
+            </p>
+          </motion.div>
+        </div>
+
+        <div className="relative z-20 px-4 pb-10 -mt-9">
+          <motion.a
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15, duration: 0.45 }}
+            href="https://app.oxonom.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="OXONOM uygulamasını ücretsiz deneyin"
+            className="mx-auto flex h-[68px] max-w-[390px] items-center justify-center gap-3 rounded-2xl bg-[#070707] px-6 text-base font-black text-white shadow-2xl shadow-black/25 active:scale-[0.98]"
+          >
+            Hemen Ücretsiz Deneyin <ArrowRight className="h-5 w-5" />
+          </motion.a>
+
+          <div className="mx-auto mt-8 grid max-w-[390px] grid-cols-3 gap-2">
+            {[
+              { icon: Shield, text: 'Kurulum yok' },
+              { icon: Zap, text: '$5 bakiye' },
+              { icon: Users, text: '7/24 destek' },
+            ].map((badge) => (
+              <div key={badge.text} className="rounded-xl border border-slate-200 bg-white p-3 text-center shadow-sm">
+                <badge.icon className="mx-auto mb-2 h-4 w-4 text-brand" />
+                <p className="text-[10px] font-black uppercase tracking-tight text-slate-600">{badge.text}</p>
+              </div>
+            ))}
+          </div>
+
+          <Link
+            to="/paketler"
+            className="mx-auto mt-4 flex max-w-[390px] items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-4 text-sm font-black text-dark shadow-sm"
+          >
+            <LayoutGrid className="h-4 w-4 text-brand" /> Paketlere Gözat
+          </Link>
+        </div>
+      </div>
+
+      <div className="relative z-10 mx-auto hidden w-full max-w-7xl px-4 sm:px-6 md:block">
         <div className="flex flex-col items-center gap-10 md:gap-12">
           {/* Content */}
           <div className="text-center max-w-5xl mx-auto">
