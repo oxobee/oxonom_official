@@ -62,19 +62,25 @@ function DashboardCards({
   accent: 'green' | 'amber' | 'blue' | 'slate';
 }) {
   const tone = {
-    green: 'border-emerald-200 bg-emerald-50/40 text-emerald-700',
-    amber: 'border-amber-200 bg-amber-50/50 text-amber-700',
-    blue: 'border-blue-200 bg-blue-50/45 text-blue-700',
+    green: 'border-emerald-200 bg-gradient-to-br from-emerald-50/80 to-white text-emerald-700',
+    amber: 'border-amber-300 bg-white text-amber-700',
+    blue: 'border-slate-200 bg-white text-blue-700',
     slate: 'border-slate-200 bg-white text-slate-700',
   }[accent];
 
   return (
-    <div className="space-y-5">
-      <div>
-        <h3 className="text-2xl md:text-4xl font-bold text-dark">{title}</h3>
-        <p className="text-sm md:text-base font-medium text-slate-500 mt-1">{subtitle}</p>
+    <div className="mx-auto max-w-[1180px] space-y-6">
+      <div className="flex items-center justify-between bg-white/70 px-6 py-5">
+        <div>
+          <h3 className="text-2xl font-bold text-dark">{title}</h3>
+          <p className="text-sm font-medium text-slate-500 mt-1">{subtitle}</p>
+        </div>
+        <div className="hidden xl:flex rounded-xl bg-slate-100 p-1">
+          <span className="rounded-lg bg-white px-4 py-2 text-xs font-bold text-dark shadow-sm">{title}</span>
+          <span className="px-4 py-2 text-xs font-bold text-slate-500">Bilgi Bankası</span>
+        </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className={`grid gap-4 ${accent === 'blue' ? 'grid-cols-3' : 'grid-cols-2'}`}>
         {items.map((item, index) => (
           <motion.div
             key={item}
@@ -86,19 +92,19 @@ function DashboardCards({
           >
             <div className="flex items-start justify-between gap-4">
               <div className="flex items-start gap-3">
-                <span className="w-10 h-10 rounded-xl bg-white/70 border border-white flex items-center justify-center shrink-0">
-                  <Zap className="w-5 h-5" />
+                <span className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${accent === 'amber' ? 'bg-amber-50' : accent === 'green' ? 'bg-emerald-100' : 'bg-slate-50'}`}>
+                  {accent === 'blue' ? <Plug className="w-5 h-5" /> : <Zap className="w-5 h-5" />}
                 </span>
                 <div>
                   <h4 className="font-bold text-dark">{item}</h4>
-                  <p className="text-sm text-slate-500 mt-1">Kurallar, tetikleyiciler ve ekip devri tek panelden yönetilir.</p>
+                  <p className="text-sm text-slate-500 mt-1">{accent === 'blue' ? 'Bağlantıyı tek panelden kurun ve izleyin.' : 'Kurallar, tetikleyiciler ve ekip devri tek panelden yönetilir.'}</p>
                 </div>
               </div>
-              <span className="px-2.5 py-1 rounded-full bg-white/70 text-[10px] font-black">Aktif</span>
+              <span className={`px-2.5 py-1 rounded-full text-[10px] font-black ${accent === 'amber' ? 'bg-amber-50 text-amber-700 border border-amber-200' : 'bg-emerald-100 text-emerald-700'}`}>{accent === 'amber' ? 'Entegrasyon eksik' : 'Aktif'}</span>
             </div>
-            <div className="mt-4 grid grid-cols-2 gap-2">
-              <button className="py-2 rounded-lg bg-white border border-slate-200 text-xs font-bold text-slate-600">Test Et</button>
-              <button className="py-2 rounded-lg bg-blue-600 text-white text-xs font-bold">Düzenle →</button>
+            <div className="mt-5 grid grid-cols-2 gap-2">
+              <button className="py-2 rounded-lg bg-white border border-slate-200 text-xs font-bold text-slate-600">{accent === 'blue' ? 'Bağla' : 'Test Et'}</button>
+              <button className="py-2 rounded-lg bg-[#0b8ed1] text-white text-xs font-bold">{accent === 'blue' ? 'Detay' : 'Düzenle →'}</button>
             </div>
           </motion.div>
         ))}
@@ -295,24 +301,32 @@ function DashboardHeroMockup() {
         ['Ece Tural', '+905555557799', '39', 'Takip', '24 Nis 12:10'],
       ];
       return (
-        <div className="space-y-5">
-          <div>
-            <h3 className="text-2xl md:text-4xl font-bold text-dark">CRM</h3>
-            <p className="text-sm md:text-base font-medium text-slate-500 mt-1">Lead yönetimi ve satış takibi</p>
+        <div className="space-y-6">
+          <div className="bg-white/70 px-6 py-5">
+            <h3 className="text-2xl font-bold text-dark">CRM</h3>
+            <p className="text-sm font-medium text-slate-500 mt-1">Lead yönetimi ve satış takibi</p>
+          </div>
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex rounded-xl bg-slate-100 p-1">
+            {['Leads', 'Lead Formları', 'Teklifler & Ödemeler', 'Takip'].map((tab, index) => (
+              <span key={tab} className={`px-5 py-2.5 rounded-lg text-xs font-bold ${index === 0 ? 'bg-white text-dark shadow-sm ring-2 ring-blue-600' : 'text-slate-500'}`}>{tab}</span>
+            ))}
+            </div>
+            <div className="rounded-xl bg-slate-100 p-1 text-xs font-bold text-slate-500"><span className="rounded-lg bg-white px-4 py-2 inline-block text-dark shadow-sm">Tablo</span><span className="px-4">Kanban</span></div>
           </div>
           <div className="flex flex-wrap gap-2">
-            {['Leads', 'Lead Formları', 'Teklifler & Ödemeler', 'Takip'].map((tab, index) => (
-              <span key={tab} className={`px-4 py-2 rounded-lg text-xs font-bold border ${index === 0 ? 'bg-dark text-white border-dark' : 'bg-white text-slate-600 border-slate-200'}`}>{tab}</span>
+            {['Tümü 14', '🔥 HOT 4', '🟡 WARM 6', '🔵 COLD 4', 'Bugün 3', 'Temsilci Talep 2'].map((filter, index) => (
+              <span key={filter} className={`px-3 py-2 rounded-lg border text-xs font-bold ${index === 0 ? 'bg-dark text-white border-dark' : 'bg-white text-slate-600 border-slate-200'}`}>{filter}</span>
             ))}
           </div>
-          <div className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden">
-            <div className="grid grid-cols-[1.3fr_1fr_.6fr_1fr_1fr] gap-3 px-4 py-3 bg-slate-50 text-[10px] font-black text-slate-500 uppercase tracking-widest min-w-[720px]">
+          <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+            <div className="grid grid-cols-[1.3fr_1fr_.6fr_1fr_1fr] gap-3 px-5 py-4 bg-slate-50 text-[10px] font-black text-slate-500 uppercase tracking-widest min-w-[820px]">
               <span>Kişi</span><span>Telefon</span><span>Skor</span><span>Durum</span><span>Son Aktivite</span>
             </div>
             <div className="overflow-x-auto">
               {rows.map((row, index) => (
-                <motion.div key={row[0]} whileHover={{ backgroundColor: '#f8fafc' }} className="grid grid-cols-[1.3fr_1fr_.6fr_1fr_1fr] gap-3 px-4 py-3 border-t border-slate-100 min-w-[720px] text-sm">
-                  <span className="font-bold text-slate-800">{row[0]}</span>
+                <motion.div key={row[0]} whileHover={{ backgroundColor: '#f8fafc' }} className="grid grid-cols-[1.3fr_1fr_.6fr_1fr_1fr] gap-3 px-5 py-4 border-t border-slate-100 min-w-[820px] text-sm items-center">
+                  <span className="font-bold text-slate-800 flex items-center gap-3"><b className="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-xs">{row[0].split(' ').map((p) => p[0]).join('')}</b>{row[0]}</span>
                   <span className="text-slate-600">{row[1]}</span>
                   <span><b className={`px-2 py-1 rounded-full text-xs ${index < 2 ? 'bg-red-100 text-red-600' : 'bg-amber-100 text-amber-700'}`}>{row[2]}</b></span>
                   <span className="text-blue-600 font-medium">{row[3]}</span>
@@ -327,19 +341,25 @@ function DashboardHeroMockup() {
 
     if (activeItem === 'Gelen Kutusu') {
       return (
-        <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-0 bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden min-h-[430px]">
+        <div className="grid grid-cols-[360px_1fr] gap-0 bg-white rounded-none border border-slate-100 shadow-sm overflow-hidden min-h-[620px] -m-8">
           <div className="border-r border-slate-100">
             <div className="p-4 border-b border-slate-100">
               <h3 className="font-bold text-dark mb-3">Gelen Kutusu</h3>
               <div className="rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-400">İsim veya numara ara...</div>
+              <div className="mt-3 flex flex-wrap gap-1.5 text-xs font-bold">
+                {['Tümü', 'Whatsapp', 'Instagram', 'Voice', 'Yeni'].map((item, index) => (
+                  <span key={item} className={`px-2.5 py-1.5 rounded-md ${index === 0 ? 'bg-dark text-white' : 'bg-slate-100 text-slate-500'}`}>{item}</span>
+                ))}
+              </div>
             </div>
             {['Duru Klinik', 'Atlas Dental', 'Mira Estetik', 'Nova Health', 'Liva Danışmanlık'].map((name, index) => (
-              <motion.button key={name} whileHover={{ backgroundColor: '#f8fafc' }} className="w-full flex items-center gap-3 p-4 border-b border-slate-100 text-left">
-                <span className="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-xs font-black">{name.slice(0, 2).toUpperCase()}</span>
+              <motion.button key={name} whileHover={{ backgroundColor: '#f8fafc' }} className="w-full flex items-center gap-3 p-4 border-b border-slate-100 text-left h-[86px]">
+                <span className={`w-11 h-11 rounded-full flex items-center justify-center text-xs font-black ${index < 2 ? 'bg-rose-100 text-rose-600' : 'bg-blue-50 text-blue-600'}`}>{name.slice(0, 2).toUpperCase()}</span>
                 <span className="min-w-0">
                   <span className="block text-sm font-bold text-dark truncate">{name}</span>
                   <span className="block text-xs text-slate-400 truncate">{index === 0 ? 'Randevu seçeneklerini paylaşabilir misiniz?' : 'Otomatik yanıt gönderildi'}</span>
                 </span>
+                <span className="ml-auto text-xs text-slate-400">{index + 1} gün</span>
               </motion.button>
             ))}
           </div>
@@ -356,16 +376,16 @@ function DashboardHeroMockup() {
 
     if (activeItem === 'Çağrılar') {
       return (
-        <div className="space-y-5">
-          <div><h3 className="text-2xl md:text-4xl font-bold text-dark">Çağrı Logları</h3><p className="text-slate-500 font-medium">12 arama kaydı</p></div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="space-y-6">
+          <div className="bg-white/70 px-6 py-5"><h3 className="text-2xl font-bold text-dark">Çağrı Logları</h3><p className="text-slate-500 font-medium">12 arama kaydı</p></div>
+          <div className="grid grid-cols-4 gap-4">
             {[
               ['Toplam Arama', '12', Phone, 'bg-blue-50 text-blue-600'],
               ['Cevaplanma', '92%', Phone, 'bg-green-50 text-green-600'],
               ['Ort. Süre', '2:18', CalendarDays, 'bg-amber-50 text-amber-600'],
               ['Cevapsız', '1', Phone, 'bg-red-50 text-red-600'],
             ].map(([label, value, Icon, cls]) => (
-              <div key={label as string} className="bg-white rounded-xl border border-slate-100 p-4 shadow-sm">
+              <div key={label as string} className="bg-white rounded-xl border border-slate-100 p-5 shadow-sm">
                 <span className={`w-10 h-10 rounded-xl flex items-center justify-center ${cls as string}`}><Icon className="w-5 h-5" /></span>
                 <p className="text-xs font-bold text-slate-500 mt-3">{label as string}</p>
                 <p className="text-2xl font-black text-dark">{value as string}</p>
@@ -373,9 +393,12 @@ function DashboardHeroMockup() {
             ))}
           </div>
           <div className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden">
+            <div className="grid grid-cols-[1fr_.7fr_.7fr_1fr_1fr] gap-3 px-5 py-4 bg-slate-50 text-[10px] font-black text-slate-500 uppercase tracking-widest">
+              <span>Telefon</span><span>Yön</span><span>Süre</span><span>Durum</span><span>Skor</span>
+            </div>
             {['+90 530 120 44 82', '+90 542 870 19 33', '+90 555 204 78 10', '+90 533 612 90 24'].map((phone, index) => (
-              <motion.div key={phone} whileHover={{ x: 4 }} className="grid grid-cols-[1fr_.7fr_.7fr_1fr] gap-3 px-4 py-3 border-b border-slate-100 text-sm min-w-[640px]">
-                <span className="font-bold text-slate-700">{phone}</span><span>Gelen</span><span>{index + 1}:2{index}</span><span className="text-green-600 font-bold">completed</span>
+              <motion.div key={phone} whileHover={{ x: 4 }} className="grid grid-cols-[1fr_.7fr_.7fr_1fr_1fr] gap-3 px-5 py-4 border-b border-slate-100 text-sm">
+                <span className="font-bold text-slate-700">{phone}</span><span>Gelen</span><span>{index + 1}:2{index}</span><span className="text-green-600 font-bold">completed</span><span className="text-red-600 font-bold">{index === 2 ? '44/100' : '82/100'}</span>
               </motion.div>
             ))}
           </div>
@@ -385,13 +408,14 @@ function DashboardHeroMockup() {
 
     if (activeItem === 'Takvim') {
       return (
-        <div className="space-y-5">
-          <div className="flex items-center justify-between"><h3 className="text-2xl md:text-4xl font-bold text-dark">Takvim</h3><button className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-bold">+ Yeni Randevu</button></div>
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-5">
+        <div className="space-y-6 max-w-[930px] mx-auto">
+          <div className="flex items-center justify-between"><h3 className="text-2xl font-bold text-dark flex items-center gap-3"><CalendarDays className="text-[#0b8ed1]" />Takvim</h3><button className="px-5 py-2.5 bg-[#0b8ed1] text-white rounded-lg text-sm font-bold">+ Yeni Randevu</button></div>
+          <div className="flex gap-2">{['Tümü','Platform','Google','AI Asistan','GHL','DentSoft'].map((f, i) => <span key={f} className={`px-4 py-1.5 rounded-full border text-xs font-bold ${i === 0 ? 'bg-[#0b8ed1] text-white border-[#0b8ed1]' : 'bg-white text-slate-500 border-slate-200'}`}>{f}</span>)}</div>
+          <div className="grid grid-cols-[1fr_300px] gap-5">
             <div className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden">
               <div className="p-4 text-center font-bold border-b border-slate-100">Nisan 2026</div>
               <div className="grid grid-cols-7 text-center text-xs font-bold text-slate-400 border-b border-slate-100">{['PZT','SAL','ÇAR','PER','CUM','CMT','PAZ'].map(d => <span key={d} className="py-2">{d}</span>)}</div>
-              <div className="grid grid-cols-7">{Array.from({ length: 35 }).map((_, i) => <motion.div key={i} whileHover={{ backgroundColor: '#eff6ff' }} className={`h-16 border-r border-b border-slate-100 p-2 text-sm ${i === 16 ? 'bg-blue-50 text-blue-700 font-black' : 'text-slate-700'}`}>{i + 1 <= 30 ? i + 1 : ''}</motion.div>)}</div>
+              <div className="grid grid-cols-7">{Array.from({ length: 35 }).map((_, i) => <motion.div key={i} whileHover={{ backgroundColor: '#eff6ff' }} className={`h-[74px] border-r border-b border-slate-100 p-2 text-sm ${i === 16 ? 'bg-blue-50 text-blue-700 font-black' : 'text-slate-700'}`}>{i + 1 <= 30 ? i + 1 : ''}</motion.div>)}</div>
             </div>
             <div className="bg-white rounded-xl border border-slate-100 shadow-sm p-5">
               <p className="font-bold text-dark">17 Nisan Cuma</p>
@@ -404,7 +428,7 @@ function DashboardHeroMockup() {
     }
 
     if (activeItem === 'AI Asistan') {
-      return <DashboardCards title="AI Asistan" subtitle="Ana asistanlar ve otomasyon modülleri" items={['Sesli Resepsiyonist', 'Mesajlaşma Asistanı', 'Randevu Teyit', 'Reaktivasyon Araması']} accent="green" />;
+      return <DashboardCards title="AI Asistan" subtitle="Ana asistanlar ve otomasyon modülleri" items={['Sesli Resepsiyonist', 'Mesajlaşma Asistanı', 'Randevu Teyit & Hatırlatma', 'Reaktivasyon Araması']} accent="green" />;
     }
 
     if (activeItem === 'İş Akışları') {
@@ -423,24 +447,24 @@ function DashboardHeroMockup() {
       initial={{ opacity: 0, scale: 0.94, y: 22 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ delay: 0.4, type: 'spring', damping: 22, stiffness: 110 }}
-      className="relative w-full"
+      className="relative hidden w-full lg:block"
     >
-      <div className="relative z-10 mx-auto w-full max-w-[1180px] rounded-2xl border border-white/20 bg-[#eef6fb] shadow-2xl shadow-dark/30 overflow-hidden">
-        <div className="grid grid-cols-[64px_minmax(0,1fr)] sm:grid-cols-[180px_minmax(0,1fr)] lg:grid-cols-[224px_minmax(0,1fr)] min-h-[480px] md:min-h-[540px]">
+      <div className="relative z-10 mx-auto w-full max-w-[1440px] rounded-2xl border border-white/20 bg-[#eef6fb] shadow-2xl shadow-dark/30 overflow-hidden">
+        <div className="grid grid-cols-[230px_minmax(0,1fr)] min-h-[720px]">
           <aside className="bg-[#060a18] text-white flex flex-col border-r border-white/10">
-            <div className="p-3 sm:p-4 border-b border-white/10">
-              <div className="rounded-xl border border-white/10 bg-white/10 p-2.5 sm:p-3 flex items-center justify-between gap-2 shadow-inner">
+            <div className="p-4 border-b border-white/10">
+              <div className="rounded-xl border border-white/10 bg-white/10 p-3 flex items-center justify-between gap-2 shadow-inner">
                 <div className="min-w-0">
-                  <img src="/logo_dashboard.png" alt="Oxonom" className="h-4 sm:h-5 w-auto object-contain mb-2" />
-                  <p className="hidden sm:block text-[11px] font-bold text-white/90 truncate">Oxonom Demo Panel</p>
+                  <img src="/logo_dashboard.png" alt="Oxonom" className="h-5 w-auto object-contain mb-2" />
+                  <p className="text-[12px] font-bold text-white/90 truncate">Oxonom Demo Panel</p>
                 </div>
-                <button className="hidden sm:flex w-8 h-8 rounded-xl border border-white/10 bg-white/5 items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-colors" aria-label="Bildirimleri aç">
+                <button className="flex w-9 h-9 rounded-xl border border-white/10 bg-white/5 items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-colors" aria-label="Bildirimleri aç">
                   <Bell className="w-4 h-4" />
                 </button>
               </div>
             </div>
 
-            <nav className="flex-1 p-2 sm:p-3 space-y-2">
+            <nav className="flex-1 p-3 space-y-2">
               {sidebarItems.map((item) => {
                 const Icon = item.icon;
                 const active = activeItem === item.label;
@@ -457,30 +481,36 @@ function DashboardHeroMockup() {
                     <span className={`w-8 h-8 rounded-lg border flex items-center justify-center shrink-0 ${active ? 'border-blue-300/40 bg-blue-400/10 text-blue-100' : 'border-white/10 bg-white/5 text-white/60'}`}>
                       <Icon className="w-4 h-4" />
                     </span>
-                    <span className="hidden sm:block text-xs font-bold text-white/80 truncate">{item.label}</span>
-                    {active && <span className="hidden sm:block ml-auto w-1.5 h-1.5 rounded-full bg-sky-300 shadow-[0_0_10px_rgba(125,211,252,0.9)]" />}
+                    <span className="text-xs font-bold text-white/80 truncate">{item.label}</span>
+                    {active && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-sky-300 shadow-[0_0_10px_rgba(125,211,252,0.9)]" />}
                   </button>
                 );
               })}
             </nav>
 
-            <div className="p-2 sm:p-3 border-t border-white/10 grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-2">
-              <div className="hidden sm:flex rounded-lg bg-white text-[#060a18] text-xs font-black items-center justify-center py-2">TR</div>
-              <button className="w-full sm:w-9 h-9 rounded-lg border border-white/10 bg-white/5 flex items-center justify-center text-white/70 hover:text-white transition-colors" aria-label="Çıkış yap">
+            <div className="p-3 border-t border-white/10 grid grid-cols-[1fr_auto] gap-2">
+              <div className="flex rounded-lg bg-white text-[#060a18] text-xs font-black items-center justify-center py-2">TR</div>
+              <button className="w-9 h-9 rounded-lg border border-white/10 bg-white/5 flex items-center justify-center text-white/70 hover:text-white transition-colors" aria-label="Çıkış yap">
                 <LogOut className="w-4 h-4" />
               </button>
             </div>
           </aside>
 
-          <div className="min-w-0 p-3 sm:p-5 md:p-7 lg:p-8 overflow-hidden">
-            <motion.div
-              key={activeItem}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.25 }}
-            >
-              {renderScreen()}
-            </motion.div>
+          <div className="min-w-0 overflow-hidden">
+            <div className="flex items-center justify-between border-b border-amber-300 bg-amber-50/80 px-8 py-2 text-sm font-medium text-amber-800">
+              <span>Demo Hesap — Ses ve chatbot testini deneyebilirsiniz</span>
+              <span className="flex gap-3"><b className="rounded-full border border-amber-300 bg-white px-3 py-1 font-bold">Ses: 0/10 dk</b><b className="rounded-full border border-amber-300 bg-white px-3 py-1 font-bold">Chat: 0/30 msj</b></span>
+            </div>
+            <div className="h-[678px] overflow-hidden bg-gradient-to-br from-white via-[#f6fbff] to-cyan-50 p-8">
+              <motion.div
+                key={activeItem}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.25 }}
+              >
+                {renderScreen()}
+              </motion.div>
+            </div>
           </div>
         </div>
       </div>
