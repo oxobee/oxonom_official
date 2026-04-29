@@ -100,13 +100,6 @@ const SCENARIOS: Scenario[] = [
 
 const LANGUAGE_SAMPLES: Record<string, { label: string; sample: string }> = {
   tr: { label: 'Türkçe', sample: 'Elbette! Sorunuzu anladım. Size en net yanıtı hemen paylaşıyorum.' },
-  en: { label: 'English', sample: 'Of course. I’ve got it — here’s the clearest answer and the next step.' },
-  de: { label: 'Deutsch', sample: 'Natürlich. Ich habe Ihre Anfrage verstanden — hier ist die beste Antwort.' },
-  ar: { label: 'العربية', sample: 'بكل تأكيد. فهمت سؤالك وسأجيبك الآن بأوضح طريقة.' },
-  es: { label: 'Español', sample: 'Claro. Entendí tu pregunta y te respondo de forma precisa ahora mismo.' },
-  fr: { label: 'Français', sample: 'Bien sûr. J’ai compris votre question — voici la réponse la plus claire.' },
-  ru: { label: 'Русский', sample: 'Конечно. Я понял ваш вопрос — вот самый понятный ответ.' },
-  it: { label: 'Italiano', sample: 'Certo. Ho capito la tua domanda — ecco la risposta più chiara.' },
 };
 
 const INSTAGRAM_FAQS = [
@@ -779,9 +772,7 @@ export default function InstagramPage() {
                       {languageSample.sample}
                     </div>
                     <div className="rounded-xl px-4 py-3 bg-white/10 border border-white/15 text-white text-sm font-medium">
-                      {lang === 'tr'
-                        ? 'İsterseniz sizi WhatsApp’a yönlendirebilirim veya buradan devam edebiliriz.'
-                        : 'I can route you to WhatsApp, or we can continue right here — whichever you prefer.'}
+                      İsterseniz sizi WhatsApp’a yönlendirebilirim veya buradan devam edebiliriz.
                     </div>
                   </div>
                   <p className="mt-4 text-[11px] text-white/60 font-medium">Dil listesi demodur. Üretimde 30+ dil desteklenir.</p>

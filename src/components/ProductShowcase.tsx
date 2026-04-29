@@ -18,16 +18,16 @@ type ProductCopy = {
 export default function ProductShowcase({ copy }: { copy?: ProductCopy }) {
   const [activeTab, setActiveTab] = useState<'voice' | 'chat'>('voice');
   const text = copy ?? {
-    voiceTab: 'Voice Agent',
-    chatTab: 'Chat Agent',
+    voiceTab: 'Sesli Asistan',
+    chatTab: 'Mesaj Asistanı',
     chatBadge: 'SOSYAL MEDYA AI OTOMASYONU',
     chatTitle: "DM'leriniz artık satışa dönüşüyor.",
     chatDesc: 'Instagram, TikTok, Facebook, WhatsApp ve web sitenize gelen her mesaja ve yoruma gerçek bir insan gibi yanıt veren yapay zeka otomasyonu.',
-    chatButton: "Chat Agent'ı Keşfet",
+    chatButton: "Mesaj Asistanını Keşfet",
     voiceBadge: 'OTONOM SESLİ ASİSTAN',
     voiceTitle: 'Binlerce çağrıyı aynı anda, hiç bekletmeden.',
     voiceDesc: "Gelen ve giden telefon görüşmelerini gerçek bir müşteri temsilcisi gibi yöneten, CRM'inizle anlık entegre çalışan otonom yapay zeka sistemi.",
-    voiceButton: "Voice Agent'ı Keşfet",
+    voiceButton: "Sesli Asistanı Keşfet",
   };
 
   const flags = [

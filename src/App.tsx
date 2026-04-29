@@ -48,8 +48,8 @@ export default function App() {
       "telephone": "+90-850-309-99-01",
       "contactType": "customer service",
       "email": "info@oxonom.com",
-      "areaServed": ["TR", "US", "GB", "DE", "AE", "SA"],
-      "availableLanguage": ["Turkish", "English", "German", "Arabic"]
+      "areaServed": "TR",
+      "availableLanguage": "Turkish"
     },
     "sameAs": [
       "https://www.facebook.com/oxonom",
@@ -84,32 +84,20 @@ export default function App() {
         <div className="flex-grow">
           <Routes>
             <Route path="/" element={<LandingPage />} />
-            <Route path="/en" element={<LandingPage />} />
-            <Route path="/de" element={<LandingPage />} />
-            <Route path="/ar" element={<LandingPage />} />
             <Route path="/sektorler" element={<SectorsPage />} />
-            <Route path="/:lang/sektorler" element={<SectorsPage />} />
             <Route path="/sektorler/:id" element={<SectorDetailPage />} />
             <Route path="/paketler" element={<PackagesPage />} />
-            <Route path="/:lang/paketler" element={<PackagesPage />} />
             <Route path="/hakkimizda" element={<AboutPage />} />
             <Route path="/entegrasyonlar" element={<IntegrationsPage />} />
-            <Route path="/:lang/entegrasyonlar" element={<IntegrationsPage />} />
             <Route path="/blog" element={<BlogPage />} />
-            <Route path="/:lang/blog" element={<BlogPage />} />
-            <Route path="/:lang/:categorySlug/:slug" element={<BlogDetailPage />} />
             <Route path="/:categorySlug/:slug" element={<BlogDetailPage />} />
             <Route path="/mesajlasma-paketleri" element={<MessagingPackagesPage />} />
             <Route path="/ses-paketleri" element={<VoicePackagesPage />} />
             <Route path="/combo-paketler" element={<ComboPackagesPage />} />
             <Route path="/instagram" element={<InstagramPage />} />
-            <Route path="/:lang/instagram" element={<InstagramPage />} />
             <Route path="/facebook" element={<FacebookPage />} />
-            <Route path="/:lang/facebook" element={<FacebookPage />} />
             <Route path="/whatsapp" element={<WhatsAppPage />} />
-            <Route path="/:lang/whatsapp" element={<WhatsAppPage />} />
             <Route path="/web-site" element={<WebSitePage />} />
-            <Route path="/:lang/web-site" element={<WebSitePage />} />
             
             {/* Catch-all route for unhandled paths -> 404 */}
             <Route path="*" element={<NotFoundPage />} />
