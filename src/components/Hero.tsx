@@ -518,7 +518,28 @@ function DashboardHeroMockup() {
   );
 }
 
-export default function Hero() {
+type HeroCopy = {
+  heroBadge: string;
+  heroTitle: string;
+  heroDescription: string;
+  primaryCta: string;
+  packagesCta: string;
+  badges: string[];
+  trust: string[];
+  note: string;
+};
+
+export default function Hero({ copy }: { copy?: HeroCopy }) {
+  const text = copy ?? {
+    heroBadge: 'AI Model Aktif',
+    heroTitle: 'Müşteri iletişiminde insan ötesi hız.',
+    heroDescription: 'Çağrıları ve mesajları 7/24 karşılayan, lead niteleyen ve satış ekibine hazır müşteri aktaran otonom temsilci.',
+    primaryCta: 'Hemen Ücretsiz Deneyin',
+    packagesCta: 'Paketlere Gözat',
+    badges: ['Güvenli panel', 'Hızlı yanıt', '7/24 destek'],
+    trust: ['Güvenli Altyapı', 'Kullandıkça Öde', '7/24 Aktif Destek'],
+    note: 'Dakikalar içinde çalışan otomasyon senaryolarını test edin.',
+  };
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
   const y2 = useTransform(scrollY, [0, 500], [0, -150]);
@@ -547,13 +568,13 @@ export default function Hero() {
           >
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.22em]">
               <span className="h-2 w-2 rounded-full bg-emerald-300" />
-              AI Model Aktif
+              {text.heroBadge}
             </div>
             <h1 className="font-display text-[42px] font-black leading-[0.98] tracking-tight">
-              Müşteri iletişiminde insan ötesi hız.
+              {text.heroTitle}
             </h1>
             <p className="mx-auto mt-5 max-w-[330px] text-[15px] font-medium leading-7 text-white/82">
-              Çağrıları ve mesajları 7/24 karşılayan, lead niteleyen ve satış ekibine hazır müşteri aktaran otonom temsilci.
+              {text.heroDescription}
             </p>
           </motion.div>
         </div>
@@ -569,14 +590,14 @@ export default function Hero() {
             aria-label="OXONOM uygulamasını ücretsiz deneyin"
             className="mx-auto flex h-[68px] max-w-[390px] items-center justify-center gap-3 rounded-2xl bg-[#070707] px-6 text-base font-black text-white shadow-2xl shadow-black/25 active:scale-[0.98]"
           >
-            Hemen Ücretsiz Deneyin <ArrowRight className="h-5 w-5" />
+            {text.primaryCta} <ArrowRight className="h-5 w-5" />
           </motion.a>
 
           <div className="mx-auto mt-8 grid max-w-[390px] grid-cols-3 gap-2">
             {[
-              { icon: Shield, text: 'Güvenli panel' },
-              { icon: Zap, text: 'Hızlı yanıt' },
-              { icon: Users, text: '7/24 destek' },
+              { icon: Shield, text: text.badges[0] },
+              { icon: Zap, text: text.badges[1] },
+              { icon: Users, text: text.badges[2] },
             ].map((badge) => (
               <div key={badge.text} className="rounded-xl border border-slate-200 bg-white p-3 text-center shadow-sm">
                 <badge.icon className="mx-auto mb-2 h-4 w-4 text-brand" />
@@ -589,7 +610,7 @@ export default function Hero() {
             to="/paketler"
             className="mx-auto mt-4 flex max-w-[390px] items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-4 text-sm font-black text-dark shadow-sm"
           >
-            <LayoutGrid className="h-4 w-4 text-brand" /> Paketlere Gözat
+            <LayoutGrid className="h-4 w-4 text-brand" /> {text.packagesCta}
           </Link>
         </div>
       </div>
@@ -605,7 +626,7 @@ export default function Hero() {
               className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 text-white rounded-full text-[10px] font-bold uppercase tracking-widest mb-8 border border-white/20 backdrop-blur-md shadow-lg shadow-black/10"
             >
               <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              OXONOM V2.0 AI MODEL AKTİF
+              {text.heroBadge}
             </motion.div>
 
             <motion.h1
@@ -614,12 +635,12 @@ export default function Hero() {
               transition={{ delay: 0.1, duration: 0.6, ease: "easeOut" }}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-[1.1] tracking-tight"
             >
-              Müşteri iletişiminde{' '}
+              {text.heroTitle.split(' ').slice(0, -2).join(' ')}{' '}
               <span className="relative inline-flex items-center gap-3 px-6 py-2 md:py-3 mt-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-2xl align-middle">
                 <span className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-brand shadow-lg shadow-brand/40 shrink-0">
                   <Zap className="w-4 h-4 md:w-5 md:h-5 text-white" />
                 </span>
-                <span className="text-white font-black tracking-tight">insan ötesi hız.</span>
+                <span className="text-white font-black tracking-tight">{text.heroTitle.split(' ').slice(-2).join(' ')}</span>
               </span>
             </motion.h1>
 
@@ -629,7 +650,7 @@ export default function Hero() {
               transition={{ delay: 0.2, duration: 0.6 }}
               className="text-base md:text-xl text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed font-medium"
             >
-              Binlerce çağrıyı aynı anda karşılayın veya arayın. Duygu analizi yapan, sistemlerinize entegre yeni nesil otonom temsilci.
+              {text.heroDescription}
             </motion.p>
 
             <motion.div
@@ -645,13 +666,13 @@ export default function Hero() {
                 aria-label="OXONOM uygulamasını ücretsiz deneyin"
                 className="w-full sm:w-auto px-8 py-5 sm:py-4 bg-dark text-white rounded-xl font-bold text-base sm:text-sm flex items-center justify-center gap-3 hover:bg-black transition-all shadow-2xl shadow-dark/30 group"
               >
-                Hemen Ücretsiz Deneyin <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                {text.primaryCta} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
               <Link 
                 to="/paketler"
                 className="hidden sm:flex w-full sm:w-auto px-8 py-4 bg-white/10 border border-white/20 text-white rounded-xl font-bold text-sm items-center justify-center gap-2 hover:bg-white/20 transition-all backdrop-blur-sm"
               >
-                <LayoutGrid className="w-4 h-4" /> Paketlere Gözat
+                <LayoutGrid className="w-4 h-4" /> {text.packagesCta}
               </Link>
             </motion.div>
 
@@ -662,7 +683,7 @@ export default function Hero() {
               className="mb-8 hidden md:flex justify-center"
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-xs font-bold text-white backdrop-blur-sm">
-                <Zap className="w-3.5 h-3.5 text-yellow-300" /> Dakikalar içinde çalışan otomasyon senaryolarını test edin.
+                <Zap className="w-3.5 h-3.5 text-yellow-300" /> {text.note}
               </div>
             </motion.div>
 
@@ -674,9 +695,9 @@ export default function Hero() {
               className="hidden md:flex flex-wrap justify-center gap-6 md:gap-8 pt-6 border-t border-white/10"
             >
               {[
-                { icon: Shield, text: "Güvenli Altyapı" },
-                { icon: Zap, text: "Kullandıkça Öde" },
-                { icon: Users, text: "7/24 Aktif Destek" }
+                { icon: Shield, text: text.trust[0] },
+                { icon: Zap, text: text.trust[1] },
+                { icon: Users, text: text.trust[2] }
               ].map((badge, i) => (
                 <div key={i} className="flex items-center gap-2">
                   <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center">

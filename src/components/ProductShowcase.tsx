@@ -2,8 +2,33 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { PhoneCall, MessageSquare, ArrowRight, CheckCircle2, Activity, Zap, Instagram, Facebook, Globe } from 'lucide-react';
 
-export default function ProductShowcase() {
+type ProductCopy = {
+  voiceTab: string;
+  chatTab: string;
+  chatBadge: string;
+  chatTitle: string;
+  chatDesc: string;
+  chatButton: string;
+  voiceBadge: string;
+  voiceTitle: string;
+  voiceDesc: string;
+  voiceButton: string;
+};
+
+export default function ProductShowcase({ copy }: { copy?: ProductCopy }) {
   const [activeTab, setActiveTab] = useState<'voice' | 'chat'>('voice');
+  const text = copy ?? {
+    voiceTab: 'Voice Agent',
+    chatTab: 'Chat Agent',
+    chatBadge: 'SOSYAL MEDYA AI OTOMASYONU',
+    chatTitle: "DM'leriniz artık satışa dönüşüyor.",
+    chatDesc: 'Instagram, TikTok, Facebook, WhatsApp ve web sitenize gelen her mesaja ve yoruma gerçek bir insan gibi yanıt veren yapay zeka otomasyonu.',
+    chatButton: "Chat Agent'ı Keşfet",
+    voiceBadge: 'OTONOM SESLİ ASİSTAN',
+    voiceTitle: 'Binlerce çağrıyı aynı anda, hiç bekletmeden.',
+    voiceDesc: "Gelen ve giden telefon görüşmelerini gerçek bir müşteri temsilcisi gibi yöneten, CRM'inizle anlık entegre çalışan otonom yapay zeka sistemi.",
+    voiceButton: "Voice Agent'ı Keşfet",
+  };
 
   const flags = [
     "tr", "gb", "us", "de", "fr", "es", "it", "ru", "jp", "cn", 
@@ -12,11 +37,11 @@ export default function ProductShowcase() {
   ];
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section className="py-10 md:py-24 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Toggle */}
-        <div className="flex justify-center mb-16">
+        <div className="flex justify-center mb-10 md:mb-16">
           <div className="inline-flex bg-gray-50 p-1.5 rounded-full border border-gray-100 shadow-sm">
             <button
               onClick={() => setActiveTab('voice')}
@@ -26,7 +51,7 @@ export default function ProductShowcase() {
                   : 'text-gray-500 hover:text-dark'
               }`}
             >
-              <PhoneCall className="w-4 h-4" /> Voice Agent
+              <PhoneCall className="w-4 h-4" /> {text.voiceTab}
             </button>
             <button
               onClick={() => setActiveTab('chat')}
@@ -36,7 +61,7 @@ export default function ProductShowcase() {
                   : 'text-gray-500 hover:text-dark'
               }`}
             >
-              <MessageSquare className="w-4 h-4" /> Chat Agent
+              <MessageSquare className="w-4 h-4" /> {text.chatTab}
             </button>
           </div>
         </div>
@@ -55,13 +80,13 @@ export default function ProductShowcase() {
                 {/* Content */}
                 <div className="min-w-0">
                   <div className="inline-flex items-center px-4 py-2 bg-blue-50 text-blue-600 rounded-full text-[10px] font-bold uppercase tracking-widest mb-6">
-                    <MessageSquare className="w-3.5 h-3.5 mr-2 shrink-0" /> SOSYAL MEDYA AI OTOMASYONU
+                    <MessageSquare className="w-3.5 h-3.5 mr-2 shrink-0" /> {text.chatBadge}
                   </div>
                   <h2 className="text-3xl md:text-5xl font-display font-bold text-dark mb-6 leading-[1.1] tracking-tight break-words">
-                    DM'leriniz artık <br /> satışa dönüşüyor.
+                    {text.chatTitle}
                   </h2>
                   <p className="text-base md:text-lg text-gray-500 mb-8 font-medium leading-relaxed">
-                    Instagram, TikTok, Facebook, WhatsApp ve web sitenize gelen her mesaja ve yoruma gerçek bir insan gibi yanıt veren, firmanıza özel eğitilmiş yapay zeka otomasyonu. Uyurken bile müşteri kazanır, randevu alır, sipariş oluşturur.
+                    {text.chatDesc}
                   </p>
                   
                   <div className="flex flex-wrap gap-2 md:gap-3 mb-8">
@@ -106,7 +131,7 @@ export default function ProductShowcase() {
                   <p className="text-[10px] text-gray-400 mb-8">* 1 dakika içinde yanıt veren markalarda ölçüldü — Alhena AI, 2025</p>
 
                   <button className="w-full sm:w-auto justify-center px-8 py-4 bg-blue-600 text-white rounded-xl font-bold text-sm hover:bg-blue-700 transition-all flex items-center gap-2 shadow-lg shadow-blue-600/20 group">
-                    Chat Agent'ı Keşfet <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform shrink-0" />
+                    {text.chatButton} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform shrink-0" />
                   </button>
                 </div>
 
@@ -218,13 +243,13 @@ export default function ProductShowcase() {
                 {/* Content */}
                 <div className="min-w-0">
                   <div className="inline-flex items-center px-4 py-2 bg-red-50 text-red-600 rounded-full text-[10px] font-bold uppercase tracking-widest mb-6 border border-red-100">
-                    <PhoneCall className="w-3.5 h-3.5 mr-2 shrink-0" /> OTONOM SESLİ ASİSTAN
+                    <PhoneCall className="w-3.5 h-3.5 mr-2 shrink-0" /> {text.voiceBadge}
                   </div>
                   <h2 className="text-4xl md:text-5xl font-display font-bold text-dark mb-6 leading-[1.1] tracking-tight break-words">
-                    Binlerce çağrıyı aynı anda, <br /> hiç bekletmeden.
+                    {text.voiceTitle}
                   </h2>
                   <p className="text-lg text-gray-500 mb-8 font-medium leading-relaxed">
-                    Gelen ve giden telefon görüşmelerini gerçek bir müşteri temsilcisi gibi yöneten, CRM'inizle anlık entegre çalışan otonom yapay zeka sistemi. Randevu alır, sipariş işler, duygu analizi yapar. 7/24 kesintisiz aktif.
+                    {text.voiceDesc}
                   </p>
 
                   <ul className="space-y-4 mb-10">
@@ -259,7 +284,7 @@ export default function ProductShowcase() {
                   </div>
 
                   <button className="w-full sm:w-auto justify-center px-8 py-4 bg-brand text-white rounded-xl font-bold text-sm hover:bg-red-600 transition-all flex items-center gap-2 shadow-lg shadow-brand/20 group">
-                    Voice Agent'ı Keşfet <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform shrink-0" />
+                    {text.voiceButton} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform shrink-0" />
                   </button>
                 </div>
 
