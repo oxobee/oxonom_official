@@ -63,11 +63,11 @@ function DashboardHeroMockup({ opacity }: { opacity: any }) {
       initial={{ opacity: 0, scale: 0.94, y: 22 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ delay: 0.4, type: 'spring', damping: 22, stiffness: 110 }}
-      className="relative lg:col-span-7 w-full"
+      className="relative w-full"
       style={{ opacity }}
     >
-      <div className="relative z-10 mx-auto max-w-[980px] rounded-2xl border border-white/20 bg-[#eef6fb] shadow-2xl shadow-dark/30 overflow-hidden">
-        <div className="grid grid-cols-[78px_1fr] sm:grid-cols-[180px_1fr] lg:grid-cols-[168px_1fr] min-h-[520px] md:min-h-[560px]">
+      <div className="relative z-10 mx-auto w-full max-w-[1180px] rounded-2xl border border-white/20 bg-[#eef6fb] shadow-2xl shadow-dark/30 overflow-hidden">
+        <div className="grid grid-cols-[64px_minmax(0,1fr)] sm:grid-cols-[180px_minmax(0,1fr)] lg:grid-cols-[224px_minmax(0,1fr)] min-h-[480px] md:min-h-[540px]">
           <aside className="bg-[#060a18] text-white flex flex-col border-r border-white/10">
             <div className="p-3 sm:p-4 border-b border-white/10">
               <div className="rounded-xl border border-white/10 bg-white/10 p-2.5 sm:p-3 flex items-center justify-between gap-2 shadow-inner">
@@ -113,10 +113,10 @@ function DashboardHeroMockup({ opacity }: { opacity: any }) {
             </div>
           </aside>
 
-          <div className="p-4 sm:p-6 md:p-8 overflow-hidden">
-            <div className="flex items-start justify-between gap-4 mb-6">
+          <div className="min-w-0 p-3 sm:p-5 md:p-7 lg:p-8 overflow-hidden">
+            <div className="flex items-start justify-between gap-4 mb-4 md:mb-6">
               <div>
-                <h3 className="text-2xl md:text-3xl font-bold text-dark">Dashboard</h3>
+                <h3 className="text-2xl md:text-4xl font-bold text-dark">Dashboard</h3>
                 <p className="text-sm md:text-base font-medium text-slate-500 mt-1">Genel performans özeti</p>
               </div>
               <div className="hidden md:flex items-center gap-2 rounded-xl bg-white/70 border border-white px-3 py-2 text-xs font-bold text-slate-500 shadow-sm">
@@ -125,7 +125,7 @@ function DashboardHeroMockup({ opacity }: { opacity: any }) {
               </div>
             </div>
 
-            <motion.div whileHover={{ y: -2 }} className="bg-white rounded-xl border border-slate-200/70 shadow-sm p-4 sm:p-5 mb-5">
+            <motion.div whileHover={{ y: -2 }} className="bg-white rounded-xl border border-slate-200/70 shadow-sm p-3 sm:p-4 md:p-5 mb-4 md:mb-5">
               <div className="flex items-center justify-between gap-3 mb-4">
                 <div className="flex items-center gap-2">
                   <Plug className="w-4 h-4 text-slate-500" />
@@ -133,7 +133,7 @@ function DashboardHeroMockup({ opacity }: { opacity: any }) {
                 </div>
                 <button className="text-xs font-bold text-blue-500 hover:text-blue-700">Ayarlar</button>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-2 md:gap-3">
                 {[
                   { label: 'WhatsApp', icon: MessageCircle, color: 'text-green-500', state: 'Yapılandırılmamış' },
                   { label: 'Instagram', icon: Instagram, color: 'text-pink-500', state: 'Yapılandırılmamış' },
@@ -143,7 +143,7 @@ function DashboardHeroMockup({ opacity }: { opacity: any }) {
                 ].map((item) => {
                   const Icon = item.icon;
                   return (
-                    <div key={item.label} className="flex items-center justify-between gap-3 text-xs md:text-sm">
+                    <div key={item.label} className="flex items-center justify-between gap-2 md:gap-3 text-xs md:text-sm min-w-0">
                       <div className="flex items-center gap-2 min-w-0">
                         <span className={`w-2 h-2 rounded-full ${item.live ? 'bg-emerald-500' : 'bg-slate-300'}`} />
                         <Icon className={`w-4 h-4 ${item.color}`} />
@@ -156,7 +156,7 @@ function DashboardHeroMockup({ opacity }: { opacity: any }) {
               </div>
             </motion.div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3 mb-5">
+            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-2 md:gap-3 mb-4 md:mb-5">
               {statCards.map((stat, index) => {
                 const Icon = stat.icon;
                 const active = activeStat === stat.label;
@@ -168,15 +168,15 @@ function DashboardHeroMockup({ opacity }: { opacity: any }) {
                     transition={{ delay: 0.55 + index * 0.04 }}
                     whileHover={{ y: -4, scale: 1.02 }}
                     onClick={() => setActiveStat(stat.label)}
-                    className={`bg-white rounded-xl border p-3 sm:p-4 text-left shadow-sm transition-all ${active ? 'border-blue-300 shadow-blue-500/10' : 'border-slate-100 hover:border-slate-200'}`}
+                    className={`bg-white rounded-xl border p-2.5 sm:p-3 lg:p-4 text-left shadow-sm transition-all min-w-0 ${active ? 'border-blue-300 shadow-blue-500/10' : 'border-slate-100 hover:border-slate-200'}`}
                   >
-                    <div className="flex items-center gap-3">
-                      <span className={`w-10 h-10 rounded-xl ${stat.bg} ${stat.text} flex items-center justify-center shrink-0`}>
-                        <Icon className="w-5 h-5" />
+                    <div className="flex items-center gap-2 lg:gap-3 min-w-0">
+                      <span className={`w-9 h-9 lg:w-10 lg:h-10 rounded-xl ${stat.bg} ${stat.text} flex items-center justify-center shrink-0`}>
+                        <Icon className="w-4 h-4 lg:w-5 lg:h-5" />
                       </span>
-                      <span>
-                        <span className="block text-[11px] sm:text-xs font-bold text-slate-500">{stat.label}</span>
-                        <span className="text-2xl sm:text-3xl font-black text-dark leading-none">{stat.value}</span>
+                      <span className="min-w-0">
+                        <span className="block text-[10px] sm:text-xs font-bold text-slate-500 truncate">{stat.label}</span>
+                        <span className="text-2xl lg:text-3xl font-black text-dark leading-none">{stat.value}</span>
                         {stat.suffix && <span className="ml-1 text-xs font-medium text-slate-400">{stat.suffix}</span>}
                       </span>
                     </div>
@@ -185,8 +185,8 @@ function DashboardHeroMockup({ opacity }: { opacity: any }) {
               })}
             </div>
 
-            <div className="grid grid-cols-1 xl:grid-cols-[1fr_300px] gap-5">
-              <motion.div whileHover={{ y: -2 }} className="bg-white rounded-xl border border-slate-100 shadow-sm p-4 sm:p-5 min-h-[260px]">
+            <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_300px] gap-4 md:gap-5">
+              <motion.div whileHover={{ y: -2 }} className="bg-white rounded-xl border border-slate-100 shadow-sm p-3 sm:p-5 min-h-[240px] min-w-0">
                 <div className="flex items-center justify-between mb-3">
                   <h4 className="text-sm md:text-base font-bold text-slate-700">Son 14 Gün</h4>
                   <div className="hidden sm:flex items-center gap-4 text-[11px] font-bold">
@@ -195,7 +195,7 @@ function DashboardHeroMockup({ opacity }: { opacity: any }) {
                     <span className="text-amber-500">Handoff</span>
                   </div>
                 </div>
-                <svg viewBox="0 0 680 240" className="w-full h-[220px]" role="img" aria-label="Son 14 gün performans grafiği">
+                <svg viewBox="0 0 680 240" className="w-full h-[200px] md:h-[220px]" role="img" aria-label="Son 14 gün performans grafiği">
                   <defs>
                     <linearGradient id="gridFade" x1="0" x2="0" y1="0" y2="1">
                       <stop offset="0%" stopColor="#e2e8f0" />
@@ -286,7 +286,7 @@ export default function Hero() {
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden bg-brand min-h-[90vh] flex items-center">
+    <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden bg-brand">
       {/* Premium Background Elements */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <motion.div style={{ y: y1 }} className="absolute top-0 right-[10%] w-[500px] h-[500px] bg-white/10 rounded-full blur-[120px]" />
@@ -297,10 +297,10 @@ export default function Hero() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full">
+        <div className="flex flex-col items-center gap-10 md:gap-12">
           {/* Content */}
-          <div className="text-center lg:text-left lg:col-span-5">
+          <div className="text-center max-w-5xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -317,7 +317,7 @@ export default function Hero() {
               transition={{ delay: 0.1, duration: 0.6, ease: "easeOut" }}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-[1.1] tracking-tight"
             >
-              Müşteri iletişiminde <br className="hidden sm:block" />
+              Müşteri iletişiminde{' '}
               <span className="relative inline-flex items-center gap-3 px-6 py-2 md:py-3 mt-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-2xl align-middle">
                 <span className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-brand shadow-lg shadow-brand/40 shrink-0">
                   <Zap className="w-4 h-4 md:w-5 md:h-5 text-white" />
@@ -330,7 +330,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="text-base md:text-xl text-white/80 mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium"
+              className="text-base md:text-xl text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed font-medium"
             >
               Binlerce çağrıyı aynı anda karşılayın veya arayın. Duygu analizi yapan, sistemlerinize entegre yeni nesil otonom temsilci.
             </motion.p>
@@ -339,7 +339,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-6"
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6"
             >
               <a 
                 href="https://app.oxonom.com"
@@ -362,7 +362,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="mb-12 flex justify-center lg:justify-start"
+              className="mb-8 flex justify-center"
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-xs font-bold text-white backdrop-blur-sm">
                 <Zap className="w-3.5 h-3.5 text-yellow-300" /> Kayıt olduğunuzda anında $5 deneme bakiyesi hesabınıza tanımlanır.
@@ -374,7 +374,7 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="flex flex-wrap justify-center lg:justify-start gap-6 md:gap-8 pt-8 border-t border-white/10"
+              className="flex flex-wrap justify-center gap-6 md:gap-8 pt-6 border-t border-white/10"
             >
               {[
                 { icon: Shield, text: "Kurulum Ücreti Yok" },
