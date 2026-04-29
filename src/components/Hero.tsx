@@ -524,9 +524,9 @@ export default function Hero() {
   const y2 = useTransform(scrollY, [0, 500], [0, -150]);
 
   return (
-    <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden bg-[#f8fafc]">
+    <section className="relative pt-28 pb-24 md:pt-36 md:pb-24 overflow-hidden bg-[#f8fafc]">
       {/* Premium Background Elements */}
-      <div className="absolute inset-x-0 top-0 h-[58%] z-0 overflow-hidden pointer-events-none bg-brand">
+      <div className="absolute inset-x-0 top-0 h-[620px] md:h-[58%] z-0 overflow-hidden pointer-events-none bg-brand">
         <motion.div style={{ y: y1 }} className="absolute top-0 right-[10%] w-[500px] h-[500px] bg-white/10 rounded-full blur-[120px]" />
         <motion.div style={{ y: y2 }} className="absolute bottom-0 left-[5%] w-[400px] h-[400px] bg-black/20 rounded-full blur-[120px]" />
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.08]" />
@@ -577,20 +577,20 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6"
+              className="relative z-20 flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 translate-y-10 sm:mb-6 sm:translate-y-0"
             >
               <a 
                 href="https://app.oxonom.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="OXONOM uygulamasını ücretsiz deneyin"
-                className="w-full sm:w-auto px-8 py-4 bg-dark text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:bg-black transition-all shadow-2xl shadow-dark/30 group"
+                className="w-full sm:w-auto px-8 py-5 sm:py-4 bg-dark text-white rounded-xl font-bold text-base sm:text-sm flex items-center justify-center gap-3 hover:bg-black transition-all shadow-2xl shadow-dark/30 group"
               >
                 Hemen Ücretsiz Deneyin <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
               <Link 
                 to="/paketler"
-                className="w-full sm:w-auto px-8 py-4 bg-white/10 border border-white/20 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:bg-white/20 transition-all backdrop-blur-sm"
+                className="hidden sm:flex w-full sm:w-auto px-8 py-4 bg-white/10 border border-white/20 text-white rounded-xl font-bold text-sm items-center justify-center gap-2 hover:bg-white/20 transition-all backdrop-blur-sm"
               >
                 <LayoutGrid className="w-4 h-4" /> Paketlere Gözat
               </Link>
@@ -600,7 +600,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="mb-8 flex justify-center"
+              className="mb-8 hidden md:flex justify-center"
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-xs font-bold text-white backdrop-blur-sm">
                 <Zap className="w-3.5 h-3.5 text-yellow-300" /> Kayıt olduğunuzda anında $5 deneme bakiyesi hesabınıza tanımlanır.
@@ -612,7 +612,7 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="flex flex-wrap justify-center gap-6 md:gap-8 pt-6 border-t border-white/10"
+              className="hidden md:flex flex-wrap justify-center gap-6 md:gap-8 pt-6 border-t border-white/10"
             >
               {[
                 { icon: Shield, text: "Kurulum Ücreti Yok" },
