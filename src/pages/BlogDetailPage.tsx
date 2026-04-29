@@ -2,15 +2,41 @@ import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect } from 'react';
 import { useSEO } from '../hooks/useSEO';
-import { blogPosts } from '../constants';
-import { Share2, Clock, Eye, ArrowLeft, Calendar, FileText, Twitter, Linkedin, MessageCircle, ChevronRight } from 'lucide-react';
+import { Share2, Clock, Eye, ArrowLeft, Calendar, Twitter, Linkedin, MessageCircle, ChevronRight, Bot, Sparkles } from 'lucide-react';
 import JsonLd from '../components/JsonLd';
 import NotFoundPage from './NotFoundPage';
+import { getBlogUi, getLocalizedBlogPosts, type SiteLang, withLang } from '../lib/i18n';
+
+function ArticleVisual({ title }: { title: string }) {
+  return (
+    <div className="relative mb-16 aspect-video w-full overflow-hidden rounded-3xl border border-gray-100 bg-[#0b1020] p-6 shadow-2xl shadow-dark/10 md:p-10">
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10" />
+      <motion.div className="absolute right-0 top-0 h-56 w-56 rounded-full bg-brand/35 blur-3xl" animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 5, repeat: Infinity }} />
+      <div className="relative z-10 flex h-full flex-col justify-between text-white">
+        <div className="flex items-center justify-between">
+          <span className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2 text-xs font-black uppercase tracking-[0.22em]"><Sparkles className="h-4 w-4 text-brand" /> AI Insight</span>
+          <Bot className="h-8 w-8 text-white/35" />
+        </div>
+        <div className="grid gap-4 md:grid-cols-[1fr_220px] md:items-end">
+          <h2 className="max-w-2xl text-2xl font-black leading-tight md:text-4xl">{title}</h2>
+          <div className="grid grid-cols-4 items-end gap-2">
+            {[64, 92, 48, 78].map((height, index) => (
+              <motion.span key={index} className="rounded-t-lg bg-white/20" style={{ height }} animate={{ height: [height, height + 24, height] }} transition={{ duration: 3, repeat: Infinity, delay: index * 0.25 }} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function BlogDetailPage() {
-  const { categorySlug, slug } = useParams();
+  const { lang: routeLang, categorySlug, slug } = useParams();
+  const lang = ((routeLang === 'en' || routeLang === 'de' || routeLang === 'ar') ? routeLang : 'tr') as SiteLang;
+  const ui = getBlogUi(lang);
+  const localizedPosts = getLocalizedBlogPosts(lang);
   const [showShareMenu, setShowShareMenu] = useState(false);
-  const post = blogPosts.find(p => p.slug === slug && p.categorySlug === categorySlug);
+  const post = localizedPosts.find(p => p.slug === slug && p.categorySlug === categorySlug);
   const [realViewCount, setRealViewCount] = useState(post?.viewCount || 0);
 
   // Determine current absolute URL for OG tag
@@ -46,7 +72,7 @@ export default function BlogDetailPage() {
     return <NotFoundPage />;
   }
 
-  const canonicalUrl = `/${categorySlug}/${slug}`;
+  const canonicalUrl = withLang(`/${categorySlug}/${slug}`, lang);
   const dateMap: Record<string, string> = {
     '18 Nisan 2026': '2026-04-18T09:00:00+03:00',
     '19 Nisan 2026': '2026-04-19T09:00:00+03:00',
@@ -57,7 +83,7 @@ export default function BlogDetailPage() {
   useSEO({
     title: post.title,
     description: post.summary,
-    ogImage: post.image,
+    ogImage: undefined,
     canonical: canonicalUrl,
     ogType: 'article',
     publishedTime: isoDate,
@@ -71,9 +97,7 @@ export default function BlogDetailPage() {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": post.title,
-    "image": [
-      post.image
-    ],
+    "inLanguage": lang,
     "datePublished": "2026-11-12T08:00:00+08:00",
     "dateModified": "2026-11-12T09:20:00+08:00",
     "author": [{
@@ -100,7 +124,7 @@ export default function BlogDetailPage() {
         {/* BACK BUTTON */}
         <Link to="/blog" className="inline-flex items-center gap-2 text-gray-500 hover:text-brand font-bold text-sm mb-12 transition-colors group">
            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-           Blog'a Dön
+           {ui.back}
         </Link>
 
         {/* HEADER */}
@@ -124,10 +148,12 @@ export default function BlogDetailPage() {
 
           <div className="flex flex-wrap items-center justify-between gap-6 py-6 border-y border-gray-100">
              <div className="flex items-center gap-4">
-               <img src={post.author.avatar} alt={post.author.name} className="w-12 h-12 rounded-full border-2 border-gray-100 p-1" />
+               <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-gray-100 bg-brand/10 text-sm font-black text-brand">
+                 OX
+               </div>
                <div>
                   <div className="font-bold text-dark">{post.author.name}</div>
-                  <div className="text-xs text-gray-500 font-medium">Yazar</div>
+                  <div className="text-xs text-gray-500 font-medium">{ui.author}</div>
                </div>
              </div>
              
@@ -170,18 +196,7 @@ export default function BlogDetailPage() {
           </div>
         </header>
 
-        {/* HERO IMAGE */}
-        <div className="w-full mb-16 rounded-[2px] bg-dark/5 relative overflow-hidden shadow-2xl shadow-dark/5 p-2 md:p-4 border border-gray-100 aspect-video flex items-center justify-center">
-           {/* 1920x1080 Aspect Ratio Strict Enforcement */}
-           <img 
-              src={post.image} 
-              alt={post.title} 
-              className="w-full h-full object-contain rounded-[2px]"
-              onError={(e) => {
-                 (e.target as HTMLImageElement).src = 'https://www.transparenttextures.com/patterns/carbon-fibre.png';
-              }}
-           />
-        </div>
+        <ArticleVisual title={post.title} />
 
         {/* CONTENT */}
         <article 
@@ -196,7 +211,7 @@ export default function BlogDetailPage() {
         {/* FOOTER ACTIONS */}
         <footer className="mt-20 pt-10 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-6">
            <div className="flex items-center gap-3 relative">
-              <span className="text-sm font-bold text-gray-500">Bu makaleyi faydalı buldunuz mu?</span>
+              <span className="text-sm font-bold text-gray-500">{ui.useful}</span>
               <button onClick={toggleShareMenu} className="p-3 bg-gray-50 hover:bg-brand/10 text-gray-600 hover:text-brand rounded-full transition-colors relative z-10">
                  <Share2 className="w-5 h-5" />
               </button>
@@ -228,19 +243,23 @@ export default function BlogDetailPage() {
       </main>
 
       {/* OTHER POSTS SLIDER */}
-      {blogPosts.length > 1 && (
+      {localizedPosts.length > 1 && (
         <div className="bg-gray-50 border-t border-gray-100 py-24 mt-24">
           <div className="max-w-7xl mx-auto px-4 md:px-6">
             <div className="flex items-center justify-between mb-10">
-               <h3 className="text-3xl font-display font-bold text-dark">Diğer Yazılar</h3>
-               <Link to="/blog" className="hidden border border-gray-200 text-gray-500 font-bold px-4 py-2 rounded-xl text-sm md:flex items-center gap-2 hover:bg-white transition-colors">Tümünü Gör <ChevronRight className="w-4 h-4"/></Link>
+               <h3 className="text-3xl font-display font-bold text-dark">{ui.related}</h3>
+               <Link to={withLang('/blog', lang)} className="hidden border border-gray-200 text-gray-500 font-bold px-4 py-2 rounded-xl text-sm md:flex items-center gap-2 hover:bg-white transition-colors">{ui.seeAll} <ChevronRight className="w-4 h-4"/></Link>
             </div>
             
             <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-8 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
-               {[...blogPosts].reverse().filter(p => p.id !== post.id).map(otherPost => (
-                   <Link to={`/${otherPost.categorySlug}/${otherPost.slug}`} key={otherPost.id} className="snap-start shrink-0 w-[85vw] sm:w-[350px] group flex flex-col bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-dark/5 transition-all duration-300">
-                       <div className="bg-dark/5 relative overflow-hidden flex items-center justify-center border-b border-gray-100 p-2 aspect-video">
-                          <img src={otherPost.image} alt={otherPost.title} className="w-full h-full object-contain rounded-[2px]" />
+               {[...localizedPosts].reverse().filter(p => p.id !== post.id).map(otherPost => (
+                   <Link to={withLang(`/${otherPost.categorySlug}/${otherPost.slug}`, lang)} key={otherPost.id} className="snap-start shrink-0 w-[85vw] sm:w-[350px] group flex flex-col bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-dark/5 transition-all duration-300">
+                       <div className="relative aspect-video overflow-hidden border-b border-gray-100 bg-[#0b1020] p-5 text-white">
+                         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10" />
+                         <div className="relative z-10 flex h-full flex-col justify-between">
+                           <Bot className="h-7 w-7 text-brand" />
+                           <p className="line-clamp-2 text-lg font-black leading-tight">{otherPost.title}</p>
+                         </div>
                        </div>
                        <div className="p-6 flex flex-col flex-grow">
                            <div className="flex items-center justify-between mb-4">
@@ -259,8 +278,8 @@ export default function BlogDetailPage() {
                ))}
             </div>
             <div className="mt-6 text-center md:hidden">
-                <Link to="/blog" className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-gray-200 text-dark font-bold rounded-2xl shadow-sm">
-                   Tüm Bloglara Git
+                <Link to={withLang('/blog', lang)} className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-gray-200 text-dark font-bold rounded-2xl shadow-sm">
+                   {ui.goAll}
                 </Link>
             </div>
           </div>

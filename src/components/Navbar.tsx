@@ -5,6 +5,7 @@ import { ChevronDown, Menu, X, ArrowRight, Sparkles, Zap, Phone, Puzzle, Star, I
 import { sectors } from '../constants';
 import { cn } from '../lib/utils';
 import { useAutoSnapScroll } from '../hooks/useAutoSnapScroll';
+import { getLangFromPath, languages, withLang } from '../lib/i18n';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -13,6 +14,7 @@ export default function Navbar() {
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [isPackagesMegaMenuOpen, setIsPackagesMegaMenuOpen] = useState(false);
   const location = useLocation();
+  const currentLang = getLangFromPath(location.pathname);
 
   const isHome = location.pathname === '/';
   const headerScrolled = isScrolled || !isHome;
@@ -80,7 +82,7 @@ export default function Navbar() {
             : "w-full max-w-7xl mx-auto px-6"
         )}>
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group relative z-50">
+          <Link to={withLang('/', currentLang)} className="flex items-center gap-2 group relative z-50">
             <img 
               src={headerScrolled ? "/logo_light.png" : "/logo_white.png"} 
               alt="OXONOM Logo" 
@@ -135,7 +137,7 @@ export default function Navbar() {
 
                             <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
                               <Link
-                                to="/instagram"
+                                to={withLang("/instagram", currentLang)}
                                 onClick={() => setIsProductMegaMenuOpen(false)}
                                 className="group relative overflow-hidden rounded-lg p-5 bg-gradient-to-br from-pink-50 to-orange-50 border border-pink-100 hover:border-brand/30 transition-all premium-shadow-hover"
                               >
@@ -157,7 +159,7 @@ export default function Navbar() {
                               </Link>
 
                               <Link
-                                to="/facebook"
+                                to={withLang("/facebook", currentLang)}
                                 onClick={() => setIsProductMegaMenuOpen(false)}
                                 className="group relative overflow-hidden rounded-lg p-5 bg-white border border-gray-200 hover:border-blue-500/30 transition-all premium-shadow-hover"
                               >
@@ -179,7 +181,7 @@ export default function Navbar() {
                               </Link>
 
                               <Link
-                                to="/whatsapp"
+                                to={withLang("/whatsapp", currentLang)}
                                 onClick={() => setIsProductMegaMenuOpen(false)}
                                 className="group relative overflow-hidden rounded-lg p-5 bg-white border border-gray-200 hover:border-green-500/30 transition-all premium-shadow-hover"
                               >
@@ -201,7 +203,7 @@ export default function Navbar() {
                               </Link>
 
                               <Link
-                                to="/web-site"
+                                to={withLang("/web-site", currentLang)}
                                 onClick={() => setIsProductMegaMenuOpen(false)}
                                 className="group relative overflow-hidden rounded-lg p-5 bg-white border border-gray-200 hover:border-indigo-500/30 transition-all premium-shadow-hover"
                               >
@@ -496,7 +498,7 @@ export default function Navbar() {
                     
                     <div className="p-6 bg-gray-50/50 flex flex-col items-center justify-center text-center">
                        <Link 
-                        to="/paketler" 
+                        to={withLang("/paketler", currentLang)} 
                         onClick={() => setIsPackagesMegaMenuOpen(false)}
 	                        className="w-full py-4 bg-dark text-white rounded-lg text-sm font-bold flex items-center justify-center gap-2 hover:bg-brand transition-all shadow-xl shadow-dark/10 group active:scale-95"
 	                      >
@@ -520,7 +522,26 @@ export default function Navbar() {
 
           {/* CTA */}
           <div className="hidden lg:flex items-center gap-4 ml-8">
-            <Link to="/blog" className={cn(
+            <div className={cn(
+              "flex items-center rounded-xl border p-1",
+              headerScrolled ? "border-gray-200 bg-gray-50" : "border-white/20 bg-white/10"
+            )}>
+              {languages.map((language) => (
+                <Link
+                  key={language.code}
+                  to={withLang(location.pathname, language.code)}
+                  className={cn(
+                    "px-2.5 py-1.5 rounded-lg text-[10px] font-black transition-all",
+                    currentLang === language.code
+                      ? headerScrolled ? "bg-dark text-white" : "bg-white text-dark"
+                      : headerScrolled ? "text-gray-500 hover:text-dark" : "text-white/70 hover:text-white"
+                  )}
+                >
+                  {language.short}
+                </Link>
+              ))}
+            </div>
+            <Link to={withLang("/blog", currentLang)} className={cn(
               "flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all border",
               headerScrolled ? "border-gray-200 text-dark hover:bg-gray-50" : "border-white/20 text-white hover:bg-white/10"
             )}>
@@ -594,6 +615,21 @@ export default function Navbar() {
             </div>
 
             <div className="flex-1 overflow-y-auto px-6 py-8">
+              <div className="mb-5 grid grid-cols-4 gap-2 rounded-xl border border-gray-100 bg-gray-50 p-2">
+                {languages.map((language) => (
+                  <Link
+                    key={language.code}
+                    to={withLang(location.pathname, language.code)}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={cn(
+                      "rounded-lg py-2 text-center text-xs font-black",
+                      currentLang === language.code ? "bg-dark text-white shadow-sm" : "bg-white text-gray-500"
+                    )}
+                  >
+                    {language.short}
+                  </Link>
+                ))}
+              </div>
 	              {/* Main Links */}
 	              <div className="flex flex-col gap-3 mb-8">
                 <div className="bg-white rounded-xl border border-gray-100 p-5 premium-shadow overflow-hidden">
@@ -608,7 +644,7 @@ export default function Navbar() {
 		                      </div>
 		                    </div>
 		                    <Link
-		                      to="/instagram"
+		                      to={withLang("/instagram", currentLang)}
 		                      aria-label="Instagram sayfasını aç"
 		                      className="w-9 h-9 rounded-lg bg-gray-50 flex items-center justify-center border border-gray-200 hover:border-brand/30 hover:bg-white transition-colors shrink-0"
 		                      onClick={() => setIsMobileMenuOpen(false)}
@@ -628,7 +664,7 @@ export default function Navbar() {
 
 			                      <div className="grid grid-cols-1 gap-2">
 			                        <Link
-			                          to="/instagram"
+			                          to={withLang("/instagram", currentLang)}
 			                          onClick={() => setIsMobileMenuOpen(false)}
 			                          className="group p-3 bg-white rounded-lg border border-pink-100 flex items-center justify-between gap-3 hover:bg-pink-50 hover:border-brand/20 transition-colors active:scale-[0.99]"
 			                        >
@@ -645,7 +681,7 @@ export default function Navbar() {
 			                        </Link>
 
 			                        <Link
-			                          to="/facebook"
+			                          to={withLang("/facebook", currentLang)}
 			                          onClick={() => setIsMobileMenuOpen(false)}
 			                          className="group p-3 bg-white rounded-lg border border-gray-100 flex items-center justify-between gap-3 hover:bg-blue-50 hover:border-blue-200 transition-colors active:scale-[0.99]"
 			                        >
@@ -662,7 +698,7 @@ export default function Navbar() {
 			                        </Link>
 
 			                        <Link
-			                          to="/whatsapp"
+			                          to={withLang("/whatsapp", currentLang)}
 			                          onClick={() => setIsMobileMenuOpen(false)}
 			                          className="group p-3 bg-white rounded-lg border border-gray-100 flex items-center justify-between gap-3 hover:bg-green-50 hover:border-green-200 transition-colors active:scale-[0.99]"
 			                        >
@@ -679,7 +715,7 @@ export default function Navbar() {
 			                        </Link>
 
 			                        <Link
-			                          to="/web-site"
+			                          to={withLang("/web-site", currentLang)}
 			                          onClick={() => setIsMobileMenuOpen(false)}
 			                          className="group p-3 bg-white rounded-lg border border-gray-100 flex items-center justify-between gap-3 hover:bg-indigo-50 hover:border-indigo-200 transition-colors active:scale-[0.99]"
 			                        >
@@ -753,12 +789,12 @@ export default function Navbar() {
 	                    </Link>
 	                  </div>
 
-	                  <Link to="/paketler" className="relative z-10 w-full py-3 bg-dark rounded-lg flex items-center justify-center gap-2 hover:bg-brand transition-colors text-white text-xs font-bold mt-3 active:scale-95" onClick={() => setIsMobileMenuOpen(false)}>
+	                  <Link to={withLang("/paketler", currentLang)} className="relative z-10 w-full py-3 bg-dark rounded-lg flex items-center justify-center gap-2 hover:bg-brand transition-colors text-white text-xs font-bold mt-3 active:scale-95" onClick={() => setIsMobileMenuOpen(false)}>
 	                    Tüm Paketleri Karşılaştır <ArrowRight className="w-3 h-3" />
 	                  </Link>
                 </div>
 
-	                <Link to="/blog" className="mt-4 flex items-center justify-between p-5 rounded-xl bg-brand/5 border border-brand/20 font-bold text-base text-brand shadow-sm" onClick={() => setIsMobileMenuOpen(false)}>
+	                <Link to={withLang("/blog", currentLang)} className="mt-4 flex items-center justify-between p-5 rounded-xl bg-brand/5 border border-brand/20 font-bold text-base text-brand shadow-sm" onClick={() => setIsMobileMenuOpen(false)}>
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-brand/10 border border-brand/20 rounded-xl flex items-center justify-center">
                        <span className="text-xl">📰</span>

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowRight, Sparkles, MessageSquare, Zap, Activity, LayoutGrid } from 'lucide-react';
+import { ArrowRight, Activity, LayoutGrid } from 'lucide-react';
 
 export default function CTASection() {
   return (
@@ -99,17 +99,6 @@ export default function CTASection() {
               </Link>
             </motion.div>
 
-            <motion.div 
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.7 }}
-              className="mt-8 md:mt-12 flex justify-center"
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-xs font-bold text-white backdrop-blur-sm">
-                <Zap className="w-3.5 h-3.5 text-yellow-300" /> Kayıt olduğunuzda anında $5 deneme bakiyesi hesabınıza tanımlanır.
-              </div>
-            </motion.div>
           </div>
         </motion.div>
       </div>

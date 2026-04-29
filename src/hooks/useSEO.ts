@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { getLangFromPath, languages, stripLangFromPath, withLang } from '../lib/i18n';
 
 export interface SEOProps {
   title: string;
@@ -52,6 +53,9 @@ export function useSEO({
     const fullOgImage = ogImage
       ? (ogImage.startsWith('http') ? ogImage : `${SITE_URL}${ogImage}`)
       : DEFAULT_OG_IMAGE;
+    const currentLang = getLangFromPath(window.location.pathname);
+    const currentLanguage = languages.find((language) => language.code === currentLang) ?? languages[0];
+    const cleanPath = stripLangFromPath(window.location.pathname);
 
     // ── Title ─────────────────────────────────────────────────────────────
     document.title = fullTitle;
@@ -67,11 +71,13 @@ export function useSEO({
       el.setAttribute('content', content);
     };
 
-    const setLink = (rel: string, href: string) => {
-      let el = document.querySelector<HTMLLinkElement>(`link[rel="${rel}"]`);
+    const setLink = (rel: string, href: string, hreflang?: string) => {
+      const selector = hreflang ? `link[rel="${rel}"][hreflang="${hreflang}"]` : `link[rel="${rel}"]:not([hreflang])`;
+      let el = document.querySelector<HTMLLinkElement>(selector);
       if (!el) {
         el = document.createElement('link');
         el.setAttribute('rel', rel);
+        if (hreflang) el.setAttribute('hreflang', hreflang);
         document.head.appendChild(el);
       }
       el.setAttribute('href', href);
@@ -85,6 +91,10 @@ export function useSEO({
 
     // ── Canonical ─────────────────────────────────────────────────────────
     setLink('canonical', fullCanonical);
+    languages.forEach((language) => {
+      setLink('alternate', `${SITE_URL}${withLang(cleanPath, language.code)}`, language.code);
+    });
+    setLink('alternate', `${SITE_URL}${withLang(cleanPath, 'en')}`, 'x-default');
 
     // ── Open Graph ────────────────────────────────────────────────────────
     setMeta('meta[property="og:title"]', 'property', 'og:title', fullTitle);
@@ -94,7 +104,7 @@ export function useSEO({
     setMeta('meta[property="og:image"]', 'property', 'og:image', fullOgImage);
     setMeta('meta[property="og:image:width"]', 'property', 'og:image:width', '1200');
     setMeta('meta[property="og:image:height"]', 'property', 'og:image:height', '630');
-    setMeta('meta[property="og:locale"]', 'property', 'og:locale', 'tr_TR');
+    setMeta('meta[property="og:locale"]', 'property', 'og:locale', currentLanguage.locale);
     setMeta('meta[property="og:site_name"]', 'property', 'og:site_name', 'OXONOM AI');
 
     if (ogType === 'article') {
@@ -123,6 +133,9 @@ export function useSEO({
       }
       script.textContent = JSON.stringify(schema);
     }
+
+    document.documentElement.lang = currentLang;
+    document.documentElement.dir = currentLanguage.dir;
 
   }, [title, description, ogImage, ogUrl, ogType, keywords, canonical, publishedTime, modifiedTime, author, section, schema]);
 }

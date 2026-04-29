@@ -574,8 +574,8 @@ export default function Hero() {
 
           <div className="mx-auto mt-8 grid max-w-[390px] grid-cols-3 gap-2">
             {[
-              { icon: Shield, text: 'Kurulum yok' },
-              { icon: Zap, text: '$5 bakiye' },
+              { icon: Shield, text: 'Güvenli panel' },
+              { icon: Zap, text: 'Hızlı yanıt' },
               { icon: Users, text: '7/24 destek' },
             ].map((badge) => (
               <div key={badge.text} className="rounded-xl border border-slate-200 bg-white p-3 text-center shadow-sm">
@@ -662,7 +662,7 @@ export default function Hero() {
               className="mb-8 hidden md:flex justify-center"
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-xs font-bold text-white backdrop-blur-sm">
-                <Zap className="w-3.5 h-3.5 text-yellow-300" /> Kayıt olduğunuzda anında $5 deneme bakiyesi hesabınıza tanımlanır.
+                <Zap className="w-3.5 h-3.5 text-yellow-300" /> Dakikalar içinde çalışan otomasyon senaryolarını test edin.
               </div>
             </motion.div>
 
@@ -674,7 +674,7 @@ export default function Hero() {
               className="hidden md:flex flex-wrap justify-center gap-6 md:gap-8 pt-6 border-t border-white/10"
             >
               {[
-                { icon: Shield, text: "Kurulum Ücreti Yok" },
+                { icon: Shield, text: "Güvenli Altyapı" },
                 { icon: Zap, text: "Kullandıkça Öde" },
                 { icon: Users, text: "7/24 Aktif Destek" }
               ].map((badge, i) => (
