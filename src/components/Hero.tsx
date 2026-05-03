@@ -518,6 +518,198 @@ function DashboardHeroMockup() {
   );
 }
 
+function HeroAutomationVisual() {
+  const [activeFlow, setActiveFlow] = useState<'voice' | 'chat' | 'social'>('voice');
+
+  const flows = {
+    voice: {
+      icon: Phone,
+      label: 'Sesli Asistan',
+      title: 'Gelen çağrı anında karşılandı',
+      message: 'Müşteri randevu talebi oluşturdu. Oxonom uygun saatleri sundu ve CRM kaydını açtı.',
+      color: 'from-red-500 to-orange-500',
+      metric: '340ms',
+    },
+    chat: {
+      icon: MessageCircle,
+      label: 'Web Chat',
+      title: 'Ziyaretçi sıcak lead olarak işaretlendi',
+      message: 'Web sitesindeki fiyat sorusu yanıtlandı, WhatsApp görüşmesine yönlendirme hazırlandı.',
+      color: 'from-blue-500 to-cyan-500',
+      metric: '7/24',
+    },
+    social: {
+      icon: Instagram,
+      label: 'Sosyal Medya',
+      title: 'DM ve yorum akışı satışa bağlandı',
+      message: 'Instagram yorumu algılandı, DM yanıtı gönderildi ve paket linki otomatik paylaşıldı.',
+      color: 'from-pink-500 to-red-500',
+      metric: '30+ dil',
+    },
+  };
+
+  const active = flows[activeFlow];
+  const ActiveIcon = active.icon;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.96, y: 24 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ delay: 0.45, duration: 0.7, ease: 'easeOut' }}
+      className="relative hidden w-full lg:block"
+    >
+      <div className="relative mx-auto w-full max-w-[1180px] overflow-hidden rounded-2xl border border-white/20 bg-[#090b12] p-6 shadow-2xl shadow-dark/35">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.06]" />
+        <motion.div
+          className="absolute -left-24 top-10 h-72 w-72 rounded-full bg-brand/35 blur-[90px]"
+          animate={{ scale: [1, 1.15, 1], opacity: [0.45, 0.75, 0.45] }}
+          transition={{ duration: 5, repeat: Infinity }}
+        />
+        <motion.div
+          className="absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-blue-500/25 blur-[100px]"
+          animate={{ scale: [1.1, 0.95, 1.1], opacity: [0.35, 0.65, 0.35] }}
+          transition={{ duration: 6, repeat: Infinity }}
+        />
+
+        <div className="relative z-10 grid min-h-[520px] grid-cols-[330px_minmax(0,1fr)_320px] gap-6">
+          <div className="flex flex-col justify-between rounded-xl border border-white/10 bg-white/[0.04] p-5">
+            <div>
+              <div className="mb-5 flex items-center justify-between">
+                <span className="text-[10px] font-black uppercase tracking-[0.28em] text-white/45">Canlı Akışlar</span>
+                <span className="rounded-full bg-emerald-400/10 px-3 py-1 text-[10px] font-black text-emerald-300">Aktif</span>
+              </div>
+              <div className="space-y-3">
+                {(Object.keys(flows) as Array<keyof typeof flows>).map((key) => {
+                  const flow = flows[key];
+                  const Icon = flow.icon;
+                  const selected = activeFlow === key;
+                  return (
+                    <motion.button
+                      key={key}
+                      onClick={() => setActiveFlow(key)}
+                      whileHover={{ x: 4 }}
+                      className={`w-full rounded-xl border p-4 text-left transition-all ${
+                        selected ? 'border-white/25 bg-white/12 shadow-xl shadow-white/5' : 'border-white/10 bg-white/[0.04] hover:bg-white/[0.08]'
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className={`flex h-11 w-11 items-center justify-center rounded-lg bg-gradient-to-br ${flow.color} text-white shadow-lg`}>
+                          <Icon className="h-5 w-5" />
+                        </span>
+                        <span>
+                          <span className="block text-sm font-black text-white">{flow.label}</span>
+                          <span className="text-xs font-medium text-white/45">{flow.metric} otomasyon</span>
+                        </span>
+                      </div>
+                    </motion.button>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="rounded-xl border border-white/10 bg-black/20 p-4">
+              <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/40">Bugünkü Özet</p>
+              <div className="mt-4 grid grid-cols-3 gap-3 text-center">
+                {['128 lead', '42 hot', '14 devir'].map((item) => (
+                  <div key={item} className="rounded-lg bg-white/[0.06] px-2 py-3 text-xs font-black text-white">{item}</div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="relative flex items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] p-6">
+            <div className="absolute inset-x-10 top-1/2 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+            <div className="absolute inset-y-10 left-1/2 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent" />
+
+            {[
+              { className: 'left-8 top-10', text: 'Çağrı', icon: Phone },
+              { className: 'right-8 top-10', text: 'DM', icon: Instagram },
+              { className: 'left-8 bottom-10', text: 'Web Chat', icon: MessageCircle },
+              { className: 'right-8 bottom-10', text: 'CRM', icon: Target },
+            ].map((node, index) => {
+              const Icon = node.icon;
+              return (
+                <motion.div
+                  key={node.text}
+                  className={`absolute ${node.className} rounded-xl border border-white/10 bg-[#121620] px-4 py-3 text-white shadow-xl`}
+                  animate={{ y: [0, index % 2 === 0 ? -8 : 8, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, delay: index * 0.35 }}
+                >
+                  <div className="flex items-center gap-2 text-xs font-black">
+                    <Icon className="h-4 w-4 text-brand" /> {node.text}
+                  </div>
+                </motion.div>
+              );
+            })}
+
+            <motion.div
+              key={activeFlow}
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.35 }}
+              className="relative z-10 flex h-56 w-56 flex-col items-center justify-center rounded-full border border-white/15 bg-gradient-to-br from-white/18 to-white/[0.04] text-center shadow-2xl shadow-brand/20 backdrop-blur-xl"
+            >
+              <motion.div
+                className={`absolute inset-5 rounded-full bg-gradient-to-br ${active.color} opacity-20 blur-xl`}
+                animate={{ scale: [1, 1.18, 1] }}
+                transition={{ duration: 2.8, repeat: Infinity }}
+              />
+              <span className={`relative mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${active.color} text-white shadow-xl`}>
+                <ActiveIcon className="h-8 w-8" />
+              </span>
+              <p className="relative text-[10px] font-black uppercase tracking-[0.24em] text-white/45">Oxonom AI</p>
+              <p className="relative mt-2 max-w-[150px] text-lg font-black leading-tight text-white">Akışı otomatik yönetir</p>
+            </motion.div>
+          </div>
+
+          <div className="flex flex-col gap-5">
+            <motion.div
+              key={active.title}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              className="rounded-xl border border-white/10 bg-white p-5 shadow-xl"
+            >
+              <div className="mb-4 flex items-center justify-between">
+                <span className={`flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br ${active.color} text-white`}>
+                  <ActiveIcon className="h-5 w-5" />
+                </span>
+                <span className="rounded-full bg-slate-100 px-3 py-1 text-[10px] font-black text-slate-500">Canlı Demo</span>
+              </div>
+              <h3 className="text-xl font-black leading-tight text-dark">{active.title}</h3>
+              <p className="mt-3 text-sm font-medium leading-relaxed text-slate-500">{active.message}</p>
+            </motion.div>
+
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                ['Yanıt', '<1 dk'],
+                ['Kanal', active.label],
+                ['Durum', 'Tamamlandı'],
+                ['Aksiyon', 'CRM kaydı'],
+              ].map(([label, value]) => (
+                <motion.div
+                  key={label}
+                  whileHover={{ y: -3 }}
+                  className="rounded-xl border border-white/10 bg-white/[0.07] p-4"
+                >
+                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/35">{label}</p>
+                  <p className="mt-2 text-sm font-black text-white">{value}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            <Link
+              to="/paketler"
+              className="mt-auto flex items-center justify-center gap-2 rounded-xl bg-brand px-5 py-4 text-sm font-black text-white shadow-xl shadow-brand/25 transition-all hover:bg-red-600"
+            >
+              Paketleri İncele <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 type HeroCopy = {
   heroBadge: string;
   heroTitle: string;
@@ -709,7 +901,7 @@ export default function Hero({ copy }: { copy?: HeroCopy }) {
             </motion.div>
           </div>
 
-          <DashboardHeroMockup />
+          <HeroAutomationVisual />
         </div>
       </div>
     </section>
